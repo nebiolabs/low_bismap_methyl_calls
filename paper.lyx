@@ -1,0 +1,223 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+<Examining and correcting low-mappability methylation calls in data which
+ used Bismark or Bwameth>
+\end_layout
+
+\begin_layout Author
+<authors list once I find out how these things are formatted>
+\end_layout
+
+\begin_layout Abstract
+<abstract>
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+As DNA methylation status can have a significant biological function {need
+ to cite}, it is important that there be an accurate way of calling methylation
+ on a genome.
+ One of the current techniques for gathering DNA cytosine methylation data
+ is to use a method of methylation sequencing, for example bisulfite sequencing
+ {need to cite}.
+ In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
+ by the additon of sodium bisulfite, which sequences as if it were thymine,
+ while 5-methyl-cytosine is unaffected.
+\end_layout
+
+\begin_layout Standard
+{explain EM-seq here?}
+\end_layout
+
+\begin_layout Standard
+This is followed by aligning the resulting reads using a methylation aligner
+ {need to cite}, which is specially designed to handle methylation sequencing
+ data, to align the reads to a reference.
+ Once aligned, the data can be passed through a methylation caller such
+ as MethylDackel {need to cite}, which will use the resulting reads to determine
+ the methylation status of a particular cytosine {see Figure 1}.
+ The resulting data can show the methylation status for each cytosine in
+ the genome and can therefore be used to find and study biologically significant
+ DNA methylation sites.
+ 
+\end_layout
+
+\begin_layout Standard
+Since this method is based on aligning sequencing reads, it cannot determine
+ methylation in repetitive regions as it cannot uniquely place a read.
+ Therefore, methylation aligners (and read aligners in general) assign a
+ value to each read known as MapQ {fig 2}.
+ According to the SAM specification {cite}, MapQ is defined as: 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $-10\log_{10}\Pr\{\mathrm{mapping\ position\ is\ wrong}\}$
+\end_inset
+
+, rounded to the nearest integer
+\begin_inset Quotes erd
+\end_inset
+
+.
+ MapQ indicates how uniquely placed a read alignment is, that is, how many
+ other places could the read align to the reference.
+ A low value of MapQ means that the read aligns in many places throughout
+ the genome (for instance, a read of centromeric satellite DNA would likely
+ have a very low MapQ).
+ A high value of MapQ indicates that the read can align where it is placed
+ and nowhere else in the genome.
+\end_layout
+
+\begin_layout Standard
+A methylation caller can then take the MapQ values and filter out reads
+ with low MapQ, as they have too many possible placements in the genome
+ to be useful, since you cannot tell what part of the genome the read is
+ providing data on.
+ This allows for the resulting methylation calls to be highly likely to
+ actually correspond to the location they are specified as being at.
+\end_layout
+
+\begin_layout Standard
+However, the methylation aligner Bismark {cite} and to a lesser extent Bwameth
+ {cite, and check this again when I finish my analysis}, incorrectly assign
+ high MapQ values to reads in regions which are too repeated to support
+ that MapQ {fig 3}.
+ These regions have been determined to be repeated using data from Bismap
+ {cite}, which uses {explain Bismap} to create a mappability score, ranging
+ from 0 to 1, for every base in the genome.
+ These incorrect high-MapQ reads are in regions with very low or 0 Bismap
+ mappability, and yet their MapQ values can be higher than 20.
+ According to the SAM specification, this indicates that they should have
+ a 1:100 chance of being incorrectly placed, which is not supported by the
+ region's Bismap mappability.
+\end_layout
+
+\begin_layout Section*
+Materials and Methods
+\end_layout
+
+\begin_layout Subsection*
+DNA Methylation Sequencing
+\end_layout
+
+\begin_layout Standard
+<how was the actual sequencing bench work done?>
+\end_layout
+
+\begin_layout Subsection*
+Data Processing
+\end_layout
+
+\begin_layout Standard
+<how was the data processing done?>
+\end_layout
+
+\begin_layout Section*
+Results
+\end_layout
+
+\begin_layout Standard
+Still working on these...
+\end_layout
+
+\begin_layout Section*
+Conclusions
+\end_layout
+
+\begin_layout Standard
+Waiting on results...
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
