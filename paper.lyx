@@ -77,12 +77,12 @@
 \begin_body
 
 \begin_layout Title
-<Examining and correcting low-mappability methylation calls in data which
- used Bismark or Bwameth>
+Examining and correcting low-mappability methylation calls in data from
+ reads aligned with Bismark or Bwameth
 \end_layout
 
 \begin_layout Author
-<authors list once I find out how these things are formatted>
+Caiden Kumar, Brad Langhorst Ph.D.
 \end_layout
 
 \begin_layout Abstract
@@ -101,7 +101,7 @@ As DNA methylation status can have a significant biological function {need
  is to use a method of methylation sequencing, for example bisulfite sequencing
  {need to cite}.
  In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
- by the additon of sodium bisulfite, which sequences as if it were thymine,
+ by the addition of sodium bisulfite, which sequences as if it were thymine,
  while 5-methyl-cytosine is unaffected.
 \end_layout
 
@@ -171,6 +171,11 @@ However, the methylation aligner Bismark {cite} and to a lesser extent Bwameth
  According to the SAM specification, this indicates that they should have
  a 1:100 chance of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
+ 
+\end_layout
+
+\begin_layout Standard
+{continue}
 \end_layout
 
 \begin_layout Section*
@@ -190,7 +195,49 @@ Data Processing
 \end_layout
 
 \begin_layout Standard
-<how was the data processing done?>
+{source of grch38 fa} A VCF file of disease-associated variant sites was
+ downloaded from Clinvar {cite and url} and a GFF of gene annotations was
+ downloaded from GENCODE {cite and url}.
+ The mappability data was the 100bp multi-track bigWig downloaded from Bismap
+ {cite and url}.
+ A detailed diagram of the process is found in {figure}.
+ 
+\end_layout
+
+\begin_layout Standard
+The GFF file was run through gff2bed (from BEDOPS {cite}) to convert it
+ to a BED file.
+ The vcf was likewise run through vcf2bed (also from BEDOPS) to convert
+ it into a BED file as well.
+ These 2 BED files were combined with bedtools intersect {cite} with the
+ -u option to write out all GENCODE regions that have Clinvar variants in
+ them.
+ The mappability bigWig was converted to a bedGraph using bigWigToBedGraph
+ {cite}.
+\end_layout
+
+\begin_layout Standard
+An FAI file was created from the grch38 FASTA file using samtools faidx
+ {cite}.
+ GNU cut {how to cite this?} was used to remove all but the first two columns
+ to convert this into a bedtools .genome file.
+ Since bedGraph files don't include zeroes {cite the specification?}, the
+ file was passed through bedtools complement to get all the 0-mappability
+ regions in the genome.
+ This BED file of all zeroes was run through GNU awk {cite again? or cite
+ all the GNU tools all at once?} to add a fourth column containing the mappabili
+ty (all zeroes) in order to convert it into a bedGraph.
+ This all-zeroes bedGraph was combined with the Bismap bedGraph to create
+ a bedGraph containing a mappability value for every base (including zeroes),
+ which will be referred to as the 
+\begin_inset Quotes eld
+\end_inset
+
+Bismap complete bedGraph
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section*
