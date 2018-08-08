@@ -175,7 +175,7 @@ However, the methylation aligner Bismark {cite} and to a lesser extent Bwameth
 \end_layout
 
 \begin_layout Standard
-{continue}
+<finish introduction>
 \end_layout
 
 \begin_layout Section*
@@ -195,41 +195,55 @@ Data Processing
 \end_layout
 
 \begin_layout Standard
+In order to compare the two aligners, this analysis was run twice: once
+ with Bismark, once with Bwameth.
+ In order to run the analysis, the following data and tools were used.
+ 
+\end_layout
+
+\begin_layout Standard
 {source of grch38 fa} A VCF file of disease-associated variant sites was
  downloaded from Clinvar {cite and url} and a GFF of gene annotations was
  downloaded from GENCODE {cite and url}.
  The mappability data was the 100bp multi-track bigWig downloaded from Bismap
  {cite and url}.
  A detailed diagram of the process is found in {figure}.
- 
+ Tools used include bedtools {cite}, samtools {cite}, awk {cite?}, MethylDackel
+ {cite}, bigWigToBedGraph {cite}, BEDOPS {cite}, GNU sort, GNU head, bwameth
+ {cite}, and bismark {cite}.
+ It is necessary that GNU sort and head be used, the functionality I need
+ is not present in BSD sort and head.
 \end_layout
 
 \begin_layout Standard
-The GFF file was run through gff2bed (from BEDOPS {cite}) to convert it
- to a BED file.
- The vcf was likewise run through vcf2bed (also from BEDOPS) to convert
- it into a BED file as well.
- These 2 BED files were combined with bedtools intersect {cite} with the
- -u option to write out all GENCODE regions that have Clinvar variants in
- them.
- The mappability bigWig was converted to a bedGraph using bigWigToBedGraph
- {cite}.
+{describe custom MethylDackel patch}
 \end_layout
 
 \begin_layout Standard
-An FAI file was created from the grch38 FASTA file using samtools faidx
- {cite}.
- GNU cut {how to cite this?} was used to remove all but the first two columns
- to convert this into a bedtools .genome file.
- Since bedGraph files don't include zeroes {cite the specification?}, the
- file was passed through bedtools complement to get all the 0-mappability
- regions in the genome.
- This BED file of all zeroes was run through GNU awk {cite again? or cite
- all the GNU tools all at once?} to add a fourth column containing the mappabili
-ty (all zeroes) in order to convert it into a bedGraph.
- This all-zeroes bedGraph was combined with the Bismap bedGraph to create
- a bedGraph containing a mappability value for every base (including zeroes),
- which will be referred to as the 
+The Clinvar VCF and GENCODE GFF were combined using bedtools and BEDOPS
+ into a single BED file listing all GENCODE annotation regions that overlap
+ one or more Clinvar variants (these regions will be referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+Clinvar regions
+\begin_inset Quotes erd
+\end_inset
+
+), which will be called the 
+\begin_inset Quotes eld
+\end_inset
+
+Clinvar regions BED
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The Bismap bedGraph (which, as is standard for bedGraph files, did not
+ contain zeroes) and the grch38 fa file were processed with bedtools, awk,
+ and GNU sort to obtain a bedGraph containing all mappability data, including
+ zeroes.
+ This file will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -238,6 +252,54 @@ Bismap complete bedGraph
 \end_inset
 
 .
+ It was then combined with the Clinvar regions BED using bedtools map to
+ create a file containing the minimum and mean mappability for each gene
+ with a Clinvar variant.
+ This file was then examined in Tableau {needs a trademark?} to determine
+ a cutoff value for defining low mappability.
+ The value determined was that if mappability is less than or equal to 0.01,
+ it is low.
+ The Bismap complete bedGraph was then filtered using awk to produce a file
+ containing only low mappability regions (less than or equal to 0.01).
+ The file with min and mean mappability for every Clinvar region was filtered
+ likewise on minimum mappability.
+ The two resulting files (one of low-mappability regions, one of Clinvar
+ regions with low minimum mappability) were combined to produce a file of
+ all low mappability regions that are in Clinvar regions.
+\end_layout
+
+\begin_layout Standard
+Alignments of approximately 100(?)-bp paired-end EM-seq reads were processed
+ using MethylDackel (including my custom patch) and combined with the file
+ of all low mappability regions in Clinvar regions to produce a file of
+ all miscalls (this will be referred to as the 
+\begin_inset Quotes eld
+\end_inset
+
+miscalls file
+\begin_inset Quotes erd
+\end_inset
+
+).
+ A miscall, as used here, is defined as a methylation call in a region with
+ Bismap mappability less than or equal to 0.01.
+ The miscalls file was intersected with the file of Clinvar regions with
+ low minimum mappability to produce a file of Clinvar regions with miscalls.
+ The -wa option for bedtools intersect was used here, so this file contains
+ duplicates, which are needed to count miscalls.
+ This data was then fed to a custom Python script {reference supplemental
+ materials here} which counted and combined the duplicates, producing a
+ list of all Clinvar regions with miscalls and how many miscalls are in
+ the region.
+\end_layout
+
+\begin_layout Standard
+Since this was run for both Bismark and Bwameth, the miscalls file was also
+ processed through awk to add a field specifying which aligner the data
+ is from.
+ The same field was added to the list of all Clinvar regions with miscalls
+ and counts described previously.
+ Both files were examined and compared in Tableau {figures}.
 \end_layout
 
 \begin_layout Section*
