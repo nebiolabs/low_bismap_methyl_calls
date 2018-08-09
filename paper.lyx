@@ -105,7 +105,15 @@ literal "false"
 , it is important that there be an accurate way of calling methylation on
  a genome.
  Although there are mutliple kinds of DNA methylation, a significant type
- is methylation of cytosine to 5-methyl-cytosine {cite}.
+ is methylation of cytosine to 5-methyl-cytosine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "breiling_epigenetic_2015"
+literal "false"
+
+\end_inset
+
+.
  One of the current techniques for gathering DNA cytosine methylation data
  is to use a method of methylation sequencing, for example bisulfite sequencing
  
@@ -397,7 +405,7 @@ DNA Methylation Sequencing
 \end_layout
 
 \begin_layout Standard
-<how was the actual sequencing bench work done?>
+<how was the actual sequencing bench work done>
 \end_layout
 
 \begin_layout Subsection*
@@ -443,7 +451,15 @@ literal "false"
 
 \end_inset
 
-, awk {cite?}, MethylDackel, bigWigToBedGraph {cite}, BEDOPS 
+, GNU awk, MethylDackel, bigWigToBedGraph 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_ucsc_nodate"
+literal "false"
+
+\end_inset
+
+, BEDOPS 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/bts277"
@@ -452,7 +468,7 @@ literal "false"
 \end_inset
 
 , GNU sort, GNU head, bwameth, and bismark.
- It is necessary that GNU sort and head be used, the functionality I need
+ It is necessary that GNU sort and head be used, the functionality needed
  is not present in BSD sort and head.
 \end_layout
 
@@ -564,7 +580,7 @@ Results
 \end_layout
 
 \begin_layout Standard
-Still working on these...
+<still getting data>
 \end_layout
 
 \begin_layout Section*
@@ -572,7 +588,7 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-Waiting on results...
+<waiting on results>
 \end_layout
 
 \begin_layout Standard
