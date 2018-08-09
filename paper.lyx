@@ -234,10 +234,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -249,10 +246,19 @@ name "fig:1"
 
 \begin_inset Graphics
 	filename analysis_dag.svg
+	lyxscale 70
+	height 75pheight%
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detailed description of data analysis steps
 \end_layout
 
 \end_inset
