@@ -94,12 +94,29 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-As DNA methylation status can have a significant biological function {need
- to find citation}, it is important that there be an accurate way of calling
- methylation on a genome.
+As DNA methylation status can have a significant biological function 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schubeler2015"
+literal "false"
+
+\end_inset
+
+, it is important that there be an accurate way of calling methylation on
+ a genome.
+ Although there are mutliple kinds of DNA methylation, a significant type
+ is methylation of cytosine to 5-methyl-cytosine {cite}.
  One of the current techniques for gathering DNA cytosine methylation data
  is to use a method of methylation sequencing, for example bisulfite sequencing
- {need to find citation}.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2017"
+literal "false"
+
+\end_inset
+
+.
  In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
  by the addition of sodium bisulfite, which sequences as if it were thymine,
  while 5-methyl-cytosine is unaffected.
@@ -110,20 +127,38 @@ As DNA methylation status can have a significant biological function {need
 \end_layout
 
 \begin_layout Standard
-This is followed by aligning the resulting reads using a methylation aligner
- {need to find citation}, which is specially designed to handle methylation
- sequencing data, to align the reads to a reference.
+For further analysis, sequencing is followed by aligning the resulting reads
+ using a methylation aligner 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Garrett-Bakelman2015"
+literal "false"
+
+\end_inset
+
+, which is specially designed to handle methylation sequencing data, to
+ align the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
  as MethylDackel 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "methyldackel"
+key "ryan_methyldackel_nodate"
 literal "false"
 
 \end_inset
 
 , which will use the resulting reads to determine the methylation status
- of a particular cytosine {fig 1}.
+ of a particular cytosine (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  The resulting data can show the methylation status for each cytosine in
  the genome and can therefore be used to find and study biologically significant
  DNA methylation sites.
@@ -134,8 +169,26 @@ literal "false"
 Since this method is based on aligning sequencing reads, it cannot determine
  methylation in repetitive regions as it cannot uniquely place a read.
  Therefore, methylation aligners (and read aligners in general) assign a
- value to each read known as MapQ {fig 2}.
- According to the SAM specification {cite}, MapQ is defined as: 
+ value to each read known as MapQ (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ According to the SAM specification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "the_sam/bam_format_specification_working_group_sequence_2018"
+literal "false"
+
+\end_inset
+
+, MapQ is defined as: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -175,7 +228,8 @@ literal "false"
 
 \end_inset
 
- and to a lesser extent Bwameth 
+ and to a lesser extent {check this again when I finish my analysis} Bwameth
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "2014arXiv1401.1129P"
@@ -183,9 +237,8 @@ literal "false"
 
 \end_inset
 
- {check this again when I finish my analysis}, incorrectly assign high MapQ
- values to reads in regions which are too repeated to support that MapQ
- {fig 3}.
+ , incorrectly assign high MapQ values to reads in regions which are too
+ repeated to support that MapQ {fig 2}.
  These regions have been determined to be repeated using data from Bismap
  
 \begin_inset CommandInset citation
@@ -195,10 +248,14 @@ literal "false"
 
 \end_inset
 
-, which counts the number of occurences of every single K-mer of a particular
+, which counts the number of occurrences of every single K-mer of a particular
  length in the genome to create a mappability score, ranging from 0 to 1,
  for every base in the genome.
- These incorrect high-MapQ reads are in regions with very low or zero Bismap
+ 
+\end_layout
+
+\begin_layout Standard
+These incorrect high-MapQ reads are in regions with very low or zero Bismap
  mappability, and yet their MapQ values can be higher than 20.
  According to the SAM specification, this indicates that they should have
  a 1:100 chance of being incorrectly placed, which is not supported by the
@@ -219,7 +276,7 @@ literal "false"
 
 \end_inset
 
-) that contain variants listed in the Clinvar 
+) that contain variants listed in the ClinVar 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/nar/gkx1153"
@@ -231,19 +288,69 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+The analysis overlays read alignments and MapQ data onto the Bismap mappability
+ data in order to find regions where the MapQ is higher than should be possible
+ given the mappability (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:1"
+name "fig:overview"
 
 \end_inset
 
 
+\begin_inset Graphics
+	filename Figure 1-4.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename analysis_dag.svg
 	lyxscale 70
@@ -258,6 +365,12 @@ name "fig:1"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag"
+
+\end_inset
+
 Detailed description of data analysis steps
 \end_layout
 
@@ -300,13 +413,13 @@ In order to compare the two aligners, this analysis was run twice: once
 
 \begin_layout Standard
 {source of grch38 fa} A VCF file of disease-associated variant sites was
- downloaded from Clinvar and a GFF of gene annotations was downloaded from
+ downloaded from ClinVar and a GFF of gene annotations was downloaded from
  GENCODE.
  The mappability data was the 100bp multi-track bigWig downloaded from Bismap.
  A detailed diagram of the process is found in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:1"
+reference "fig:dag"
 plural "false"
 caps "false"
 noprefix "false"
@@ -348,13 +461,13 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The Clinvar VCF and GENCODE GFF were combined using bedtools and BEDOPS
+The ClinVar VCF and GENCODE GFF were combined using bedtools and BEDOPS
  into a single BED file listing all GENCODE annotation regions that overlap
- one or more Clinvar variants (these regions will be referred to as 
+ one or more ClinVar variants (these regions will be referred to as 
 \begin_inset Quotes eld
 \end_inset
 
-Clinvar regions
+ClinVar regions
 \begin_inset Quotes erd
 \end_inset
 
@@ -362,7 +475,7 @@ Clinvar regions
 \begin_inset Quotes eld
 \end_inset
 
-Clinvar regions BED
+ClinVar regions BED
 \begin_inset Quotes erd
 \end_inset
 
@@ -380,10 +493,14 @@ Bismap complete bedGraph
 \end_inset
 
 .
- It was then combined with the Clinvar regions BED using bedtools map to
+ It was then combined with the ClinVar regions BED using bedtools map to
  create a file containing the minimum and mean mappability for each gene
- with a Clinvar variant.
- This file was then examined in Tableau
+ with a ClinVar variant.
+ 
+\end_layout
+
+\begin_layout Standard
+This file was then examined in Tableau
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -397,17 +514,17 @@ Bismap complete bedGraph
  it is low.
  The Bismap complete bedGraph was then filtered using awk to produce a file
  containing only low mappability regions (less than or equal to 0.01).
- The file with min and mean mappability for every Clinvar region was filtered
+ The file with min and mean mappability for every ClinVar region was filtered
  likewise on minimum mappability.
- The two resulting files (one of low-mappability regions, one of Clinvar
+ The two resulting files (one of low-mappability regions, one of ClinVar
  regions with low minimum mappability) were combined to produce a file of
- all low mappability regions that are in Clinvar regions.
+ all low mappability regions that are in ClinVar regions.
 \end_layout
 
 \begin_layout Standard
-Alignments of approximately 100(?)-bp paired-end EM-seq reads were processed
+Alignments of approximately 2x100-bp paired-end EM-seq reads were processed
  using MethylDackel (including my custom patch) and combined with the file
- of all low mappability regions in Clinvar regions to produce a file of
+ of all low mappability regions in ClinVar regions to produce a file of
  all miscalls (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
@@ -419,21 +536,25 @@ miscalls file
 ).
  A miscall, as used here, is defined as a methylation call in a region with
  Bismap mappability less than or equal to 0.01.
- The miscalls file was intersected with the file of Clinvar regions with
- low minimum mappability to produce a file of Clinvar regions with miscalls.
+ '
+\end_layout
+
+\begin_layout Standard
+The miscalls file was intersected with the file of ClinVar regions with
+ low minimum mappability to produce a file of ClinVar regions with miscalls.
  The -wa option for bedtools intersect was used here, so this file contains
  duplicates, which are needed to count miscalls.
- This data was then fed to a custom Python {do I need to cite Python} script
- {reference supplemental materials here} which counted and combined the
- duplicates, producing a list of all Clinvar regions with miscalls and how
- many miscalls are in the region.
+ This data was then fed to a custom Python script {reference supplemental
+ materials here} which counted and combined the duplicates, producing a
+ list of all ClinVar regions with miscalls and how many miscalls are in
+ the region.
 \end_layout
 
 \begin_layout Standard
 Since this was run for both Bismark and Bwameth, the miscalls file was also
  processed through awk to add a field specifying which aligner the data
  is from.
- The same field was added to the list of all Clinvar regions with miscalls
+ The same field was added to the list of all ClinVar regions with miscalls
  and counts described previously.
  Both files were examined and compared in Tableau.
 \end_layout
