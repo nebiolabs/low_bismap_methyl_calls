@@ -95,11 +95,11 @@ Introduction
 
 \begin_layout Standard
 As DNA methylation status can have a significant biological function {need
- to cite}, it is important that there be an accurate way of calling methylation
- on a genome.
+ to find citation}, it is important that there be an accurate way of calling
+ methylation on a genome.
  One of the current techniques for gathering DNA cytosine methylation data
  is to use a method of methylation sequencing, for example bisulfite sequencing
- {need to cite}.
+ {need to find citation}.
  In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
  by the addition of sodium bisulfite, which sequences as if it were thymine,
  while 5-methyl-cytosine is unaffected.
@@ -111,11 +111,19 @@ As DNA methylation status can have a significant biological function {need
 
 \begin_layout Standard
 This is followed by aligning the resulting reads using a methylation aligner
- {need to cite}, which is specially designed to handle methylation sequencing
- data, to align the reads to a reference.
+ {need to find citation}, which is specially designed to handle methylation
+ sequencing data, to align the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
- as MethylDackel {need to cite}, which will use the resulting reads to determine
- the methylation status of a particular cytosine {see Figure 1}.
+ as MethylDackel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "methyldackel"
+literal "false"
+
+\end_inset
+
+, which will use the resulting reads to determine the methylation status
+ of a particular cytosine {fig 1}.
  The resulting data can show the methylation status for each cytosine in
  the genome and can therefore be used to find and study biologically significant
  DNA methylation sites.
@@ -155,27 +163,110 @@ A methylation caller can then take the MapQ values and filter out reads
  to be useful, since you cannot tell what part of the genome the read is
  providing data on.
  This allows for the resulting methylation calls to be highly likely to
- actually correspond to the location they are specified as being at.
+ actually correspond to the location where they are specified.
 \end_layout
 
 \begin_layout Standard
-However, the methylation aligner Bismark {cite} and to a lesser extent Bwameth
- {cite, and check this again when I finish my analysis}, incorrectly assign
- high MapQ values to reads in regions which are too repeated to support
- that MapQ {fig 3}.
+However, the methylation aligner Bismark 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btr167"
+literal "false"
+
+\end_inset
+
+ and to a lesser extent Bwameth 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2014arXiv1401.1129P"
+literal "false"
+
+\end_inset
+
+ {check this again when I finish my analysis}, incorrectly assign high MapQ
+ values to reads in regions which are too repeated to support that MapQ
+ {fig 3}.
  These regions have been determined to be repeated using data from Bismap
- {cite}, which uses {explain Bismap} to create a mappability score, ranging
- from 0 to 1, for every base in the genome.
- These incorrect high-MapQ reads are in regions with very low or 0 Bismap
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "karimzadeh2018"
+literal "false"
+
+\end_inset
+
+, which counts the number of occurences of every single K-mer of a particular
+ length in the genome to create a mappability score, ranging from 0 to 1,
+ for every base in the genome.
+ These incorrect high-MapQ reads are in regions with very low or zero Bismap
  mappability, and yet their MapQ values can be higher than 20.
  According to the SAM specification, this indicates that they should have
  a 1:100 chance of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
- 
+ Due to the reads' high MapQ, they are incorrectly included in methylation
+ calling and therefore methylation is called at sites where there is in
+ fact not enough data to call it.
 \end_layout
 
 \begin_layout Standard
-<finish introduction>
+In order to focus on the incorrect alignment and methylation sites with
+ greater biological and medical significance, this analysis examines those
+ calls that are in genes (as annotated by GENCODE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harrow2012"
+literal "false"
+
+\end_inset
+
+) that contain variants listed in the Clinvar 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/nar/gkx1153"
+literal "false"
+
+\end_inset
+
+ database of disease-associated variants.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:1"
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename analysis_dag.svg
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -203,14 +294,45 @@ In order to compare the two aligners, this analysis was run twice: once
 
 \begin_layout Standard
 {source of grch38 fa} A VCF file of disease-associated variant sites was
- downloaded from Clinvar {cite and url} and a GFF of gene annotations was
- downloaded from GENCODE {cite and url}.
- The mappability data was the 100bp multi-track bigWig downloaded from Bismap
- {cite and url}.
- A detailed diagram of the process is found in {figure}.
- Tools used include bedtools {cite}, samtools {cite}, awk {cite?}, MethylDackel
- {cite}, bigWigToBedGraph {cite}, BEDOPS {cite}, GNU sort, GNU head, bwameth
- {cite}, and bismark {cite}.
+ downloaded from Clinvar and a GFF of gene annotations was downloaded from
+ GENCODE.
+ The mappability data was the 100bp multi-track bigWig downloaded from Bismap.
+ A detailed diagram of the process is found in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Tools used include bedtools 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btq033"
+literal "false"
+
+\end_inset
+
+, samtools 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btp352"
+literal "false"
+
+\end_inset
+
+, awk {cite?}, MethylDackel, bigWigToBedGraph {cite}, BEDOPS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/bts277"
+literal "false"
+
+\end_inset
+
+, GNU sort, GNU head, bwameth, and bismark.
  It is necessary that GNU sort and head be used, the functionality I need
  is not present in BSD sort and head.
 \end_layout
@@ -255,8 +377,16 @@ Bismap complete bedGraph
  It was then combined with the Clinvar regions BED using bedtools map to
  create a file containing the minimum and mean mappability for each gene
  with a Clinvar variant.
- This file was then examined in Tableau {needs a trademark?} to determine
- a cutoff value for defining low mappability.
+ This file was then examined in Tableau
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+®
+\end_layout
+
+\end_inset
+
+ to determine a cutoff value for defining low mappability.
  The value determined was that if mappability is less than or equal to 0.01,
  it is low.
  The Bismap complete bedGraph was then filtered using awk to produce a file
@@ -287,10 +417,10 @@ miscalls file
  low minimum mappability to produce a file of Clinvar regions with miscalls.
  The -wa option for bedtools intersect was used here, so this file contains
  duplicates, which are needed to count miscalls.
- This data was then fed to a custom Python script {reference supplemental
- materials here} which counted and combined the duplicates, producing a
- list of all Clinvar regions with miscalls and how many miscalls are in
- the region.
+ This data was then fed to a custom Python {do I need to cite Python} script
+ {reference supplemental materials here} which counted and combined the
+ duplicates, producing a list of all Clinvar regions with miscalls and how
+ many miscalls are in the region.
 \end_layout
 
 \begin_layout Standard
@@ -299,7 +429,7 @@ Since this was run for both Bismark and Bwameth, the miscalls file was also
  is from.
  The same field was added to the list of all Clinvar regions with miscalls
  and counts described previously.
- Both files were examined and compared in Tableau {figures}.
+ Both files were examined and compared in Tableau.
 \end_layout
 
 \begin_layout Section*
@@ -318,10 +448,12 @@ Conclusions
 Waiting on results...
 \end_layout
 
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "4641904citation"
+options "plain"
 
 \end_inset
 
