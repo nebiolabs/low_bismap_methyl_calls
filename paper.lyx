@@ -236,8 +236,7 @@ literal "false"
 
 \end_inset
 
- and to a lesser extent {check this again when I finish my analysis} Bwameth
- 
+ and to a lesser extent Bwameth 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "2014arXiv1401.1129P"
@@ -246,7 +245,7 @@ literal "false"
 \end_inset
 
  , incorrectly assign high MapQ values to reads in regions which are too
- repeated to support that MapQ {fig 2}.
+ repeated to support that MapQ {fig mapq}.
  These regions have been determined to be repeated using data from Bismap
  
 \begin_inset CommandInset citation
@@ -470,10 +469,13 @@ literal "false"
 , GNU sort, GNU head, bwameth, and bismark.
  It is necessary that GNU sort and head be used, the functionality needed
  is not present in BSD sort and head.
-\end_layout
-
-\begin_layout Standard
-{describe custom MethylDackel patch}
+ In order to eliminate reads in low-mappability regions, a patch was created
+ for MethylDackel which allows it to take as an input a bigWig file which
+ it then uses to filter out read pairs (it currently only supports paired-end
+ reads) where neither mate intersects a high-mappability region.
+ The patch allows for user configuration of the low mappability threshold
+ and the number of bases which must be above that threshold in order for
+ the read pair to be kept.
 \end_layout
 
 \begin_layout Standard
