@@ -73,6 +73,7 @@
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author 227422949 "Kumar"
 \author 392297111 "Langhorst"
 \end_header
 
@@ -106,8 +107,20 @@ literal "false"
 
 , it is important that there be an accurate way of calling methylation on
  a genome.
- Although there are mutliple kinds of DNA methylation, a significant type
- is methylation of cytosine to 5-methyl-cytosine 
+ Although there are 
+\change_deleted 227422949 1533911588
+mutliple
+\change_inserted 227422949 1533911588
+multiple
+\change_unchanged
+ kinds of DNA methylation, a significant type is methylation of cytosine
+ to 
+\change_inserted 227422949 1533909848
+5-methylcytosine
+\change_deleted 227422949 1533909848
+5-methyl-cytosine
+\change_unchanged
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "breiling_epigenetic_2015"
@@ -128,25 +141,26 @@ literal "false"
 
 .
  In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
- by the addition of sodium bisulfite
-\change_inserted 392297111 1533909227
-.
- Since uracil
-\change_deleted 392297111 1533909229
-, which
+ by the addition of sodium bisulfite.
+
+\change_inserted 227422949 1533916779
+ 5-methylcytosine is not affected.
+
 \change_unchanged
- sequences as if it were thymine
-\change_deleted 392297111 1533909270
-, while
-\change_inserted 392297111 1533909242
-and
+ Since uracil sequences as 
+\change_deleted 227422949 1533909700
+if it were 
 \change_unchanged
- 5-methyl-cytosine 
-\change_deleted 392297111 1533909246
-is unaffected
-\change_inserted 392297111 1533909501
-sequences as cytosine, positions of unmethylated Cs in a reference sequence
- can be identified by C->T transitions.
+thymine
+\change_inserted 227422949 1533909608
+ 
+\change_unchanged
+and 5-methyl
+\change_deleted 227422949 1533909713
+-
+\change_unchanged
+cytosine sequences as cytosine, positions of unmethylated Cs in a reference
+ sequence can be identified by C->T transitions.
 \change_deleted 392297111 1533909295
 .
 \change_unchanged
@@ -167,8 +181,15 @@ literal "false"
 
 \end_inset
 
-, which is specially designed to handle methylation sequencing data, to
- align the reads to a reference.
+, which is speci
+\change_inserted 227422949 1533916829
+fic
+\change_unchanged
+ally designed to handle
+\change_inserted 227422949 1533916808
+ the C->T transitions in
+\change_unchanged
+ methylation sequencing data, to align the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
  as MethylDackel 
 \begin_inset CommandInset citation
@@ -198,7 +219,15 @@ noprefix "false"
 
 \begin_layout Standard
 Since this method is based on aligning sequencing reads, it cannot determine
- methylation in repetitive regions as it cannot uniquely place a read.
+ methylation in repetitive regions as it
+\change_inserted 227422949 1533916874
+, like standard read aligners,
+\change_unchanged
+ cannot uniquely place a read
+\change_inserted 227422949 1533916886
+ in those regions
+\change_unchanged
+.
  Therefore, methylation aligners (and read aligners in general) assign a
  value to each read known as MapQ (see Figure 
 \begin_inset CommandInset ref
@@ -268,7 +297,13 @@ literal "false"
 \end_inset
 
  , incorrectly assign high MapQ values to reads in regions which are too
- repeated to support that MapQ {fig mapq}.
+ repeated to support that MapQ {fig 
+\change_deleted 227422949 1533911605
+mapq
+\change_inserted 227422949 1533911605
+MapQ
+\change_unchanged
+}.
  These regions have been determined to be repeated using data from Bismap
  
 \begin_inset CommandInset citation
@@ -278,10 +313,22 @@ literal "false"
 
 \end_inset
 
-, which counts the number of occurrences of every single K-mer of a particular
+, 
+\change_inserted 227422949 1533916965
+a separate tool 
+\change_unchanged
+which counts the number of occurrences of every single K-mer of a particular
  length in the genome to create a mappability score, ranging from 0 to 1,
  for every base in the genome.
+
+\change_inserted 227422949 1533917004
+ This score shows how well a read could possibly map, rather than how well
+ it actually maps.
+
+\change_deleted 227422949 1533916971
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -433,15 +480,38 @@ Data Processing
 \begin_layout Standard
 In order to compare the two aligners, this analysis was run twice: once
  with Bismark, once with Bwameth.
- In order to run the analysis, the following data and tools were used.
+ In order to run the analysis, the following data and tools were used
+\change_inserted 227422949 1533925126
+:
+\change_deleted 227422949 1533925125
+.
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-{source of grch38 fa} A VCF file of disease-associated variant sites was
- downloaded from ClinVar and a GFF of gene annotations was downloaded from
- GENCODE.
- The mappability data was the 100bp multi-track bigWig downloaded from Bismap.
+
+\change_inserted 227422949 1533925242
+A FASTA file of the grch38 version {any specific patch number or similar?
+ or is grch38 enough?} of the human genome was downloaded from 
+\change_unchanged
+{source of grch38 fa
+\change_inserted 227422949 1533925192
+, UCSC I guess?
+\change_unchanged
+}
+\change_inserted 227422949 1533925164
+.
+
+\change_unchanged
+ A VCF file of disease-associated variant sites was downloaded from ClinVar
+ and a GFF of gene annotations was downloaded from GENCODE.
+ The mappability data was the 100bp multi-track bigWig
+\change_inserted 227422949 1533917066
+ file
+\change_unchanged
+ downloaded from Bismap.
  A detailed diagram of the process is found in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -472,7 +542,7 @@ literal "false"
 , GNU awk, MethylDackel, bigWigToBedGraph 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "noauthor_ucsc_nodate"
+key "doi:10.1093/bioinformatics/btq351"
 literal "false"
 
 \end_inset
@@ -486,15 +556,31 @@ literal "false"
 \end_inset
 
 , GNU sort, GNU head, bwameth, and bismark.
- It is necessary that GNU sort and head be used, the functionality needed
- is not present in BSD sort and head.
+ It is necessary that GNU sort and head be used
+\change_inserted 227422949 1533923604
+ since
+\change_deleted 227422949 1533923602
+, 
+\change_unchanged
+the functionality needed is not present in BSD sort and head.
  In order to eliminate reads in low-mappability regions, a patch was created
  for MethylDackel which allows it to take as an input a bigWig file which
- it then uses to filter out read pairs (it currently only supports paired-end
- reads) where neither mate intersects a high-mappability region.
+ it then uses to filter out read pairs (
+\change_inserted 227422949 1533923620
+this patch
+\change_deleted 227422949 1533923618
+it
+\change_unchanged
+ currently only supports paired-end reads) where neither mate intersects
+ a high-mappability region.
  The patch allows for user configuration of the low mappability threshold
  and the number of bases which must be above that threshold in order for
- the read pair to be kept.
+ the read pair to be kept
+\change_inserted 227422949 1533917155
+ (the defaults are a low mappability threshold of 0.01 and to require 15
+ bases that are above that threshold in a single read)
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -547,12 +633,27 @@ This file was then examined in Tableau
 \end_inset
 
  to determine a cutoff value for defining low mappability.
- The value determined was that if mappability is less than or equal to 0.01,
- it is low.
+ The value determined
+\change_inserted 227422949 1533925028
+ for this analysis
+\change_unchanged
+ was that if mappability is less than or equal to 0.01, it is
+\change_inserted 227422949 1533925040
+ to be considered too
+\change_unchanged
+ low
+\change_inserted 227422949 1533925049
+ to call methylation
+\change_unchanged
+.
  The Bismap complete bedGraph was then filtered using awk to produce a file
  containing only low mappability regions (less than or equal to 0.01).
- The file with min and mean mappability for every ClinVar region was filtered
- likewise on minimum mappability.
+ The file with min
+\change_inserted 227422949 1533923996
+imum
+\change_unchanged
+ and mean mappability for every ClinVar region was filtered likewise on
+ minimum mappability.
  The two resulting files (one of low-mappability regions, one of ClinVar
  regions with low minimum mappability) were combined to produce a file of
  all low mappability regions that are in ClinVar regions.
@@ -560,9 +661,18 @@ This file was then examined in Tableau
 
 \begin_layout Standard
 Alignments of approximately 2x100-bp paired-end EM-seq reads were processed
- using MethylDackel (including my custom patch) and combined with the file
- of all low mappability regions in ClinVar regions to produce a file of
- all miscalls (this will be referred to as the 
+ using MethylDackel (including 
+\change_deleted 227422949 1533923947
+my 
+\change_inserted 227422949 1533923948
+the 
+\change_unchanged
+custom patch)
+\change_inserted 227422949 1533923978
+ with a minimum MapQ cutoff of 20
+\change_unchanged
+ and combined with the file of all low mappability regions in ClinVar regions
+ to produce a file of all miscalls (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -571,26 +681,69 @@ miscalls file
 \end_inset
 
 ).
- A miscall, as used here, is defined as a methylation call in a region with
- Bismap mappability less than or equal to 0.01.
- '
+ A miscall, as used here, is defined as a methylation call in a region w
+\change_inserted 227422949 1533923753
+hich has 
+\change_deleted 227422949 1533923750
+ith 
+\change_unchanged
+Bismap mappability less than or equal to 0.01.
+ 
+\change_deleted 227422949 1533923765
+'
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 The miscalls file was intersected with the file of ClinVar regions with
  low minimum mappability to produce a file of ClinVar regions with miscalls.
  The -wa option for bedtools intersect was used here, so this file contains
- duplicates, which are needed to count miscalls.
- This data was then fed to a custom Python script {reference supplemental
- materials here} which counted and combined the duplicates, producing a
- list of all ClinVar regions with miscalls and how many miscalls are in
- the region.
+ duplicates
+\change_inserted 227422949 1533923824
+.
+ Specifically, it contains one copy of a ClinVar region for each miscall
+ in that region.
+\change_deleted 227422949 1533923821
+, which
+\change_unchanged
+ 
+\change_inserted 227422949 1533923831
+These duplicates 
+\change_unchanged
+are 
+\change_inserted 227422949 1533923837
+then used
+\change_deleted 227422949 1533923835
+needed
+\change_unchanged
+ to count miscalls
+\change_inserted 227422949 1533923879
+ by 
+\change_deleted 227422949 1533923872
+.
+ This data was then 
+\change_unchanged
+fe
+\change_inserted 227422949 1533923862
+e
+\change_unchanged
+d
+\change_inserted 227422949 1533923884
+ing the data
+\change_unchanged
+ to a custom Python script {reference supplemental materials here} which
+ counted and combined the duplicates, producing a list of all ClinVar regions
+ with miscalls and how many miscalls are in the region.
 \end_layout
 
 \begin_layout Standard
-Since this was run for both Bismark and Bwameth, the miscalls file was also
- processed through awk to add a field specifying which aligner the data
- is from.
+Since this
+\change_inserted 227422949 1533923910
+ analysis
+\change_unchanged
+ was run for both Bismark and Bwameth, the miscalls file was also processed
+ through awk to add a field specifying which aligner the data is from.
  The same field was added to the list of all ClinVar regions with miscalls
  and counts described previously.
  Both files were examined and compared in Tableau.
