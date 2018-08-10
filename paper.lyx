@@ -29,6 +29,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -318,6 +319,12 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figure 1-4.svg
+	width 60page%
+
+\end_inset
+
 
 \end_layout
 
@@ -325,16 +332,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+Experimental Overview
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview"
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Figure 1-4.svg
-	width 60page%
 
 \end_inset
 
