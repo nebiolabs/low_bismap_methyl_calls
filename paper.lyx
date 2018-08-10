@@ -130,8 +130,21 @@ literal "false"
 
 .
  One of the current techniques for gathering DNA cytosine methylation data
- is to use a method of methylation sequencing, for example bisulfite sequencing
- 
+ is to use a method of methylation sequencing
+\change_inserted 227422949 1533927313
+ (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\change_unchanged
+, for example bisulfite sequencing 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2017"
@@ -297,13 +310,23 @@ literal "false"
 \end_inset
 
  , incorrectly assign high MapQ values to reads in regions which are too
- repeated to support that MapQ {fig 
-\change_deleted 227422949 1533911605
-mapq
-\change_inserted 227422949 1533911605
-MapQ
+ repeated to support that MapQ 
+\change_deleted 227422949 1533927222
+{fig mapq}
+\change_inserted 227422949 1533927271
+(see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bad-mapq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
 \change_unchanged
-}.
+.
  These regions have been determined to be repeated using data from Bismap
  
 \begin_inset CommandInset citation
@@ -422,10 +445,108 @@ name "fig:overview"
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted 227422949 1533926436
 \begin_inset Float figure
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1533926429
+\begin_inset Graphics
+	filename Untitled drawing-2.svg
+	width 90page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1533927242
+Overview of Methylation Sequencing Methods
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1533926442
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1533926454
+\begin_inset Graphics
+	filename igv_snapshot.svg
+	width 80page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1533927259
+Example of MapQ Issue
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bad-mapq"
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
