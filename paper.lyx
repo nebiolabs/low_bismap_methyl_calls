@@ -30,7 +30,16 @@
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_package amsmath 1
@@ -960,13 +969,13 @@ Conclusions
 
 \begin_layout Standard
 <waiting on results>
-\change_inserted 227422949 1533929133
+\change_inserted 227422949 1534184567
 
 \end_layout
 
 \begin_layout Section*
 
-\change_inserted 227422949 1533930172
+\change_inserted 227422949 1534190760
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Supplemental-Materials"
@@ -978,8 +987,8 @@ Supplemental Materials
 
 \begin_layout Standard
 
-\change_inserted 227422949 1533933442
-<still working on getting this section to work right>
+\change_inserted 227422949 1534192746
+<nextflow script>
 \end_layout
 
 \begin_layout Standard
