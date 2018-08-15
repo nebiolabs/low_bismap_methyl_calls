@@ -539,14 +539,50 @@ ig file for each read, but we did not want to delay reporting this observation
 
 \begin_layout Standard
 todo: filtering effect em-seq vs wgbs
+\change_inserted 227422949 1534371521
+ (fig)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: # cs affected (worst) bismark vs filtered vs bwameth vs filtered (best)
+\change_inserted 227422949 1534371535
+ (fig?)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: group Cs by magnititude of change in methylation post filtering
+\change_inserted 227422949 1534371620
+ (fig, histogram)
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1534371682
+todo: # of relevant reads filtered/unfiltered
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1534371762
+todo: effect on CinVar
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1534371795
+todo: examples of specific effects in ClinVar
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1534371803
+todo: examine GEO dataset
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -646,14 +682,14 @@ name "fig:seq"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \change_inserted 227422949 1533926454
 \begin_inset Graphics
-	filename igv_snapshot.svg
-	width 80page%
+	filename /Users/ckumar/Desktop/Old Desktop Files/Chrom_fig.svg
+	width 60page%
 
 \end_inset
 
@@ -697,7 +733,7 @@ name "fig:bad-mapq"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -753,7 +789,7 @@ preprocesing
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -814,10 +850,16 @@ Materials
 \begin_layout Standard
 Libraries were prepared from 200 ng of genomic DNA from the NA12878 cell
  line<source>.
- This input was supplemented with a small amount of fully-methylated Xp-12
- DNA<source> (todo: confirm that both libs have XP-12), lambda phage DNA
- (NEB #N3011)<source>, and a pUC19 plasmid (NEB #N3041) treated with M.SssI
- CpG Methyltransferase (NEB #M0226).
+ This input was supplemented with a small amount of 
+\change_deleted 227422949 1534370576
+fully-methylated Xp-12 DNA<source> (todo: confirm that both libs have XP-12),
+\change_unchanged
+ lambda phage DNA (NEB #N3011)
+\change_deleted 227422949 1534370583
+<source>,
+\change_unchanged
+ and a pUC19 plasmid (NEB #N3041) treated with M.SssI CpG Methyltransferase
+ (NEB #M0226).
  
 \end_layout
 
@@ -854,30 +896,26 @@ literal "false"
 \change_unchanged
  using the S2 chemistry<citatkino>.
  We acquired 1
-\change_inserted 227422949 1534344637
-,
+\change_inserted 227422949 1534370516
+.
 \change_unchanged
-554
-\change_inserted 227422949 1534344636
-,
+55
+\change_deleted 227422949 1534370518
+4674639
+\change_inserted 227422949 1534370514
+ billion
 \change_unchanged
-674
-\change_inserted 227422949 1534344635
-,
-\change_unchanged
-639 100bp paired-end reads for the EM-seq method and 1
+ 100bp paired-end reads for the EM-seq method and 1
 \change_inserted 227422949 1534344634
 ,
 \change_unchanged
-601
-\change_inserted 227422949 1534344633
-,
+60
+\change_deleted 227422949 1534370522
+1169878
+\change_inserted 227422949 1534370524
+ billion
 \change_unchanged
-169
-\change_inserted 227422949 1534344632
-,
-\change_unchanged
-878 paired-end reads for the Bisulfite converted libraries.
+ paired-end reads for the Bisulfite converted libraries.
  
 \end_layout
 
@@ -1072,13 +1110,17 @@ Bismap complete bedGraph
  
 \change_unchanged
 The Bismap complete bedGraph was then filtered using awk to produce a file
- containing only low mappability regions (mappability
+ containing only low mappability regions (
+\change_deleted 227422949 1534370387
+mappability
 \change_deleted 392297111 1534287071
  is 
-\change_inserted 227422949 1534350178
- 
+\change_deleted 227422949 1534370417
+less than or equal to
+\change_inserted 227422949 1534370417
+≤
 \change_unchanged
-less than or equal to 0.01).
+ 0.01).
  The file with minimum and mean mappability for every ClinVar region was
  filtered likewise on minimum mappability.
  The two resulting files (one of low-mappability regions, one of ClinVar
