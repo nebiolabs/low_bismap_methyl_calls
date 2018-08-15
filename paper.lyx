@@ -547,7 +547,7 @@ todo: filtering effect em-seq vs wgbs
 
 \begin_layout Standard
 todo: # cs affected (worst) bismark vs filtered vs bwameth vs filtered (best)
-\change_inserted 227422949 1534371535
+\change_inserted 227422949 1534373351
  (fig?)
 \change_unchanged
 
@@ -555,8 +555,8 @@ todo: # cs affected (worst) bismark vs filtered vs bwameth vs filtered (best)
 
 \begin_layout Standard
 todo: group Cs by magnititude of change in methylation post filtering
-\change_inserted 227422949 1534371620
- (fig, histogram)
+\change_inserted 227422949 1534373369
+ (fig, heatmap?)
 \end_layout
 
 \begin_layout Standard
