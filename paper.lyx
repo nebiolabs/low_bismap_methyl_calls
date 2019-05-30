@@ -228,8 +228,12 @@ noprefix "false"
 \begin_layout Standard
 A read must be unambiguously placed if it is to provide information about
  a specific locus.
- Reads that equally match more than one are of the reference genome should
- not be used to assess methylation of any given C.
+ Reads that equally match more than one are
+\change_inserted 227422949 1559137062
+a
+\change_unchanged
+ of the reference genome should not be used to assess methylation of any
+ given C.
  To avoid calling Cs using reads derived from multiple genome loci, methylation
  aligners (and read aligners in general) assign a MapQ value to each read
  alignment
@@ -589,7 +593,7 @@ todo: examine GEO dataset
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -631,7 +635,7 @@ name "fig:overview"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -733,7 +737,7 @@ name "fig:bad-mapq"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -789,7 +793,7 @@ preprocesing
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
