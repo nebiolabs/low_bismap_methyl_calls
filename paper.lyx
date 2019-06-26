@@ -387,9 +387,43 @@ to accept a bigWig file of low-mappability regions to exclude from analysis.
  because the longer insert sizes now possible with enzymatic methylation
  sequencing may allow placement of one mate in a unique region and allow
  assessment of more loci in repetitive regions.
- This simple filtering approach incurs a significant cost as we query the
- bigWig file for each read, but we did not want to delay reporting this
- observation while we improve the algorithm's performance.
+ This 
+\change_deleted 227422949 1561580172
+simple 
+\change_unchanged
+filtering 
+\change_deleted 227422949 1561580174
+approach
+\change_inserted 227422949 1561580235
+ does not
+\change_unchanged
+ incur
+\change_deleted 227422949 1561580237
+s
+\change_unchanged
+ a significant cost 
+\change_inserted 227422949 1561580252
+in terms of execution speed, 
+\change_unchanged
+as 
+\change_deleted 227422949 1561580254
+we query the bigWig file for each read, but we did not want to delay reporting
+ this observation while we improve the algorithm's performance.
+
+\change_inserted 227422949 1561580305
+ the algorithm has been optimized both by loading the mappability data into
+ memory before calling, and through the use of a custom run-length compressed
+ binary file format that we here term BBM (Binary BisMap).
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1559831708
+todo: algorithm seems to be faster now (assuming it doesn't break again)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -638,11 +672,8 @@ Materials
 \begin_layout Standard
 Libraries were prepared from 200 ng of genomic DNA from the NA12878 cell
  line<source>.
- This input was supplemented with a small amount of 
-\change_deleted 227422949 1534370576
-fully-methylated Xp-12 DNA<source> (todo: confirm that both libs have XP-12),
-\change_unchanged
- lambda phage DNA (NEB #N3011) and a pUC19 plasmid (NEB #N3041) treated
+ This input was supplemented with a small amount of fully-methylated Xp-12
+ DNA, lambda phage DNA (NEB #N3011) and a pUC19 plasmid (NEB #N3041) treated
  with M.SssI CpG Methyltransferase (NEB #M0226).
  
 \end_layout
@@ -670,19 +701,13 @@ literal "false"
 
 \end_inset
 
- using the S2 chemistry<citatkino>
-\change_inserted 227422949 1559749177
- <what is 
-\begin_inset Quotes eld
-\end_inset
-
+ using the S2 chemistry<
+\change_deleted 227422949 1559913591
 citatkino
-\begin_inset Quotes erd
-\end_inset
-
- supposed to mean>
+\change_inserted 227422949 1559913592
+citation
 \change_unchanged
-.
+>.
  We acquired 1.55 billion 100bp paired-end reads for the EM-seq method and
  1
 \change_inserted 227422949 1559749210
