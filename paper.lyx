@@ -414,34 +414,51 @@ we query the bigWig file for each read, but we did not want to delay reporting
  the algorithm has been optimized both by loading the mappability data into
  memory before calling, and through the use of a custom run-length compressed
  binary file format that we here term BBM (Binary BisMap).
-\change_unchanged
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 227422949 1559831708
-todo: algorithm seems to be faster now (assuming it doesn't break again)
-\change_unchanged
+\change_deleted 227422949 1562777165
 
 \end_layout
 
 \begin_layout Standard
 todo: filtering effect em-seq vs wgbs (fig)
+\change_inserted 227422949 1562777178
+ (this is the data I'm working on)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: # cs affected (worst) bismark vs filtered vs bwameth vs filtered (best)
  (fig?)
+\change_inserted 227422949 1562777218
+ (I can get this from the emseq/wgbs data, it's a simple bedtools operation)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: group Cs by magnititude of change in methylation post filtering (fig,
  heatmap?)
+\change_inserted 227422949 1562777311
+ (best done by comparing both %methyl and read count, maybe we should discuss
+ how to layout this figure though)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: # of relevant reads filtered/unfiltered
+\change_inserted 227422949 1562777375
+ (
+\begin_inset Quotes eld
+\end_inset
+
+relevant
+\begin_inset Quotes erd
+\end_inset
+
+ means reads containing a C affected by filtering, right?)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
