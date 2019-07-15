@@ -320,8 +320,89 @@ literal "false"
 
 \begin_layout Standard
 We observed many high-MapQ reads in regions with very low or zero Bismap
- mappability (figure).
- According to the SAM specification, MapQs of 20 should only have a 1:100
+ mappability
+\change_inserted 227422949 1563228774
+ (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+
+\change_unchanged
+ 
+\change_deleted 227422949 1563223637
+(figure)
+\change_inserted 227422949 1563223637
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563223655
+\begin_inset Graphics
+	filename fig1_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228574
+\begin_inset CommandInset label
+LatexCommand label
+name "example"
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228648
+An example of how MapQ filtering does not remove all poorly mapped reads.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example"
+
+\end_inset
+
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+.
+
+\change_deleted 227422949 1563225095
+ 
+\change_unchanged
+According to the SAM specification, MapQs of 20 should only have a 1:100
  probability of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
  Bismark reports MapQ based on number of reference mismatches, producing
@@ -331,6 +412,8 @@ We observed many high-MapQ reads in regions with very low or zero Bismap
  Methyldackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads for both aligners, however inaccurate
  MapQs lead to reads being incorrectly included in methylation calling.
+\change_inserted 227422949 1563227894
+
 \end_layout
 
 \begin_layout Standard
@@ -410,11 +493,244 @@ as
 we query the bigWig file for each read, but we did not want to delay reporting
  this observation while we improve the algorithm's performance.
 
-\change_inserted 227422949 1561580305
+\change_inserted 227422949 1563227858
  the algorithm has been optimized both by loading the mappability data into
  memory before calling, and through the use of a custom run-length compressed
  binary file format that we here term BBM (Binary BisMap).
-\change_deleted 227422949 1562777165
+ This format can store the mappbility data for the hg38/grch38 human genome
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving acompression
+ ratio for this dataset of 7.78:1.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563228761
+Simply using bedtools(cite bedtools) to filter out individual Cs with low
+ mappability is not ideal here as it incorrectly classifies Cs in two situations.
+ First, if a C is in a very short high-mappability region at the end of
+ a read (theoretically, this could occur in the middle of a read, but it
+ has yet only been observed at the end of a read), while the rest of the
+ read is not mappable, bedtools will classify that C as mappable, which
+ is incorrect as the majority of the read cannot be uniquely placed (see
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:discarded"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Filtering by reads correctly classifies the entire read, and as a result
+ the C, as unmappable.
+ This is relatively rare, but does occur (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ First, if a C is located in a small dip in mapapbility, so that the majority
+ of the read pair is in a mappable region but the C is not, bedtools excludes
+ it even though the mappable portion of the read pair is enough to uniquely
+ place the C (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:kept"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Filtering by reads properly classifies these Cs as mappable.
+ This situation is is much more common, making this a significant problem
+ with basic bedtools filtering and an advantage for filtering by read (see
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563227900
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228445
+\begin_inset Graphics
+	filename fig2_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563227900
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228636
+An example of a C incorrectly kept by bedtools.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:kept"
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563227906
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228447
+\begin_inset Graphics
+	filename fig3_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228602
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228628
+An example of a C incorrectly discarded by bedtools.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:discarded"
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563227912
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228449
+\begin_inset Graphics
+	filename fig4_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563227912
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563228663
+An overview of the occurrences of these scenarios in grch38 chromosome 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview-1"
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
