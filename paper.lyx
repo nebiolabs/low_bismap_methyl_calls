@@ -83,7 +83,6 @@
 \html_css_as_file 0
 \html_be_strict false
 \author 227422949 "Kumar"
-\author 392297111 "Langhorst"
 \end_header
 
 \begin_body
@@ -397,10 +396,8 @@ name "fig:example"
 \end_inset
 
 
-\change_unchanged
+\change_deleted 227422949 1563297076
 .
-
-\change_deleted 227422949 1563225095
  
 \change_unchanged
 According to the SAM specification, MapQs of 20 should only have a 1:100
@@ -763,27 +760,7 @@ todo: group Cs by magnititude of change in methylation post filtering (fig,
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 392297111 1563219415
-todo: # of relevant reads filtered/unfiltered (
-\begin_inset Quotes eld
-\end_inset
-
-relevant
-\begin_inset Quotes erd
-\end_inset
-
- means reads containing a C affected by filtering, right?)
-\change_unchanged
-
-\end_layout
-
-\begin_layout Standard
-todo: effect on C
-\change_inserted 392297111 1563219407
-l
-\change_unchanged
-inVar
+todo: effect on ClinVar
 \end_layout
 
 \begin_layout Standard
@@ -791,9 +768,9 @@ todo: examples of specific effects in ClinVar
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 392297111 1563219610
 todo: examine GEO dataset
+\change_inserted 227422949 1563297111
+ (maybe, depends on time/progress)
 \change_unchanged
 
 \end_layout
@@ -1013,13 +990,7 @@ Materials
 
 \begin_layout Standard
 Libraries were prepared from 200 ng of genomic DNA from the NA12878 cell
- line
-\change_inserted 392297111 1563220143
- (Coriel)
-\change_deleted 392297111 1563220139
-<source>
-\change_unchanged
-.
+ line (Coriel).
  This input was supplemented with a small amount of fully-methylated Xp-12
  DNA, lambda phage DNA (NEB #N3011) and a pUC19 plasmid (NEB #N3041) treated
  with M.SssI CpG Methyltransferase (NEB #M0226).
@@ -1032,11 +1003,7 @@ Whole Genome Bisulfite Libraries
 
 \begin_layout Standard
 Libraries were prepared using the Ultra II DNA library prep kit before being
- Bisulfite converted
-\change_inserted 392297111 1563220176
- according to (protocol)
-\change_unchanged
-.
+ Bisulfite converted according to (protocol).
 \end_layout
 
 \begin_layout Subsection*
@@ -1053,19 +1020,9 @@ literal "false"
 
 \end_inset
 
- using the S2 chemistry<
-\change_deleted 227422949 1559913591
-citatkino
-\change_inserted 227422949 1559913592
-citation
-\change_unchanged
->.
+ using the S2 chemistry<citation>.
  We acquired 1.55 billion 100bp paired-end reads for the EM-seq method and
- 1
-\change_inserted 227422949 1559749210
-.
-\change_unchanged
-60 billion paired-end reads for the Bisulfite converted libraries.
+ 1.60 billion paired-end reads for the Bisulfite converted libraries.
  
 \end_layout
 
@@ -1233,19 +1190,8 @@ miscalls file
 \end_inset
 
 ).
- A miscall, as used here, is defined as a methylation call
-\change_deleted 392297111 1563220443
- in a region
-\change_inserted 392297111 1563220443
-]
-\change_unchanged
- 
-\change_deleted 392297111 1563220395
-which has Bismap mappability less than or equal to 0.01
-\change_inserted 392297111 1563220433
-that was filtered out using the new MethylDackel mappability filtering
-\change_unchanged
-.
+ A miscall, as used here, is defined as a methylation call that was filtered
+ out using the new MethylDackel mappability filtering.
  
 \end_layout
 
