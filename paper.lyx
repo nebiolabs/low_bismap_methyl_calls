@@ -151,6 +151,54 @@ literal "false"
  Since uracil sequences as thymine and 5-methylcytosine sequences as cytosine,
  positions of unmethylated Cs in a reference sequence can be identified
  by C->T transitions.
+\change_inserted 227422949 1563475146
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475146
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475146
+\begin_inset Graphics
+	filename Untitled drawing-2.svg
+	width 90page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475146
+Overview of Methylation Sequencing Methods.
+ <todo: Treat with Enzyme -> Tet2-> APOBEC
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -207,6 +255,58 @@ noprefix "false"
  genome and can therefore be used to find and study biologically significant
  DNA methylation sites.
  
+\change_inserted 227422949 1563475151
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475151
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475151
+\begin_inset Graphics
+	filename Figure 1-4.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475151
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475151
+Experimental Overview
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -336,18 +436,68 @@ noprefix "false"
 
 \change_unchanged
  
-\change_deleted 227422949 1563223637
+\change_deleted 227422949 1563297076
 (figure)
-\change_inserted 227422949 1563223637
+\change_inserted 227422949 1563474444
 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563474879
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
-\change_inserted 227422949 1563223655
+\change_inserted 227422949 1563474478
+\begin_inset Graphics
+	filename Chrom_fig.svg
+	width 60page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563474478
+Example of MapQ Issue.
+ On the Cov Difference track, red means that Bismark has higher coverage
+ and blue means Bwameth has higher coverage.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bad-mapq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563474928
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563474880
 \begin_inset Graphics
 	filename fig1_svg.svg
 	width 60page%
@@ -355,13 +505,11 @@ status open
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
 
-\change_inserted 227422949 1563228574
+\change_inserted 227422949 1563474880
 \begin_inset CommandInset label
 LatexCommand label
 name "example"
@@ -373,7 +521,7 @@ name "example"
 
 \begin_layout Plain Layout
 
-\change_inserted 227422949 1563228648
+\change_inserted 227422949 1563474880
 An example of how MapQ filtering does not remove all poorly mapped reads.
 \begin_inset CommandInset label
 LatexCommand label
@@ -382,19 +530,19 @@ name "fig:example"
 \end_inset
 
  
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
+ 
+\end_layout
+
+\begin_layout Standard
 
 \change_deleted 227422949 1563297076
 .
@@ -410,7 +558,7 @@ According to the SAM specification, MapQs of 20 should only have a 1:100
  Methyldackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads for both aligners, however inaccurate
  MapQs lead to reads being incorrectly included in methylation calling.
-\change_inserted 227422949 1563227894
+\change_inserted 227422949 1563474476
 
 \end_layout
 
@@ -491,13 +639,157 @@ as
 we query the bigWig file for each read, but we did not want to delay reporting
  this observation while we improve the algorithm's performance.
 
-\change_inserted 227422949 1563227858
+\change_inserted 227422949 1563475105
  the algorithm has been optimized both by loading the mappability data into
  memory before calling, and through the use of a custom run-length compressed
  binary file format that we here term BBM (Binary BisMap).
  This format can store the mappbility data for the hg38/grch38 human genome
  in 143 MB, compared to 1.11 GB when stored as a bigWig, giving acompression
  ratio for this dataset of 7.78:1.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475106
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Graphics
+	filename fig3_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+An example of a C incorrectly discarded by bedtools.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:discarded"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475106
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Graphics
+	filename fig4_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+An overview of the occurrences of these scenarios in grch38 chromosome 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475106
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Graphics
+	filename fig2_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475106
+An example of a C incorrectly kept by bedtools.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:kept"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -565,174 +857,6 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1563227900
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228445
-\begin_inset Graphics
-	filename fig2_svg.svg
-	width 60page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563227900
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228636
-An example of a C incorrectly kept by bedtools.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:kept"
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 227422949 1563227906
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228447
-\begin_inset Graphics
-	filename fig3_svg.svg
-	width 60page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228602
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228628
-An example of a C incorrectly discarded by bedtools.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:discarded"
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 227422949 1563227912
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228449
-\begin_inset Graphics
-	filename fig4_svg.svg
-	width 60page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563227912
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\change_inserted 227422949 1563228663
-An overview of the occurrences of these scenarios in grch38 chromosome 1.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:overview-1"
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 todo: filtering effect em-seq vs wgbs (fig)
 \change_inserted 227422949 1562777178
  (this is the data I'm working on)
@@ -772,207 +896,6 @@ todo: examine GEO dataset
 \change_inserted 227422949 1563297111
  (maybe, depends on time/progress)
 \change_unchanged
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Figure 1-4.svg
-	width 60page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Experimental Overview
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:overview"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Untitled drawing-2.svg
-	width 90page%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Overview of Methylation Sequencing Methods.
- <todo: Treat with Enzyme -> Tet2-> APOBEC>
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:seq"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Chrom_fig.svg
-	width 60page%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Example of MapQ Issue.
- On the Cov Difference track, red means that Bismark has higher coverage
- and blue means Bwameth has higher coverage.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:bad-mapq"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename analysis_preproc.svg
-	lyxscale 70
-	height 60pheight%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dag"
-
-\end_inset
-
-Detailed description of preprocesing steps in data analysis.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename analysis_bam.svg
-	lyxscale 70
-	width 70page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dag-1"
-
-\end_inset
-
-Detailed description of BAM processing steps in data analysis.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -1109,6 +1032,110 @@ literal "false"
  GNU sort and head are required since the functionality needed is not present
  in BSD sort and head.
  
+\change_inserted 227422949 1563475057
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475058
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset Graphics
+	filename analysis_preproc.svg
+	lyxscale 70
+	height 60pheight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag"
+
+\end_inset
+
+Detailed description of preprocesing steps in data analysis.
+ <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ parts A and B with >
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1563475058
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset Graphics
+	filename analysis_bam.svg
+	lyxscale 70
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1563475058
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag-1"
+
+\end_inset
+
+Detailed description of BAM processing steps in data analysis.
+ <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ parts A and B with >
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
