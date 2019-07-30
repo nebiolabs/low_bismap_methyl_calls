@@ -102,13 +102,7 @@ Caiden Kumar, Brad Langhorst Ph.D.
 \end_layout
 
 \begin_layout Section*
-
-\change_deleted 392297111 1563486155
-Background
-\change_inserted 392297111 1563486156
 Introduction
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -396,11 +390,8 @@ literal "false"
 , we observed a significant number of reads with high MapQ values in repetitive
  regions (e.g.
  centromeres).
- While both aligners are affected, Bismark produced 
-\change_deleted 392297111 1563484406
-significantly 
-\change_unchanged
-more high MapQ reads in repetitive regions (see Figure 
+ While both aligners are affected, Bismark produced more high MapQ reads
+ in repetitive regions (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:bad-mapq"
@@ -425,28 +416,10 @@ literal "false"
 , a tool that counts the number of occurrences of every single K-mer of
  a particular length (in this case, k=100) in the genome to create a mappability
  score for every base in the Grch38 reference.
- Bismap takes the effect of C->T 
-\change_deleted 392297111 1563487180
-transitions
-\change_inserted 392297111 1563487182
-conversion
-\change_unchanged
- into account.
+ Bismap takes the effect of C->T conversion into account.
  Reads entirely contained within a region of low mappability should not
- have high MapQ values
-\change_inserted 392297111 1563487240
-, however we
-\change_deleted 392297111 1563487241
-.
-\end_layout
-
-\begin_layout Standard
-
-\change_deleted 392297111 1563487242
-We
-\change_unchanged
- observed many high-MapQ reads in regions with very low or zero Bismap mappabili
-ty
+ have high MapQ values, however we observed many high-MapQ reads in regions
+ with very low or zero Bismap mappability
 \change_inserted 227422949 1563228774
  (see Figure 
 \begin_inset CommandInset ref
@@ -579,18 +552,25 @@ name "fig:example"
 \change_deleted 227422949 1563297076
 .
  
-\change_inserted 392297111 1563484671
+\change_unchanged
 
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563487806
 Bismark and Bwameth use different values for MapQ (see supplemental detail),
  but even stringent MapQ thresholds cannot reliably select reads for safe
- methylation calling in regions containing repetetive DNA.
- We considered excluding methlation calls on Cs found in low-mappability
- regions (e.g.
+ methylation calling in regions containing repet
+\change_inserted 227422949 1563538583
+i
+\change_deleted 227422949 1563538583
+e
+\change_unchanged
+tive DNA.
+ We considered excluding meth
+\change_inserted 227422949 1563538588
+y
+\change_unchanged
+lation calls on Cs found in low-mappability regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
  over and under filtering.
  Cs in short, unique regions would be kept (underfiltered) even if the surroundi
@@ -605,7 +585,13 @@ noprefix "false"
 \end_inset
 
 ).
- Overfiltering of Cs in short repetetive regions is a larger problem.
+ Overfiltering of Cs in short repet
+\change_inserted 227422949 1563538605
+i
+\change_deleted 227422949 1563538605
+e
+\change_unchanged
+tive regions is a larger problem.
  In this scenario, a C located in a small dip in mappability would be eliminated
  (overfiltered) despite coverage from read pairs anchored in nearby unique
  regions (see Figure 
@@ -635,83 +621,21 @@ noprefix "false"
 
 \begin_layout Standard
 
-\change_deleted 392297111 1563486096
-According to the SAM specification, MapQs of 20 should only have a 1:100
- probability of being incorrectly placed, which is not supported by the
- region's Bismap mappability.
- Bismark reports MapQ based on number of reference mismatches, producing
- values between 0 and 42.
- Bwameth (using bwa alignments) follows the SAM specification in estimating
- probabilities in the MapQ field.
- Methyldackel uses a default value of 10 as a minimum MapQ which should
- include mostly single locus reads for both aligners, however inaccurate
- MapQs lead to reads being incorrectly included in methylation calling.
 \change_inserted 227422949 1563474476
 
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 392297111 1563484996
-In order to focus on the incorrect alignment and methylation calls with
- biological and medical significance, this analysis examines calls in GENCODE
- genes 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Harrow2012"
-literal "false"
-
-\end_inset
-
- that contain variants listed in the ClinVar 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "doi:10.1093/nar/gkx1153"
-literal "false"
-
-\end_inset
-
- database of disease-associated variants.
- Briefly, we intersect read alignments and MapQ data with Bismap low mappability
- regions counting Cs in regions where the MapQ is higher than should be
- possible given the mappability (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:overview"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+To reliably filter only problematic read pairs
+\change_deleted 227422949 1564522012
+ 
 \change_unchanged
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 392297111 1563486358
-To reliably filter only 
-\change_deleted 392297111 1563486348
-P
-\change_inserted 392297111 1563486359
-p
-\change_unchanged
-roblematic read pairs 
-\change_deleted 392297111 1563486362
-are
-\change_inserted 392297111 1563486363
  (
+\change_deleted 227422949 1564522017
+ 
 \change_unchanged
- those where both mates are placed in low mappability regions
-\change_inserted 392297111 1563486365
-)
-\change_deleted 392297111 1563487332
-.
- To reject only problematic pairs,
-\change_unchanged
- we modified the MethylDackel methylation caller 
+those where both mates are placed in low mappability regions) we modified
+ the MethylDackel methylation caller 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "methyldackel-patch"
@@ -723,15 +647,9 @@ noprefix "false"
 
 to accept a bigWig file of low-mappability regions to exclude from analysis.
  
-\change_deleted 392297111 1563487375
-We do not want to simply exclude reads overlapping a low mappability region
- because the longer insert sizes now possible with enzymatic methylation
- sequencing may allow placement of one mate in a unique region and allow
- assessment of more loci in repetitive regions.
- This 
 \change_deleted 227422949 1561580172
 simple
-\change_inserted 392297111 1563487532
+\change_unchanged
  This alignment
 \change_deleted 227422949 1561580172
  
@@ -739,7 +657,7 @@ simple
 filtering approach
 \change_inserted 227422949 1561580235
  
-\change_inserted 392297111 1563487647
+\change_unchanged
 precisely eliminates only those reads in repetitive regions and 
 \change_inserted 227422949 1561580235
 does not
@@ -751,40 +669,50 @@ s
  a significant cost 
 \change_inserted 227422949 1561580252
 in terms of execution speed
-\change_inserted 392297111 1563487861
- (xmin with -B ymin without -B).
-\change_deleted 392297111 1563487673
-, as 
+\change_unchanged
+ (
+\change_inserted 227422949 1564522072
+?
+\change_deleted 227422949 1564522072
+x
+\change_inserted 227422949 1564522059
+ 
+\change_unchanged
+min 
+\change_deleted 227422949 1564522151
+with -B
+\change_inserted 227422949 1564522155
+using BBM file
+\change_unchanged
+ 
+\change_inserted 227422949 1564522069
+?
+\change_deleted 227422949 1564522068
+y
+\change_inserted 227422949 1564522067
+ 
+\change_unchanged
+min
+\change_deleted 227422949 1564522157
+ without -B
+\change_inserted 227422949 1564522162
+using bigWig file
+\change_unchanged
+).
 \change_deleted 227422949 1561580254
 we query the bigWig file for each read, but we did not want to delay reporting
  this observation while we improve the algorithm's performance.
-
-\change_deleted 392297111 1563487673
- the algorithm has been optimized both by loading the mappability data into
- memory before calling
-\change_inserted 392297111 1563487740
+\change_unchanged
 (see computational methods for details)
-\change_deleted 392297111 1563487435
-, and through the use of a custom run-length compressed binary file format
- that we here term BBM (Binary BisMap).
- This format can store the mappbility data for the hg38/grch38 human genome
- in 143 MB, compared to 1.11 GB when stored as a bigWig, giving acompression
- ratio for this dataset of 7.78:1.
-\change_inserted 227422949 1563475105
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1563475106
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Graphics
 	filename fig3_svg.svg
 	width 60page%
@@ -795,20 +723,10 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
-An example of a C incorrectly discarded by 
-\change_deleted 392297111 1563484322
-bedtools
-\change_inserted 392297111 1563484324
-coordinate filtering
-\change_inserted 227422949 1563475106
-.
+An example of a C incorrectly discarded by coordinate filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:discarded"
@@ -829,16 +747,12 @@ name "fig:discarded"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1563475106
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Graphics
 	filename fig4_svg.svg
 	width 60page%
@@ -849,13 +763,9 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 An overview of the occurrences of these scenarios in grch38 chromosome 1.
 \begin_inset CommandInset label
 LatexCommand label
@@ -877,16 +787,12 @@ name "fig:overview-1"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1563475106
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Graphics
 	filename fig2_svg.svg
 	width 60page%
@@ -897,20 +803,10 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563475106
-An example of a C incorrectly kept by 
-\change_deleted 392297111 1563484337
-bedtools
-\change_inserted 392297111 1563484341
-coordinate filtering
-\change_inserted 227422949 1563475106
-.
+An example of a C incorrectly kept by coordinate filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:kept"
@@ -931,74 +827,6 @@ name "fig:kept"
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 392297111 1563485325
-Simply using bedtools(cite bedtools) to filter out individual Cs with low
- mappability is not ideal here as it incorrectly classifies Cs in two situations.
- First, if a C is in a very short high-mappability region at the end of
- a read (theoretically, this could occur in the middle of a read, but it
- has yet only been observed at the end of a read), while the rest of the
- read is not mappable, bedtools will classify that C as mappable, which
- is incorrect as the majority of the read cannot be uniquely placed (see
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:discarded"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Filtering by reads correctly classifies the entire read, and as a result
- the C, as unmappable.
- This is relatively rare, but does occur (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:overview-1"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- First, if a C is located in a small dip in mapapbility, so that the majority
- of the read pair is in a mappable region but the C is not, bedtools excludes
- it even though the mappable portion of the read pair is enough to uniquely
- place the C (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:kept"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Filtering by reads properly classifies these Cs as mappable.
- This situation is is much more common, making this a significant problem
- with basic bedtools filtering and an advantage for filtering by read (see
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:overview-1"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
-\change_inserted 227422949 1563228761
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 392297111 1563488086
 To focus on the incorrect alignment and methylation calls with biological
  and medical significance, we examined methylation calls in GENCODE genes
  
@@ -1036,16 +864,10 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-todo: filtering effect em-seq vs wgbs (fig)
-\change_inserted 227422949 1562777178
- 
-\change_inserted 392297111 1563488308
-for bwameth
+todo: filtering effect em-seq vs wgbs (fig) for bwameth
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563488321
 todo: filtering effect em-seq-vs wgbs for bismark 
 \change_inserted 227422949 1562777178
 (this is the data I'm working on)
@@ -1090,13 +912,9 @@ todo: examine GEO dataset
 
 \begin_layout Section*
 Materials and Methods
-\change_inserted 392297111 1563486132
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563486132
 According to the SAM specification, MapQs of 20 should only have a 1:100
  probability of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
@@ -1108,30 +926,29 @@ According to the SAM specification, MapQs of 20 should only have a 1:100
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563487443
 Methyldackel uses a default value of 10 as a minimum MapQ which should include
  mostly single locus reads for both aligners, however inaccurate MapQs lead
  to reads being incorrectly included in methylation calling.
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563487678
 Mappability Feature Details:
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 392297111 1563487686
-The filering algorithm has been optimized both by loading the mappability
- data into memory before calling, and through the use of a custom run-length
+The fil
+\change_inserted 227422949 1563538922
+t
+\change_unchanged
+ering algorithm has been optimized both by loading the mappability data
+ into memory before calling, and through the use of a custom run-length
  compressed binary file format that we here term BBM (Binary BisMap).
  This format can store the mappbility data for the hg38/grch38 human genome
- in 143 MB, compared to 1.11 GB when stored as a bigWig, giving acompression
- ratio for this dataset of 7.78:1.
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a
+\change_inserted 227422949 1563538940
+ 
 \change_unchanged
-
+compression ratio for this dataset of 7.78:1.
 \end_layout
 
 \begin_layout Subsection*
@@ -1260,8 +1077,11 @@ literal "false"
 \end_inset
 
 , GNU sort, GNU head, bwameth, and bismark.
- GNU sort and head are required since the functionality needed is not present
- in BSD sort and head.
+ GNU sort and head are required since the functionality needed
+\change_inserted 227422949 1563539181
+ (<what functionality?>)
+\change_unchanged
+ is not present in BSD sort and head.
  
 \change_inserted 227422949 1563475057
 
@@ -1375,10 +1195,13 @@ In order to eliminate reads in low-mappability regions, a patch was created
  is then used to filter out read pairs (this patch currently only supports
  paired-end reads) where neither mate intersects a high-mappability region.
  The patch allows for user configuration of the low mappability threshold
- and the number of bases which must be above that threshold in order for
- the read pair to be kept (the defaults are a low mappability threshold
- of 0.01 and to require 15 bases that are above that threshold in a single
- read).
+ and the number of bases which must be
+\change_inserted 227422949 1563539060
+ equal to or
+\change_unchanged
+ above that threshold in order for the read pair to be kept (the defaults
+ are a low mappability threshold of 0.01 and to require 15 bases that are
+ above that threshold in a single read).
 \end_layout
 
 \begin_layout Standard
@@ -1519,7 +1342,20 @@ Supplemental Materials
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted 227422949 1564521828
 <nextflow script>
+\change_inserted 227422949 1564521850
+
+\begin_inset CommandInset label
+LatexCommand label
+name "nextflow script"
+
+\end_inset
+
+The Nextflow script used to analyze this data can be found at <to be added>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1529,7 +1365,15 @@ name "methyldackel-patch"
 
 \end_inset
 
-Patch adding mappability support to MethylDackel
+
+\change_inserted 227422949 1564521064
+The pull request for the p
+\change_deleted 227422949 1564520965
+P
+\change_unchanged
+atch adding mappability support to MethylDackel
+\change_inserted 227422949 1564521785
+ can be found at https://github.com/dpryan79/MethylDackel/pull/80
 \end_layout
 
 \begin_layout Standard
