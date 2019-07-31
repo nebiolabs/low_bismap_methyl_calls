@@ -207,7 +207,11 @@ It is also possible to use an enzymatic method including TET2 to oxidize
  5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
  to uracil.
  While sodium bisulfite treatment produces other DNA damage, the enzymatic
- method deaminates with more precision (forthcoming publication).
+ method deaminates with more precision (forthcoming publication)
+\change_inserted 227422949 1564597780
+ <has this now been published?>
+\change_unchanged
+.
  
 \end_layout
 
@@ -440,24 +444,12 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 227422949 1563297076
-(figure)
-\change_inserted 227422949 1563474444
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted 227422949 1563474879
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563474478
 \begin_inset Graphics
 	filename Chrom_fig.svg
 	width 60page%
@@ -468,8 +460,6 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563474478
 Example of MapQ Issue.
  On the Cov Difference track, red means that Bismark has higher coverage
  and blue means Bwameth has higher coverage.
@@ -493,16 +483,12 @@ name "fig:bad-mapq"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1563474928
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563474880
 \begin_inset Graphics
 	filename fig1_svg.svg
 	width 60page%
@@ -513,8 +499,6 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563474880
 \begin_inset CommandInset label
 LatexCommand label
 name "example"
@@ -525,8 +509,6 @@ name "example"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1563474880
 An example of how MapQ filtering does not remove all poorly mapped reads.
 \begin_inset CommandInset label
 LatexCommand label
@@ -678,11 +660,11 @@ x
 \change_inserted 227422949 1564522059
  
 \change_unchanged
-min 
-\change_deleted 227422949 1564522151
-with -B
-\change_inserted 227422949 1564522155
-using BBM file
+min with 
+\change_deleted 227422949 1564577910
+-B
+\change_inserted 227422949 1564577891
+the patch
 \change_unchanged
  
 \change_inserted 227422949 1564522069
@@ -692,11 +674,9 @@ y
 \change_inserted 227422949 1564522067
  
 \change_unchanged
-min
-\change_deleted 227422949 1564522157
- without -B
-\change_inserted 227422949 1564522162
-using bigWig file
+min without
+\change_deleted 227422949 1564577919
+ -B
 \change_unchanged
 ).
 \change_deleted 227422949 1561580254
@@ -847,10 +827,13 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- We observed X Cs in these important regions having iBriefly, we intersect
- read alignments and MapQ data with Bismap low mappability regions counting
- Cs in regions where the MapQ is higher than should be possible given the
- mappability (see Figure 
+ We observed X Cs in these important regions having i
+\change_inserted 227422949 1564598019
+ <what is this supposed to say?> 
+\change_unchanged
+Briefly, we intersect read alignments and MapQ data with Bismap low mappability
+ regions counting Cs in regions where the MapQ is higher than should be
+ possible given the mappability (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview"
@@ -918,10 +901,57 @@ Materials and Methods
 According to the SAM specification, MapQs of 20 should only have a 1:100
  probability of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
- Bismark (using Bowtie2<cite> for alignment) reports MapQ based on number
- of reference mismatches, producing values between 0 and 42<citation>.
- Bwameth (using bwa<cite> for alignments) follows the SAM specification
- in estimating probabilities in the MapQ field.
+ Bismark (using Bowtie2
+\change_inserted 227422949 1564599394
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "langmead_scaling_2019"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ for alignment)
+\change_inserted 227422949 1564599164
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krueger_bismark:_2011"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ reports MapQ based on number of reference mismatches, producing values
+ between 0 and 42<citation>.
+ Bwameth (using bwa
+\change_inserted 227422949 1564599343
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "li_fast_2010"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ for alignments)
+\change_inserted 227422949 1564599363
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pedersen_fast_2014"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ follows the SAM specification in estimating probabilities in the MapQ field.
  
 \end_layout
 
@@ -1019,10 +1049,34 @@ literal "false"
 
 .
  A VCF file of disease-associated variant sites was downloaded from ClinVar
- (todo: check this clinvar_20180729.vcf.gz) and the GENCODE v28 gene annotations
- were used.
+ (todo: check this clinvar_201
+\change_inserted 227422949 1564597415
+9
+\change_deleted 227422949 1564597415
+8
+\change_unchanged
+072
+\change_inserted 227422949 1564597412
+2
+\change_deleted 227422949 1564597411
+9
+\change_unchanged
+.vcf.gz) and the GENCODE v
+\change_inserted 227422949 1564597388
+31
+\change_deleted 227422949 1564597387
+28
+\change_unchanged
+ gene annotations were used.
  The mappability data was the 100bp multi-track bigWig file downloaded from
- Bismap (https://bismap.hoffmanlab.org/raw/hg38/k100.bismap.bedgraph.gz).
+ Bismap (
+\change_deleted 227422949 1564597591
+https://bismap.hoffmanlab.org/raw/hg38/k100.bismap.bedgraph.gz
+\change_inserted 227422949 1564597591
+https://www.pmgenomics.ca/hoffmanlab/proj/bismap/trackhub/hg38/k100.Bismap.MultiTrac
+kMappability.bw
+\change_unchanged
+).
  A detailed diagram of the process is found in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1201,7 +1255,13 @@ In order to eliminate reads in low-mappability regions, a patch was created
 \change_unchanged
  above that threshold in order for the read pair to be kept (the defaults
  are a low mappability threshold of 0.01 and to require 15 bases that are
- above that threshold in a single read).
+ 
+\change_deleted 227422949 1564582688
+above
+\change_inserted 227422949 1564582693
+greater than or equal to
+\change_unchanged
+ that threshold in a single read).
 \end_layout
 
 \begin_layout Standard
@@ -1246,10 +1306,12 @@ Bismap complete bedGraph
 \begin_layout Standard
 The Bismap complete bedGraph was then filtered using awk to produce a file
  containing only low mappability regions (
-\change_inserted 227422949 1559749278
-mappability 
+\change_inserted 227422949 1564582664
+mappability <
+\change_deleted 227422949 1564582664
+≤
 \change_unchanged
-≤ 0.01).
+ 0.01).
  The file with minimum and mean mappability for every ClinVar region was
  filtered likewise on minimum mappability.
  The two resulting files (one of low-mappability regions, one of ClinVar
@@ -1258,11 +1320,15 @@ mappability
 \end_layout
 
 \begin_layout Standard
-Alignments of 2x100-bp paired-end EM-seq reads were processed using MethylDackel
- (with and without the custom patch) using a minimum MapQ cutoff of 20 and
- the default settings mentioned above and combined with the file of all
- low mappability regions in ClinVar regions to produce a list of all miscalls
- (this will be referred to as the 
+Alignments of 2x100-bp
+\change_inserted 227422949 1564597699
+ <is this the correct length?>
+\change_unchanged
+ paired-end EM-seq reads were processed using MethylDackel (with and without
+ the custom patch) using a minimum MapQ cutoff of 20 and the default settings
+ mentioned above and combined with the file of all low mappability regions
+ in ClinVar regions to produce a list of all miscalls (this will be referred
+ to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1313,6 +1379,8 @@ Since this analysis was run for both Bismark and Bwameth, the miscalls file
 
 \begin_layout Section*
 Discussion
+\change_deleted 227422949 1564599539
+
 \end_layout
 
 \begin_layout Standard
@@ -1339,23 +1407,25 @@ name "sec:Supplemental-Materials"
 \end_inset
 
 Supplemental Materials
+\change_inserted 227422949 1564599472
+
 \end_layout
 
 \begin_layout Standard
 
-\change_deleted 227422949 1564521828
-<nextflow script>
-\change_inserted 227422949 1564521850
-
+\change_inserted 227422949 1564599793
 \begin_inset CommandInset label
 LatexCommand label
 name "nextflow script"
 
 \end_inset
 
-The Nextflow script used to analyze this data can be found at <to be added>
-\change_unchanged
-
+The Nextflow script used to analyze this data can be found at <to be added>.
+ In order to run, it requires vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDac
+kel (whatever-version or newer), GNU sort, GNU head, bedtools, paste, awk,
+ and Python 3 <need to cite those of these tools which haven't been cited
+ earlier>.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1366,14 +1436,15 @@ name "methyldackel-patch"
 \end_inset
 
 
-\change_inserted 227422949 1564521064
+\change_inserted 227422949 1564599501
 The pull request for the p
 \change_deleted 227422949 1564520965
 P
 \change_unchanged
 atch adding mappability support to MethylDackel
-\change_inserted 227422949 1564521785
- can be found at https://github.com/dpryan79/MethylDackel/pull/80
+\change_inserted 227422949 1564599838
+ can be found at https://github.com/dpryan79/MethylDackel/pull/80.
+ It was merged into MethylDackel in version (whatever-version).
 \end_layout
 
 \begin_layout Standard
