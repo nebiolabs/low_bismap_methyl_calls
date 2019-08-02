@@ -743,8 +743,8 @@ s
 in terms of execution speed
 \change_unchanged
  (
-\change_inserted 227422949 1564522072
-?
+\change_inserted 227422949 1564775844
+10:14
 \change_deleted 227422949 1564522072
 x
 \change_inserted 227422949 1564522059
@@ -757,14 +757,16 @@ min with
 the patch
 \change_unchanged
  
-\change_inserted 227422949 1564522069
-?
+\change_inserted 227422949 1564776491
+9:55
 \change_deleted 227422949 1564522068
 y
 \change_inserted 227422949 1564522067
  
 \change_unchanged
 min without
+\change_inserted 227422949 1564776520
+, when run with 20 threads
 \change_deleted 227422949 1564577919
  -B
 \change_unchanged
@@ -918,11 +920,19 @@ literal "false"
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
  
-\change_deleted 227422949 1564757947
+\change_deleted 227422949 1564776385
 We observed 
+\change_inserted 227422949 1564776386
+15,539
+\change_deleted 227422949 1564776385
+X
 \change_unchanged
-X Cs in these important regions having i
-\change_inserted 227422949 1564757981
+ Cs in these important regions
+\change_inserted 227422949 1564776430
+ in the EM-seq 50ng sample
+\change_unchanged
+ having i
+\change_inserted 227422949 1564776430
 nsufficient mappability to support methylation calling.
  
 \change_unchanged
