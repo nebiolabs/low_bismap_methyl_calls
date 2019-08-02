@@ -207,11 +207,7 @@ It is also possible to use an enzymatic method including TET2 to oxidize
  5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
  to uracil.
  While sodium bisulfite treatment produces other DNA damage, the enzymatic
- method deaminates with more precision (forthcoming publication)
-\change_inserted 227422949 1564597780
- <has this now been published?>
-\change_unchanged
-.
+ method deaminates with more precision (forthcoming publication).
  
 \end_layout
 
@@ -827,9 +823,14 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- We observed X Cs in these important regions having i
-\change_inserted 227422949 1564598019
- <what is this supposed to say?> 
+ 
+\change_deleted 227422949 1564757947
+We observed 
+\change_unchanged
+X Cs in these important regions having i
+\change_inserted 227422949 1564757981
+nsufficient mappability to support methylation calling.
+ 
 \change_unchanged
 Briefly, we intersect read alignments and MapQ data with Bismap low mappability
  regions counting Cs in regions where the MapQ is higher than should be
@@ -953,32 +954,41 @@ literal "false"
 \change_unchanged
  follows the SAM specification in estimating probabilities in the MapQ field.
  
+\change_inserted 227422949 1564757199
+<what to do with this bit?>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted 227422949 1564756725
 Methyldackel uses a default value of 10 as a minimum MapQ which should include
  mostly single locus reads for both aligners, however inaccurate MapQs lead
  to reads being incorrectly included in methylation calling.
-\end_layout
-
-\begin_layout Standard
-Mappability Feature Details:
-\end_layout
-
-\begin_layout Standard
-The fil
-\change_inserted 227422949 1563538922
-t
 \change_unchanged
-ering algorithm has been optimized both by loading the mappability data
- into memory before calling, and through the use of a custom run-length
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 227422949 1564756827
+Mappability Feature Details:
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 227422949 1564756680
+The filering algorithm has been optimized both by loading the mappability
+ data into memory before calling, and through the use of a custom run-length
  compressed binary file format that we here term BBM (Binary BisMap).
  This format can store the mappbility data for the hg38/grch38 human genome
- in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a
-\change_inserted 227422949 1563538940
- 
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving acompression
+ ratio for this dataset of 7.78:1.
 \change_unchanged
-compression ratio for this dataset of 7.78:1.
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1072,9 +1082,8 @@ literal "false"
  Bismap (
 \change_deleted 227422949 1564597591
 https://bismap.hoffmanlab.org/raw/hg38/k100.bismap.bedgraph.gz
-\change_inserted 227422949 1564597591
-https://www.pmgenomics.ca/hoffmanlab/proj/bismap/trackhub/hg38/k100.Bismap.MultiTrac
-kMappability.bw
+\change_inserted 227422949 1564758140
+see supplemental materials for link
 \change_unchanged
 ).
  A detailed diagram of the process is found in Figures 
@@ -1132,8 +1141,9 @@ literal "false"
 
 , GNU sort, GNU head, bwameth, and bismark.
  GNU sort and head are required since the functionality needed
-\change_inserted 227422949 1563539181
- (<what functionality?>)
+\change_inserted 227422949 1564757358
+ (the ability to parallelize sorting, and to use a negative value with the
+ -n option for head to count lines from the end)
 \change_unchanged
  is not present in BSD sort and head.
  
@@ -1244,13 +1254,21 @@ Detailed description of BAM processing steps in data analysis.
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted 227422949 1564756805
+Methylation calling was performed on the aligned BAMs using MethylDackel.
+ Methyldackel uses a default value of 10 as a minimum MapQ which should
+ include mostly single locus reads for both aligners, however inaccurate
+ MapQs lead to reads being incorrectly included in methylation calling.
+ 
+\change_unchanged
 In order to eliminate reads in low-mappability regions, a patch was created
  for MethylDackel which allows it to take as an input a bigWig file which
  is then used to filter out read pairs (this patch currently only supports
  paired-end reads) where neither mate intersects a high-mappability region.
  The patch allows for user configuration of the low mappability threshold
  and the number of bases which must be
-\change_inserted 227422949 1563539060
+\change_inserted 227422949 1564756805
  equal to or
 \change_unchanged
  above that threshold in order for the read pair to be kept (the defaults
@@ -1258,10 +1276,20 @@ In order to eliminate reads in low-mappability regions, a patch was created
  
 \change_deleted 227422949 1564582688
 above
-\change_inserted 227422949 1564582693
+\change_inserted 227422949 1564756805
 greater than or equal to
 \change_unchanged
  that threshold in a single read).
+
+\change_inserted 227422949 1564756805
+ The filtering algorithm has been optimized both by loading the mappability
+ data into memory before calling, and through the use of a custom run-length
+ compressed binary file format that we here term BBM (Binary BisMap).
+ This format can store the mappbility data for the hg38/grch38 human genome
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
+ ratio for this dataset of 7.78:1.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1321,14 +1349,17 @@ mappability <
 
 \begin_layout Standard
 Alignments of 2x100-bp
-\change_inserted 227422949 1564597699
- <is this the correct length?>
+\change_inserted 227422949 1564757804
+ <is this the correct length? the fastqs have 99 bases in each read it seems>
 \change_unchanged
- paired-end EM-seq reads were processed using MethylDackel (with and without
- the custom patch) using a minimum MapQ cutoff of 20 and the default settings
- mentioned above and combined with the file of all low mappability regions
- in ClinVar regions to produce a list of all miscalls (this will be referred
- to as the 
+ paired-end EM-seq
+\change_inserted 227422949 1564757815
+ and WGBS
+\change_unchanged
+ reads were processed using MethylDackel (with and without the custom patch)
+ using a minimum MapQ cutoff of 20 and the default settings mentioned above
+ and combined with the file of all low mappability regions in ClinVar regions
+ to produce a list of all miscalls (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1442,9 +1473,46 @@ The pull request for the p
 P
 \change_unchanged
 atch adding mappability support to MethylDackel
-\change_inserted 227422949 1564599838
- can be found at https://github.com/dpryan79/MethylDackel/pull/80.
+\change_inserted 227422949 1564758212
+ can be found at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1564758213
+
+https://github.com/dpryan79/MethylDackel/pull/80
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+.
  It was merged into MethylDackel in version (whatever-version).
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1564758185
+The Bismap file used for this analysis was downloaded from 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1564758187
+
+https://www.pmgenomics.ca/hoffmanlab/proj/bismap/trackhub/hg38/k100.Bismap.MultiTrac
+kMappability.bw
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
