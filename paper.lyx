@@ -356,9 +356,9 @@ literal "false"
  A high value of MapQ indicates that the read likely aligns where it is
  placed and nowhere else in the genome.
 
-\change_inserted 227422949 1564758704
- This means that MapQs of 10 would only have a 1:10 probability of being
- incorrectly placed.
+\change_inserted 227422949 1564760925
+ For example, a MapQ of 10 means that that read would only have a 1:10 probabili
+ty of being incorrectly placed.
 \end_layout
 
 \begin_layout Standard
