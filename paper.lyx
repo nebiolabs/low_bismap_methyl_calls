@@ -97,7 +97,42 @@ Caiden Kumar, Brad Langhorst Ph.D.
 \end_layout
 
 \begin_layout Abstract
+
+\change_deleted 227422949 1564763786
 <abstract>
+\change_inserted 227422949 1564763800
+
+\end_layout
+
+\begin_layout Abstract
+
+\change_inserted 227422949 1564764228
+Methylation aligners, such as Bismark and Bwameth, frequently assign MapQ
+ values to reads which are significantly higher than can be supported by
+ the uniqueness of the region.
+ These incorrectly high MapQs result in methylation calling in regions that
+ are not sufficiently unique to support such calling.
+ The result of this is that reads which should map to separate locations
+ (possibly having different methylation states) actually end up mapping
+ to the same locus, causing apparent mixed methylation at these loci.
+ This can be fixed by filtering out insufficiently unique reads using Bismap
+ mappability data.
+ Simply filtering out Cs in insufficiently unique regions is not sufficient
+ as it is prone to overfiltering in small mappability dips.
+ Read filtering purifies much of the apparent mixed methylation to either
+ 1 or 0.
+ Specifically, examining Cs near genes containing ClinVar variants in a
+ 50ng EM-seq data set from the NA12878 cell line reveals that 1405 Cs with
+ apparent mixed methylation were purified to 0% methylation, and 2577 Cs
+ with apparent mixed methylation were purified to 100% methylation.
+\change_deleted 227422949 1564764231
+
+\end_layout
+
+\begin_layout Abstract
+
+\change_inserted 227422949 1564763561
+
 \end_layout
 
 \begin_layout Section*
@@ -459,6 +494,10 @@ literal "false"
 , a tool that counts the number of occurrences of every single K-mer of
  a particular length (in this case, k=100) in the genome to create a mappability
  score for every base in the Grch38 reference.
+
+\change_inserted 227422949 1564763433
+ <bases this on assumption that each locus is either 0 or 100%>
+\change_unchanged
  Bismap takes the effect of C->T conversion into account.
  Reads entirely contained within a region of low mappability should not
  have high MapQ values, however we observed many high-MapQ reads in regions
@@ -576,9 +615,13 @@ name "fig:example"
 \end_layout
 
 \begin_layout Standard
-Bismark and Bwameth use different values for MapQ (see supplemental detail),
- but even stringent MapQ thresholds cannot reliably select reads for safe
- methylation calling in regions containing repet
+Bismark and Bwameth use different 
+\change_inserted 227422949 1564761017
+systems to define 
+\change_unchanged
+values for MapQ (see supplemental detail), but even stringent MapQ thresholds
+ cannot reliably select reads for safe methylation calling in regions containing
+ repet
 \change_inserted 227422949 1563538583
 i
 \change_deleted 227422949 1563538583
@@ -636,6 +679,12 @@ noprefix "false"
 \end_inset
 
 ).
+
+\change_inserted 227422949 1564763392
+ <coverage filtering can help if many loci are collapsed to few in reference,
+ but if data is simply mixed between loci, it does not help>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1342,11 +1391,13 @@ mappability <
 \end_layout
 
 \begin_layout Standard
-Alignments of 2x100-bp
-\change_inserted 227422949 1564757804
- <is this the correct length? the fastqs have 99 bases in each read it seems>
+Alignments of 2x
+\change_inserted 227422949 1564761378
+99
+\change_deleted 227422949 1564761378
+100
 \change_unchanged
- paired-end EM-seq
+-bp paired-end EM-seq
 \change_inserted 227422949 1564760118
  and whole genome bisulfite
 \change_unchanged
