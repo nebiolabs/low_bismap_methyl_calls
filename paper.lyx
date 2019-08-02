@@ -106,7 +106,7 @@ Caiden Kumar, Brad Langhorst Ph.D.
 
 \begin_layout Abstract
 
-\change_inserted 227422949 1564775674
+\change_inserted 227422949 1564775721
 Methylation aligners, such as Bismark and Bwameth, frequently assign MapQ
  values to reads which are significantly higher than can be supported by
  the uniqueness of the region.
@@ -124,7 +124,7 @@ Methylation aligners, such as Bismark and Bwameth, frequently assign MapQ
  dips that can in fact be called using reads anchored in a more mappable
  region.
  Performing this read filtering resolves much of the apparent mixed methylation
- in the unfiltered data to either 0% or 100%.
+ in the unfiltered data to either 0% or 100% methylation.
  For instance, examining Cs near genes containing ClinVar variants in a
  50ng EM-seq data set from the NA12878 cell line reveals that 1405 Cs with
  apparent mixed methylation were resolved to 0% methylation, and 2577 Cs
