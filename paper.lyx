@@ -88,12 +88,29 @@
 \begin_body
 
 \begin_layout Title
-Examining and correcting low-mappability methylation calls in data from
- reads aligned with Bismark or Bwameth
+Correcting Methylation Calls in Low-Mappability Regions 
 \end_layout
 
 \begin_layout Author
-Caiden Kumar, Brad Langhorst Ph.D.
+Caiden
+\change_inserted 227422949 1564782303
+ M.
+
+\change_unchanged
+ Kumar, 
+\change_inserted 227422949 1564782380
+Ariel Erijman, 
+\change_unchanged
+Brad
+\change_inserted 227422949 1564782395
+ley W.
+
+\change_unchanged
+ Langhorst
+\change_deleted 227422949 1564782385
+ Ph.D.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Abstract
@@ -106,29 +123,33 @@ Caiden Kumar, Brad Langhorst Ph.D.
 
 \begin_layout Abstract
 
-\change_inserted 227422949 1564775721
-Methylation aligners, such as Bismark and Bwameth, frequently assign MapQ
+\change_inserted 227422949 1564784201
+As DNA methylation status can have a significant biological function, it
+ is important that there be an accurate way to assess genomic methylation.
+ Methylation aligners, such as Bismark and bwa-meth, frequently assign MapQ
  values to reads which are significantly higher than can be supported by
- the uniqueness of the region.
- These incorrectly high MapQs result in methylation calling in regions that
- are not sufficiently unique to support such calling.
- The result of this is that reads which should map to separate locations
- (possibly having different methylation states) actually end up mapping
- to the same locus, causing apparent mixed methylation at these loci.
- This can be fixed by filtering out insufficiently unique reads using Bismap
- mappability data.
- A patch has been created for the MethylDackel methylation caller to perform
- this filtering.
- Simply filtering out Cs in insufficiently unique regions instead of filtering
- reads is not sufficient as it is prone to overfiltering in small mappability
- dips that can in fact be called using reads anchored in a more mappable
+ the uniqueness of the region they are mapped to.
+ These incorrectly high MapQs result in inappropriate methylation calling
+ in repetitive regions.
+ We observe reads that should map to separate locations (possibly having
+ different methylation states) actually end up mapping to the same locus,
+ causing apparent mixed methylation at such loci.
+ Methylation calling can be improved by using Bismap mappability data to
+ filter out insufficiently unique reads.
+ Simply filtering out Cs in insufficiently unique regions is not adequate
+ as it is prone to overfiltering Cs in small mappability dips.
+ These Cs can in fact be called using reads anchored in a nearby mappable
  region.
- Performing this read filtering resolves much of the apparent mixed methylation
- in the unfiltered data to either 0% or 100% methylation.
- For instance, examining Cs near genes containing ClinVar variants in a
- 50ng EM-seq data set from the NA12878 cell line reveals that 1405 Cs with
- apparent mixed methylation were resolved to 0% methylation, and 2577 Cs
- with apparent mixed methylation were resolved to 100% methylation.
+ We have created a patch for the MethylDackel methylation caller to perform
+ read-based filtering.
+ Read-based filtering resolves some of the apparent mixed methylation to
+ either 0% or 100% methylation.
+ We examined methylation calls with and without read-based filtering in
+ or near the 7830 genes containing ClinVar variants in a methylation sequencing
+ data set from the NA12878 cell line and in tumor samples.
+ Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
+ methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
+ Cs were corrected to 100% methylation.
 \change_deleted 227422949 1564764231
 
 \end_layout
