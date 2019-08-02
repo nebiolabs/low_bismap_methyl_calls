@@ -1347,8 +1347,8 @@ Alignments of 2x100-bp
  <is this the correct length? the fastqs have 99 bases in each read it seems>
 \change_unchanged
  paired-end EM-seq
-\change_inserted 227422949 1564757815
- and WGBS
+\change_inserted 227422949 1564760118
+ and whole genome bisulfite
 \change_unchanged
  reads were processed using MethylDackel (with and without the custom patch)
  using a minimum MapQ cutoff of 20 and the default settings mentioned above
