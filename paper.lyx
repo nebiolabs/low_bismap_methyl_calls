@@ -356,6 +356,52 @@ literal "false"
  have a very low MapQ).
  A high value of MapQ indicates that the read likely aligns where it is
  placed and nowhere else in the genome.
+
+\change_inserted 227422949 1564758704
+ This means that MapQs of 10 would only have a 1:10 probability of being
+ incorrectly placed.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1564758729
+However, Bismark (as a result of using Bowtie2 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "langmead_scaling_2019"
+literal "false"
+
+\end_inset
+
+ for alignment) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krueger_bismark:_2011"
+literal "false"
+
+\end_inset
+
+ reports MapQ based on number of reference mismatches instead, producing
+ values between 0 and 42 <citation>.
+ Bwameth (using bwa 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "li_fast_2010"
+literal "false"
+
+\end_inset
+
+ for alignments) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pedersen_fast_2014"
+literal "false"
+
+\end_inset
+
+ follows the SAM specification in estimating probabilities in the MapQ field.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -899,63 +945,16 @@ Materials and Methods
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted 227422949 1564758740
 According to the SAM specification, MapQs of 20 should only have a 1:100
  probability of being incorrectly placed, which is not supported by the
  region's Bismap mappability.
- Bismark (using Bowtie2
-\change_inserted 227422949 1564599394
+ Bismark (using Bowtie2 for alignment) reports MapQ based on number of reference
+ mismatches, producing values between 0 and 42<citation>.
+ Bwameth (using bwa for alignments) follows the SAM specification in estimating
+ probabilities in the MapQ field.
  
-\begin_inset CommandInset citation
-LatexCommand cite
-key "langmead_scaling_2019"
-literal "false"
-
-\end_inset
-
-
-\change_unchanged
- for alignment)
-\change_inserted 227422949 1564599164
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "krueger_bismark:_2011"
-literal "false"
-
-\end_inset
-
-
-\change_unchanged
- reports MapQ based on number of reference mismatches, producing values
- between 0 and 42<citation>.
- Bwameth (using bwa
-\change_inserted 227422949 1564599343
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "li_fast_2010"
-literal "false"
-
-\end_inset
-
-
-\change_unchanged
- for alignments)
-\change_inserted 227422949 1564599363
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "pedersen_fast_2014"
-literal "false"
-
-\end_inset
-
-
-\change_unchanged
- follows the SAM specification in estimating probabilities in the MapQ field.
- 
-\change_inserted 227422949 1564757199
-<what to do with this bit?>
 \change_unchanged
 
 \end_layout
