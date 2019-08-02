@@ -568,7 +568,7 @@ name "fig:example"
 
 \begin_layout Standard
 
-\change_deleted 227422949 1563297076
+\change_deleted 227422949 1564759078
 .
  
 \change_unchanged
@@ -1135,9 +1135,9 @@ literal "false"
 
 , GNU sort, GNU head, bwameth, and bismark.
  GNU sort and head are required since the functionality needed
-\change_inserted 227422949 1564757358
+\change_inserted 227422949 1564759125
  (the ability to parallelize sorting, and to use a negative value with the
- -n option for head to count lines from the end)
+ -n option for head to count lines from the end of the file)
 \change_unchanged
  is not present in BSD sort and head.
  
@@ -1404,8 +1404,6 @@ Since this analysis was run for both Bismark and Bwameth, the miscalls file
 
 \begin_layout Section*
 Discussion
-\change_deleted 227422949 1564599539
-
 \end_layout
 
 \begin_layout Standard
