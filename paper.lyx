@@ -92,38 +92,12 @@ Correcting Methylation Calls in Low-Mappability Regions
 \end_layout
 
 \begin_layout Author
-Caiden
-\change_inserted 227422949 1564782303
- M.
-
-\change_unchanged
- Kumar, 
-\change_inserted 227422949 1564782380
-Ariel Erijman, 
-\change_unchanged
-Brad
-\change_inserted 227422949 1564782395
-ley W.
-
-\change_unchanged
+Caiden M.
+ Kumar, Ariel Erijman, Bradley W.
  Langhorst
-\change_deleted 227422949 1564782385
- Ph.D.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Abstract
-
-\change_deleted 227422949 1564763786
-<abstract>
-\change_inserted 227422949 1564763800
-
-\end_layout
-
-\begin_layout Abstract
-
-\change_inserted 227422949 1564784201
 As DNA methylation status can have a significant biological function, it
  is important that there be an accurate way to assess genomic methylation.
  Methylation aligners, such as Bismark and bwa-meth, frequently assign MapQ
