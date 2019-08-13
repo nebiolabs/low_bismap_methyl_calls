@@ -397,7 +397,7 @@ ty of being incorrectly placed.
 
 \begin_layout Standard
 
-\change_inserted 227422949 1564758729
+\change_inserted 227422949 1565706985
 However, Bismark (as a result of using Bowtie2 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -416,7 +416,7 @@ literal "false"
 
  reports MapQ based on number of reference mismatches instead, producing
  values between 0 and 42 <citation>.
- Bwameth (using bwa 
+ bwa-meth (using bwa 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "li_fast_2010"
@@ -456,7 +456,13 @@ literal "false"
 
 \end_inset
 
- and Bwameth 
+ and 
+\change_deleted 227422949 1565706986
+Bwameth
+\change_inserted 227422949 1565706986
+bwa-meth
+\change_unchanged
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "2014arXiv1401.1129P"
@@ -537,7 +543,13 @@ status collapsed
 \begin_layout Plain Layout
 Example of MapQ Issue.
  On the Cov Difference track, red means that Bismark has higher coverage
- and blue means Bwameth has higher coverage.
+ and blue means 
+\change_deleted 227422949 1565706987
+Bwameth
+\change_inserted 227422949 1565706987
+bwa-meth
+\change_unchanged
+ has higher coverage.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:bad-mapq"
@@ -614,7 +626,13 @@ name "fig:example"
 \end_layout
 
 \begin_layout Standard
-Bismark and Bwameth use different 
+Bismark and 
+\change_deleted 227422949 1565706989
+Bwameth
+\change_inserted 227422949 1565706989
+bwa-meth
+\change_unchanged
+ use different 
 \change_inserted 227422949 1564761017
 systems to define 
 \change_unchanged
@@ -1095,7 +1113,13 @@ Computational Methods
 
 \begin_layout Standard
 In order to compare the two aligners, this analysis was run twice: once
- with Bismark, once with Bwameth.
+ with Bismark, once with 
+\change_deleted 227422949 1565707008
+Bwameth
+\change_inserted 227422949 1565707008
+bwa-meth
+\change_unchanged
+.
  In order to run the analysis, the following data and tools were used:
 \end_layout
 
@@ -1191,7 +1215,13 @@ literal "false"
 
 \end_inset
 
-, GNU sort, GNU head, bwameth, and bismark.
+, GNU sort, GNU head, 
+\change_deleted 227422949 1565707011
+bwameth
+\change_inserted 227422949 1565707011
+bwa-meth
+\change_unchanged
+, and bismark.
  GNU sort and head are required since the functionality needed
 \change_inserted 227422949 1564759125
  (the ability to parallelize sorting, and to use a negative value with the
@@ -1441,9 +1471,14 @@ The miscalls file was intersected with the file of ClinVar regions with
 \end_layout
 
 \begin_layout Standard
-Since this analysis was run for both Bismark and Bwameth, the miscalls file
- was also processed through awk to add a field specifying which aligner
- the data is from.
+Since this analysis was run for both Bismark and 
+\change_deleted 227422949 1565707016
+Bwameth
+\change_inserted 227422949 1565707016
+bwa-meth
+\change_unchanged
+, the miscalls file was also processed through awk to add a field specifying
+ which aligner the data is from.
  The same field was added to the list of all ClinVar regions with miscalls
  and counts described previously.
  Both files were examined and compared in Tableau
