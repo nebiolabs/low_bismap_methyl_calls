@@ -1141,8 +1141,12 @@ Materials
 Libraries were prepared from 200 ng of genomic DNA from the NA12878 cell
  line (Coriel).
  This input was supplemented with a small amount of fully-methylated Xp-12
- DNA, lambda phage DNA (NEB #N3011) and a pUC19 plasmid (NEB #N3041) treated
- with M.SssI CpG Methyltransferase (NEB #M0226).
+ DNA, lambda phage DNA (NEB #N3011)
+\change_inserted 227422949 1565806681
+,
+\change_unchanged
+ and a pUC19 plasmid (NEB #N3041) treated with M.SssI CpG Methyltransferase
+ (NEB #M0226).
  
 \end_layout
 
@@ -1199,7 +1203,11 @@ bwa-meth
 
 \begin_layout Standard
 The GRCh38.p11 analysis set supplemented with phage T4, phage lambda, phage
- Xp12 and pUC19 contigs was used throughout 
+ Xp12
+\change_inserted 227422949 1565806516
+,
+\change_unchanged
+ and pUC19 contigs was used throughout 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "church_modernizing_2011"
@@ -1295,9 +1303,9 @@ bwa-meth
  some of
 \change_unchanged
  the functionality needed
-\change_inserted 227422949 1564759125
- (the ability to parallelize sorting, and to use a negative value with the
- -n option for head to count lines from the end of the file)
+\change_inserted 227422949 1565806552
+ (the ability to parallelize sorting and the ability to use a negative value
+ with the -n option for head to count lines from the end of the file)
 \change_unchanged
  is not present in BSD sort and head.
  
@@ -1624,10 +1632,13 @@ Discussion
 Reads placed with falsely high confidence have cascading detrimental effects
  on methylation calling, differential methylation assessment, and assement
  of phenotypes associated with methylation status.
- Because of the more accurate MapQ values, decreased run time and more flexibili
-ty to separate methylation calling from alignment, we recommend the use
- of bwameth for alignment and MethylDackel with MapQ > 20 for methylation
- calling.
+ Because of the more accurate MapQ values, decreased run time
+\change_inserted 227422949 1565806617
+,
+\change_unchanged
+ and more flexibility to separate methylation calling from alignment, we
+ recommend the use of bwameth for alignment and MethylDackel with MapQ >
+ 20 for methylation calling.
  To further improve accuracy of methylation asssessment, reads with both
  mates in 
 \change_deleted 227422949 1564758916
