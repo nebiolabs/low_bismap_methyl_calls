@@ -1472,7 +1472,11 @@ ClinVar regions BED
 \change_inserted 227422949 1565796427
  an FAI index of
 \change_unchanged
- the grch38 
+ the grch38
+\change_inserted 227422949 1565806160
+ reference genome
+\change_unchanged
+ 
 \change_inserted 227422949 1565796432
 FASTA
 \change_deleted 227422949 1565796431
