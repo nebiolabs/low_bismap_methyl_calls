@@ -124,14 +124,6 @@ As DNA methylation status can have a significant biological function, it
  Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
  methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
  Cs were corrected to 100% methylation.
-\change_deleted 227422949 1564764231
-
-\end_layout
-
-\begin_layout Abstract
-
-\change_inserted 227422949 1564763561
-
 \end_layout
 
 \begin_layout Section*
@@ -712,9 +704,12 @@ noprefix "false"
 
 ).
 
-\change_inserted 227422949 1564763392
- <coverage filtering can help if many loci are collapsed to few in reference,
- but if data is simply mixed between loci, it does not help>
+\change_inserted 227422949 1565791846
+ In cases where reads from multiple low-mappability regions are placed onto
+ one region (creating a coverage spike, filtering by coverage can also remove
+ the problematic region, but in cases where reads are simply mixed among
+ multiple low-mappability regions (not creating a coverage spike), coverage
+ filtering is not effective at removing the affected regions.
 \change_unchanged
 
 \end_layout
