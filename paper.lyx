@@ -141,8 +141,14 @@ literal "false"
 
 , it is important that there be an accurate way of calling methylation on
  a genome.
- Although there are multiple kinds of DNA methylation, a significant type
- is methylation of cytosine to 5-methylcytosine 
+ Although there are multiple 
+\change_deleted 227422949 1565796670
+kinds
+\change_inserted 227422949 1565796672
+varieties
+\change_unchanged
+ of DNA methylation, a significant type is methylation of cytosine to 5-methylcy
+tosine 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "breiling_epigenetic_2015"
@@ -391,11 +397,22 @@ literal "false"
 .
  MapQ indicates how uniquely placed a read alignment is, that is, in how
  many other places could the read align to the reference.
- A low value of MapQ means that the read aligns in many places throughout
- the genome (for instance, a read of centromeric satellite DNA would likely
- have a very low MapQ).
- A high value of MapQ indicates that the read likely aligns where it is
- placed and nowhere else in the genome.
+ A low 
+\change_deleted 227422949 1565796833
+value of 
+\change_unchanged
+MapQ means that the read aligns
+\change_inserted 227422949 1565796827
+ (or could align)
+\change_unchanged
+ in many places throughout the genome (for instance, a read of centromeric
+ satellite DNA would likely have a very low MapQ).
+ A high 
+\change_deleted 227422949 1565796836
+value of 
+\change_unchanged
+MapQ indicates that the read likely aligns where it is placed and nowhere
+ else in the genome.
 
 \change_inserted 227422949 1564760925
  For example, a MapQ of 10 means that that read would only have a 1:10 probabili
@@ -510,7 +527,12 @@ literal "false"
 \change_inserted 227422949 1564763433
  <bases this on assumption that each locus is either 0 or 100%>
 \change_unchanged
- Bismap takes the effect of C->T conversion into account.
+ Bismap takes the effect of C->T conversion into account
+\change_inserted 227422949 1565797006
+ and therefore produces data which is usable in the context of methylation
+ sequencing
+\change_unchanged
+.
  Reads entirely contained within a region of low mappability should not
  have high MapQ values, however we observed many high-MapQ reads in regions
  with very low or zero Bismap mappability
@@ -643,9 +665,12 @@ bwa-meth
 \change_inserted 227422949 1564761017
 systems to define 
 \change_unchanged
-values for MapQ (see supplemental detail), but even stringent MapQ thresholds
- cannot reliably select reads for safe methylation calling in regions containing
- repet
+values for MapQ (see supplemental detail
+\change_inserted 227422949 1565797045
+ <what in the supplemental detail?>
+\change_unchanged
+), but even stringent MapQ thresholds cannot reliably select reads for safe
+ methylation calling in regions containing repet
 \change_inserted 227422949 1563538583
 i
 \change_deleted 227422949 1563538583
@@ -658,7 +683,15 @@ y
 \change_unchanged
 lation calls on Cs found in low-mappability regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
- over and under filtering.
+ over
+\change_inserted 227422949 1565797069
+-
+\change_unchanged
+ and under
+\change_deleted 227422949 1565797070
+ 
+\change_unchanged
+filtering.
  Cs in short, unique regions would be kept (underfiltered) even if the surroundi
 ng DNA is repetitive (see Figure 
 \begin_inset CommandInset ref
@@ -671,13 +704,22 @@ noprefix "false"
 \end_inset
 
 ).
+
+\change_inserted 227422949 1565797134
+ However, this does not happen often.
+
+\change_unchanged
  Overfiltering of Cs in short repet
 \change_inserted 227422949 1563538605
 i
 \change_deleted 227422949 1563538605
 e
 \change_unchanged
-tive regions is a larger problem.
+tive regions is a larger problem
+\change_inserted 227422949 1565797143
+ though
+\change_unchanged
+.
  In this scenario, a C located in a small dip in mappability would be eliminated
  (overfiltered) despite coverage from read pairs anchored in nearby unique
  regions (see Figure 
@@ -691,8 +733,11 @@ noprefix "false"
 \end_inset
 
 ).
- In practice, underfiltering is rare (x% of Cs) but overfiltering is more
- common (y% of Cs) (see Figure 
+ In practice, underfiltering is rare (x% of Cs) but overfiltering is
+\change_inserted 227422949 1565797155
+ much
+\change_unchanged
+ more common (y% of Cs) (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview-1"
@@ -704,12 +749,12 @@ noprefix "false"
 
 ).
 
-\change_inserted 227422949 1565791846
+\change_inserted 227422949 1565797176
  In cases where reads from multiple low-mappability regions are placed onto
- one region (creating a coverage spike, filtering by coverage can also remove
+ one region (creating a coverage spike, filtering by coverage may also remove
  the problematic region, but in cases where reads are simply mixed among
  multiple low-mappability regions (not creating a coverage spike), coverage
- filtering is not effective at removing the affected regions.
+ filtering would not be effective at removing the affected regions.
 \change_unchanged
 
 \end_layout
@@ -721,7 +766,11 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-To reliably filter only problematic read pairs
+To reliably filter
+\change_inserted 227422949 1565797186
+ out
+\change_unchanged
+ only problematic read pairs
 \change_deleted 227422949 1564522012
  
 \change_unchanged
@@ -788,8 +837,8 @@ y
  
 \change_unchanged
 min without
-\change_inserted 227422949 1564776520
-, when run with 20 threads
+\change_inserted 227422949 1565797280
+, when run with 20 threads on the Grch38 reference genome
 \change_deleted 227422949 1564577919
  -B
 \change_unchanged
@@ -922,9 +971,18 @@ name "fig:kept"
 \end_layout
 
 \begin_layout Standard
-To focus on the incorrect alignment and methylation calls with biological
- and medical significance, we examined methylation calls in GENCODE genes
- 
+To focus on the incorrect alignment
+\change_inserted 227422949 1565797358
+s
+\change_unchanged
+ and methylation calls 
+\change_deleted 227422949 1565797362
+with
+\change_inserted 227422949 1565797363
+that have
+\change_unchanged
+ biological and medical significance, we examined methylation calls in GENCODE
+ genes 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Harrow2012"
@@ -1112,8 +1170,14 @@ literal "false"
 \end_inset
 
  using the S2 chemistry<citation>.
- We acquired 1.55 billion 100bp paired-end reads for the EM-seq method and
- 1.60 billion paired-end reads for the Bisulfite converted libraries.
+ We acquired 1.55 billion 
+\change_inserted 227422949 1565796252
+99
+\change_deleted 227422949 1565796251
+100
+\change_unchanged
+bp paired-end reads for the EM-seq method and 1.60 billion paired-end reads
+ for the Bisulfite converted libraries.
  
 \end_layout
 
@@ -1345,10 +1409,9 @@ Detailed description of BAM processing steps in data analysis.
 
 \begin_layout Standard
 
-\change_inserted 227422949 1565708165
-Methylation calling was performed on the aligned BAMs using MethylDackel.
- MethylDackel v0.4.0, with the addition of the patch (described below), is
- used in this analysis.
+\change_inserted 227422949 1565796309
+Methylation calling was performed on the aligned BAMs using MethylDackel
+ v0.4.0.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads for both aligners, however inaccurate
  MapQs lead to reads being incorrectly included in methylation calling.
@@ -1405,9 +1468,18 @@ ClinVar regions BED
 
 .
  The Bismap bedGraph (which, as is standard for bedGraph files, did not
- contain zeroes) and the grch38 fa file were processed with bedtools, awk,
- and GNU sort to obtain a bedGraph containing all mappability data, including
- zeroes.
+ contain zeroes) and
+\change_inserted 227422949 1565796427
+ an FAI index of
+\change_unchanged
+ the grch38 
+\change_inserted 227422949 1565796432
+FASTA
+\change_deleted 227422949 1565796431
+fa
+\change_unchanged
+ file were processed with bedtools, awk, and GNU sort to obtain a bedGraph
+ containing all mappability data, including zeroes.
  This file will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
@@ -1483,9 +1555,21 @@ Specifically, it contained one copy of a ClinVar region for each miscall
  
 \change_unchanged
 These duplicates were then used to count miscalls by feeding the data to
- a custom Python script (see the supplemental materials) which counted and
- combined the duplicates, producing a list of all ClinVar regions with miscalls
- and how many miscalls are in the region.
+ a custom Python script (
+\change_deleted 227422949 1565795459
+see
+\change_inserted 227422949 1565795466
+found in the Nextflow script in
+\change_unchanged
+ the supplemental materials) which counted and combined the duplicates,
+ producing a list of all ClinVar regions with miscalls and how many miscalls
+ are in 
+\change_inserted 227422949 1565796606
+each
+\change_deleted 227422949 1565796605
+the
+\change_unchanged
+ region.
 \end_layout
 
 \begin_layout Standard
@@ -1495,10 +1579,23 @@ Bwameth
 \change_inserted 227422949 1565707016
 bwa-meth
 \change_unchanged
-, the miscalls file was also processed through awk to add a field specifying
- which aligner the data is from.
- The same field was added to the list of all ClinVar regions with miscalls
- and counts described previously.
+, the miscalls file
+\change_inserted 227422949 1565796615
+s
+\change_unchanged
+ w
+\change_inserted 227422949 1565796617
+ere
+\change_deleted 227422949 1565796616
+as
+\change_unchanged
+ also processed through awk to add a field specifying which aligner the
+ data is from.
+ The same field was added to the list
+\change_inserted 227422949 1565796635
+s
+\change_unchanged
+ of all ClinVar regions with miscalls and counts described previously.
  Both files were examined and compared in Tableau
 \begin_inset script superscript
 
@@ -1563,8 +1660,7 @@ name "nextflow script"
 The Nextflow script used to analyze this data can be found at <to be added>.
  In order to run, it requires vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDac
 kel (whatever-version or newer), GNU sort, GNU head, bedtools, paste, awk,
- and Python 3 <need to cite those of these tools which haven't been cited
- earlier>.
+ and Python 3.
  
 \end_layout
 
