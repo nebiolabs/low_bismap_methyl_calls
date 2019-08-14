@@ -1303,9 +1303,10 @@ bwa-meth
  some of
 \change_unchanged
  the functionality needed
-\change_inserted 227422949 1565806552
- (the ability to parallelize sorting and the ability to use a negative value
- with the -n option for head to count lines from the end of the file)
+\change_inserted 227422949 1565807031
+ (specifically, the ability to parallelize sorting and the ability to use
+ a negative value with the -n option for head to count lines from the end
+ of the file)
 \change_unchanged
  is not present in BSD sort and head.
  
