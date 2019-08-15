@@ -376,7 +376,15 @@ Results
 \end_layout
 
 \begin_layout Standard
-While evaluating two commonly used methylation aligners, Bismark 
+While evaluating 
+\change_deleted 227422949 1565872898
+two commonly used
+\change_inserted 227422949 1565872898
+the
+\change_unchanged
+ methylation aligner
+\change_deleted 227422949 1565872894
+s, Bismark 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btr167"
@@ -384,7 +392,9 @@ literal "false"
 
 \end_inset
 
- and bwa-meth 
+ and
+\change_unchanged
+ bwa-meth 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "2014arXiv1401.1129P"
@@ -395,7 +405,9 @@ literal "false"
 , we observed a significant number of reads with high MapQ values in repetitive
  regions (e.g.
  centromeres).
- While both aligners are affected, Bismark produced more high MapQ reads
+ 
+\change_deleted 227422949 1565873419
+While both aligners are affected, Bismark produced more high MapQ reads
  in repetitive regions (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -407,9 +419,20 @@ noprefix "false"
 \end_inset
 
 ).
- After observing high MapQ reads in the centromere and other repetitive
- regions, we investigated to see if smaller regions might also be too repetitive
- to support the high aligner MapQ estimates observed.
+
+\change_unchanged
+ After observing
+\change_inserted 227422949 1565873431
+ these
+\change_unchanged
+ high MapQ reads in the centromere and 
+\change_inserted 227422949 1565873447
+larger
+\change_deleted 227422949 1565873446
+other
+\change_unchanged
+ repetitive regions, we investigated to see if smaller regions might also
+ be too repetitive to support the high aligner MapQ estimates observed.
  We identified repetitive regions using data from data from Bismap 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -527,10 +550,19 @@ name "fig:example"
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted 227422949 1565873526
 Bismark and bwa-meth use different systems to define values for MapQ (see
- supplemental detail <what in the supplemental detail?>), but even stringent
- MapQ thresholds cannot reliably select reads for safe methylation calling
- in regions containing repetitive DNA.
+ supplemental detail <what in the supplemental detail?>)
+\change_inserted 227422949 1565873563
+While low MapQ can indicate repetitiveness
+\change_unchanged
+, 
+\change_deleted 227422949 1565873540
+but 
+\change_unchanged
+even stringent MapQ thresholds cannot reliably select reads for safe methylation
+ calling in regions containing repetitive DNA.
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
@@ -758,10 +790,41 @@ noprefix "false"
 \end_inset
 
 ).
+\change_inserted 227422949 1565874397
+
 \end_layout
 
 \begin_layout Standard
-todo: filtering effect em-seq vs wgbs (fig) for bwameth
+
+\change_inserted 227422949 1565874633
+For comparison, we also examined the Bismark methylation aligner in the
+ same manner.
+ We observed that compared to bwa-meth, Bismark produced more high MapQ
+ reads in repetitive regions (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bad-mapq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).In addition, Bismark and bwa-meth use different systems to define values
+ for MapQ.
+ Bismark (as a result of using Bowtie2 for alignment) reports MapQ based
+ on number of reference mismatches instead, producing values between 0 and
+ 42 <citation>.
+ Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
+ estimating probabilities in the MapQ field.
+\end_layout
+
+\begin_layout Standard
+todo: filtering effect em-seq vs wgbs (fig) for bwa
+\change_inserted 227422949 1565874682
+-
+\change_unchanged
+meth
 \end_layout
 
 \begin_layout Standard
@@ -770,9 +833,12 @@ todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm
 \end_layout
 
 \begin_layout Standard
-todo: # cs affected (worst) bismark vs filtered vs bwameth vs filtered (best)
- (fig?) (I can get this from the emseq/wgbs data, it's a simple bedtools
- operation)
+todo: # cs affected (worst) bismark vs filtered vs bwa
+\change_inserted 227422949 1565874683
+-
+\change_unchanged
+meth vs filtered (best) (fig?) (I can get this from the emseq/wgbs data,
+ it's a simple bedtools operation)
 \end_layout
 
 \begin_layout Standard
@@ -806,8 +872,11 @@ Materials
 \end_layout
 
 \begin_layout Standard
-Libraries were prepared from 200 ng of genomic DNA from the NA12878 cell
- line (Coriel).
+Libraries were prepared from 
+\change_inserted 227422949 1565874002
+10, 50, and 
+\change_unchanged
+200 ng of genomic DNA from the NA12878 cell line (Coriel).
  This input was supplemented with a small amount of fully-methylated Xp-12
  DNA, lambda phage DNA (NEB #N3011)
 \change_inserted 227422949 1565806681
@@ -842,8 +911,13 @@ literal "false"
 \end_inset
 
  using the S2 chemistry<citation>.
- We acquired 1.55 billion 99bp paired-end reads for the EM-seq method and
- 1.60 billion paired-end reads for the Bisulfite converted libraries.
+ We acquired 1.55 billion 99bp paired-end reads for the 
+\change_deleted 227422949 1565873673
+EM-seq
+\change_inserted 227422949 1565873679
+enzymatic sequencing
+\change_unchanged
+ method and 1.60 billion paired-end reads for the Bisulfite converted libraries.
  
 \end_layout
 
@@ -852,9 +926,13 @@ Computational Methods
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted 227422949 1565873610
 In order to compare the two aligners, this analysis was run twice: once
  with Bismark, once with bwa-meth.
- In order to run the analysis, the following data and tools were used:
+ 
+\change_unchanged
+In order to run the analysis, the following data and tools were used:
 \end_layout
 
 \begin_layout Standard
@@ -1019,8 +1097,19 @@ Detailed description of BAM processing steps in data analysis.
 \end_layout
 
 \begin_layout Standard
-Methylation calling was performed on the aligned BAMs using MethylDackel
- v0.4.0.
+
+\change_inserted 227422949 1565874048
+The sequencing reads were aligned using the bwa-meth aligner <with what
+ options>.
+ 
+\change_unchanged
+Methylation calling was performed on the 
+\change_deleted 227422949 1565874052
+aligned
+\change_inserted 227422949 1565874053
+resulting
+\change_unchanged
+ BAMs using MethylDackel v0.4.0.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads for both aligners, however inaccurate
  MapQs lead to reads being incorrectly included in methylation calling.
@@ -1093,9 +1182,15 @@ The Bismap complete bedGraph was then filtered using awk to produce a file
 \begin_layout Standard
 Alignments of 2x99-bp paired-end EM-seq and whole genome bisulfite reads
  were processed using MethylDackel (with and without the custom patch) using
- a minimum MapQ cutoff of 20 and the default settings mentioned above and
- combined with the file of all low mappability regions in ClinVar regions
- to produce a list of all miscalls (this will be referred to as the 
+ a minimum MapQ cutoff of 
+\change_inserted 227422949 1565874072
+1
+\change_deleted 227422949 1565874072
+2
+\change_unchanged
+0 and the default settings mentioned above and combined with the file of
+ all low mappability regions in ClinVar regions to produce a list of all
+ miscalls (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1123,12 +1218,29 @@ The miscalls file was intersected with the file of ClinVar regions with
 \end_layout
 
 \begin_layout Standard
-Since this analysis was run for both Bismark and bwa-meth, the miscalls
- files were also processed through awk to add a field specifying which aligner
- the data is from.
+Since this analysis was run for 
+\change_deleted 227422949 1565874089
+both Bismark and bwa-meth
+\change_inserted 227422949 1565874137
+three different input masses and two sequencing protocols
+\change_unchanged
+, the miscalls files were also processed through awk to add a field specifying
+ which 
+\change_deleted 227422949 1565874162
+aligner the data is from
+\change_inserted 227422949 1565874197
+input mass, protocol, and MethylDackel filtering setting were used
+\change_unchanged
+.
  The same field was added to the lists of all ClinVar regions with miscalls
  and counts described previously.
- Both files were examined and compared in Tableau
+ 
+\change_deleted 227422949 1565874204
+Both
+\change_inserted 227422949 1565874204
+All
+\change_unchanged
+ files were examined and compared in Tableau
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -1138,6 +1250,20 @@ Since this analysis was run for both Bismark and bwa-meth, the miscalls
 \end_inset
 
 .
+\change_inserted 227422949 1565874228
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1565874321
+To compare the behavior of Bismark with bwa-meth, this analysis was re-run
+ with the Bismark aligner.
+ The name of the aligner was added to the field specifying the input mass,
+ protocol, and MethylDackel filtering settings present in the miscalls files
+ and the lists of all ClinVar regions with miscalls and counts.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1157,8 +1283,11 @@ Reads placed with falsely high confidence have cascading detrimental effects
 ,
 \change_unchanged
  and more flexibility to separate methylation calling from alignment, we
- recommend the use of bwameth for alignment and MethylDackel with MapQ >
- 20 for methylation calling.
+ recommend the use of bwa
+\change_inserted 227422949 1565874666
+-
+\change_unchanged
+meth for alignment and MethylDackel with MapQ > 20 for methylation calling.
  To further improve accuracy of methylation asssessment, reads with both
  mates in 
 \change_deleted 227422949 1564758916
@@ -1205,7 +1334,7 @@ name "methyldackel-patch"
 The pull request for the patch adding mappability support to MethylDackel
  can be found at 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1221,7 +1350,7 @@ https://github.com/dpryan79/MethylDackel/pull/80
 \begin_layout Standard
 The Bismap file used for this analysis was downloaded from 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
