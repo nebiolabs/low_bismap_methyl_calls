@@ -480,6 +480,10 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+
+\change_inserted 227422949 1565875058
+<WRONG CAPTION!!!!!> 
+\change_unchanged
 Example of MapQ Issue.
  On the Cov Difference track, red means that Bismark has higher coverage
  and blue means bwa-meth has higher coverage.
@@ -853,6 +857,10 @@ todo: effect on ClinVar
 
 \begin_layout Standard
 todo: examples of specific effects in ClinVar
+\change_inserted 227422949 1565874893
+ (I have 2 of these from my talk)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -902,7 +910,11 @@ Sequencing
 
 \begin_layout Standard
 Libraries were pooled and sequenced with diverse libraries (~10%) on 2 flow
- cells of an Illumina Novaseq 6000 
+ cells
+\change_inserted 227422949 1565874789
+ <is this still correct with the 2 other masses added?>
+\change_unchanged
+ of an Illumina Novaseq 6000 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "novaseq-6000"
@@ -1004,7 +1016,13 @@ literal "false"
 
 \end_inset
 
-, GNU sort, GNU head, bwa-meth, and bismark.
+, GNU sort, GNU head, bwa-meth, and 
+\change_inserted 227422949 1565875085
+B
+\change_deleted 227422949 1565875085
+b
+\change_unchanged
+ismark.
  GNU sort and head are required since some of the functionality needed (specific
 ally, the ability to parallelize sorting and the ability to use a negative
  value with the -n option for head to count lines from the end of the file)
