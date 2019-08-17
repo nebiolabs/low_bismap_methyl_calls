@@ -29,7 +29,17 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\use_hyperref false
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_package amsmath 1
@@ -67,26 +77,56 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author 227422949 "Kumar"
 \end_header
 
 \begin_body
 
 \begin_layout Title
-<Examining and correcting low-mappability methylation calls in data which
- used Bismark or Bwameth>
+Correcting Methylation Calls in Low-Mappability Regions 
 \end_layout
 
 \begin_layout Author
-<authors list once I find out how these things are formatted>
+Caiden M.
+ Kumar, Ariel Erijman, Bradley W.
+ Langhorst
 \end_layout
 
 \begin_layout Abstract
-<abstract>
+DNA methylation is an important component in vital biological functions
+ such as embryonic development, carcinogenesis, and heritable regulation.
+ Accurate methods to assess genomic methylation status are crucial to its
+ effective use in many scenarios, especially in the detection and diagnosis
+ of disease.
+ Methylation aligners, such as Bismark and bwa-meth, frequently assign MapQ
+ values to reads which are significantly higher than can be supported by
+ the uniqueness of the region they are mapped to.
+ These incorrectly high MapQs result in inappropriate methylation calling
+ in repetitive regions.
+ We observe reads that should map to separate locations (possibly having
+ different methylation states) actually end up mapping to the same locus,
+ causing apparent mixed methylation at such loci.
+ Methylation calling can be improved by using Bismap mappability data to
+ filter out insufficiently unique reads.
+ Simply filtering out Cs in insufficiently unique regions is not adequate
+ as it is prone to overfiltering Cs in small mappability dips.
+ These Cs can in fact be called using reads anchored in a nearby mappable
+ region.
+ We have created a patch for the MethylDackel methylation caller to perform
+ read-based filtering.
+ Read-based filtering resolves some of the apparent mixed methylation to
+ either 0% or 100% methylation.
+ We examined methylation calls with and without read-based filtering in
+ or near the 7830 genes containing ClinVar variants in a methylation sequencing
+ data set from the NA12878 cell line and in tumor samples.
+ Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
+ methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
+ Cs were corrected to 100% methylation.
 \end_layout
 
 \begin_layout Section*
@@ -94,40 +134,215 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-As DNA methylation status can have a significant biological function {need
- to cite}, it is important that there be an accurate way of calling methylation
- on a genome.
- One of the current techniques for gathering DNA cytosine methylation data
- is to use a method of methylation sequencing, for example bisulfite sequencing
- {need to cite}.
+As DNA methylation status can have a significant biological function 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Schubeler2015"
+literal "false"
+
+\end_inset
+
+, it is important that there be an accurate way of calling methylation on
+ a genome.
+ Although there are multiple varieties of DNA methylation, a significant
+ type is methylation of cytosine to 5-methylcytosine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "breiling_epigenetic_2015"
+literal "false"
+
+\end_inset
+
+.
+ Data on DNA cytosine methylation state can be gathered using a methylation
+ sequencing technique (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:seq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), for example bisulfite sequencing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2017"
+literal "false"
+
+\end_inset
+
+.
  In bisulfite sequencing, unmethylated cytosines are deaminated to uracil
- by the additon of sodium bisulfite, which sequences as if it were thymine,
- while 5-methyl-cytosine is unaffected.
+ by the addition of sodium bisulfite.
+ 5-methylcytosines are not affected.
+ Since uracil sequences as thymine and 5-methylcytosine sequences as cytosine,
+ positions of unmethylated Cs in a reference sequence can be identified
+ by C->T transitions.
 \end_layout
 
 \begin_layout Standard
-{explain EM-seq here?}
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Untitled drawing-2.svg
+	width 90page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Overview of Methylation Sequencing Methods.
+ <todo: Treat with Enzyme -> Tet2-> APOBEC
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-This is followed by aligning the resulting reads using a methylation aligner
- {need to cite}, which is specially designed to handle methylation sequencing
- data, to align the reads to a reference.
+It is also possible to use an enzymatic method employing TET2 to oxidize
+ 5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
+ to uracil.
+ While sodium bisulfite treatment produces other DNA damage, the enzymatic
+ method deaminates with more precision (forthcoming publication).
+ 
+\end_layout
+
+\begin_layout Standard
+Whichever method is used to deaminate cytosines, sequence data is typically
+ aligned to a reference genome using a methylation-aware aligner 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Garrett-Bakelman2015"
+literal "false"
+
+\end_inset
+
+, which is specifically designed to handle the C->T transitions in methylation
+ sequencing data during alignment of the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
- as MethylDackel {need to cite}, which will use the resulting reads to determine
- the methylation status of a particular cytosine {see Figure 1}.
- The resulting data can show the methylation status for each cytosine in
- the genome and can therefore be used to find and study biologically significant
+ as MethylDackel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ryan_methyldackel_nodate"
+literal "false"
+
+\end_inset
+
+ or bismark_methylation_extractor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btr167"
+literal "false"
+
+\end_inset
+
+, which will use the resulting reads to determine the methylation status
+ of a particular cytosine (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The resulting data shows the methylation status of each cytosine in the
+ genome and can therefore be used to find and study biologically significant
  DNA methylation sites.
  
 \end_layout
 
 \begin_layout Standard
-Since this method is based on aligning sequencing reads, it cannot determine
- methylation in repetitive regions as it cannot uniquely place a read.
- Therefore, methylation aligners (and read aligners in general) assign a
- value to each read known as MapQ {fig 2}.
- According to the SAM specification {cite}, MapQ is defined as: 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figure 1-4.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experimental Overview
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A read must be unambiguously placed if it is to provide information about
+ a specific locus.
+ Reads that equally match more than one area of the reference genome should
+ not be used to assess methylation of any given C.
+ To avoid calling Cs using reads derived from multiple genome loci, methylation
+ aligners (and read aligners in general) assign a MapQ value to each read
+ alignment (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ According to the SAM specification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "the_sam/bam_format_specification_working_group_sequence_2018"
+literal "false"
+
+\end_inset
+
+, MapQ is defined as: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -140,37 +355,516 @@ Since this method is based on aligning sequencing reads, it cannot determine
 \end_inset
 
 .
- MapQ indicates how uniquely placed a read alignment is, that is, how many
- other places could the read align to the reference.
- A low value of MapQ means that the read aligns in many places throughout
- the genome (for instance, a read of centromeric satellite DNA would likely
- have a very low MapQ).
- A high value of MapQ indicates that the read can align where it is placed
- and nowhere else in the genome.
+ MapQ indicates how uniquely placed a read alignment is, that is, in how
+ many other places could the read align to the reference.
+ A low MapQ means that may align in many places throughout the genome (for
+ instance, a read of centromeric satellite DNA would likely have a very
+ low MapQ).
+ A high MapQ indicates that the read likely aligns where it is placed and
+ nowhere else in the genome.
+ 
 \end_layout
 
 \begin_layout Standard
-A methylation caller can then take the MapQ values and filter out reads
- with low MapQ, as they have too many possible placements in the genome
- to be useful, since you cannot tell what part of the genome the read is
- providing data on.
- This allows for the resulting methylation calls to be highly likely to
- actually correspond to the location they are specified as being at.
+A methylation caller can use accurate MapQ values to filter out reads with
+ multiple placements in the genome, allowing the resulting methylation calls
+ to accurately reflect their specific loci.
+\end_layout
+
+\begin_layout Section*
+Results
 \end_layout
 
 \begin_layout Standard
-However, the methylation aligner Bismark {cite} and to a lesser extent Bwameth
- {cite, and check this again when I finish my analysis}, incorrectly assign
- high MapQ values to reads in regions which are too repeated to support
- that MapQ {fig 3}.
- These regions have been determined to be repeated using data from Bismap
- {cite}, which uses {explain Bismap} to create a mappability score, ranging
- from 0 to 1, for every base in the genome.
- These incorrect high-MapQ reads are in regions with very low or 0 Bismap
- mappability, and yet their MapQ values can be higher than 20.
- According to the SAM specification, this indicates that they should have
- a 1:100 chance of being incorrectly placed, which is not supported by the
- region's Bismap mappability.
+While evaluating 
+\change_deleted 227422949 1565872898
+two commonly used
+\change_inserted 227422949 1565872898
+the
+\change_unchanged
+ methylation aligner
+\change_deleted 227422949 1565872894
+s, Bismark 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btr167"
+literal "false"
+
+\end_inset
+
+ and
+\change_unchanged
+ bwa-meth 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2014arXiv1401.1129P"
+literal "false"
+
+\end_inset
+
+, we observed a significant number of reads with high MapQ values in repetitive
+ regions (e.g.
+ centromeres).
+ 
+\change_deleted 227422949 1565873419
+While both aligners are affected, Bismark produced more high MapQ reads
+ in repetitive regions (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bad-mapq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+
+\change_unchanged
+ After observing
+\change_inserted 227422949 1565873431
+ these
+\change_unchanged
+ high MapQ reads in the centromere and 
+\change_inserted 227422949 1565873447
+larger
+\change_deleted 227422949 1565873446
+other
+\change_unchanged
+ repetitive regions, we investigated to see if smaller regions might also
+ be too repetitive to support the high aligner MapQ estimates observed.
+ We identified repetitive regions using data from data from Bismap 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "karimzadeh2018"
+literal "false"
+
+\end_inset
+
+, a tool that counts the number of occurrences of every single K-mer of
+ a particular length (in this case, k=100) in the genome to create a mappability
+ score for every base in the Grch38 reference.
+ <bases this on assumption that each locus is either 0 or 100%> Bismap takes
+ the effect of C->T conversion into account and therefore produces data
+ which is applicable in the context of methylation sequencing.
+ Reads entirely contained within a region of low mappability should not
+ have high MapQ values, however we observed many high-MapQ reads in regions
+ with very low or zero Bismap mappability (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Chrom_fig.svg
+	width 60page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 227422949 1565875058
+<WRONG CAPTION!!!!!> 
+\change_unchanged
+Example of MapQ Issue.
+ On the Cov Difference track, red means that Bismark has higher coverage
+ and blue means bwa-meth has higher coverage.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bad-mapq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fig1_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "example"
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An example of how MapQ filtering does not remove all poorly mapped reads.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 227422949 1565873526
+Bismark and bwa-meth use different systems to define values for MapQ (see
+ supplemental detail <what in the supplemental detail?>)
+\change_inserted 227422949 1565873563
+While low MapQ can indicate repetitiveness
+\change_unchanged
+, 
+\change_deleted 227422949 1565873540
+but 
+\change_unchanged
+even stringent MapQ thresholds cannot reliably select reads for safe methylation
+ calling in regions containing repetitive DNA.
+ We considered excluding methylation calls on Cs found in low-mappability
+ regions (e.g.
+ using bedtools), but rejected this approach because it is prone to both
+ over- and underfiltering.
+ Cs in short, unique regions would be kept (underfiltered) even if the surroundi
+ng DNA is repetitive (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:discarded"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ However, this does not happen often.
+ Overfiltering of Cs in short repetitive regions is a larger problem though.
+ In this scenario, a C located in a small dip in mappability would be eliminated
+ (overfiltered) despite coverage from read pairs anchored in nearby unique
+ regions (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:kept"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ In practice, underfiltering is rare (x% of Cs) but overfiltering is much
+ more common (y% of Cs) (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ In cases where reads from multiple low-mappability regions are placed onto
+ one region (creating a coverage spike, filtering by coverage may also remove
+ the problematic region, but in cases where reads are simply mixed among
+ multiple low-mappability regions (not creating a coverage spike), coverage
+ filtering would not be effective at removing the affected regions.
+\end_layout
+
+\begin_layout Standard
+To reliably filter out only problematic read pairs (those where both mates
+ are placed in low mappability regions) we modified the MethylDackel methylation
+ caller 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "methyldackel-patch"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+to accept a bigWig file of low-mappability regions to exclude from analysis.
+ This alignment filtering approach precisely eliminates only those reads
+ in repetitive regions and does not incur a significant cost in terms of
+ execution speed (10:14 min with the patch 9:55 min without, when run with
+ 20 threads on the Grch38 reference genome).(see computational methods for
+ details)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fig3_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An example of a C incorrectly discarded by coordinate filtering.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:discarded"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fig4_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An overview of the occurrences of these scenarios in grch38 chromosome 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fig2_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An example of a C incorrectly kept by coordinate filtering.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:kept"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To focus on the incorrect alignments and methylation calls that have biological
+ and medical significance, we examined methylation calls in GENCODE genes
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harrow2012"
+literal "false"
+
+\end_inset
+
+ that contain variants listed in the ClinVar 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/nar/gkx1153"
+literal "false"
+
+\end_inset
+
+ database of disease-associated variants.
+ Using our alignment filtering approach we successfully avoided calling
+ 15,539 Cs in these important regions in the EM-seq 50ng sample having insuffici
+ent mappability to support methylation calling.
+ Briefly, we intersect read alignments and MapQ data with Bismap low mappability
+ regions counting Cs in regions where the MapQ is higher than should be
+ possible given the mappability (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\change_inserted 227422949 1565874397
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1565874633
+For comparison, we also examined the Bismark methylation aligner in the
+ same manner.
+ We observed that compared to bwa-meth, Bismark produced more high MapQ
+ reads in repetitive regions (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bad-mapq"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).In addition, Bismark and bwa-meth use different systems to define values
+ for MapQ.
+ Bismark (as a result of using Bowtie2 for alignment) reports MapQ based
+ on number of reference mismatches instead, producing values between 0 and
+ 42 <citation>.
+ Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
+ estimating probabilities in the MapQ field.
+\end_layout
+
+\begin_layout Standard
+todo: filtering effect em-seq vs wgbs (fig) for bwa
+\change_inserted 227422949 1565874682
+-
+\change_unchanged
+meth
+\end_layout
+
+\begin_layout Standard
+todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm
+ working on)
+\end_layout
+
+\begin_layout Standard
+todo: # cs affected (worst) bismark vs filtered vs bwa
+\change_inserted 227422949 1565874683
+-
+\change_unchanged
+meth vs filtered (best) (fig?) (I can get this from the emseq/wgbs data,
+ it's a simple bedtools operation)
+\end_layout
+
+\begin_layout Standard
+todo: group Cs by magnititude of change in methylation post filtering (fig,
+ heatmap?) (best done by comparing both %methyl and read count, maybe we
+ should discuss how to layout this figure though)
+\end_layout
+
+\begin_layout Standard
+todo: effect on ClinVar
+\end_layout
+
+\begin_layout Standard
+todo: examples of specific effects in ClinVar
+\change_inserted 227422949 1565874893
+ (I have 2 of these from my talk)
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+todo: examine GEO dataset (maybe, depends on time/progress)
 \end_layout
 
 \begin_layout Section*
@@ -181,38 +875,523 @@ Materials and Methods
 DNA Methylation Sequencing
 \end_layout
 
+\begin_layout Subsection*
+Materials
+\end_layout
+
 \begin_layout Standard
-<how was the actual sequencing bench work done?>
+Libraries were prepared from 
+\change_inserted 227422949 1565874002
+10, 50, and 
+\change_unchanged
+200 ng of genomic DNA from the NA12878 cell line (Coriel).
+ This input was supplemented with a small amount of fully-methylated Xp-12
+ DNA, lambda phage DNA (NEB #N3011)
+\change_inserted 227422949 1565806681
+,
+\change_unchanged
+ and a pUC19 plasmid (NEB #N3041) treated with M.SssI CpG Methyltransferase
+ (NEB #M0226).
+ 
 \end_layout
 
 \begin_layout Subsection*
-Data Processing
+Whole Genome Bisulfite Libraries
 \end_layout
 
 \begin_layout Standard
-<how was the data processing done?>
+Libraries were prepared using the Ultra II DNA library prep kit before being
+ Bisulfite converted according to (protocol).
+\end_layout
+
+\begin_layout Subsection*
+Sequencing
+\end_layout
+
+\begin_layout Standard
+Libraries were pooled and sequenced with diverse libraries (~10%) on 2 flow
+ cells
+\change_inserted 227422949 1565874789
+ <is this still correct with the 2 other masses added?>
+\change_unchanged
+ of an Illumina Novaseq 6000 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "novaseq-6000"
+literal "false"
+
+\end_inset
+
+ using the S2 chemistry<citation>.
+ We acquired 1.55 billion 99bp paired-end reads for the 
+\change_deleted 227422949 1565873673
+EM-seq
+\change_inserted 227422949 1565873679
+enzymatic sequencing
+\change_unchanged
+ method and 1.60 billion paired-end reads for the Bisulfite converted libraries.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Computational Methods
+\end_layout
+
+\begin_layout Standard
+
+\change_deleted 227422949 1565873610
+In order to compare the two aligners, this analysis was run twice: once
+ with Bismark, once with bwa-meth.
+ 
+\change_unchanged
+In order to run the analysis, the following data and tools were used:
+\end_layout
+
+\begin_layout Standard
+The GRCh38.p11 analysis set supplemented with phage T4, phage lambda, phage
+ Xp12, and pUC19 contigs was used throughout 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "church_modernizing_2011"
+literal "false"
+
+\end_inset
+
+.
+ A VCF file of disease-associated variant sites was downloaded from ClinVar
+ (see supplemental data for file date ) and the GENCODE v31 gene annotations
+ were used.
+ The mappability data was the 100bp multi-track bigWig file downloaded from
+ Bismap (see supplemental materials for link).
+ A detailed diagram of the process is found in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Tools used include bedtools 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btq033"
+literal "false"
+
+\end_inset
+
+, samtools 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btp352"
+literal "false"
+
+\end_inset
+
+, GNU awk, MethylDackel, bigWigToBedGraph 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btq351"
+literal "false"
+
+\end_inset
+
+, BEDOPS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/bts277"
+literal "false"
+
+\end_inset
+
+, GNU sort, GNU head, bwa-meth, and 
+\change_inserted 227422949 1565875085
+B
+\change_deleted 227422949 1565875085
+b
+\change_unchanged
+ismark.
+ GNU sort and head are required since some of the functionality needed (specific
+ally, the ability to parallelize sorting and the ability to use a negative
+ value with the -n option for head to count lines from the end of the file)
+ is not present in BSD sort and head.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename analysis_preproc.svg
+	lyxscale 70
+	height 60pheight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag"
+
+\end_inset
+
+Detailed description of preprocesing steps in data analysis.
+ <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ parts A and B with >
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename analysis_bam.svg
+	lyxscale 70
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag-1"
+
+\end_inset
+
+Detailed description of BAM processing steps in data analysis.
+ <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ parts A and B with >
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1565874048
+The sequencing reads were aligned using the bwa-meth aligner <with what
+ options>.
+ 
+\change_unchanged
+Methylation calling was performed on the 
+\change_deleted 227422949 1565874052
+aligned
+\change_inserted 227422949 1565874053
+resulting
+\change_unchanged
+ BAMs using MethylDackel v0.4.0.
+ MethylDackel uses a default value of 10 as a minimum MapQ which should
+ include mostly single locus reads for both aligners, however inaccurate
+ MapQs lead to reads being incorrectly included in methylation calling.
+ In order to eliminate reads in low-mappability regions, a patch was created
+ for MethylDackel which allows it to take as an input a bigWig file which
+ is then used to filter out read pairs (this patch currently only supports
+ paired-end reads) where neither mate intersects a high-mappability region.
+ The patch allows for user configuration of the low mappability threshold
+ and the number of bases which must be equal to or above that threshold
+ in order for the read pair to be kept (the defaults are a low mappability
+ threshold of 0.01 and to require 15 bases that are greater than or equal
+ to that threshold in a single read).
+ The filtering algorithm has been optimized both by loading the mappability
+ data into memory before calling, and through the use of a custom run-length
+ compressed binary file format that we here term BBM (Binary BisMap).
+ This format can store the mappbility data for the hg38/grch38 human genome
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
+ ratio for this dataset of 7.78:1.
+\end_layout
+
+\begin_layout Standard
+The ClinVar VCF and GENCODE GFF were combined using bedtools and BEDOPS
+ into a single BED file listing all GENCODE annotation regions that overlap
+ one or more ClinVar variants (these regions will be referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+ClinVar regions
+\begin_inset Quotes erd
+\end_inset
+
+), which will be called the 
+\begin_inset Quotes eld
+\end_inset
+
+ClinVar regions BED
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The Bismap bedGraph (which, as is standard for bedGraph files, did not
+ contain zeroes) and an FAI index of the grch38 reference genome FASTA file
+ were processed with bedtools, awk, and GNU sort to obtain a bedGraph containing
+ all mappability data, including zeroes.
+ This file will be referred to as the 
+\begin_inset Quotes eld
+\end_inset
+
+Bismap complete bedGraph
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It was then combined with the ClinVar regions BED using bedtools map to
+ create a file containing the minimum and mean mappability for each gene
+ with a ClinVar variant.
+ 
+\end_layout
+
+\begin_layout Standard
+The Bismap complete bedGraph was then filtered using awk to produce a file
+ containing only low mappability regions (mappability < 0.01).
+ The file with minimum and mean mappability for every ClinVar region was
+ filtered likewise on minimum mappability.
+ The two resulting files (one of low-mappability regions, one of ClinVar
+ regions with low minimum mappability) were combined to produce a file of
+ all low mappability regions that are in ClinVar regions.
+\end_layout
+
+\begin_layout Standard
+Alignments of 2x99-bp paired-end EM-seq and whole genome bisulfite reads
+ were processed using MethylDackel (with and without the custom patch) using
+ a minimum MapQ cutoff of 
+\change_inserted 227422949 1565874072
+1
+\change_deleted 227422949 1565874072
+2
+\change_unchanged
+0 and the default settings mentioned above and combined with the file of
+ all low mappability regions in ClinVar regions to produce a list of all
+ miscalls (this will be referred to as the 
+\begin_inset Quotes eld
+\end_inset
+
+miscalls file
+\begin_inset Quotes erd
+\end_inset
+
+).
+ A miscall, as used here, is defined as a methylation call that was filtered
+ out using the new MethylDackel mappability filtering.
+ 
+\end_layout
+
+\begin_layout Standard
+The miscalls file was intersected with the file of ClinVar regions with
+ low minimum mappability to produce a file of ClinVar regions with miscalls.
+ The -wa option for bedtools intersect was used here, which writes a copy
+ of the ClinVar region to the output file for each miscall in the region,
+ so this file contained duplicates.
+ These duplicates were then used to count miscalls by feeding the data to
+ a custom Python script (found in the Nextflow script in the supplemental
+ materials) which counted and combined the duplicates, producing a list
+ of all ClinVar regions with miscalls and how many miscalls are in each
+ region.
+\end_layout
+
+\begin_layout Standard
+Since this analysis was run for 
+\change_deleted 227422949 1565874089
+both Bismark and bwa-meth
+\change_inserted 227422949 1565874137
+three different input masses and two sequencing protocols
+\change_unchanged
+, the miscalls files were also processed through awk to add a field specifying
+ which 
+\change_deleted 227422949 1565874162
+aligner the data is from
+\change_inserted 227422949 1565874197
+input mass, protocol, and MethylDackel filtering setting were used
+\change_unchanged
+.
+ The same field was added to the lists of all ClinVar regions with miscalls
+ and counts described previously.
+ 
+\change_deleted 227422949 1565874204
+Both
+\change_inserted 227422949 1565874204
+All
+\change_unchanged
+ files were examined and compared in Tableau
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+®
+\end_layout
+
+\end_inset
+
+.
+\change_inserted 227422949 1565874228
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 227422949 1565874321
+To compare the behavior of Bismark with bwa-meth, this analysis was re-run
+ with the Bismark aligner.
+ The name of the aligner was added to the field specifying the input mass,
+ protocol, and MethylDackel filtering settings present in the miscalls files
+ and the lists of all ClinVar regions with miscalls and counts.
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+<still getting data>
 \end_layout
 
 \begin_layout Section*
-Results
+Discussion
 \end_layout
 
 \begin_layout Standard
-Still working on these...
+Reads placed with falsely high confidence have cascading detrimental effects
+ on methylation calling, differential methylation assessment, and assement
+ of phenotypes associated with methylation status.
+ Because of the more accurate MapQ values, decreased run time
+\change_inserted 227422949 1565806617
+,
+\change_unchanged
+ and more flexibility to separate methylation calling from alignment, we
+ recommend the use of bwa
+\change_inserted 227422949 1565874666
+-
+\change_unchanged
+meth for alignment and MethylDackel with MapQ > 20 for methylation calling.
+ To further improve accuracy of methylation asssessment, reads with both
+ mates in 
+\change_deleted 227422949 1564758916
+a 
+\change_unchanged
+low mappability regions should be excluded.
+\end_layout
+
+\begin_layout Standard
+<waiting on results>
 \end_layout
 
 \begin_layout Section*
-Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Supplemental-Materials"
+
+\end_inset
+
+Supplemental Materials
 \end_layout
 
 \begin_layout Standard
-Waiting on results...
+\begin_inset CommandInset label
+LatexCommand label
+name "nextflow script"
+
+\end_inset
+
+The Nextflow script used to analyze this data can be found at <to be added>.
+ In order to run, it requires vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDac
+kel (whatever-version or newer), GNU sort, GNU head, bedtools, paste, awk,
+ and Python 3.
+ 
 \end_layout
 
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "methyldackel-patch"
+
+\end_inset
+
+The pull request for the patch adding mappability support to MethylDackel
+ can be found at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/dpryan79/MethylDackel/pull/80
+\end_layout
+
+\end_inset
+
+.
+ It was merged into MethylDackel in version (whatever-version).
+\end_layout
+
+\begin_layout Standard
+The Bismap file used for this analysis was downloaded from 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://www.pmgenomics.ca/hoffmanlab/proj/bismap/trackhub/hg38/k100.Bismap.MultiTrac
+kMappability.bw
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
+ with a file name of clinvar_20190722.vcf.gz
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "4641904citation"
+options "plain"
 
 \end_inset
 
