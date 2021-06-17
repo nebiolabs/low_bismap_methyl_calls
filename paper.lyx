@@ -82,6 +82,7 @@
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -1421919639 "Caiden"
 \author 227422949 "Kumar"
 \end_header
 
@@ -179,7 +180,19 @@ literal "false"
  5-methylcytosines are not affected.
  Since uracil sequences as thymine and 5-methylcytosine sequences as cytosine,
  positions of unmethylated Cs in a reference sequence can be identified
- by C->T transitions.
+ by C->T transitions
+\change_inserted -1421919639 1623791234
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chen2017"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -611,10 +624,14 @@ noprefix "false"
 
 ).
  In cases where reads from multiple low-mappability regions are placed onto
- one region (creating a coverage spike, filtering by coverage may also remove
- the problematic region, but in cases where reads are simply mixed among
- multiple low-mappability regions (not creating a coverage spike), coverage
- filtering would not be effective at removing the affected regions.
+ one region (creating a coverage spike
+\change_inserted -1421919639 1623791402
+)
+\change_unchanged
+, filtering by coverage may also remove the problematic region, but in cases
+ where reads are simply mixed among multiple low-mappability regions (not
+ creating a coverage spike), coverage filtering would not be effective at
+ removing the affected regions.
 \end_layout
 
 \begin_layout Standard
@@ -634,8 +651,12 @@ to accept a bigWig file of low-mappability regions to exclude from analysis.
  This alignment filtering approach precisely eliminates only those reads
  in repetitive regions and does not incur a significant cost in terms of
  execution speed (10:14 min with the patch 9:55 min without, when run with
- 20 threads on the Grch38 reference genome).(see computational methods for
- details)
+ 20 threads on the Grch38 reference genome).
+
+\change_inserted -1421919639 1623791456
+ 
+\change_unchanged
+(see computational methods for details)
 \end_layout
 
 \begin_layout Standard
@@ -779,11 +800,38 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- 15,539 Cs in these important regions in the EM-seq 50ng sample having insuffici
-ent mappability to support methylation calling.
- Briefly, we intersect read alignments and MapQ data with Bismap low mappability
- regions counting Cs in regions where the MapQ is higher than should be
- possible given the mappability (see Figure 
+ 15,539 Cs in these important regions in 
+\change_inserted -1421919639 1623791523
+a 50ng
+\change_deleted -1421919639 1623791521
+the 
+\change_unchanged
+EM-seq 
+\change_deleted -1421919639 1623791526
+50ng 
+\change_unchanged
+sample 
+\change_inserted -1421919639 1623791505
+which 
+\change_unchanged
+hav
+\change_inserted -1421919639 1623791508
+e
+\change_deleted -1421919639 1623791507
+ing
+\change_unchanged
+ insufficient mappability to support methylation calling.
+ Briefly, 
+\change_inserted -1421919639 1623791577
+to determine that we avoid calling a region has insufficient mappability
+ to support methylation calling, 
+\change_unchanged
+we intersect read alignments and MapQ data with Bismap low mappability regions
+\change_inserted -1421919639 1623791594
+,
+\change_unchanged
+ counting Cs in regions where the MapQ is higher than should be possible
+ given the mappability (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview"
@@ -1127,10 +1175,26 @@ aligned
 \change_inserted 227422949 1565874053
 resulting
 \change_unchanged
- BAMs using MethylDackel v0.4.0.
+ BAMs using MethylDackel v0.
+\change_inserted -1421919639 1623878362
+5
+\change_deleted -1421919639 1623878362
+4
+\change_unchanged
+.
+\change_inserted -1421919639 1623959868
+2
+\change_deleted -1421919639 1623959868
+0
+\change_unchanged
+.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
- include mostly single locus reads for both aligners, however inaccurate
- MapQs lead to reads being incorrectly included in methylation calling.
+ include mostly single locus reads
+\change_deleted -1421919639 1623959890
+ for both aligners
+\change_unchanged
+, however inaccurate MapQs lead to reads being incorrectly included in methylati
+on calling.
  In order to eliminate reads in low-mappability regions, a patch was created
  for MethylDackel which allows it to take as an input a bigWig file which
  is then used to filter out read pairs (this patch currently only supports
@@ -1337,8 +1401,13 @@ name "nextflow script"
 
 The Nextflow script used to analyze this data can be found at <to be added>.
  In order to run, it requires vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDac
-kel (whatever-version or newer), GNU sort, GNU head, bedtools, paste, awk,
- and Python 3.
+kel (
+\change_inserted -1421919639 1623959863
+0.5.2
+\change_deleted -1421919639 1623878340
+whatever-version
+\change_unchanged
+ or newer), GNU sort, GNU head, bedtools, paste, awk, and Python 3.
  
 \end_layout
 
@@ -1362,7 +1431,13 @@ https://github.com/dpryan79/MethylDackel/pull/80
 \end_inset
 
 .
- It was merged into MethylDackel in version (whatever-version).
+ It was merged into MethylDackel in version 
+\change_inserted -1421919639 1623959865
+0.5.2
+\change_deleted -1421919639 1623878330
+(whatever-version)
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -1384,6 +1459,10 @@ kMappability.bw
 \begin_layout Standard
 The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
  with a file name of clinvar_20190722.vcf.gz
+\change_inserted -1421919639 1623960049
+ (we will probably update this)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
