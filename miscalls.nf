@@ -43,8 +43,6 @@ min_mapq = params.min_mapq
 
 bismap_cutoff = params.bismap_cutoff
 
-count_miscalls = file("count_miscalls.py")
-
 bam_names = params.bams.toString().split(",")
 
 println(bam_names)
@@ -372,7 +370,6 @@ process countMiscalls {
 
         input:
                 file miscalled_genes_dups_methyl
-                file count_miscalls
                 val n from f_name_4
 
         output:
