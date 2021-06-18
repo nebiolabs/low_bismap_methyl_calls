@@ -1,14 +1,14 @@
-params.clinvar="test/chr18_clinvar.vcf"
+params.clinvar="test_fixtures/chr18_clinvar.vcf"
 
-params.gencode="test/chr18_gencode.gff"
+params.gencode="test_fixtures/chr18_gencode.gff"
 
-params.bismap="test/chr18_bismap.bw"
+params.bismap="test_fixtures/chr18_bismap.bw"
 
-params.ref_fai="test/chr18_test.fa.fai"
+params.ref_fai="test_fixtures/chr18_test.fa.fai"
 
-params.ref="test/chr18_test.fa"
+params.ref="test_fixtures/chr18_test.fa"
 
-params.bams="test/*.bam"
+params.bams="test_fixtures/*.bam"
 
 params.min_mapq=20
 
