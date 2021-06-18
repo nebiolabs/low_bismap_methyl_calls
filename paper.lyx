@@ -1467,19 +1467,10 @@ s
 \change_unchanged
 .
  These duplicates were then used to count miscalls by feeding the data to
- a custom Python script (
-\change_deleted -1421919639 1624038306
-found
-\change_inserted -1421919639 1624038307
-invoked
-\change_unchanged
- in
-\change_inserted -1421919639 1624038313
- and found alongside with
-\change_unchanged
- the Nextflow script in the supplemental materials) which counted and combined
- the duplicates, producing a list of all ClinVar regions with miscalls and
- how many miscalls are in each region.
+ a custom Python script (found in the Nextflow script in the supplemental
+ materials) which counted and combined the duplicates, producing a list
+ of all ClinVar regions with miscalls and how many miscalls are in each
+ region.
 \end_layout
 
 \begin_layout Standard
