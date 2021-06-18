@@ -866,7 +866,21 @@ noprefix "false"
  for MapQ.
  Bismark (as a result of using Bowtie2 for alignment) reports MapQ based
  on number of reference mismatches instead, producing values between 0 and
- 42 <citation>.
+ 42 
+\change_deleted -1421919639 1624028954
+<citation>
+\change_inserted -1421919639 1624028971
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_qc_nodate,johnurbangenome_biofinysics_2014"
+literal "false"
+
+\end_inset
+
+
+\change_inserted 227422949 1565874633
+.
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
 \end_layout
@@ -934,7 +948,12 @@ Libraries were prepared from
 \change_unchanged
 200 ng of genomic DNA from the NA12878 cell line (Coriel).
  This input was supplemented with a small amount of fully-methylated Xp-12
- DNA, lambda phage DNA (NEB #N3011)
+ DNA
+\change_inserted -1421919639 1624029290
+ (is there a specific source for this, e.g.
+ a company and/or product name?)
+\change_unchanged
+, lambda phage DNA (NEB #N3011)
 \change_inserted 227422949 1565806681
 ,
 \change_unchanged
@@ -996,8 +1015,12 @@ In order to run the analysis, the following data and tools were used:
 \end_layout
 
 \begin_layout Standard
-The GRCh38.p11 analysis set supplemented with phage T4, phage lambda, phage
- Xp12, and pUC19 contigs was used throughout 
+The GRCh38.p11
+\change_inserted -1421919639 1624024310
+ (re-do with .p13? .p11 is out of date)
+\change_unchanged
+ analysis set supplemented with phage T4, phage lambda, phage Xp12, and
+ pUC19 contigs was used throughout 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "church_modernizing_2011"
@@ -1007,8 +1030,15 @@ literal "false"
 
 .
  A VCF file of disease-associated variant sites was downloaded from ClinVar
- (see supplemental data for file date ) and the GENCODE v31 gene annotations
- were used.
+ (see supplemental data for file date
+\change_deleted -1421919639 1624024348
+ 
+\change_unchanged
+) and the GENCODE v31
+\change_inserted -1421919639 1624024380
+ (re-do with v38? v31 is out of date)
+\change_unchanged
+ gene annotations were used.
  The mappability data was the 100bp multi-track bigWig file downloaded from
  Bismap (see supplemental materials for link).
  A detailed diagram of the process is found in Figures 
@@ -1165,8 +1195,13 @@ Detailed description of BAM processing steps in data analysis.
 \begin_layout Standard
 
 \change_inserted 227422949 1565874048
-The sequencing reads were aligned using the bwa-meth aligner <with what
- options>.
+The sequencing reads were aligned using the bwa-meth aligner 
+\change_deleted -1421919639 1624024396
+<with what options>
+\change_inserted -1421919639 1624024400
+using default options
+\change_inserted 227422949 1565874048
+.
  
 \change_unchanged
 Methylation calling was performed on the 
