@@ -884,8 +884,19 @@ noprefix "false"
 \begin_layout Standard
 
 \change_inserted 227422949 1565874633
-For comparison, we also examined the Bismark methylation aligner in the
- same manner.
+For comparison, we also examined the Bismark methylation aligner
+\change_inserted -1421919639 1624391458
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btr167"
+literal "false"
+
+\end_inset
+
+
+\change_inserted 227422949 1565874633
+ in the same manner.
  We observed that compared to bwa-meth, Bismark produced more high MapQ
  reads in repetitive regions (see Figure 
 \begin_inset CommandInset ref
@@ -1078,11 +1089,7 @@ In order to run the analysis, the following data and tools were used:
 \end_layout
 
 \begin_layout Standard
-The GRCh38.p11
-\change_inserted -1421919639 1624038590
- <re-do with .p13? .p11 is out of date>
-\change_unchanged
- analysis set
+The GRCh38.p11 analysis set
 \change_inserted -1421919639 1624038583
  (hereafter referred to as 
 \begin_inset Quotes eld
@@ -1122,11 +1129,7 @@ the
 \change_inserted -1421919639 1624038838
 GFF file of the 
 \change_unchanged
-GENCODE v31
-\change_inserted -1421919639 1624038572
- <re-do with v38? v31 is out of date>
-\change_unchanged
- gene annotations were used.
+GENCODE v31 gene annotations were used.
  The mappability data was the 100bp multi-
 \change_inserted -1421919639 1624038657
 read
@@ -1653,10 +1656,6 @@ kMappability.bw
 \begin_layout Standard
 The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
  with a file name of clinvar_20190722.vcf.gz
-\change_inserted -1421919639 1624039246
- <should we update this to a newer version?>
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
