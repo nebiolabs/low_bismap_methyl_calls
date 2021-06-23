@@ -116,8 +116,11 @@ DNA methylation is an important component in vital biological functions
  filter out insufficiently unique reads.
  Simply filtering out Cs in insufficiently unique regions is not adequate
  as it is prone to overfiltering Cs in small mappability dips.
- These Cs can in fact be called using reads anchored in a nearby mappable
- region.
+ These Cs can in fact
+\change_inserted -1421919639 1624395682
+ often
+\change_unchanged
+ be called using reads anchored in a nearby mappable region.
  We have created a patch for the MethylDackel methylation caller to perform
  read-based filtering.
  Read-based filtering resolves some of the apparent mixed methylation to
@@ -258,7 +261,13 @@ literal "false"
 \end_inset
 
 , which is specifically designed to handle the C->T transitions in methylation
- sequencing data during alignment of the reads to a reference.
+ sequencing data 
+\change_deleted -1421919639 1624397336
+during alignment of
+\change_inserted -1421919639 1624397338
+when aligning
+\change_unchanged
+ the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
  as MethylDackel 
 \begin_inset CommandInset citation
@@ -635,8 +644,19 @@ noprefix "false"
 \end_inset
 
 ).
- In practice, underfiltering is rare (x% of Cs) but overfiltering is much
- more common (y% of Cs) (see Figure 
+ In practice, underfiltering is rare (x% of Cs
+\change_inserted -1421919639 1624474387
+ in GRCh38
+\change_unchanged
+) but overfiltering is much more common (y% of Cs
+\change_inserted -1421919639 1624474398
+ in GRCh38
+\change_unchanged
+)
+\change_inserted -1421919639 1624474370
+ <need to fill in data here>
+\change_unchanged
+ (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview-1"
@@ -1070,7 +1090,11 @@ EM-seq
 \change_inserted 227422949 1565873679
 enzymatic sequencing
 \change_unchanged
- method and 1.60 billion paired-end reads for the Bisulfite converted libraries.
+ method and 1.60 billion paired-end reads for the Bisulfite converted libraries
+\change_inserted -1421919639 1624472963
+ <what mass is this for? need counts for all masses unless they're identical>
+\change_unchanged
+.
  
 \end_layout
 
@@ -1101,11 +1125,8 @@ grch38
 
 )
 \change_unchanged
- supplemented with phage T4, phage lambda
-\change_inserted -1421919639 1624038567
- <should lambda be written out as a word or as λ?>
-\change_unchanged
-, phage Xp12, and pUC19 contigs was used throughout 
+ supplemented with phage T4, phage lambda, phage Xp12, and pUC19 contigs
+ was used throughout 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "church_modernizing_2011"
@@ -1512,6 +1533,10 @@ All
 
 \end_inset
 
+
+\change_inserted -1421919639 1624473174
+<how is this going to work with me being remote?>
+\change_unchanged
 .
 \change_inserted 227422949 1565874228
 
@@ -1535,6 +1560,42 @@ To compare the behavior of Bismark with bwa-meth, this analysis was re-run
 
 \begin_layout Standard
 <still getting data>
+\change_inserted -1421919639 1624473208
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1624474174
+To compare the need for and the effect of mappability filtering on the more-comp
+lete T2T v1.1 reference genome <citation> (hereafter referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+T2T
+\begin_inset Quotes erd
+\end_inset
+
+), the analysis was re-run using the T2T reference in place of grch38 (supplemen
+ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with grch38).
+ To use the ClinVar and GENCODE data, which were respectively originally
+ obtained as VCF and GFF files containing genomic coordinates in grch38,
+ with the T2T reference, the positions were transferred over to the T2T
+ reference using Liftoff <cite>.
+ Specifically, the ClinVar regions BED (produced from the ClinVar VCF and
+ the GENCODE GFF) was converted to GFF3 with a custom tool <add to supplemental>
+ because Liftoff requires GFF files.
+ This file was lifted over to the T2T reference, and then converted back
+ to BED using a second custom tool <supplemental>.
+ This converted file was used in place of the ClinVar regions BED for analysis
+ with the T2T reference.
+ As there was no Bismap mappability file for the T2T reference, we downloaded
+ the Bismap tool and generated a k=100 multi-read Bismap mappability dataset
+ for this reference genome.
+ <expand on how Bismap run was done? or leave it at that> <finish this analysis
+ and write up how it was done>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
