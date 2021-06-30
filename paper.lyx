@@ -1290,10 +1290,13 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1625081253
+\change_inserted -1421919639 1625085097
 Detailed description of preprocesing steps for ClinVar and GENCODE data.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
+ Hexagons are input files.
+ Ovals are intermediate files.
+ Gray rhombuses are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output.
 \change_unchanged
 
 \end_layout
@@ -1342,8 +1345,57 @@ name "fig:dag"
 \end_inset
 
 Detailed description of preprocesing steps in data analysis.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ 
+\change_inserted -1421919639 1625085787
+Ovals are intermediate files.
+ Gray rhombuses are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output (except
+ for the 
+\begin_inset Quotes eld
+\end_inset
+
+ClinVar
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Bismap
+\begin_inset Quotes erd
+\end_inset
+
+ labels on the edges going into the 
+\begin_inset Quotes eld
+\end_inset
+
+bedtools map
+\begin_inset Quotes erd
+\end_inset
+
+ rhombuses, those simply indicate which lines come from which steps due
+ to the number of intersecting lines in that area).
+ Dotted lines indicate inputs that go to the BAM processing steps in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Dark gray rectangles indicate steps involving manually examining the data.
+ Dashed lines indicate manual steps.
+\change_deleted -1421919639 1625085859
+<todo: add legend with figure features, boxes, ovals, edge types, etc.
  parts A and B with >
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -1384,8 +1436,31 @@ name "fig:dag-1"
 \end_inset
 
 Detailed description of BAM processing steps in data analysis.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
+ 
+\change_inserted -1421919639 1625085851
+Ovals are intermediate files.
+ Gray rhombuses are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output.
+ Dotted lines indicate inputs that come from the preprocessing steps in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Dark gray parallelograms indicate final outputs that are examined manually.
+ Dashed lines indicate manual steps.
+\change_deleted -1421919639 1625085855
+<todo: add legend with figure features, boxes, ovals, edge types, etc.
  parts A and B with >
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -1704,10 +1779,13 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1625081265
+\change_inserted -1421919639 1625085437
 Detailed description of BAM realignment steps.
- <todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
+ Hexagons are input files.
+ Ovals are intermediate files.
+ Gray rhombuses are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output.
 \change_unchanged
 
 \end_layout
