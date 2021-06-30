@@ -1000,7 +1000,29 @@ todo: examples of specific effects in ClinVar
 \end_layout
 
 \begin_layout Standard
-todo: examine GEO dataset (maybe, depends on time/progress)
+todo: 
+\change_inserted -1421919639 1624564682
+find/
+\change_unchanged
+examine 
+\change_inserted -1421919639 1624564700
+relevant human (
+\change_unchanged
+GEO
+\change_inserted -1421919639 1624564689
+?)
+\change_unchanged
+ dataset (maybe, depends on time/progress)
+\change_inserted -1421919639 1624564670
+ (sequencing, not chip) (ideally, clinically relevant EM-seq)
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1624564507
+todo: T2T data (repeat analysis on this and compare effect)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
@@ -1533,10 +1555,6 @@ All
 
 \end_inset
 
-
-\change_inserted -1421919639 1624473174
-<how is this going to work with me being remote?>
-\change_unchanged
 .
 \change_inserted 227422949 1565874228
 
