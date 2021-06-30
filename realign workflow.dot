@@ -1,6 +1,6 @@
 digraph workflow {
 
-	"Reference Genome" [shape=hexagon];
+	"Reference FASTA" [shape=hexagon];
 
 	"Input BAMs" [shape=hexagon];
 
@@ -24,13 +24,13 @@ digraph workflow {
 
 	"bwa-meth Index" -> "bwa-meth";
 
-	"Reference Genome" -> "Bismark Index" [label="bismark_genome_preparation"];
+	"Reference FASTA" -> "Bismark Index" [label="bismark_genome_preparation"];
 
-	"Reference Genome" -> "bwa-meth Index" [label="bwameth.py index"];
+	"Reference FASTA" -> "bwa-meth Index" [label="bwameth.py index"];
 
-	"Reference Genome" -> "Bismark";
+	"Reference FASTA" -> "Bismark";
 
-	"Reference Genome" -> "bwa-meth";
+	"Reference FASTA" -> "bwa-meth";
 
 	"Bismark" -> "Realigned Bismark BAMs";
 
