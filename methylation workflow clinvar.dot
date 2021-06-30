@@ -1,0 +1,44 @@
+digraph workflow {
+
+
+	"ClinVar VCF" [shape=hexagon];
+
+	"GRCh38.p11 FASTA" [shape=hexagon];
+
+	"T2T v1.1 FASTA" [shape=hexagon];
+
+	"GENCODE GFF" [shape=hexagon];	
+
+	"ClinVar VCF" -> "ClinVar BED" [label="vcf2bed"];
+	"GENCODE GFF" -> "GENCODE BED" [label="gff2bed"];
+
+	"ClinVar GRCh38 regions BED" [shape=parallelogram];
+
+	"ClinVar T2T regions BED" [shape=parallelogram];
+
+	"Liftoff" [shape=diamond,  color=gray85, style=filled, label="liftoff -g <GFF> -f <feature types> \n<grch38> <t2t>"];
+
+	"bedtools intersect -u" -> "ClinVar GRCh38 regions BED";
+	"bedtools intersect -u" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -u \n-a <GENCODE> -b <ClinVar>"];
+	"GENCODE BED" -> "bedtools intersect -u" [label="GENCODE"]; 
+	"ClinVar BED" -> "bedtools intersect -u" [label="ClinVar"]; 
+
+	"ClinVar GRCh38 regions BED" -> "ClinVar regions GFF" [label="bed2gff3"];
+
+	"ClinVar regions GFF" -> "Liftoff";
+
+	"GRCh38.p11 FASTA" -> "Liftoff";
+
+	"T2T v1.1 FASTA" -> "Liftoff";
+
+	"ClinVar regions GFF" -> "ClinVar feature type list" [label="cut -f 3 <GFF> | uniq"];
+
+	"ClinVar feature type list" -> "Liftoff";
+
+	"Liftoff" -> "ClinVar T2T regions GFF";
+
+	"ClinVar T2T regions GFF" -> "ClinVar T2T regions BED" [label="gff32bed"];
+
+
+	
+ }

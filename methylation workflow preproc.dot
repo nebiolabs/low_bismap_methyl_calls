@@ -1,19 +1,9 @@
 digraph workflow {
 
 
-	"ClinVar VCF" [shape=hexagon];
+	"ClinVar regions BED" [shape=hexagon];
 
 	"grch38 fasta 2" [shape=hexagon, label="grch38 fasta"];
-
-	"GENCODE GFF" [shape=hexagon];	
-
-	"ClinVar VCF" -> "ClinVar BED" [label="vcf2bed"];
-	"GENCODE GFF" -> "GENCODE BED" [label="gff2bed"];
-
-	"bedtools intersect -u" -> "ClinVar regions BED";
-	"bedtools intersect -u" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -u \n-a <GENCODE> -b <ClinVar>"];
-	"GENCODE BED" -> "bedtools intersect -u" [label="GENCODE"]; 
-	"ClinVar BED" -> "bedtools intersect -u" [label="ClinVar"]; 
 
 	"Bismap bedGraph" -> "sort -k1,1 -k2,2n_again";
 
