@@ -126,8 +126,12 @@ DNA methylation is an important component in vital biological functions
  Read-based filtering resolves some of the apparent mixed methylation to
  either 0% or 100% methylation.
  We examined methylation calls with and without read-based filtering in
- or near the 7830 genes containing ClinVar variants in a methylation sequencing
- data set from the NA12878 cell line and in tumor samples.
+ or near the 7830
+\change_inserted -1421919639 1625148735
+ <check this number>
+\change_unchanged
+ genes containing ClinVar variants in a methylation sequencing data set
+ from the NA12878 cell line and in tumor samples.
  Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
  methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
  Cs were corrected to 100% methylation.
@@ -1839,7 +1843,12 @@ whatever-version
 \change_inserted -1421919639 1624040009
 BEDOPS, 
 \change_unchanged
-paste, awk, and Python 3.
+paste, awk, and Python 3
+\change_inserted -1421919639 1625148629
+, as well as two custom tools for converting between BED and GFF3 (<tentatively>
+ called bed2gff3 and gff32bed)
+\change_unchanged
+.
  
 \end_layout
 
