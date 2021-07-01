@@ -1746,7 +1746,7 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625081064
+\change_inserted -1421919639 1625149545
 To compare the need for and the effect of mappability filtering on the more-comp
 lete T2T v1.1 reference genome <citation> (hereafter referred to as 
 \begin_inset Quotes eld
@@ -1761,7 +1761,15 @@ ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with grch38).
  To use the ClinVar and GENCODE data, which were respectively originally
  obtained as VCF and GFF files containing genomic coordinates in grch38,
  with the T2T reference, the positions were transferred over to the T2T
- reference using Liftoff <cite>.
+ reference using Liftoff 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "shumate_liftoff_2021"
+literal "false"
+
+\end_inset
+
+.
  Specifically, the ClinVar regions BED (produced from the ClinVar VCF and
  the GENCODE GFF) was converted to GFF3 with a custom tool <add to supplemental>
  because Liftoff requires GFF files.
