@@ -4,6 +4,8 @@ params.clinvarbed="test_fixtures/chr18_clinvar_regions.bed"
 
 params.bismap="test_fixtures/chr18_bismap.bw"
 
+params.bismap_bbm="test_fixtures/chr18_bismap.bbm"
+
 params.ref_fai="test_fixtures/chr18_test.fa.fai"
 
 params.ref="test_fixtures/chr18_test.fa"
@@ -51,14 +53,15 @@ process convertFaiToGenome {
 process extractBam {
 
         penv 'smp'
-	cpus 16
-        conda 'methyldackel'
+	cpus 8
 
         input:
           file ref
-		      val min_mapq
+          val min_mapq
           each bam
-		      val filter_opt
+          val filter_opt
+          file ref_fai
+          file bismap_bbm
 	
         output:
           file '*_CpG.bedGraph'
@@ -67,7 +70,7 @@ process extractBam {
 		val bam
         shell:
         """
-        MethylDackel extract -@ !{task.cpus} -q !{min_mapq} --CHH --CHG --OT 2,0,0,97 !{filter_opt} -o methyl_!{bam.split("/")[-1].replace(".bam\\n", "")} !{ref} !{bam} 
+        /mnt/flash_scratch/ckumar/transfer/MethylDackel/MethylDackel extract -@ !{task.cpus} -q !{min_mapq} --CHH --CHG --OT 2,0,0,97 !{filter_opt} -o methyl_!{bam.split("/")[-1].replace(".bam\\n", "")} !{ref} !{bam} 
         """
 }
 
@@ -88,6 +91,8 @@ process stringParsing {
 
 
 process combineCalls {
+
+        conda 'coreutils'
 
         penv 'smp'
 	cpus 8
@@ -126,6 +131,7 @@ process combineAllRegions {
 
         penv 'smp'
 	cpus 8
+        conda 'coreutils'
 
         input:
 
@@ -204,6 +210,7 @@ process gsortMinMean {
 
 	cpus 8
         penv 'smp'
+        conda 'coreutils'
 
         input:
                 file clinvar_regions_min_mean_map_low_unsorted
@@ -236,6 +243,7 @@ process combineLowRegions {
 
 	cpus 8
         penv 'smp'
+        conda 'coreutils'
 
         input:
 
@@ -355,13 +363,14 @@ workflow {
   ref = file(params.ref)
 
 
-  basicPipeline(bismap_bw, ref, ref_fai, clinvar_regions, true, params.bams, params.suffix)
+  basicPipeline(bismap_bbm, bismap_bw, ref, ref_fai, clinvar_regions, true, params.bams, params.suffix)
 
 
 }
 
 workflow basicPipeline {
   take:
+    bismap_bbm
     bismap_bw
     ref
     ref_fai
@@ -377,7 +386,7 @@ workflow basicPipeline {
   filter_opt = ""
   if(!no_filter_mappability)
   {
-    filter_opt = "-M ${bismap_bw}"
+    filter_opt = "-B ${bismap_bbm}"
   }
 
   bam_names = pipeline_bams.toString().split(",")
@@ -399,7 +408,7 @@ workflow basicPipeline {
   filterMinMean(pasteMinMean.out, bismap_cutoff)
   gsortMinMean(filterMinMean.out)
   intersectClinvarBismapLow(gsortMinMean.out, combineLowRegions.out)
-  extractBam(ref, min_mapq, bam_list, filter_opt)
+  extractBam(ref, min_mapq, bam_list, filter_opt, ref_fai, bismap_bbm)
   stringParsing(extractBam.out[3])
   combineCalls(extractBam.out[0], extractBam.out[1], extractBam.out[2], stringParsing.out)
   intersectCalls(outputSuffix, intersectClinvarBismapLow.out, combineCalls.out, stringParsing.out)
