@@ -3,9 +3,9 @@ digraph workflow {
 
 	"ClinVar VCF" [shape=hexagon];
 
-	"GRCh38.p11 FASTA" [shape=hexagon];
+	"GRCh38 -> T2Tv1.0 chain file" [shape=hexagon];
 
-	"T2T v1.1 FASTA" [shape=hexagon];
+	"T2Tv1.0 -> T2Tv1.1 chain file" [shape=hexagon];
 
 	"GENCODE GFF" [shape=hexagon];	
 
@@ -14,30 +14,28 @@ digraph workflow {
 
 	"ClinVar GRCh38 regions BED" [shape=parallelogram];
 
-	"ClinVar T2T regions BED" [shape=parallelogram];
+	"ClinVar T2Tv1.1 regions BED" [shape=parallelogram];
 
-	"Liftoff" [shape=diamond,  color=gray85, style=filled, label="liftoff -g <GFF> -f <feature types> \n<grch38> <t2t>"];
+	"CrossMap1" [shape=diamond,  color=gray85, style=filled, label="CrossMap.py bed <chain file> <BED file>"];
+
+	"CrossMap2" [shape=diamond,  color=gray85, style=filled, label="CrossMap.py bed <chain file> <BED file>"];
+
+	"GRCh38 -> T2Tv1.0 chain file" -> "CrossMap1";
 
 	"bedtools intersect -u" -> "ClinVar GRCh38 regions BED";
 	"bedtools intersect -u" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -u \n-a <GENCODE> -b <ClinVar>"];
-	"GENCODE BED" -> "bedtools intersect -u" [label="GENCODE"]; 
-	"ClinVar BED" -> "bedtools intersect -u" [label="ClinVar"]; 
+	"GENCODE BED" -> "bedtools intersect -u"; 
+	"ClinVar BED" -> "bedtools intersect -u"; 
 
-	"ClinVar GRCh38 regions BED" -> "ClinVar regions GFF" [label="bed2gff3"];
+	"ClinVar GRCh38 regions BED" -> "CrossMap1";
 
-	"ClinVar regions GFF" -> "Liftoff";
+	"CrossMap1" -> "ClinVar T2Tv1.0 regions BED";
 
-	"GRCh38.p11 FASTA" -> "Liftoff";
+	"ClinVar T2Tv1.0 regions BED" -> "CrossMap2";
 
-	"T2T v1.1 FASTA" -> "Liftoff";
+	"T2Tv1.0 -> T2Tv1.1 chain file" -> "CrossMap2";
 
-	"ClinVar regions GFF" -> "ClinVar feature type list" [label="cut -f 3 <GFF> | uniq"];
-
-	"ClinVar feature type list" -> "Liftoff";
-
-	"Liftoff" -> "ClinVar T2T regions GFF";
-
-	"ClinVar T2T regions GFF" -> "ClinVar T2T regions BED" [label="gff32bed"];
+	"CrossMap2" -> "ClinVar T2Tv1.1 regions BED";
 
 
 	
