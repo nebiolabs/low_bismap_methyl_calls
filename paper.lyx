@@ -489,7 +489,17 @@ literal "false"
 
 , a tool that counts the number of occurrences of every single K-mer of
  a particular length (in this case, k=100) in the genome to create a mappability
- score for every base in the Grch38 reference.
+ score
+\change_inserted -1421919639 1625258216
+ (ranging from 0 to 1 in increments of 0.01)
+\change_unchanged
+ for every base in the G
+\change_inserted -1421919639 1625242038
+RC
+\change_deleted -1421919639 1625242038
+rc
+\change_unchanged
+h38 reference.
  <bases this on assumption that each locus is either 0 or 100%> Bismap takes
  the effect of C->T conversion into account and therefore produces data
  which is applicable in the context of methylation sequencing.
@@ -614,6 +624,8 @@ While low MapQ can indicate repetitiveness
 , 
 \change_deleted 227422949 1565873540
 but 
+\change_inserted -1421919639 1625241037
+it appears that 
 \change_unchanged
 even stringent MapQ thresholds cannot reliably select reads for safe methylation
  calling in regions containing repetitive DNA.
@@ -633,7 +645,13 @@ noprefix "false"
 \end_inset
 
 ).
- However, this does not happen often.
+ However, 
+\change_deleted -1421919639 1625241070
+this does not happen often
+\change_inserted -1421919639 1625241099
+this situation was not commonly observed
+\change_unchanged
+.
  Overfiltering of Cs in short repetitive regions is a larger problem though.
  In this scenario, a C located in a small dip in mappability would be eliminated
  (overfiltered) despite coverage from read pairs anchored in nearby unique
@@ -704,7 +722,13 @@ to accept a bigWig file of low-mappability regions to exclude from analysis.
  This alignment filtering approach precisely eliminates only those reads
  in repetitive regions and does not incur a significant cost in terms of
  execution speed (10:14 min with the patch 9:55 min without, when run with
- 20 threads on the Grch38 reference genome).
+ 20 threads on the G
+\change_inserted -1421919639 1625241186
+RC
+\change_deleted -1421919639 1625241185
+rc
+\change_unchanged
+h38 reference genome).
 
 \change_inserted -1421919639 1623791456
  
@@ -772,7 +796,13 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An overview of the occurrences of these scenarios in grch38 chromosome 1.
+An overview of the occurrences of these scenarios in 
+\change_deleted -1421919639 1625242047
+grch38
+\change_inserted -1421919639 1625242047
+GRCh38
+\change_unchanged
+ chromosome 1.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview-1"
@@ -853,7 +883,11 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- 15,539 Cs in these important regions in 
+ 15,539
+\change_inserted -1421919639 1625241235
+ <update this number after re-run>
+\change_unchanged
+ Cs in these important regions in 
 \change_inserted -1421919639 1623791523
 a 50ng
 \change_deleted -1421919639 1624039753
@@ -877,9 +911,9 @@ ing
 \change_unchanged
  insufficient mappability to support methylation calling.
  Briefly, 
-\change_inserted -1421919639 1624040924
-to determine that we avoided calling a region has insufficient mappability
- to support methylation calling, 
+\change_inserted -1421919639 1625241263
+to determine that we avoided calling a region that has insufficient mappability,
+ 
 \change_unchanged
 we intersect
 \change_inserted -1421919639 1624040932
@@ -901,6 +935,9 @@ noprefix "false"
 \end_inset
 
 ).
+
+\change_inserted -1421919639 1625241316
+ <is this how we did it? or did we compare filtered/unfiltered?>
 \change_inserted 227422949 1565874397
 
 \end_layout
@@ -1140,12 +1177,12 @@ In order to run the analysis, the following data and tools were used:
 
 \begin_layout Standard
 The GRCh38.p11 analysis set
-\change_inserted -1421919639 1624038583
+\change_inserted -1421919639 1625241994
  (hereafter referred to as 
 \begin_inset Quotes eld
 \end_inset
 
-grch38
+GRCh38
 \begin_inset Quotes erd
 \end_inset
 
@@ -1173,12 +1210,12 @@ a
 the
 \change_unchanged
  
-\change_inserted -1421919639 1624038838
+\change_inserted -1421919639 1624038839
 GFF file of the 
 \change_unchanged
 GENCODE v31 gene annotations were used.
  The mappability data was the 100bp multi-
-\change_inserted -1421919639 1624038657
+\change_inserted -1421919639 1624038839
 read
 \change_deleted -1421919639 1624038656
 track
@@ -1187,7 +1224,7 @@ track
  A detailed diagram of the 
 \change_deleted -1421919639 1624038673
 process
-\change_inserted -1421919639 1624038678
+\change_inserted -1421919639 1624038839
 analysis pipeline
 \change_unchanged
  is found in Figures 
@@ -1489,8 +1526,11 @@ resulting
 \change_deleted -1421919639 1623959890
  for both aligners
 \change_unchanged
-, however inaccurate MapQs lead to reads being incorrectly included in methylati
-on calling.
+, however inaccurate MapQs 
+\change_inserted -1421919639 1625241559
+can 
+\change_unchanged
+lead to reads being incorrectly included in methylation calling.
  In order to eliminate reads in low-mappability regions, a patch was created
  for MethylDackel which allows it to take as an input a bigWig file which
  is then used to filter out read pairs (this patch currently only supports
@@ -1507,9 +1547,14 @@ on calling.
 \change_inserted -1421919639 1624038794
 a
 \change_unchanged
-bility data for the hg38/grch38 human genome in 143 MB, compared to 1.11
- GB when stored as a bigWig, giving a compression ratio for this dataset
- of 7.78:1.
+bility data for the hg38/
+\change_deleted -1421919639 1625242007
+grch38
+\change_inserted -1421919639 1625242007
+GRCh38
+\change_unchanged
+ human genome in 143 MB, compared to 1.11 GB when stored as a bigWig, giving
+ a compression ratio for this dataset of 7.78:1.
 \end_layout
 
 \begin_layout Standard
@@ -1533,9 +1578,14 @@ ClinVar regions BED
 
 .
  The Bismap bedGraph (which, as is standard for bedGraph files, did not
- contain zeroes) and an FAI index of the grch38 reference genome FASTA file
- were processed with bedtools, awk, and GNU sort to obtain a bedGraph containing
- all mappability data, including zeroes.
+ contain zeroes) and an FAI index of the 
+\change_deleted -1421919639 1625242013
+grch38
+\change_inserted -1421919639 1625242013
+GRCh38
+\change_unchanged
+ reference genome FASTA file were processed with bedtools, awk, and GNU
+ sort to obtain a bedGraph containing all mappability data, including zeroes.
  This file will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
@@ -1746,9 +1796,10 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625149545
-To compare the need for and the effect of mappability filtering on the more-comp
-lete T2T v1.1 reference genome <citation> (hereafter referred to as 
+\change_inserted -1421919639 1625683584
+To compare the need for and the effect of mappability filtering on the more
+ complete T2T v1.1 reference genome <citation> (hereafter referred to as
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1756,25 +1807,19 @@ T2T
 \begin_inset Quotes erd
 \end_inset
 
-), the analysis was re-run using the T2T reference in place of grch38 (supplemen
-ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with grch38).
+), the analysis was re-run using the T2T reference in place of GRCh38 (supplemen
+ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with GRCh38).
  To use the ClinVar and GENCODE data, which were respectively originally
- obtained as VCF and GFF files containing genomic coordinates in grch38,
+ obtained as VCF and GFF files containing genomic coordinates in GRCh38,
  with the T2T reference, the positions were transferred over to the T2T
- reference using Liftoff 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "shumate_liftoff_2021"
-literal "false"
-
-\end_inset
-
-.
- Specifically, the ClinVar regions BED (produced from the ClinVar VCF and
- the GENCODE GFF) was converted to GFF3 with a custom tool <add to supplemental>
- because Liftoff requires GFF files.
- This file was lifted over to the T2T reference, and then converted back
- to BED using a second custom tool <supplemental>.
+ reference using CrossMap <cite>.
+ The lift-over was done in two steps with separate chain files.
+ First, the GRCh38 regions were lifted over using CrossMap to T2Tv1.0 using
+ a chain file from <whom> <citation>.
+ Then, the lifted-over T2Tv1.0 annotations were lifted over again to T2Tv1.1
+ using a chain file from the T2T Consortium <citation>.
+ Specifically, the ClinVar regions BED, with the ClinVar and GENCODE data
+ already combined, was lifted over.
  This converted file was used in place of the ClinVar regions BED for analysis
  with the T2T reference.
  As there was no Bismap mappability file for the T2T reference, we downloaded
