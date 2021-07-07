@@ -1387,13 +1387,13 @@ name "fig:dag"
 
 Detailed description of preprocesing steps in data analysis.
  
-\change_inserted -1421919639 1625170681
+\change_inserted -1421919639 1625687086
 Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
  Labels on edges are processing steps with one input and one output (except
  edges directly entering rhombuses, which simply indicate which lines come
- from which steps).
+ from which steps and go to which arguments).
  Dotted lines indicate inputs that go to the BAM processing steps in Figure
  
 \begin_inset CommandInset ref
@@ -1454,11 +1454,13 @@ name "fig:dag-1"
 
 Detailed description of BAM processing steps in data analysis.
  
-\change_inserted -1421919639 1625085851
+\change_inserted -1421919639 1625687095
 Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
- Labels on edges are processing steps with one input and one output.
+ Labels on edges are processing steps with one input and one output (except
+ edges directly entering rhombuses, which simply indicate which lines come
+ from which steps and go to which arguments).
  Dotted lines indicate inputs that come from the preprocessing steps in
  Figure 
 \begin_inset CommandInset ref
