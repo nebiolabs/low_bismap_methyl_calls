@@ -1807,7 +1807,7 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625684614
+\change_inserted -1421919639 1625691667
 To compare the need for and the effect of mappability filtering on the more
  complete T2T v1.1 reference genome <citation> (hereafter referred to as
  
@@ -1823,12 +1823,36 @@ ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with GRCh38).
  To use the ClinVar and GENCODE data, which were respectively originally
  obtained as VCF and GFF files containing genomic coordinates in GRCh38,
  with the T2T reference, the positions were transferred over to the T2T
- reference using CrossMap <cite>.
+ reference using CrossMap 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhao_crossmap_2014"
+literal "false"
+
+\end_inset
+
+.
  The lift-over was done in two steps with separate chain files.
  First, the GRCh38 regions were lifted over using CrossMap to T2Tv1.0 using
- a chain file from <whom> <citation>.
+ a chain file published on GitHub by Nico Alavi 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alavi_burgshrimpsliftover_t2t_2021"
+literal "false"
+
+\end_inset
+
+.
  Then, the lifted-over T2Tv1.0 annotations were lifted over again to T2Tv1.1
- using a chain file from the T2T Consortium <citation>.
+ using a chain file from the T2T Consortium 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+.
  Specifically, the ClinVar regions BED, with the ClinVar and GENCODE data
  already combined, was lifted over.
  This converted file was used in place of the ClinVar regions BED for analysis
@@ -1949,8 +1973,16 @@ Bismark, samtools, and bwa-meth.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625684695
-Sorting of the BAMs was carried out using sambamba.
+\change_inserted -1421919639 1625691861
+Sorting of the BAMs was carried out using sambamba 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btv098"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
