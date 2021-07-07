@@ -1643,8 +1643,17 @@ miscalls file
 ).
  A miscall, as used here, is defined as a methylation call that was filtered
  out using the new MethylDackel mappability filtering
-\change_inserted -1421919639 1624039082
-, but was not filtered out by basic MapQ filtering
+\change_inserted -1421919639 1625684062
+, but was not filtered out by basic MapQ filtering <is this actually how
+ I'm using the word 
+\begin_inset Quotes eld
+\end_inset
+
+miscall
+\begin_inset Quotes erd
+\end_inset
+
+ here? It doesn't seem so>
 \change_unchanged
 .
  
@@ -1796,7 +1805,7 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625683584
+\change_inserted -1421919639 1625684216
 To compare the need for and the effect of mappability filtering on the more
  complete T2T v1.1 reference genome <citation> (hereafter referred to as
  
@@ -1825,8 +1834,13 @@ ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with GRCh38).
  As there was no Bismap mappability file for the T2T reference, we downloaded
  the Bismap tool and generated a k=100 multi-read Bismap mappability dataset
  for this reference genome.
- <expand on how Bismap run was done? or leave it at that> <finish this analysis
- and write up how it was done>
+ <expand on how Bismap run was done? or leave it at that>.
+ In total, this analysis was run on all combinations of sequencing method
+ (WGBS or EM-seq), aligner (Bismark or bwa-meth), input mass (10, 50, or
+ 200ng), filtering (read-based filtering or no read-based filtering), and
+ reference genome (GRCh38 or T2T), using a Nextflow pipeline (see supplemental
+ materials) which managed the execution of all the analysis tools needed.
+ <write about how the resulting files are processed>
 \end_layout
 
 \begin_layout Section*
