@@ -8,17 +8,17 @@ digraph workflow {
 
 	"Final bwa-meth BAMs" [shape=parallelogram];
 
-	"Bismark" [shape=diamond,  color=gray85, style=filled, label="bismark"];
+	"Bismark" [shape=diamond,  color=gray85, style=filled, label="bismark -1 <read 1s> -2 <read 2s>"];
 
-	"bwa-meth" [shape=diamond,  color=gray85, style=filled, label="bwameth.py"];
+	"bwa-meth" [shape=diamond,  color=gray85, style=filled, label="bwameth.py <read 1s> <read 2s>"];
 
 	"Input BAMs" -> "Collated BAMs" [label="samtools collate"];
 
-	"Collated BAMs" -> "FASTQs" [label="samtools fastq"];
+	"Collated BAMs" -> "Split Read 1/Read 2 FASTQs" [label="samtools fastq"];
 
-	"FASTQs" -> "Bismark";
+	"Split Read 1/Read 2 FASTQs" -> "Bismark";
 
-	"FASTQs" -> "bwa-meth";
+	"Split Read 1/Read 2 FASTQs" -> "bwa-meth";
 
 	"Bismark Index" -> "Bismark";
 
