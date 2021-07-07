@@ -1805,7 +1805,7 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1625684216
+\change_inserted -1421919639 1625684614
 To compare the need for and the effect of mappability filtering on the more
  complete T2T v1.1 reference genome <citation> (hereafter referred to as
  
@@ -1860,11 +1860,13 @@ Reads placed with falsely high confidence have cascading detrimental effects
 \change_inserted 227422949 1565874666
 -
 \change_unchanged
-meth for alignment and MethylDackel with MapQ > 20 for methylation calling
-\change_inserted -1421919639 1624039263
- <where is the test of MapQ 10 vs 20? or was >10 intended?>
+meth for alignment and MethylDackel with MapQ > 
+\change_inserted -1421919639 1625684342
+1
+\change_deleted -1421919639 1625684342
+2
 \change_unchanged
-.
+0 for methylation calling.
  To further improve accuracy of methylation asssessment, reads with both
  mates in 
 \change_deleted 227422949 1564758916
@@ -1894,9 +1896,26 @@ name "nextflow script"
 
 \end_inset
 
-The Nextflow script used to analyze this data can be found at <to be added>.
- In order to run, it requires vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDac
-kel (
+The Nextflow script
+\change_inserted -1421919639 1625684572
+s
+\change_unchanged
+ used to analyze this data can be found at <to be added>
+\change_inserted -1421919639 1625684578
+ and <to be added>
+\change_unchanged
+.
+ In order to run, 
+\change_deleted -1421919639 1625684585
+it
+\change_inserted -1421919639 1625684588
+they
+\change_unchanged
+ require
+\change_deleted -1421919639 1625684590
+s
+\change_unchanged
+ vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDackel (
 \change_inserted -1421919639 1624039192
 0.5.0
 \change_deleted -1421919639 1623878340
@@ -1910,13 +1929,26 @@ whatever-version
 \change_inserted -1421919639 1624040009
 BEDOPS, 
 \change_unchanged
-paste, awk, and Python 3
-\change_inserted -1421919639 1625148629
-, as well as two custom tools for converting between BED and GFF3 (<tentatively>
- called bed2gff3 and gff32bed)
-\change_unchanged
-.
+paste, awk, and Python 3.
+\change_inserted -1421919639 1625684412
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1625684451
+Realignment of the BAM files was also conducted using a Nextflow pipeline
+ (found at <to be added>), which requires
+\change_deleted -1421919639 1625684412
  
+\change_inserted -1421919639 1625684679
+Bismark, samtools, and bwa-meth.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1625684695
+Sorting of the BAMs was carried out using sambamba.
 \end_layout
 
 \begin_layout Standard
