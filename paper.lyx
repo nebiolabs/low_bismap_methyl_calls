@@ -83,7 +83,7 @@
 \html_css_as_file 0
 \html_be_strict false
 \author -1421919639 "Caiden"
-\author 227422949 "Kumar"
+\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -116,11 +116,8 @@ DNA methylation is an important component in vital biological functions
  filter out insufficiently unique reads.
  Simply filtering out Cs in insufficiently unique regions is not adequate
  as it is prone to overfiltering Cs in small mappability dips.
- These Cs can in fact
-\change_inserted -1421919639 1624395682
- often
-\change_unchanged
- be called using reads anchored in a nearby mappable region.
+ These Cs can in fact often be called using reads anchored in a nearby mappable
+ region.
  We have created a patch for the MethylDackel methylation caller to perform
  read-based filtering.
  Read-based filtering resolves some of the apparent mixed methylation to
@@ -188,8 +185,6 @@ literal "false"
  Since uracil sequences as thymine and 5-methylcytosine sequences as cytosine,
  positions of unmethylated Cs in a reference sequence can be identified
  by C->T transitions
-\change_inserted -1421919639 1623791234
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2017"
@@ -197,8 +192,6 @@ literal "false"
 
 \end_inset
 
-
-\change_unchanged
 .
 \end_layout
 
@@ -241,17 +234,15 @@ name "fig:seq"
 \end_layout
 
 \begin_layout Standard
-It is also possible to use an enzymatic method employing TET2 to oxidize
- 5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
+It is also possible to use an enzymatic method, EM-seq, employing TET2 to
+ oxidize 5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
  to uracil.
- While sodium bisulfite treatment produces other DNA damage, th
-\change_inserted -1421919639 1624040285
-is
-\change_deleted -1421919639 1624040285
-e
+ While sodium bisulfite treatment produces other DNA damage, this enzymatic
+ method deaminates with more precision 
+\change_inserted -162802704 1625840503
+<add citation>
 \change_unchanged
- enzymatic method deaminates with more precision (forthcoming publication).
- 
+.
 \end_layout
 
 \begin_layout Standard
@@ -265,13 +256,7 @@ literal "false"
 \end_inset
 
 , which is specifically designed to handle the C->T transitions in methylation
- sequencing data 
-\change_deleted -1421919639 1624397336
-during alignment of
-\change_inserted -1421919639 1624397338
-when aligning
-\change_unchanged
- the reads to a reference.
+ sequencing data when aligning the reads to a reference.
  Once aligned, the data can be passed through a methylation caller such
  as MethylDackel 
 \begin_inset CommandInset citation
@@ -304,7 +289,6 @@ noprefix "false"
  The resulting data shows the methylation status of each cytosine in the
  genome and can therefore be used to find and study biologically significant
  DNA methylation sites.
- 
 \end_layout
 
 \begin_layout Standard
@@ -352,14 +336,9 @@ A read must be unambiguously placed if it is to provide information about
  a specific locus.
  Reads that equally match more than one area of the reference genome should
  not be used to assess methylation of any given C.
- To avoid calling Cs using reads derived from multiple genom
-\change_inserted -1421919639 1624040376
-ic
-\change_deleted -1421919639 1624040376
-e
-\change_unchanged
- loci, methylation aligners (and read aligners in general) assign a MapQ
- value to each read alignment (see Figure 
+ To avoid calling Cs using reads derived from multiple genomic loci, methylation
+ aligners (and read aligners in general) assign a MapQ value to each read
+ alignment (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview"
@@ -393,15 +372,11 @@ literal "false"
 .
  MapQ indicates how uniquely placed a read alignment is, that is, in how
  many other places could the read align to the reference.
- A low MapQ means that
-\change_inserted -1421919639 1624040402
- the read
-\change_unchanged
- may align in many places throughout the genome (for instance, a read of
- centromeric satellite DNA would likely have a very low MapQ).
+ A low MapQ means that the read may align in many places throughout the
+ genome (for instance, a read of centromeric satellite DNA would likely
+ have a very low MapQ).
  A high MapQ indicates that the read likely aligns where it is placed and
  nowhere else in the genome.
- 
 \end_layout
 
 \begin_layout Standard
@@ -415,25 +390,7 @@ Results
 \end_layout
 
 \begin_layout Standard
-While evaluating 
-\change_deleted 227422949 1565872898
-two commonly used
-\change_inserted 227422949 1565872898
-the
-\change_unchanged
- methylation aligner
-\change_deleted 227422949 1565872894
-s, Bismark 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "doi:10.1093/bioinformatics/btr167"
-literal "false"
-
-\end_inset
-
- and
-\change_unchanged
- bwa-meth 
+While evaluating the methylation aligner bwa-meth 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "2014arXiv1401.1129P"
@@ -441,45 +398,13 @@ literal "false"
 
 \end_inset
 
-, we observed a significant number of reads with
-\change_inserted -1421919639 1624040486
- unexpectedly
-\change_unchanged
- high MapQ values in repetitive regions (e.g.
+, we observed a significant number of reads with unexpectedly high MapQ
+ values in repetitive regions (e.g.
  centromeres).
- 
-\change_deleted 227422949 1565873419
-While both aligners are affected, Bismark produced more high MapQ reads
- in repetitive regions (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:bad-mapq"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
-
-\change_unchanged
- After observing
-\change_inserted 227422949 1565873431
- these
-\change_unchanged
- high MapQ reads in the centromere and 
-\change_inserted 227422949 1565873447
-larger
-\change_deleted 227422949 1565873446
-other
-\change_unchanged
- repetitive regions, we investigated to see if smaller regions might also
- be too repetitive to support the high aligner MapQ estimates observed.
- We identified repetitive regions using data 
-\change_deleted -1421919639 1624040524
-from data 
-\change_unchanged
-from Bismap 
+ After observing these high MapQ reads in the centromere and larger repetitive
+ regions, we investigated to see if smaller regions might also be too repetitive
+ to support the high aligner MapQ estimates observed.
+ We identified repetitive regions using data from Bismap 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "karimzadeh2018"
@@ -489,27 +414,15 @@ literal "false"
 
 , a tool that counts the number of occurrences of every single K-mer of
  a particular length (in this case, k=100) in the genome to create a mappability
- score
-\change_inserted -1421919639 1625258216
- (ranging from 0 to 1 in increments of 0.01)
-\change_unchanged
- for every base in the G
-\change_inserted -1421919639 1625242038
-RC
-\change_deleted -1421919639 1625242038
-rc
-\change_unchanged
-h38 reference.
+ score (ranging from 0 to 1 in increments of 0.01) for every base in the
+ GRCh38 reference.
  <bases this on assumption that each locus is either 0 or 100%> Bismap takes
  the effect of C->T conversion into account and therefore produces data
  which is applicable in the context of methylation sequencing.
  Reads entirely contained within a region of low mappability should not
- have high MapQ values
-\change_inserted -1421919639 1624040591
- due to their repetitiveness
-\change_unchanged
-, however we observed many high-MapQ reads in regions with very low or zero
- Bismap mappability (see Figure 
+ have high MapQ values due to their repetitiveness, however we observed
+ many high-MapQ reads in regions with very low or zero Bismap mappability
+ (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example"
@@ -520,14 +433,13 @@ noprefix "false"
 \end_inset
 
 ).
- 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -540,13 +452,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted 227422949 1565875058
-<WRONG CAPTION!!!!!> 
-\change_unchanged
-Example of MapQ Issue.
- On the Cov Difference track, red means that Bismark has higher coverage
- and blue means bwa-meth has higher coverage.
+Cs called in low mappability regions after MapQ filtering are represented
+ across all chromosomes...
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:bad-mapq"
@@ -570,7 +477,7 @@ name "fig:bad-mapq"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -593,7 +500,11 @@ name "example"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of how MapQ filtering does not remove all poorly mapped reads.
+
+\change_deleted -162802704 1625839949
+An example of how 
+\change_unchanged
+MapQ filtering does not remove all poorly mapped reads.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:example"
@@ -614,21 +525,9 @@ name "fig:example"
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 227422949 1565873526
-Bismark and bwa-meth use different systems to define values for MapQ (see
- supplemental detail <what in the supplemental detail?>)
-\change_inserted 227422949 1565873563
-While low MapQ can indicate repetitiveness
-\change_unchanged
-, 
-\change_deleted 227422949 1565873540
-but 
-\change_inserted -1421919639 1625241037
-it appears that 
-\change_unchanged
-even stringent MapQ thresholds cannot reliably select reads for safe methylation
- calling in regions containing repetitive DNA.
+While low MapQ can indicate repetitiveness, even stringent MapQ thresholds
+ cannot reliably select reads for safe methylation calling in regions containing
+ repetitive DNA.
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
@@ -645,13 +544,7 @@ noprefix "false"
 \end_inset
 
 ).
- However, 
-\change_deleted -1421919639 1625241070
-this does not happen often
-\change_inserted -1421919639 1625241099
-this situation was not commonly observed
-\change_unchanged
-.
+ However, this situation was not commonly observed.
  Overfiltering of Cs in short repetitive regions is a larger problem though.
  In this scenario, a C located in a small dip in mappability would be eliminated
  (overfiltered) despite coverage from read pairs anchored in nearby unique
@@ -666,15 +559,8 @@ noprefix "false"
 \end_inset
 
 ).
- In practice, underfiltering is rare (x% of Cs
-\change_inserted -1421919639 1624474387
- in GRCh38
-\change_unchanged
-) but overfiltering is much more common (y% of Cs
-\change_inserted -1421919639 1624474398
- in GRCh38
-\change_unchanged
-)
+ In practice, underfiltering is rare (x% of Cs in GRCh38) but overfiltering
+ is much more common (y% of Cs in GRCh38)
 \change_inserted -1421919639 1624474370
  <need to fill in data here>
 \change_unchanged
@@ -690,16 +576,7 @@ noprefix "false"
 
 ).
  In cases where reads from multiple low-mappability regions are placed onto
- one region (creating a coverage spike
-\change_inserted -1421919639 1623791402
-)
-\change_unchanged
-, filtering by coverage 
-\change_deleted -1421919639 1624040828
-may
-\change_inserted -1421919639 1624040830
-could possibly
-\change_unchanged
+ one region (creating a coverage spike), filtering by coverage could possibly
  also remove the problematic region, but in cases where reads are simply
  mixed among multiple low-mappability regions (not creating a coverage spike),
  coverage filtering would not be effective at removing the affected regions.
@@ -722,25 +599,15 @@ to accept a bigWig file of low-mappability regions to exclude from analysis.
  This alignment filtering approach precisely eliminates only those reads
  in repetitive regions and does not incur a significant cost in terms of
  execution speed (10:14 min with the patch 9:55 min without, when run with
- 20 threads on the G
-\change_inserted -1421919639 1625241186
-RC
-\change_deleted -1421919639 1625241185
-rc
-\change_unchanged
-h38 reference genome).
-
-\change_inserted -1421919639 1623791456
- 
-\change_unchanged
-(see computational methods for details)
+ 20 threads on the GRCh38 reference genome).
+ (see computational methods for details)
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -780,7 +647,7 @@ name "fig:discarded"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -796,13 +663,12 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An overview of the occurrences of these scenarios in 
-\change_deleted -1421919639 1625242047
-grch38
-\change_inserted -1421919639 1625242047
-GRCh38
+
+\change_inserted -162802704 1625840391
+<I think we need to be more explicit about what is being plotted here, move
+ up>
 \change_unchanged
- chromosome 1.
+An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview-1"
@@ -826,7 +692,7 @@ name "fig:overview-1"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -842,6 +708,10 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+
+\change_inserted -162802704 1625840119
+<needs an expanded explantion>
+\change_unchanged
 An example of a C incorrectly kept by coordinate filtering.
 \begin_inset CommandInset label
 LatexCommand label
@@ -887,44 +757,15 @@ literal "false"
 \change_inserted -1421919639 1625241235
  <update this number after re-run>
 \change_unchanged
- Cs in these important regions in 
-\change_inserted -1421919639 1623791523
-a 50ng
-\change_deleted -1421919639 1624039753
-the EM-seq
-\change_inserted -1421919639 1624039753
-enzymatic sequencing
-\change_unchanged
- 
-\change_deleted -1421919639 1624039753
-50ng 
-\change_unchanged
-sample 
-\change_inserted -1421919639 1623791505
-which 
-\change_unchanged
-hav
-\change_inserted -1421919639 1623791508
-e
-\change_deleted -1421919639 1624039753
-ing
-\change_unchanged
- insufficient mappability to support methylation calling.
- Briefly, 
-\change_inserted -1421919639 1625241263
-to determine that we avoided calling a region that has insufficient mappability,
+ Cs in these important regions in a 50ng EM-seq
+\change_inserted -162802704 1625840589
  
 \change_unchanged
-we intersect
-\change_inserted -1421919639 1624040932
-ed
-\change_unchanged
- read alignments and MapQ data with Bismap low mappability regions
-\change_inserted -1421919639 1623791594
-,
-\change_unchanged
- counting Cs in regions where the MapQ is higher than should be possible
- given the mappability (see Figure 
+sample which have insufficient mappability to support methylation calling.
+ Briefly, to determine that we avoided methylation calling in a region that
+ has insufficient mappability, we intersected read alignments and MapQ data
+ with Bismap low mappability regions, counting Cs in regions where the MapQ
+ is higher than should be possible given the mappability (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview"
@@ -938,16 +779,12 @@ noprefix "false"
 
 \change_inserted -1421919639 1625241316
  <is this how we did it? or did we compare filtered/unfiltered?>
-\change_inserted 227422949 1565874397
+\change_unchanged
 
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1565874633
-For comparison, we also examined the Bismark methylation aligner
-\change_inserted -1421919639 1624391458
- 
+For comparison, we also examined the Bismark methylation aligner 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btr167"
@@ -955,8 +792,6 @@ literal "false"
 
 \end_inset
 
-
-\change_inserted 227422949 1565874633
  in the same manner.
  We observed that compared to bwa-meth, Bismark produced more high MapQ
  reads in repetitive regions (see Figure 
@@ -970,22 +805,10 @@ noprefix "false"
 \end_inset
 
 ).
-
-\change_inserted -1421919639 1624040977
- 
-\change_inserted 227422949 1565874633
-In addition, Bismark and bwa-meth use different systems to define values
+ In addition, Bismark and bwa-meth use different systems to define values
  for MapQ.
  Bismark (as a result of using Bowtie2 for alignment) reports MapQ based
- on number of reference mismatches
-\change_deleted -1421919639 1624041028
- instead
-\change_inserted 227422949 1565874633
-, producing values between 0 and 42 
-\change_deleted -1421919639 1624028954
-<citation>
-\change_inserted -1421919639 1624028971
-
+ on number of reference mismatches, producing values between 0 and 42 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "noauthor_qc_nodate,johnurbangenome_biofinysics_2014"
@@ -993,19 +816,13 @@ literal "false"
 
 \end_inset
 
-
-\change_inserted 227422949 1565874633
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
 \end_layout
 
 \begin_layout Standard
-todo: filtering effect em-seq vs wgbs (fig) for bwa
-\change_inserted 227422949 1565874682
--
-\change_unchanged
-meth
+todo: filtering effect em-seq vs wgbs (fig) for bwa-meth
 \end_layout
 
 \begin_layout Standard
@@ -1014,12 +831,9 @@ todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm
 \end_layout
 
 \begin_layout Standard
-todo: # cs affected (worst) bismark vs filtered vs bwa
-\change_inserted 227422949 1565874683
--
-\change_unchanged
-meth vs filtered (best) (fig?) (I can get this from the emseq/wgbs data,
- it's a simple bedtools operation)
+todo: # cs affected (worst) bismark vs filtered vs bwa-meth vs filtered
+ (best) (fig?) (I can get this from the emseq/wgbs data, it's a simple bedtools
+ operation)
 \end_layout
 
 \begin_layout Standard
@@ -1033,37 +847,17 @@ todo: effect on ClinVar
 \end_layout
 
 \begin_layout Standard
-todo: examples of specific effects in ClinVar
-\change_inserted 227422949 1565874893
- (I have 2 of these from my talk)
-\change_unchanged
-
+todo: examples of specific effects in ClinVar (I have 2 of these from my
+ talk)
 \end_layout
 
 \begin_layout Standard
-todo: 
-\change_inserted -1421919639 1624564682
-find/
-\change_unchanged
-examine 
-\change_inserted -1421919639 1624564700
-relevant human (
-\change_unchanged
-GEO
-\change_inserted -1421919639 1624564689
-?)
-\change_unchanged
- dataset (maybe, depends on time/progress)
-\change_inserted -1421919639 1624564670
- (sequencing, not chip) (ideally, clinically relevant EM-seq)
+todo: find/examine relevant human (GEO?) dataset (maybe, depends on time/progres
+s) (sequencing, not chip) (ideally, clinically relevant EM-seq)
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1421919639 1624564507
 todo: T2T data (repeat analysis on this and compare effect)
-\change_unchanged
-
 \end_layout
 
 \begin_layout Section*
@@ -1079,24 +873,35 @@ Materials
 \end_layout
 
 \begin_layout Standard
-Libraries were prepared from 
-\change_inserted 227422949 1565874002
-10, 50, and 
-\change_unchanged
-200 ng of genomic DNA from the NA12878 cell line (Coriel).
+Libraries were prepared from 10, 50, and 200 ng of genomic DNA from the
+ NA12878 cell line (Coriel).
  This input was supplemented with a small amount of fully-methylated Xp-12
  DNA
 \change_inserted -1421919639 1624038611
- <is there a specific source for this, e.g.
- a company and/or product name?>
-\change_unchanged
-, lambda phage DNA (NEB #N3011)
-\change_inserted 227422949 1565806681
-,
-\change_unchanged
- and a pUC19 plasmid (NEB #N3041) treated with M.SssI CpG Methyltransferase
- (NEB #M0226).
  
+\change_inserted -162802704 1625841068
+(isolated from Xp12 phage following the procedure in Y.
+ J.
+ Lee, P.
+ R.
+ Weigele, Detection of modified bases in bacteriophage genomic DNA.
+ Methods Mol.
+ Biol.2198, 53-66 (2021).) 
+\change_inserted -1421919639 1624038611
+<is there a specific source for this, e.g.
+ a company and/or product name
+\change_inserted -162802704 1625840922
+ https://www.pnas.org/content/118/26/e2026742118.full#ref-35
+\change_inserted -1421919639 1624038611
+?>
+\change_unchanged
+, lambda phage DNA (NEB #N3011), and a pUC19 plasmid (NEB #N3041) treated
+ with M.SssI CpG Methyltransferase (NEB #M0226).
+
+\change_deleted -162802704 1625840728
+ 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1104,10 +909,7 @@ Whole Genome Bisulfite Libraries
 \end_layout
 
 \begin_layout Standard
-Libraries were prepared using the Ultra II DNA library prep kit
-\change_inserted -1421919639 1624041075
- <product number?>
-\change_unchanged
+Libraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
  before being Bisulfite converted according to 
 \change_inserted -1421919639 1624040077
 <
@@ -1123,7 +925,21 @@ protocol
 .
 
 \change_inserted -1421919639 1624041101
- <anything about the EM-seq samples?>
+ 
+\change_inserted -162802704 1625841148
+
+\end_layout
+
+\begin_layout Subsection*
+
+\change_inserted -162802704 1625841161
+EM-seq Libraries
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1624041101
+<anything about the EM-seq samples?>
 \change_unchanged
 
 \end_layout
@@ -1134,11 +950,7 @@ Sequencing
 
 \begin_layout Standard
 Libraries were pooled and sequenced with diverse libraries (~10%) on 2 flow
- cells
-\change_inserted 227422949 1565874789
- <is this still correct with the 2 other masses added?>
-\change_unchanged
- of an Illumina Novaseq 6000 
+ cells of an Illumina Novaseq 6000 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "novaseq-6000"
@@ -1146,19 +958,22 @@ literal "false"
 
 \end_inset
 
- using the S2 chemistry<citation>.
- We acquired 1.55 billion 99bp paired-end reads for the 
-\change_deleted 227422949 1565873673
-EM-seq
-\change_inserted 227422949 1565873679
-enzymatic sequencing
-\change_unchanged
- method and 1.60 billion paired-end reads for the Bisulfite converted libraries
+ using the S2 chemistry.
+ We acquired 1.55 billion 99 bp paired-end reads for the EM-seq method and
+ 1.60 billion paired-end reads for the Bisulfite converted libraries
 \change_inserted -1421919639 1624472963
- <what mass is this for? need counts for all masses unless they're identical>
+ <
+\change_inserted -162802704 1625841288
+get this from samtools stats on the bams 
+\change_inserted -1421919639 1624472963
+what mass is this for? need counts for all masses unless they're identical>
 \change_unchanged
 .
+
+\change_deleted -162802704 1625841209
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1166,19 +981,11 @@ Computational Methods
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted 227422949 1565873610
-In order to compare the two aligners, this analysis was run twice: once
- with Bismark, once with bwa-meth.
- 
-\change_unchanged
-In order to run the analysis, the following data and tools were used:
+The following data and tools were used for the analysis:
 \end_layout
 
 \begin_layout Standard
-The GRCh38.p11 analysis set
-\change_inserted -1421919639 1625241994
- (hereafter referred to as 
+The GRCh38.p11 analysis set (hereafter referred to as 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1186,9 +993,7 @@ GRCh38
 \begin_inset Quotes erd
 \end_inset
 
-)
-\change_unchanged
- supplemented with phage T4, phage lambda, phage Xp12, and pUC19 contigs
+) supplemented with phage T4, phage lambda, phage Xp12, and pUC19 contigs
  was used throughout 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1199,35 +1004,11 @@ literal "false"
 
 .
  A VCF file of disease-associated variant sites was downloaded from ClinVar
- (see supplemental data for file date
-\change_deleted -1421919639 1624024348
- 
-\change_unchanged
-) and 
-\change_inserted -1421919639 1624038839
-a
-\change_deleted -1421919639 1624038839
-the
-\change_unchanged
- 
-\change_inserted -1421919639 1624038839
-GFF file of the 
-\change_unchanged
-GENCODE v31 gene annotations were used.
- The mappability data was the 100bp multi-
-\change_inserted -1421919639 1624038839
-read
-\change_deleted -1421919639 1624038656
-track
-\change_unchanged
- bigWig file downloaded from Bismap (see supplemental materials for link).
- A detailed diagram of the 
-\change_deleted -1421919639 1624038673
-process
-\change_inserted -1421919639 1624038839
-analysis pipeline
-\change_unchanged
- is found in Figures 
+ (see supplemental data for file date) and a GFF file of the GENCODE v31
+ gene annotations were used.
+ The mappability data was the 100bp multi-read bigWig file downloaded from
+ Bismap (see supplemental materials for link).
+ A detailed diagram of the analysis pipeline is found in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:dag"
@@ -1280,39 +1061,20 @@ literal "false"
 
 \end_inset
 
-, GNU sort, GNU head, bwa-meth, and 
-\change_inserted 227422949 1565875085
-B
-\change_deleted 227422949 1565875085
-b
-\change_unchanged
-ismark.
+, GNU sort, GNU head, bwa-meth, and Bismark.
  GNU sort and head are required since some of the functionality needed (specific
 ally, the ability to parallelize sorting and the ability to use a negative
  value with the -n option for head to count lines from the end of the file)
  is not present in BSD sort and head.
-
-\change_deleted -1421919639 1625081058
- 
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1421919639 1625081035
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1421919639 1625081001
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625081016
 \begin_inset Graphics
 	filename analysis_clinvar.svg
 	width 70page%
@@ -1320,36 +1082,23 @@ status open
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625081001
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625085097
-Detailed description of preprocesing steps for ClinVar and GENCODE data.
+Detailed description of the procedure used to annotate the T2Tv1.1 reference
+ using the GRCh38 ClinVar and GENCODE data.
  Hexagons are input files.
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
  Labels on edges are processing steps with one input and one output.
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1385,10 +1134,9 @@ name "fig:dag"
 
 \end_inset
 
-Detailed description of preprocesing steps in data analysis.
- 
-\change_inserted -1421919639 1625687086
-Ovals are intermediate files.
+Detailed description of preprocesing steps used to identify biologically
+ relevant low-mappability regions..
+ Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
  Labels on edges are processing steps with one input and one output (except
@@ -1408,11 +1156,6 @@ noprefix "false"
 .
  Dark gray rectangles indicate steps involving manually examining the data.
  Dashed lines indicate manual steps.
-\change_deleted -1421919639 1625085859
-<todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -1452,10 +1195,14 @@ name "fig:dag-1"
 
 \end_inset
 
-Detailed description of BAM processing steps in data analysis.
- 
-\change_inserted -1421919639 1625687095
-Ovals are intermediate files.
+Detailed description of
+\change_inserted -162802704 1625842161
+ <rework with some more detail about what is being done by this procedure,
+ update figure to avoid use of miscall (which we'll use only for the per-read
+ filtered assessment)>
+\change_unchanged
+.
+ Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
  Labels on edges are processing steps with one input and one output (except
@@ -1475,11 +1222,6 @@ noprefix "false"
 .
  Dark gray parallelograms indicate final outputs that are examined manually.
  Dashed lines indicate manual steps.
-\change_deleted -1421919639 1625085855
-<todo: add legend with figure features, boxes, ovals, edge types, etc.
- parts A and B with >
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -1493,46 +1235,13 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1565874048
-The sequencing reads were aligned using the bwa-meth aligner 
-\change_deleted -1421919639 1624024396
-<with what options>
-\change_inserted -1421919639 1624024400
-using default options
-\change_inserted 227422949 1565874048
-.
- 
-\change_unchanged
-Methylation calling was performed on the 
-\change_deleted 227422949 1565874052
-aligned
-\change_inserted 227422949 1565874053
-resulting
-\change_unchanged
- BAMs using MethylDackel v0.
-\change_inserted -1421919639 1623878362
-5
-\change_deleted -1421919639 1623878362
-4
-\change_unchanged
-.
-\change_inserted -1421919639 1623959868
-2
-\change_deleted -1421919639 1623959868
-0
-\change_unchanged
-.
+The sequencing reads were aligned using the bwa-meth aligner using default
+ options.
+ Methylation calling was performed on the resulting BAMs using MethylDackel
+ v0.5.2.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
- include mostly single locus reads
-\change_deleted -1421919639 1623959890
- for both aligners
-\change_unchanged
-, however inaccurate MapQs 
-\change_inserted -1421919639 1625241559
-can 
-\change_unchanged
-lead to reads being incorrectly included in methylation calling.
+ include mostly single locus reads, however inaccurate MapQs can lead to
+ reads being incorrectly included in methylation calling.
  In order to eliminate reads in low-mappability regions, a patch was created
  for MethylDackel which allows it to take as an input a bigWig file which
  is then used to filter out read pairs (this patch currently only supports
@@ -1545,18 +1254,9 @@ lead to reads being incorrectly included in methylation calling.
  The filtering algorithm has been optimized both by loading the mappability
  data into memory before calling, and through the use of a custom run-length
  compressed binary file format that we here term BBM (Binary BisMap).
- This format can store the mapp
-\change_inserted -1421919639 1624038794
-a
-\change_unchanged
-bility data for the hg38/
-\change_deleted -1421919639 1625242007
-grch38
-\change_inserted -1421919639 1625242007
-GRCh38
-\change_unchanged
- human genome in 143 MB, compared to 1.11 GB when stored as a bigWig, giving
- a compression ratio for this dataset of 7.78:1.
+ This format can store the mappability data for the hg38/GRCh38 human genome
+ in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
+ ratio for this dataset of 7.78:1.
 \end_layout
 
 \begin_layout Standard
@@ -1580,14 +1280,9 @@ ClinVar regions BED
 
 .
  The Bismap bedGraph (which, as is standard for bedGraph files, did not
- contain zeroes) and an FAI index of the 
-\change_deleted -1421919639 1625242013
-grch38
-\change_inserted -1421919639 1625242013
-GRCh38
-\change_unchanged
- reference genome FASTA file were processed with bedtools, awk, and GNU
- sort to obtain a bedGraph containing all mappability data, including zeroes.
+ contain zeroes) and an FAI index of the GRCh38 reference genome FASTA file
+ were processed with bedtools, awk, and GNU sort to obtain a bedGraph containing
+ all mappability data, including zeroes.
  This file will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
@@ -1600,7 +1295,11 @@ Bismap complete bedGraph
  It was then combined with the ClinVar regions BED using bedtools map to
  create a file containing the minimum and mean mappability for each gene
  with a ClinVar variant.
+
+\change_deleted -162802704 1625841986
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1619,22 +1318,11 @@ The Bismap complete bedGraph was then filtered using awk to produce a file
 \end_layout
 
 \begin_layout Standard
-Alignments of 2x99-bp paired-end 
-\change_deleted -1421919639 1624039738
-EM-seq
-\change_inserted -1421919639 1624039738
-enzymatic sequencing
-\change_unchanged
- and whole genome bisulfite reads were processed using MethylDackel (with
- and without the custom patch) using a minimum MapQ cutoff of 
-\change_inserted 227422949 1565874072
-1
-\change_deleted 227422949 1565874072
-2
-\change_unchanged
-0 and the default settings mentioned above and combined with the file of
- all low mappability regions in ClinVar regions to produce a list of all
- miscalls (this will be referred to as the 
+Alignments of 2x99-bp paired-end EM-seq and whole genome bisulfite reads
+ were processed using MethylDackel (with and without the custom patch) using
+ a minimum MapQ cutoff of 10 and the default settings mentioned above and
+ combined with the file of all low mappability regions in ClinVar regions
+ to produce a list of all miscalls (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1646,19 +1334,19 @@ miscalls file
  A miscall, as used here, is defined as a methylation call that was filtered
  out using the new MethylDackel mappability filtering
 \change_inserted -1421919639 1625684062
-, but was not filtered out by basic MapQ filtering <is this actually how
- I'm using the word 
-\begin_inset Quotes eld
-\end_inset
-
-miscall
-\begin_inset Quotes erd
-\end_inset
-
- here? It doesn't seem so>
+, but was not filtered out by basic MapQ filtering <
+\change_inserted -162802704 1625842241
+change use of miscall to something else (to avoid confusion with per-read
+ filtered)
+\change_inserted -1421919639 1625684062
+>
 \change_unchanged
 .
+
+\change_deleted -162802704 1625841999
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1666,29 +1354,8 @@ The miscalls file was intersected with the file of ClinVar regions with
  low minimum mappability to produce a file of ClinVar regions with miscalls.
  The -wa option for bedtools intersect was used here, which writes a copy
  of the ClinVar region to the output file for each miscall in the region,
- 
-\change_inserted -1421919639 1624038272
-in order that
-\change_deleted -1421919639 1624038271
-so
-\change_unchanged
- this file 
-\change_inserted -1421919639 1624038276
-would 
-\change_unchanged
-contain
-\change_deleted -1421919639 1624038278
-ed
-\change_unchanged
- 
-\change_deleted -1421919639 1624038999
-duplicate
-\change_inserted -1421919639 1624039000
-multiple copies of each region, one per miscall in the region
-\change_deleted -1421919639 1624038961
-s
-\change_unchanged
-.
+ in order that this file would contain multiple copies of each region, one
+ per miscall in the region.
  These duplicates were then used to count miscalls by feeding the data to
  a custom Python script (found in the Nextflow script in the supplemental
  materials) which counted and combined the duplicates, producing a list
@@ -1697,33 +1364,13 @@ s
 \end_layout
 
 \begin_layout Standard
-Since this analysis was run for 
-\change_deleted 227422949 1565874089
-both Bismark and bwa-meth
-\change_inserted 227422949 1565874137
-three different input masses and two sequencing protocols
-\change_unchanged
-, the miscalls files were also processed through awk to add a field specifying
- which 
-\change_deleted 227422949 1565874162
-aligner the data is from
-\change_inserted 227422949 1565874197
-input mass, 
-\change_inserted -1421919639 1624039855
-sequencing 
-\change_inserted 227422949 1565874197
-protocol, and MethylDackel filtering setting were used
-\change_unchanged
-.
+Since this analysis was run for three different input masses and two sequencing
+ protocols, the miscalls files were also processed through awk to add a
+ field specifying which input mass, sequencing protocol, and MethylDackel
+ filtering setting were used.
  The same field was added to the lists of all ClinVar regions with miscalls
  and counts described previously.
- 
-\change_deleted 227422949 1565874204
-Both
-\change_inserted 227422949 1565874204
-All
-\change_unchanged
- files were examined and compared in Tableau
+ All files were examined and compared in Tableau
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -1733,24 +1380,19 @@ All
 \end_inset
 
 .
-\change_inserted 227422949 1565874228
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted 227422949 1565874321
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
- with the Bismark aligner
-\change_inserted -1421919639 1624038748
- <with what alignment options>
-\change_inserted 227422949 1565874321
+ with the Bismark aligner using default settings and deduplicated using
+ deduplicate_bismark according to the documented protocol
+\change_inserted -162802704 1625842355
+ <citation>
+\change_unchanged
 .
  The name of the aligner was added to the field specifying the input mass,
  protocol, and MethylDackel filtering settings present in the miscalls files
  and the lists of all ClinVar regions with miscalls and counts.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -1762,8 +1404,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625147849
 \begin_inset Graphics
 	filename realign.svg
 	width 70page%
@@ -1774,13 +1414,9 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625147849
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -1421919639 1625147849
 Detailed description of BAM realignment steps.
  Hexagons are input files.
  Ovals are intermediate files.
@@ -1801,13 +1437,9 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 <still getting data>
-\change_inserted -1421919639 1624473208
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1421919639 1625691667
 To compare the need for and the effect of mappability filtering on the more
  complete T2T v1.1 reference genome <citation> (hereafter referred to as
  
@@ -1860,13 +1492,20 @@ literal "false"
  As there was no Bismap mappability file for the T2T reference, we downloaded
  the Bismap tool and generated a k=100 multi-read Bismap mappability dataset
  for this reference genome.
- <expand on how Bismap run was done? or leave it at that>.
- In total, this analysis was run on all combinations of sequencing method
+ 
+\change_deleted -162802704 1625842616
+ 
+\change_unchanged
+In total, this analysis was run on all combinations of sequencing method
  (WGBS or EM-seq), aligner (Bismark or bwa-meth), input mass (10, 50, or
- 200ng), filtering (read-based filtering or no read-based filtering), and
+ 200 ng), filtering (read-based filtering or no read-based filtering), and
  reference genome (GRCh38 or T2T), using a Nextflow pipeline (see supplemental
  materials) which managed the execution of all the analysis tools needed.
- <write about how the resulting files are processed>
+ 
+\change_inserted -1421919639 1625691667
+<write about how the resulting files are processed>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
@@ -1877,28 +1516,12 @@ Discussion
 Reads placed with falsely high confidence have cascading detrimental effects
  on methylation calling, differential methylation assessment, and assement
  of phenotypes associated with methylation status.
- Because of the more accurate MapQ values, decreased run time
-\change_inserted 227422949 1565806617
-,
-\change_unchanged
- and more flexibility to separate methylation calling from alignment, we
- recommend the use of bwa
-\change_inserted 227422949 1565874666
--
-\change_unchanged
-meth for alignment and MethylDackel with MapQ > 
-\change_inserted -1421919639 1625684342
-1
-\change_deleted -1421919639 1625684342
-2
-\change_unchanged
-0 for methylation calling.
+ Because of the more accurate MapQ values, decreased run time, and more
+ flexibility to separate methylation calling from alignment, we recommend
+ the use of bwa-meth for alignment and MethylDackel with MapQ > 10 for methylati
+on calling.
  To further improve accuracy of methylation asssessment, reads with both
- mates in 
-\change_deleted 227422949 1564758916
-a 
-\change_unchanged
-low mappability regions should be excluded.
+ mates in low mappability regions should be excluded.
 \end_layout
 
 \begin_layout Standard
@@ -1926,55 +1549,11 @@ The Nextflow script
 \change_inserted -1421919639 1625684572
 s
 \change_unchanged
- used to analyze this data can be found at <to be added>
-\change_inserted -1421919639 1625684578
- and <to be added>
-\change_unchanged
-.
- In order to run, 
-\change_deleted -1421919639 1625684585
-it
-\change_inserted -1421919639 1625684588
-they
-\change_unchanged
- require
-\change_deleted -1421919639 1625684590
-s
-\change_unchanged
- vcf2bed, gff2bed, bigWigToBedGraph, cut, MethylDackel (
-\change_inserted -1421919639 1624039192
-0.5.0
-\change_deleted -1421919639 1623878340
-whatever-version
-\change_unchanged
- or newer
-\change_inserted -1421919639 1624039217
-, we performed this analysis with version 0.5.2
-\change_unchanged
-), GNU sort, GNU head, bedtools, 
-\change_inserted -1421919639 1624040009
-BEDOPS, 
-\change_unchanged
-paste, awk, and Python 3.
-\change_inserted -1421919639 1625684412
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1421919639 1625684451
-Realignment of the BAM files was also conducted using a Nextflow pipeline
- (found at <to be added>), which requires
-\change_deleted -1421919639 1625684412
+ used to analyze this data can be found at <use github url> .
  
-\change_inserted -1421919639 1625684679
-Bismark, samtools, and bwa-meth.
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1421919639 1625691861
-Sorting of the BAMs was carried out using sambamba 
+\change_inserted -162802704 1625843227
+<add versions to conda lines in nextflow> Individual tools used in the analysis
+ include sambamba
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btv098"
@@ -1982,7 +1561,12 @@ literal "false"
 
 \end_inset
 
-.
+, vcf2bed, gff2bed, bigWigToBedGraph, MethylDackel, awk, python, GNU sort,
+ GNU head, bedtools, BEDOPS.
+ 
+\change_unchanged
+Versions of all tools used are specifed in the nextflow <version> scripts
+ using conda <cite> dependency resolution.
 \end_layout
 
 \begin_layout Standard
@@ -2005,13 +1589,7 @@ https://github.com/dpryan79/MethylDackel/pull/80
 \end_inset
 
 .
- It was merged into MethylDackel in version 
-\change_inserted -1421919639 1624039188
-0.5.0
-\change_deleted -1421919639 1623878330
-(whatever-version)
-\change_unchanged
-.
+ It was merged into MethylDackel in version 0.5.0.
 \end_layout
 
 \begin_layout Standard
@@ -2027,6 +1605,10 @@ kMappability.bw
 
 \end_inset
 
+
+\change_inserted -162802704 1625843365
+ <refer to these in the main body>
+\change_unchanged
 
 \end_layout
 
