@@ -20,7 +20,11 @@ params.no_filter_mappability=false
 
 params.bismap_cutoff=0.01
 
-params.suffix="data"
+params.referenceName="ref"
+
+params.aligner = "aligner"
+
+params.seqMethod = "seq"
 
 process bigWigToBedGraph {
 
@@ -292,7 +296,6 @@ process intersectClinvarBismapLow {
 
 process intersectCalls {
 
-    publishDir 'miscalls', mode: 'copy'
     conda 'bedtools'
 
     input:
@@ -330,7 +333,6 @@ process intersectMiscalledGenes {
 
 process countMiscalls {
 
-    publishDir 'miscalls', mode: 'move'
     conda 'bedtools'
 
     input:
@@ -352,7 +354,7 @@ process countMiscalls {
 
     def printLines(lines):
         for line in lines:
-            out.write(line+"\\t"+str(lines[line])+"\\n")
+            out.write(line+"\\t"+str(lines[line])+"\\t!{n.strip()}\\n")
 
     with open("!{miscalled_genes_dups_methyl}") as f:
         for line in f:
@@ -369,6 +371,50 @@ process countMiscalls {
     '''
 }
 
+
+process addParamsToMiscalledGenes {
+
+    input:
+        val outputSuffix
+        file miscalled_genes
+        val referenceName
+        val aligner
+        val seqMethod
+        val filterStr
+        val n
+        file massMapping
+
+    output:
+        file "miscalled_genes_${outputSuffix}_*.tsv"
+        
+    shell:
+    '''
+    python add_params.py !{miscalled_genes} miscalled_genes_!{outputSuffix}_!{n.strip()}.tsv !{massMapping} !{referenceName} !{aligner} !{seqMethod} !{filterStr} 13
+    '''
+}
+
+process addParamsToMiscalls {
+
+    input:
+        val outputSuffix
+        file miscalls
+        val referenceName
+        val aligner
+        val seqMethod
+        val filterStr
+        val n
+        file massMapping
+
+    output:
+        file "miscalls_${outputSuffix}_*.tsv"
+        
+    shell:
+    '''
+    python add_params.py !{miscalls} miscalled_genes_!{outputSuffix}_!{n.strip()}.tsv !{massMapping} !{referenceName} !{aligner} !{seqMethod} !{filterStr} 6
+    '''
+}
+
+
 workflow {
 
     no_filter_mappability=params.no_filter_mappability
@@ -378,9 +424,10 @@ workflow {
     ref_fai = file(params.ref_fai)
     ref = file(params.ref)
     bismap_bbm= file(params.bismap_bbm)
+    mass_mapping = file(params.mass_mapping)
 
 
-    basicPipeline(bismap_bbm, bismap_bw, ref, ref_fai, clinvar_regions, no_filter_mappability, params.bams, params.suffix, params.tmpdir, params.min_mapq, params.bismap_cutoff)
+    basicPipeline(bismap_bbm, bismap_bw, ref, ref_fai, clinvar_regions, no_filter_mappability, params.bams, params.referenceName, params.aligner, params.seqMethod, params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
 
 
 }
@@ -394,19 +441,26 @@ workflow basicPipeline {
         clinvar_regions
         no_filter_mappability
         pipeline_bams
-        outputSuffix
+        referenceName
+        aligner
+        seqMethod
         tmpdir
         min_mapq
         bismap_cutoff
-
+        massMapping
     main:
+
+        filterStr = "filt"
 
         filter_opt = ""
         
         if(!no_filter_mappability)
         {
             filter_opt = "-B ${bismap_bbm}"
+            filterStr = "nofilt"
         }
+
+        outputSuffix = referenceName+"_"+aligner+"_"+seqMethod+"_"+filterStr
 
         bam_names = pipeline_bams.toString().split(",")
 
@@ -433,4 +487,6 @@ workflow basicPipeline {
         intersectCalls(outputSuffix, intersectClinvarBismapLow.out, combineCalls.out, stringParsing.out)
         intersectMiscalledGenes(intersectCalls.out, gsortMinMean.out, stringParsing.out)
         countMiscalls(outputSuffix, intersectMiscalledGenes.out, stringParsing.out)
+        addParamsToMiscalls(outputSuffix, intersectCalls.out, referenceName, aligner, seqMethod, filterStr, stringParsing.out, massMapping)
+        addParamsToMiscalledGenes(outputSuffix, countMiscalls.out, referenceName, aligner, seqMethod, filterStr, stringParsing.out, massMapping)
 }
