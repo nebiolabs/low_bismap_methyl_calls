@@ -1193,9 +1193,12 @@ name "fig:dag-1"
 
 Detailed description of
 \change_inserted -162802704 1625842161
- <rework with some more detail about what is being done by this procedure,
- update figure to avoid use of miscall (which we'll use only for the per-read
- filtered assessment)>
+ <rework with some more detail about what is being done by this procedure
+\change_deleted -1421919639 1626115238
+, update figure to avoid use of miscall (which we'll use only for the per-read
+ filtered assessment)
+\change_inserted -162802704 1625842161
+>
 \change_unchanged
 .
  Ovals are intermediate files.
@@ -1318,26 +1321,41 @@ Alignments of 2x99-bp paired-end EM-seq and whole genome bisulfite reads
  were processed using MethylDackel (with and without the custom patch) using
  a minimum MapQ cutoff of 10 and the default settings mentioned above and
  combined with the file of all low mappability regions in ClinVar regions
- to produce a list of all miscalls (this will be referred to as the 
+ to produce a list of all 
+\change_deleted -1421919639 1626115246
+miscalls
+\change_inserted -1421919639 1626115253
+methylation calls in low mappability regions
+\change_unchanged
+ (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
-miscalls file
+
+\change_deleted -1421919639 1626115257
+miscalls
+\change_inserted -1421919639 1626115261
+low mappability calls
+\change_unchanged
+ file
 \begin_inset Quotes erd
 \end_inset
 
 ).
- A miscall, as used here, is defined as a methylation call that was filtered
- out using the new MethylDackel mappability filtering
-\change_inserted -1421919639 1625684062
-, but was not filtered out by basic MapQ filtering <
-\change_inserted -162802704 1625842241
-change use of miscall to something else (to avoid confusion with per-read
- filtered)
-\change_inserted -1421919639 1625684062
->
+ A 
+\change_inserted -1421919639 1626115296
+low-mappability methylation call
+\change_deleted -1421919639 1626115285
+miscall
 \change_unchanged
-.
+, as used here, is defined as a methylation call that 
+\change_inserted -1421919639 1626115367
+is in a region with Bismap mappability less than 0.01, as defined by the
+ position of the C alone (positions of anchoring reads are not considered
+ when determining this).
+\change_deleted -1421919639 1626115329
+was filtered out using the new MethylDackel mappability filteringchange
+ use of miscall to something else (to avoid confusion with per-read filtered).
 
 \change_deleted -162802704 1625841999
  
@@ -1346,25 +1364,87 @@ change use of miscall to something else (to avoid confusion with per-read
 \end_layout
 
 \begin_layout Standard
-The miscalls file was intersected with the file of ClinVar regions with
- low minimum mappability to produce a file of ClinVar regions with miscalls.
+The 
+\change_deleted -1421919639 1626115390
+miscalls
+\change_inserted -1421919639 1626115390
+low mappability calls
+\change_unchanged
+ file was intersected with the file of ClinVar regions with low minimum
+ mappability to produce a file of ClinVar regions with 
+\change_deleted -1421919639 1626115395
+miscalls
+\change_inserted -1421919639 1626115395
+low mappability calls
+\change_unchanged
+.
  The -wa option for bedtools intersect was used here, which writes a copy
- of the ClinVar region to the output file for each miscall in the region,
- in order that this file would contain multiple copies of each region, one
- per miscall in the region.
- These duplicates were then used to count miscalls by feeding the data to
- a custom Python script (found in the Nextflow script in the supplemental
- materials) which counted and combined the duplicates, producing a list
- of all ClinVar regions with miscalls and how many miscalls are in each
- region.
+ of the ClinVar region to the output file for each 
+\change_deleted -1421919639 1626115399
+miscall
+\change_inserted -1421919639 1626115399
+low mappability call
+\change_unchanged
+ in the region, in order that this file would contain multiple copies of
+ each region, one per 
+\change_deleted -1421919639 1626115406
+miscall
+\change_inserted -1421919639 1626115406
+low mappability call
+\change_unchanged
+ in the region.
+ These duplicates were then used to count 
+\change_deleted -1421919639 1626115412
+miscalls
+\change_inserted -1421919639 1626115412
+low mappability calls
+\change_unchanged
+ by feeding the data to a custom Python script (found in the Nextflow script
+ in the supplemental materials) which counted and combined the duplicates,
+ producing a list of all ClinVar regions with 
+\change_deleted -1421919639 1626115418
+miscalls
+\change_inserted -1421919639 1626115418
+low mappability calls
+\change_unchanged
+ and how many 
+\change_deleted -1421919639 1626115421
+miscalls
+\change_inserted -1421919639 1626115421
+low mappability calls
+\change_unchanged
+ are in each region.
 \end_layout
 
 \begin_layout Standard
 Since this analysis was run for three different input masses and two sequencing
- protocols, the miscalls files were also processed through awk to add a
- field specifying which input mass, sequencing protocol, and MethylDackel
- filtering setting were used.
- The same field was added to the lists of all ClinVar regions with miscalls
+ protocols, the 
+\change_deleted -1421919639 1626115523
+miscalls
+\change_inserted -1421919639 1626115523
+low mappability calls
+\change_unchanged
+ files were also processed through 
+\change_deleted -1421919639 1626122828
+awk
+\change_inserted -1421919639 1626122843
+a custom Python script (see supplemental materials)
+\change_unchanged
+ to add a field specifying which input mass, sequencing protocol, and MethylDack
+el filtering setting were used.
+
+\change_inserted -1421919639 1626124196
+ As the input mass would have been difficult to parse out of the BAM name
+ due to inconsistent formatting, a CSV mapping BAM file names to input masses
+ was created and given as input to this step.
+
+\change_unchanged
+ The same field was added to the lists of all ClinVar regions with 
+\change_deleted -1421919639 1626115528
+miscalls
+\change_inserted -1421919639 1626115528
+low mappability calls
+\change_unchanged
  and counts described previously.
  All files were examined and compared in Tableau
 \begin_inset script superscript
@@ -1387,8 +1467,23 @@ To compare the behavior of Bismark with bwa-meth, this analysis was re-run
 \change_unchanged
 .
  The name of the aligner was added to the field specifying the input mass,
- protocol, and MethylDackel filtering settings present in the miscalls files
- and the lists of all ClinVar regions with miscalls and counts.
+ protocol, and MethylDackel filtering settings present in the 
+\change_deleted -1421919639 1626115537
+miscalls
+\change_inserted -1421919639 1626115537
+low mappability calls
+\change_unchanged
+ files and the lists of all ClinVar regions with 
+\change_deleted -1421919639 1626115557
+miscalls
+\change_inserted -1421919639 1626115557
+low mappability calls
+\change_unchanged
+ and counts
+\change_inserted -1421919639 1626122899
+ (using the same custom Python script)
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Standard
@@ -1563,7 +1658,7 @@ s
 \change_inserted -1421919639 1626107577
 
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1615,6 +1710,30 @@ literal "false"
 
 \change_unchanged
  dependency resolution.
+\change_inserted -1421919639 1626122865
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1626122933
+The custom Python script that adds the input mass, sequencing protocol,
+ MethylDackel filtering setting, and aligner name can be found at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1626122928
+
+https://github.com/nebiolabs/low_bismap_methyl_calls
+\end_layout
+
+\end_inset
+
+.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard

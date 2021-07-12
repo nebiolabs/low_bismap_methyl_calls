@@ -1,6 +1,8 @@
 digraph workflow {
 
-	"grch38 fasta" [shape=hexagon, label="grch38 fasta"];
+	"ref fasta" [shape=hexagon, label="ref FASTA"];
+
+	"mass mapping CSV" [shape=hexagon, label="BAM name->mass mapping CSV"];
 
 	"Bismap complete bedGraph";
 
@@ -18,7 +20,7 @@ digraph workflow {
 
 	"MapQ cutoff" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" [label="cutoff"];
 
-	"grch38 fasta" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2";
+	"ref fasta" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2";
 
 	"sort -k1,1 -k2,2n_2" [shape=diamond,  color=gray85, style=filled, label="sort -k1,1 -k2,2n"];
 	"sort -k1,1 -k2,2n_2" -> "sorted bedGraph";
@@ -59,27 +61,35 @@ digraph workflow {
 	
 	"bedtools intersect -u_3b" -> "ClinVar regions for each low-mappability methyl call";
 
-	"ClinVar regions for each low-mappability methyl call" -> "ClinVar regions with count of low-mappability methyl calls" [label="count_low_map_calls"];
+	"add_params_1" [shape=diamond,  color=gray85, style=filled, label="python add_params.py"];
+
+	"add_params_2" [shape=diamond,  color=gray85, style=filled, label="python add_params.py"];
+
+	"ClinVar regions for each low-mappability methyl call" -> "add_params_1";
+
+	"add_params_1" -> "ClinVar regions for each low-mappability methyl\n call with identifier columns";
+
+	"ClinVar regions for each low-mappability methyl\n call with identifier columns" -> "ClinVar regions with count \nof low-mappability methyl calls" [label="count_low_map_calls"];
 
 	"low-mappability methyl call data" [shape=box, color=gray, style=filled];
 
-	"awk \'{ print $0\"\\t<aligner>\" }\'" [shape=diamond,  color=gray85, style=filled];
+
+	"mass mapping CSV" -> "add_params_1";
 
 
-	"methylation calls in low\nmappability regions in ClinVar regions" -> "awk \'{ print $0\"\\t<aligner>\" }\'";
+	"mass mapping CSV" -> "add_params_2";
+
+	"methylation calls in low\nmappability regions in ClinVar regions" -> "add_params_2";
+	
+	"add_params_2" -> "methylation calls in low\nmappability regions in ClinVar regions\nwith identifier columns";
 
 
 
-	"awk \'{ print $0\"\\t<aligner>\" }\'" -> "methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column";
-
-
-
-
-	"methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column" -> "low-mappability methyl call data" [style=dashed, label="Display in Tableau"]
+	"methylation calls in low\nmappability regions in ClinVar regions\nwith identifier columns" -> "low-mappability methyl call data" [style=dashed, label="Display in Tableau"]
 
 	"low-mappability methyl call data" [shape=parallelogram];
 
-	"ClinVar regions with count of low-mappability methyl calls" [shape=parallelogram];
+	"ClinVar regions with count \nof low-mappability methyl calls" [shape=parallelogram];
 
 	#"ClinVar regions with low-mappability methyl calls" -> "Examine Data" [style=invis];
 
