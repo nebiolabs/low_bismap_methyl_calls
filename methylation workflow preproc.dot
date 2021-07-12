@@ -3,7 +3,7 @@ digraph workflow {
 
 	"ClinVar regions BED" [shape=hexagon];
 
-	"grch38 fasta 2" [shape=hexagon, label="grch38 fasta"];
+	"grch38 fasta 2" [shape=hexagon, label="reference fasta"];
 
 	"Bismap bedGraph" -> "sort -k1,1 -k2,2n_again";
 
