@@ -500,10 +500,6 @@ name "example"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_deleted -162802704 1625839949
-An example of how 
-\change_unchanged
 MapQ filtering does not remove all poorly mapped reads.
 \begin_inset CommandInset label
 LatexCommand label
@@ -1499,8 +1495,20 @@ literal "false"
 In total, this analysis was run on all combinations of sequencing method
  (WGBS or EM-seq), aligner (Bismark or bwa-meth), input mass (10, 50, or
  200 ng), filtering (read-based filtering or no read-based filtering), and
- reference genome (GRCh38 or T2T), using a Nextflow pipeline (see supplemental
- materials) which managed the execution of all the analysis tools needed.
+ reference genome (GRCh38 or T2T), using a Nextflow
+\change_inserted -1421919639 1626109343
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "di_tommaso_nextflow_2017"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ pipeline (see supplemental materials) which managed the execution of all
+ the analysis tools needed.
  
 \change_inserted -1421919639 1625691667
 <write about how the resulting files are processed>
@@ -1549,7 +1557,28 @@ The Nextflow script
 \change_inserted -1421919639 1625684572
 s
 \change_unchanged
- used to analyze this data can be found at <use github url> .
+ used to analyze this data can be found at 
+\change_deleted -1421919639 1626107577
+<use github url>
+\change_inserted -1421919639 1626107577
+
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1626107582
+
+https://github.com/nebiolabs/low_bismap_methyl_calls
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+ .
  
 \change_inserted -162802704 1625843227
 <add versions to conda lines in nextflow> Individual tools used in the analysis
@@ -1565,8 +1594,27 @@ literal "false"
  GNU head, bedtools, BEDOPS.
  
 \change_unchanged
-Versions of all tools used are specifed in the nextflow <version> scripts
- using conda <cite> dependency resolution.
+Versions of all tools used are specifed in the nextflow 
+\change_deleted -1421919639 1626108890
+<version>
+\change_inserted -1421919639 1626108892
+21.04.0
+\change_unchanged
+ scripts using conda
+\change_deleted -1421919639 1626108834
+ <cite>
+\change_inserted -1421919639 1626108816
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_miniconda_2021"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ dependency resolution.
 \end_layout
 
 \begin_layout Standard
@@ -1593,6 +1641,16 @@ https://github.com/dpryan79/MethylDackel/pull/80
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted -1421919639 1626107616
+\begin_inset CommandInset label
+LatexCommand label
+name "The-Bismap-file"
+
+\end_inset
+
+
+\change_unchanged
 The Bismap file used for this analysis was downloaded from 
 \begin_inset Flex URL
 status collapsed
@@ -1613,6 +1671,16 @@ kMappability.bw
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted -1421919639 1626107621
+\begin_inset CommandInset label
+LatexCommand label
+name "The-ClinVar-VCF"
+
+\end_inset
+
+
+\change_unchanged
 The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
  with a file name of clinvar_20190722.vcf.gz
 \end_layout
