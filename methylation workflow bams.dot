@@ -51,22 +51,22 @@ digraph workflow {
 
 	"bedtools intersect -u_2" [label="bedtools intersect -u -sorted \n-a <methyl calls> -b <low map. regions>", shape=diamond,  color=gray85, style=filled];
 
-	"bedtools intersect -u_2" -> "methylation calls in low\nmappability regions in ClinVar regions\n(i.e. miscalls)";
+	"bedtools intersect -u_2" -> "methylation calls in low\nmappability regions in ClinVar regions";
 
- 	"bedtools intersect -u_3b" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <ClinVar low map.> -b <miscalls>"];
+ 	"bedtools intersect -u_3b" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <ClinVar low map.> -b <low map. calls>"];
 
-	"methylation calls in low\nmappability regions in ClinVar regions\n(i.e. miscalls)" -> "bedtools intersect -u_3b" [label="miscalls"];
+	"methylation calls in low\nmappability regions in ClinVar regions" -> "bedtools intersect -u_3b" [label="low map. calls"];
 	
-	"bedtools intersect -u_3b" -> "ClinVar regions for each methylation miscall";
+	"bedtools intersect -u_3b" -> "ClinVar regions for each low-mappability methyl call";
 
-	"ClinVar regions for each methylation miscall" -> "ClinVar regions with count of methylation miscalls" [label="count_miscalls.py"];
+	"ClinVar regions for each low-mappability methyl call" -> "ClinVar regions with count of low-mappability methyl calls" [label="count_low_map_calls"];
 
-	"methylation miscall data" [shape=box, color=gray, style=filled];
+	"low-mappability methyl call data" [shape=box, color=gray, style=filled];
 
 	"awk \'{ print $0\"\\t<aligner>\" }\'" [shape=diamond,  color=gray85, style=filled];
 
 
-	"methylation calls in low\nmappability regions in ClinVar regions\n(i.e. miscalls)" -> "awk \'{ print $0\"\\t<aligner>\" }\'";
+	"methylation calls in low\nmappability regions in ClinVar regions" -> "awk \'{ print $0\"\\t<aligner>\" }\'";
 
 
 
@@ -75,15 +75,15 @@ digraph workflow {
 
 
 
-	"methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column" -> "methylation miscall data" [style=dashed, label="Display in Tableau"]
+	"methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column" -> "low-mappability methyl call data" [style=dashed, label="Display in Tableau"]
 
-	"methylation miscall data" [shape=parallelogram];
+	"low-mappability methyl call data" [shape=parallelogram];
 
-	"ClinVar regions with count of methylation miscalls" [shape=parallelogram];
+	"ClinVar regions with count of low-mappability methyl calls" [shape=parallelogram];
 
-	#"ClinVar regions with methylation miscalls" -> "Examine Data" [style=invis];
+	#"ClinVar regions with low-mappability methyl calls" -> "Examine Data" [style=invis];
 
-	#"bismark vs. bwameth\nmethylation miscall comparison" -> "Examine Data" [style=invis];
+	#"bismark vs. bwameth\nlow-mappability methyl call comparison" -> "Examine Data" [style=invis];
 
 	
 
