@@ -12,6 +12,8 @@ params.ref="test_fixtures/chr18_test.fa"
 
 params.bams="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
+params.tmpdir = "/tmp"
+
 params.min_mapq=10
 
 params.no_filter_mappability=false
@@ -40,20 +42,22 @@ process convertFaiToGenome {
 
         input:
                 file ref_fai
+                val tmpdir
 
         output:
                 file 'ref.genome'
 
         shell:
         '''
-        cut -f 1,2 !{ref_fai} > ref.genome
+        cut -f 1,2 !{ref_fai} | LC_ALL=C sort -k1,1 -T !{tmpdir}  > ref.genome
         '''
 }
 
 process extractBam {
 
         penv 'smp'
-	cpus 8
+        cpus 8
+        conda 'methyldackel'
 
         input:
           file ref
@@ -62,22 +66,22 @@ process extractBam {
           val filter_opt
           file ref_fai
           file bismap_bbm
-	
+  
         output:
           file '*_CpG.bedGraph'
-		      file '*_CHG.bedGraph'
-		      file '*_CHH.bedGraph'
-		val bam
+          file '*_CHG.bedGraph'
+          file '*_CHH.bedGraph'
+    val bam
         shell:
         """
-        /mnt/flash_scratch/ckumar/transfer/MethylDackel/MethylDackel extract -@ !{task.cpus} -q !{min_mapq} --CHH --CHG --OT 2,0,0,97 !{filter_opt} -o methyl_!{bam.split("/")[-1].replace(".bam\\n", "")} !{ref} !{bam} 
+        MethylDackel extract -@ !{task.cpus} -q !{min_mapq} --CHH --CHG --OT 2,0,0,97 !{filter_opt} -o methyl_!{bam.split("/")[-1].replace(".bam\\n", "")} !{ref} !{bam} 
         """
 }
 
 process stringParsing {
 
         input:
-		      val bam_raw
+          val bam_raw
         
         output:
           stdout
@@ -95,19 +99,20 @@ process combineCalls {
         conda 'coreutils'
 
         penv 'smp'
-	cpus 8
+  cpus 8
 
         input:
                 file methyl_cpg
-		file methyl_chg
-		file methyl_chh
-		val n
+    file methyl_chg
+    file methyl_chh
+    val n
+    val tmpdir
 
         output:
                 file 'sorted_noheader_*.bedGraph'
         shell:
         '''
-        sort -k1,1 -k2,2n -S 32G --parallel !{task.cpus} !{methyl_cpg} !{methyl_chg} !{methyl_chh} | head -n -3 > sorted_noheader_!{n.strip()}.bedGraph
+        LC_ALL=C sort -k1,1 -k2,2n -S 32G -T !{tmpdir} --parallel !{task.cpus} !{methyl_cpg} !{methyl_chg} !{methyl_chh} | head -n -3 > sorted_noheader_!{n.strip()}.bedGraph
         '''
 }
 
@@ -117,7 +122,7 @@ process complementBedgraph {
 
         input:
                 file ref_genome
-		file bismap_bedGraph_for_complement
+    file bismap_bedGraph_for_complement
 
         output:
                 file 'bismap_zeroes.bedGraph'
@@ -130,19 +135,20 @@ process complementBedgraph {
 process combineAllRegions {
 
         penv 'smp'
-	cpus 8
+  cpus 8
         conda 'coreutils'
 
         input:
 
-		file bismap_bedGraph_for_combine_all
-		file zeroes_bedgraph
+    file bismap_bedGraph_for_combine_all
+    file zeroes_bedgraph
+    val tmpdir
 
         output:
                 file 'bismap_all.bedGraph'
         shell:
         '''
-        sort -k1,1 -k2,2n -S 32G --parallel !{task.cpus} !{bismap_bedGraph_for_combine_all} !{zeroes_bedgraph} > bismap_all.bedGraph
+        LC_ALL=C sort -k1,1 -k2,2n -S 32G -T !{tmpdir} --parallel !{task.cpus} !{bismap_bedGraph_for_combine_all} !{zeroes_bedgraph} > bismap_all.bedGraph
         '''
 }
 
@@ -152,7 +158,7 @@ process intersectMin {
 
         input:
                 file clinvar_regions_for_min
-		file bismap_bedgraph_for_min
+    file bismap_bedgraph_for_min
 
         output:
                 file 'clinvar_regions_min.bedGraph'
@@ -168,7 +174,7 @@ process intersectMean {
 
         input:
                 file clinvar_regions_for_mean
-		file bismap_bedgraph_for_mean
+    file bismap_bedgraph_for_mean
 
         output:
                 file 'clinvar_regions_mean.bedGraph'
@@ -182,7 +188,7 @@ process pasteMinMean {
 
         input:
                 file clinvar_regions_mean_map
-		file clinvar_regions_min_map
+    file clinvar_regions_min_map
 
         output:
                 file 'clinvar_regions_min_mean.bedGraph'
@@ -208,18 +214,19 @@ process filterMinMean {
 
 process gsortMinMean {
 
-	cpus 8
+  cpus 8
         penv 'smp'
         conda 'coreutils'
 
         input:
                 file clinvar_regions_min_mean_map_low_unsorted
+                val tmpdir
 
         output:
                 file 'clinvar_annotations_low.bedGraph'
         shell:
         '''
-        sort -k1,1 -k2,2n -S 32G --parallel !{task.cpus} !{clinvar_regions_min_mean_map_low_unsorted} > clinvar_annotations_low.bedGraph
+        LC_ALL=C sort -k1,1 -k2,2n -S 32G -T !{tmpdir} --parallel !{task.cpus} !{clinvar_regions_min_mean_map_low_unsorted} > clinvar_annotations_low.bedGraph
         '''
 }
 
@@ -227,7 +234,7 @@ process getLowRegions {
 
         input:
 
-		file bismap_bedGraph_for_awk_low_regions
+    file bismap_bedGraph_for_awk_low_regions
 
         output:
                 file 'bismap_low.bedGraph'
@@ -241,20 +248,21 @@ process getLowRegions {
 
 process combineLowRegions {
 
-	cpus 8
+  cpus 8
         penv 'smp'
         conda 'coreutils'
 
         input:
 
-		file low_bedgraph
-		file zeroes_bedgraph
+    file low_bedgraph
+    file zeroes_bedgraph
+    val tmpdir
 
         output:
                 file 'bismap_low.bedGraph'
         shell:
         '''
-        sort -k1,1 -k2,2n -S 32G --parallel !{task.cpus} !{low_bedgraph} !{zeroes_bedgraph} > bismap_low.bedGraph
+        LC_ALL=C sort -k1,1 -k2,2n -S 32G -T !{tmpdir} --parallel !{task.cpus} !{low_bedgraph} !{zeroes_bedgraph} > bismap_low.bedGraph
         '''
 }
 
@@ -264,10 +272,10 @@ process intersectClinvarBismapLow {
 
         input:
                 file clinvar_annotations_low
-		file bismap_low
+    file bismap_low
 
         output:
-		file 'clinvar_low_regions.bed'
+    file 'clinvar_low_regions.bed'
         shell:
         '''
         bedtools intersect -sorted -a !{bismap_low} -b !{clinvar_annotations_low} > clinvar_low_regions.bed
@@ -276,15 +284,15 @@ process intersectClinvarBismapLow {
 
 process intersectCalls {
 
-	publishDir 'miscalls', mode: 'copy'
+  publishDir 'miscalls', mode: 'copy'
 
         conda 'bedtools'
 
         input:
           val outputSuffix
           file clinvar_regions_for_methyl
-		      file methyl_sorted
-		      val n
+          file methyl_sorted
+          val n
 
         output:
           file "miscalls_${outputSuffix}_*.bed"
@@ -301,8 +309,8 @@ process intersectMiscalledGenes {
 
         input:
                 file methyl_miscalls
-		file clinvar_annotations_low
-		val n
+    file clinvar_annotations_low
+    val n
 
         output:
                 file 'miscalled_genes_dups_*.bed'
@@ -361,9 +369,10 @@ workflow {
   clinvar_regions = file(params.clinvarbed)
   ref_fai = file(params.ref_fai)
   ref = file(params.ref)
+  bismap_bbm= file(params.bismap_bbm)
 
 
-  basicPipeline(bismap_bbm, bismap_bw, ref, ref_fai, clinvar_regions, true, params.bams, params.suffix)
+  basicPipeline(bismap_bbm, bismap_bw, ref, ref_fai, clinvar_regions, no_filter_mappability, params.bams, params.suffix, params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
 
 }
@@ -378,10 +387,10 @@ workflow basicPipeline {
     no_filter_mappability
     pipeline_bams
     outputSuffix
+    tmpdir
+    min_mapq
+    bismap_cutoff
   main:
-
-  min_mapq = params.min_mapq
-  bismap_cutoff = params.bismap_cutoff
 
   filter_opt = ""
   if(!no_filter_mappability)
@@ -397,20 +406,20 @@ workflow basicPipeline {
   bam_list = Channel.from(bam_paths)
 
   bigWigToBedGraph(bismap_bw)
-  convertFaiToGenome(ref_fai)
+  convertFaiToGenome(ref_fai, tmpdir)
   complementBedgraph(convertFaiToGenome.out, bigWigToBedGraph.out)
-  combineAllRegions(bigWigToBedGraph.out, complementBedgraph.out)
+  combineAllRegions(bigWigToBedGraph.out, complementBedgraph.out, tmpdir)
   getLowRegions(bigWigToBedGraph.out)
-  combineLowRegions(getLowRegions.out, complementBedgraph.out)
+  combineLowRegions(getLowRegions.out, complementBedgraph.out, tmpdir)
   intersectMin(clinvar_regions, combineAllRegions.out)
   intersectMean(clinvar_regions, combineAllRegions.out)
   pasteMinMean(intersectMean.out, intersectMin.out)
   filterMinMean(pasteMinMean.out, bismap_cutoff)
-  gsortMinMean(filterMinMean.out)
+  gsortMinMean(filterMinMean.out, tmpdir)
   intersectClinvarBismapLow(gsortMinMean.out, combineLowRegions.out)
   extractBam(ref, min_mapq, bam_list, filter_opt, ref_fai, bismap_bbm)
   stringParsing(extractBam.out[3])
-  combineCalls(extractBam.out[0], extractBam.out[1], extractBam.out[2], stringParsing.out)
+  combineCalls(extractBam.out[0], extractBam.out[1], extractBam.out[2], stringParsing.out, tmpdir)
   intersectCalls(outputSuffix, intersectClinvarBismapLow.out, combineCalls.out, stringParsing.out)
   intersectMiscalledGenes(intersectCalls.out, gsortMinMean.out, stringParsing.out)
   countMiscalls(outputSuffix, intersectMiscalledGenes.out, stringParsing.out)

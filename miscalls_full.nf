@@ -66,6 +66,7 @@ params.no_filter_mappability=false
 
 params.bismap_cutoff=0.01
 
+params.tmpdir = "/tmp"
 
 workflow {
 
@@ -83,28 +84,28 @@ workflow {
   ref_fai_t2t = file(params.reft2t_fai)
   ref_t2t = file(params.reft2t)
 
-  GRCh38EMSeqBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_emseq, "grch38_bwameth_emseq_nofilt")
-  GRCh38EMSeqBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_emseq, "grch38_bwameth_emseq_filt")
+  GRCh38EMSeqBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_emseq, "grch38_bwameth_emseq_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  GRCh38EMSeqBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_emseq, "grch38_bwameth_emseq_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  GRCh38EMSeqBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_emseq, "grch38_bismark_emseq_nofilt")
-  GRCh38EMSeqBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_emseq, "grch38_bismark_emseq_filt")
+  GRCh38EMSeqBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_emseq, "grch38_bismark_emseq_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  GRCh38EMSeqBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_emseq, "grch38_bismark_emseq_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  GRCh38WGBSBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_wgbs, "grch38_bwameth_wgbs_nofilt")
-  GRCh38WGBSBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_wgbs, "grch38_bwameth_wgbs_filt")
+  GRCh38WGBSBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_wgbs, "grch38_bwameth_wgbs_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  GRCh38WGBSBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_wgbs, "grch38_bwameth_wgbs_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  GRCh38WGBSBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_wgbs, "grch38_bismark_wgbs_nofilt")
-  GRCh38WGBSBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_wgbs, "grch38_bismark_wgbs_filt")
+  GRCh38WGBSBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_wgbs, "grch38_bismark_wgbs_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  GRCh38WGBSBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_wgbs, "grch38_bismark_wgbs_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  T2TEMSeqBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_emseq, "t2t_bwameth_emseq_nofilt")
-  T2TEMSeqBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_emseq, "t2t_bwameth_emseq_filt")
+  T2TEMSeqBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_emseq, "t2t_bwameth_emseq_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  T2TEMSeqBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_emseq, "t2t_bwameth_emseq_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  T2TEMSeqBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_emseq, "t2t_bismark_emseq_nofilt")
-  T2TEMSeqBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_emseq, "t2t_bismark_emseq_filt")
+  T2TEMSeqBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_emseq, "t2t_bismark_emseq_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  T2TEMSeqBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_emseq, "t2t_bismark_emseq_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  T2TWGBSBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_wgbs, "t2t_bwameth_wgbs_nofilt")
-  T2TWGBSBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_wgbs, "t2t_bwameth_wgbs_filt")
+  T2TWGBSBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_wgbs, "t2t_bwameth_wgbs_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  T2TWGBSBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_wgbs, "t2t_bwameth_wgbs_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
-  T2TWGBSBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_wgbs, "t2t_bismark_wgbs_nofilt")
-  T2TWGBSBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_wgbs, "t2t_bismark_wgbs_filt")
+  T2TWGBSBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_wgbs, "t2t_bismark_wgbs_nofilt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
+  T2TWGBSBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_wgbs, "t2t_bismark_wgbs_filt", params.tmpdir, params.min_mapq, params.bismap_cutoff)
 
 }
