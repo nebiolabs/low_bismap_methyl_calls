@@ -410,7 +410,7 @@ process addParamsToMiscalls {
         
     shell:
     '''
-    python add_params.py !{miscalls} miscalled_genes_!{outputSuffix}_!{n.strip()}.tsv !{massMapping} !{referenceName} !{aligner} !{seqMethod} !{filterStr} 6
+    python add_params.py !{miscalls} miscalls_!{outputSuffix}_!{n.strip()}.tsv !{massMapping} !{referenceName} !{aligner} !{seqMethod} !{filterStr} 6
     '''
 }
 

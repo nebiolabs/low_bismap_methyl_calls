@@ -927,8 +927,6 @@ protocol
 \end_layout
 
 \begin_layout Subsection*
-
-\change_inserted -162802704 1625841161
 EM-seq Libraries
 \end_layout
 
@@ -1000,10 +998,38 @@ literal "false"
 
 .
  A VCF file of disease-associated variant sites was downloaded from ClinVar
- (see supplemental data for file date) and a GFF file of the GENCODE v31
- gene annotations were used.
+ (see supplemental data
+\change_inserted -1421919639 1626192956
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "The-ClinVar-VCF"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_unchanged
+ for file date) and a GFF file of the GENCODE v31 gene annotations were
+ used.
  The mappability data was the 100bp multi-read bigWig file downloaded from
- Bismap (see supplemental materials for link).
+ Bismap (see supplemental materials
+\change_inserted -1421919639 1626192974
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "The-Bismap-file"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_unchanged
+ for link).
  A detailed diagram of the analysis pipeline is found in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1192,15 +1218,11 @@ name "fig:dag-1"
 \end_inset
 
 Detailed description of
-\change_inserted -162802704 1625842161
- <rework with some more detail about what is being done by this procedure
-\change_deleted -1421919639 1626115238
-, update figure to avoid use of miscall (which we'll use only for the per-read
- filtered assessment)
-\change_inserted -162802704 1625842161
->
+\change_inserted -1421919639 1626191912
+ steps for calling methylation and intersecting the resulting calls with
+ the low mappability regions determined in the preprocessing steps.
+
 \change_unchanged
-.
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
@@ -1354,11 +1376,7 @@ is in a region with Bismap mappability less than 0.01, as defined by the
  position of the C alone (positions of anchoring reads are not considered
  when determining this).
 \change_deleted -1421919639 1626115329
-was filtered out using the new MethylDackel mappability filteringchange
- use of miscall to something else (to avoid confusion with per-read filtered).
-
-\change_deleted -162802704 1625841999
- 
+was filtered out using the new MethylDackel mappability filtering.
 \change_unchanged
 
 \end_layout
@@ -1400,8 +1418,22 @@ miscalls
 low mappability calls
 \change_unchanged
  by feeding the data to a custom Python script (found in the Nextflow script
- in the supplemental materials) which counted and combined the duplicates,
- producing a list of all ClinVar regions with 
+ in the supplemental materials
+\change_inserted -1421919639 1626193186
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "nextflow script"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_unchanged
+) which counted and combined the duplicates, producing a list of all ClinVar
+ regions with 
 \change_deleted -1421919639 1626115418
 miscalls
 \change_inserted -1421919639 1626115418
@@ -1461,9 +1493,17 @@ low mappability calls
 \begin_layout Standard
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
  with the Bismark aligner using default settings and deduplicated using
- deduplicate_bismark according to the documented protocol
-\change_inserted -162802704 1625842355
- <citation>
+ deduplicate_bismark according to the documented protocol 
+\change_inserted -1421919639 1626192558
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "krueger_felixkruegerbismark_2021"
+literal "false"
+
+\end_inset
+
+
 \change_unchanged
 .
  The name of the aligner was added to the field specifying the input mass,
@@ -1532,8 +1572,19 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 To compare the need for and the effect of mappability filtering on the more
- complete T2T v1.1 reference genome <citation> (hereafter referred to as
- 
+ complete T2T v1.1 reference genome 
+\change_inserted -1421919639 1626192829
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nurk_complete_2021"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ (hereafter referred to as 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1583,6 +1634,8 @@ literal "false"
  As there was no Bismap mappability file for the T2T reference, we downloaded
  the Bismap tool and generated a k=100 multi-read Bismap mappability dataset
  for this reference genome.
+
+\change_deleted -1421919639 1626193089
  
 \change_deleted -162802704 1625842616
  
@@ -1602,8 +1655,21 @@ literal "false"
 
 
 \change_unchanged
- pipeline (see supplemental materials) which managed the execution of all
- the analysis tools needed.
+ pipeline (see supplemental materials
+\change_inserted -1421919639 1626193207
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "nextflow script"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_unchanged
+) which managed the execution of all the analysis tools needed.
  
 \change_inserted -1421919639 1625691667
 <write about how the resulting files are processed>
@@ -1676,8 +1742,9 @@ https://github.com/nebiolabs/low_bismap_methyl_calls
  .
  
 \change_inserted -162802704 1625843227
-<add versions to conda lines in nextflow> Individual tools used in the analysis
- include sambamba
+<add versions to conda lines in nextflow> 
+\change_unchanged
+Individual tools used in the analysis include sambamba
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btv098"
@@ -1686,10 +1753,8 @@ literal "false"
 \end_inset
 
 , vcf2bed, gff2bed, bigWigToBedGraph, MethylDackel, awk, python, GNU sort,
- GNU head, bedtools, BEDOPS.
- 
-\change_unchanged
-Versions of all tools used are specifed in the nextflow 
+ GNU head, bedtools, and BEDOPS.
+ Versions of all tools used are specifed in the nextflow 
 \change_deleted -1421919639 1626108890
 <version>
 \change_inserted -1421919639 1626108892
@@ -1783,7 +1848,7 @@ kMappability.bw
 \end_inset
 
 
-\change_inserted -162802704 1625843365
+\change_deleted -1421919639 1626193215
  <refer to these in the main body>
 \change_unchanged
 
