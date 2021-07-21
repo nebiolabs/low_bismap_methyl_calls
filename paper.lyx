@@ -239,8 +239,18 @@ It is also possible to use an enzymatic method, EM-seq, employing TET2 to
  to uracil.
  While sodium bisulfite treatment produces other DNA damage, this enzymatic
  method deaminates with more precision 
-\change_inserted -162802704 1625840503
+\change_deleted -1421919639 1626197036
 <add citation>
+\change_inserted -1421919639 1626197053
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaisvila_enzymatic_2021"
+literal "false"
+
+\end_inset
+
+
 \change_unchanged
 .
 \end_layout
@@ -773,10 +783,36 @@ noprefix "false"
 
 ).
 
-\change_inserted -1421919639 1625241316
+\change_inserted -1421919639 1626791822
  <is this how we did it? or did we compare filtered/unfiltered?>
-\change_unchanged
+\end_layout
 
+\begin_layout Subsection*
+
+\change_inserted -1421919639 1626793579
+Filtering Effect
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1626793725
+We compared the effect of per-read mappability filtering on number of C's
+ called, as well as number of C's called in low-mappability regions (as
+ defined by per-C filtering), on EM-seq samples of 3 input masses 
+\end_layout
+
+\begin_layout Subsection*
+
+\change_inserted -1421919639 1626791877
+EM-seq vs.
+ WGBS
+\end_layout
+
+\begin_layout Subsection*
+
+\change_inserted -1421919639 1626791899
+Bwa-meth vs.
+ Bismark
 \end_layout
 
 \begin_layout Standard
@@ -815,6 +851,25 @@ literal "false"
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
+\change_inserted -1421919639 1626791904
+
+\end_layout
+
+\begin_layout Subsection*
+
+\change_inserted -1421919639 1626793205
+GRCh38 vs.
+ T2T
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1626793362
+We also examined the effect of using the T2T reference <move citation up
+ here rather than in methods> in place of GRCh38, since the T2T reference
+ is much more complete than GRCh38, which could play a role in where methylation
+ is called and what areas of the genome have unique enough sequence to support
+ calling.
 \end_layout
 
 \begin_layout Standard
@@ -882,7 +937,19 @@ Libraries were prepared from 10, 50, and 200 ng of genomic DNA from the
  R.
  Weigele, Detection of modified bases in bacteriophage genomic DNA.
  Methods Mol.
- Biol.2198, 53-66 (2021).) 
+ Biol.2198, 53-66 (2021).
+\change_inserted -1421919639 1626197236
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lee_detection_2021"
+literal "false"
+
+\end_inset
+
+
+\change_inserted -162802704 1625841068
+) 
 \change_inserted -1421919639 1624038611
 <is there a specific source for this, e.g.
  a company and/or product name
@@ -907,23 +974,11 @@ Whole Genome Bisulfite Libraries
 \begin_layout Standard
 Libraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
  before being Bisulfite converted according to 
-\change_inserted -1421919639 1624040077
-<
-\change_deleted -1421919639 1624040077
-(
-\change_unchanged
-protocol
-\change_inserted -1421919639 1624040079
->
-\change_deleted -1421919639 1624040078
-)
+\change_inserted -1421919639 1626197378
+<protocol>
 \change_unchanged
 .
-
-\change_inserted -1421919639 1624041101
  
-\change_inserted -162802704 1625841148
-
 \end_layout
 
 \begin_layout Subsection*

@@ -1,115 +1,101 @@
 nextflow.enable.dsl=2
 
-include { basicPipeline as GRCh38WGBSBismarkNoFilt } from './miscalls_one.nf'
-include { basicPipeline as GRCh38WGBSBismarkFilt } from './miscalls_one.nf'
+include { refPreproc as PreprocRefGRCh38 } from './miscalls_one.nf'
+include { refPreproc as PreprocRefT2T } from './miscalls_one.nf'
 
-include { basicPipeline as GRCh38WGBSBwamethNoFilt } from './miscalls_one.nf'
-include { basicPipeline as GRCh38WGBSBwamethFilt } from './miscalls_one.nf'
+include { runPair as GRCh38WGBSBismark } from './miscalls_pair.nf'
+include { runPair as GRCh38WGBSBwameth } from './miscalls_pair.nf'
+include { runPair as GRCh38EMSeqBismark } from './miscalls_pair.nf'
+include { runPair as GRCh38EMSeqBwameth } from './miscalls_pair.nf'
+include { runPair as T2TWGBSBismark } from './miscalls_pair.nf'
+include { runPair as T2TWGBSBwameth } from './miscalls_pair.nf'
+include { runPair as T2TEMSeqBismark} from './miscalls_pair.nf'
+include { runPair as T2TEMSeqBwameth } from './miscalls_pair.nf'
 
-include { basicPipeline as GRCh38EMSeqBismarkNoFilt } from './miscalls_one.nf'
-include { basicPipeline as GRCh38EMSeqBismarkFilt } from './miscalls_one.nf'
+params.clinvarBedT2t="test_fixtures/chr18_clinvar_regions.bed"
 
-include { basicPipeline as GRCh38EMSeqBwamethNoFilt } from './miscalls_one.nf'
-include { basicPipeline as GRCh38EMSeqBwamethFilt } from './miscalls_one.nf'
+params.bismapBwT2t="test_fixtures/chr18_bismap.bw"
 
-include { basicPipeline as T2TWGBSBismarkNoFilt } from './miscalls_one.nf'
-include { basicPipeline as T2TWGBSBismarkFilt } from './miscalls_one.nf'
+params.bismapBbmT2t="test_fixtures/chr18_bismap.bbm"
 
-include { basicPipeline as T2TWGBSBwamethNoFilt } from './miscalls_one.nf'
-include { basicPipeline as T2TWGBSBwamethFilt } from './miscalls_one.nf'
+params.refGrch38FaiT2t="test_fixtures/chr18_test.fa.fai"
 
-include { basicPipeline as T2TEMSeqBismarkNoFilt } from './miscalls_one.nf'
-include { basicPipeline as T2TEMSeqBismarkFilt } from './miscalls_one.nf'
+params.refT2t="test_fixtures/chr18_test.fa"
 
-include { basicPipeline as T2TEMSeqBwamethNoFilt } from './miscalls_one.nf'
-include { basicPipeline as T2TEMSeqBwamethFilt } from './miscalls_one.nf'
+params.clinvarBedGrch38="test_fixtures/chr18_clinvar_regions.bed"
 
-params.clinvarbedt2t="test_fixtures/chr18_clinvar_regions.bed"
+params.bismapBwGrch38="test_fixtures/chr18_bismap.bw"
 
-params.bismapt2t="test_fixtures/chr18_bismap.bw"
+params.bismapBbmGrch38="test_fixtures/chr18_bismap.bbm"
 
-params.bismapt2t_bbm="test_fixtures/chr18_bismap.bbm"
+params.refGrch38FaiGrch38="test_fixtures/chr18_test.fa.fai"
 
-params.reft2t_fai="test_fixtures/chr18_test.fa.fai"
+params.refGrch38="test_fixtures/chr18_test.fa"
 
-params.reft2t="test_fixtures/chr18_test.fa"
+params.bamsBwamethWgbsGrch38="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.clinvarbed="test_fixtures/chr18_clinvar_regions.bed"
+params.bamsBwamethWgbsT2t="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.bismap="test_fixtures/chr18_bismap.bw"
+params.bamsBismarkWgbsGrch38="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.bismap_bbm="test_fixtures/chr18_bismap.bbm"
+params.bamsBismarkWgbsT2t="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.ref_fai="test_fixtures/chr18_test.fa.fai"
+params.bamsBwamethEmseqGrch38="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.ref="test_fixtures/chr18_test.fa"
+params.bamsBwamethEmseqT2t="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.bams_bwameth_wgbs="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
+params.bamsBismarkEmseqGrch38="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.bamst2t_bwameth_wgbs="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
+params.bamsBismarkEmseqT2t="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
 
-params.bams_bismark_wgbs="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
+params.minMapq=10
 
-params.bamst2t_bismark_wgbs="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
+params.noFilterMappability=false
 
-params.bams_bwameth_emseq="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
-
-params.bamst2t_bwameth_emseq="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
-
-params.bams_bismark_emseq="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
-
-params.bamst2t_bismark_emseq="test_fixtures/chr18_bwameth_fixed.bam,test_fixtures/chr18_bismark_fixed.bam"
-
-params.min_mapq=10
-
-params.no_filter_mappability=false
-
-params.bismap_cutoff=0.01
+params.bismapCutoff=0.01
 
 params.tmpdir = "/tmp"
 
-params.mass_mapping = "test_fixtures/mass_mapping.csv"
+params.massMapping = "test_fixtures/mass_mapping.csv"
+
+params.publishMode = "symlink"
 
 workflow {
 
-    no_filter_mappability=params.no_filter_mappability
+    no_filter_mappability=params.noFilterMappability
 
-    bismap_bw_grch38 = file(params.bismap)
-    bismap_bbm_grch38 = file(params.bismap_bbm)
-    clinvar_regions_grch38 = file(params.clinvarbed)
-    ref_fai_grch38 = file(params.ref_fai)
-    ref_grch38 = file(params.ref)
+    bismap_bw_grch38 = file(params.bismapBwGrch38)
+    bismap_bbm_grch38 = file(params.bismapBbmGrch38)
+    clinvar_regions_grch38 = file(params.clinvarBedGrch38)
+    ref_fai_grch38 = file(params.refGrch38FaiGrch38)
+    ref_grch38 = file(params.refGrch38)
 
-    bismap_bw_t2t = file(params.bismapt2t)
-    bismap_bbm_t2t = file(params.bismapt2t_bbm)
-    clinvar_regions_t2t = file(params.clinvarbedt2t)
-    ref_fai_t2t = file(params.reft2t_fai)
-    ref_t2t = file(params.reft2t)
+    bismap_bw_t2t = file(params.bismapBwT2t)
+    bismap_bbm_t2t = file(params.bismapBbmT2t)
+    clinvar_regions_t2t = file(params.clinvarBedT2t)
+    ref_fai_t2t = file(params.refGrch38FaiT2t)
+    ref_t2t = file(params.refT2t)
 
-    mass_mapping = file(params.mass_mapping)
+    mass_mapping = file(params.massMapping)
 
-    GRCh38EMSeqBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_emseq, "grch38", "bwameth", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    GRCh38EMSeqBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_emseq, "grch38", "bwameth", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    PreprocRefGRCh38(bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, params.tmpdir, params.minMapq, params.bismapCutoff)
 
-    GRCh38EMSeqBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_emseq, "grch38", "bismark", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    GRCh38EMSeqBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_emseq, "grch38", "bismark", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    PreprocRefT2T(bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, params.tmpdir, params.minMapq, params.bismapCutoff)
 
-    GRCh38WGBSBwamethNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bwameth_wgbs, "grch38", "bwameth", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    GRCh38WGBSBwamethFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bwameth_wgbs, "grch38", "bwameth", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    GRCh38EMSeqBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethEmseqGrch38, "grch38", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
 
-    GRCh38WGBSBismarkNoFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, true, params.bams_bismark_wgbs, "grch38", "bismark", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    GRCh38WGBSBismarkFilt(bismap_bbm_grch38, bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, false, params.bams_bismark_wgbs, "grch38", "bismark", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    GRCh38EMSeqBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkEmseqGrch38, "grch38", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
 
-    T2TEMSeqBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_emseq, "t2t", "bwameth", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    T2TEMSeqBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_emseq, "t2t", "bwameth", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    GRCh38WGBSBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethWgbsGrch38, "grch38", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
 
-    T2TEMSeqBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_emseq, "t2t", "bismark", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    T2TEMSeqBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_emseq, "t2t", "bismark", "emseq", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    GRCh38WGBSBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkWgbsGrch38, "grch38", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
 
-    T2TWGBSBwamethNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bwameth_wgbs, "t2t", "bwameth", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    T2TWGBSBwamethFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bwameth_wgbs, "t2t", "bwameth", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    T2TEMSeqBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethEmseqT2t, "t2t", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
 
-    T2TWGBSBismarkNoFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, true, params.bamst2t_bismark_wgbs, "t2t", "bismark", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
-    T2TWGBSBismarkFilt(bismap_bbm_t2t, bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, false, params.bamst2t_bismark_wgbs, "t2t", "bismark", "wgbs", params.tmpdir, params.min_mapq, params.bismap_cutoff, mass_mapping)
+    T2TEMSeqBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkEmseqT2t, "t2t", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+
+    T2TWGBSBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethWgbsT2t, "t2t", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+
+    T2TWGBSBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkWgbsT2t, "t2t", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
 
 }
