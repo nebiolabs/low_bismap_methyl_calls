@@ -64,7 +64,7 @@ process convertFaiToGenome {
 process extractBam {
 
     penv 'smp'
-    conda 'methyldackel'
+    conda 'methyldackel=0.6.0'
     cpus 8
 
     input:
