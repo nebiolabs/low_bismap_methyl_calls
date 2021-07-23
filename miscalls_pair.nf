@@ -31,7 +31,7 @@ params.aligner = "aligner"
 
 params.seqMethod = "seq"
 
-params.publishMode = "symlink"
+params.copy = false;
 
 process combineFilteringLowmapCalls {
 
@@ -340,8 +340,15 @@ workflow {
 
     mass_mapping = file(params.massMapping)
 
+    publishMode = "symlink"
+
+    if(params.copy)
+    {
+        publishMode = "copy"
+    }
+
     PreprocRef(bismap_bw, ref, ref_fai, clinvar_regions, params.tmpdir, params.minMapq, params.bismapCutoff)
-    runPair(bismap_bbm, ref, ref_fai, params.bams, params.referenceName, params.aligner, params.seqMethod, params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRef.out[0], PreprocRef.out[1], PreprocRef.out[2], params.publishMode)
+    runPair(bismap_bbm, ref, ref_fai, params.bams, params.referenceName, params.aligner, params.seqMethod, params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRef.out[0], PreprocRef.out[1], PreprocRef.out[2], publishMode)
 
 }
 

@@ -28,7 +28,7 @@ params.seqMethod = "seq"
 
 params.massMapping = "test_fixtures/mass_mapping.csv"
 
-params.publishMode = "symlink"
+params.copy = false;
 
 process bigWigToBedGraph {
 
@@ -602,6 +602,8 @@ process getPureMethylSites {
 
 process getMixedMethylSites {
 
+    cpus 2
+    penv 'smp'
     publishDir 'methyl_calls/pure_mixed_calls', mode: "${publish_mode}", pattern: "mixed_methyl_calls_${outputSuffix}_*.tsv"
     conda 'bedtools=2.30.0'
 
@@ -628,10 +630,16 @@ workflow {
     bismap_bbm= file(params.bismapBbm)
     mass_mapping = file(params.massMapping)
 
+    publishMode = "symlink"
+
+    if(params.copy)
+    {
+        publishMode = "copy"
+    }
 
     refPreproc(bismap_bw, ref, ref_fai, clinvar_regions, params.tmpdir, params.minMapq, params.bismapCutoff)
     
-    basicPipeline(bismap_bbm, ref, ref_fai, no_filter_mappability, params.bams, params.referenceName, params.aligner, params.seqMethod, params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, refPreproc.out[0], refPreproc.out[1], refPreproc.out[2])
+    basicPipeline(bismap_bbm, ref, ref_fai, no_filter_mappability, params.bams, params.referenceName, params.aligner, params.seqMethod, params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, refPreproc.out[0], refPreproc.out[1], refPreproc.out[2], publishMode)
 
 
 }

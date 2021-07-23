@@ -58,7 +58,7 @@ params.tmpdir = "/tmp"
 
 params.massMapping = "test_fixtures/mass_mapping.csv"
 
-params.publishMode = "symlink"
+params.copy = false
 
 workflow {
 
@@ -78,24 +78,31 @@ workflow {
 
     mass_mapping = file(params.massMapping)
 
+    publishMode = "symlink"
+
+    if(params.copy)
+    {
+        publishMode = "copy"
+    }
+
     PreprocRefGRCh38(bismap_bw_grch38, ref_grch38, ref_fai_grch38, clinvar_regions_grch38, params.tmpdir, params.minMapq, params.bismapCutoff)
 
     PreprocRefT2T(bismap_bw_t2t, ref_t2t, ref_fai_t2t, clinvar_regions_t2t, params.tmpdir, params.minMapq, params.bismapCutoff)
 
-    GRCh38EMSeqBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethEmseqGrch38, "grch38", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
+    GRCh38EMSeqBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethEmseqGrch38, "grch38", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], publishMode)
 
-    GRCh38EMSeqBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkEmseqGrch38, "grch38", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
+    GRCh38EMSeqBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkEmseqGrch38, "grch38", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], publishMode)
 
-    GRCh38WGBSBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethWgbsGrch38, "grch38", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
+    GRCh38WGBSBwameth(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBwamethWgbsGrch38, "grch38", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], publishMode)
 
-    GRCh38WGBSBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkWgbsGrch38, "grch38", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], params.publishMode)
+    GRCh38WGBSBismark(bismap_bbm_grch38, ref_grch38, ref_fai_grch38, params.bamsBismarkWgbsGrch38, "grch38", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefGRCh38.out[0], PreprocRefGRCh38.out[1], PreprocRefGRCh38.out[2], publishMode)
 
-    T2TEMSeqBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethEmseqT2t, "t2t", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+    T2TEMSeqBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethEmseqT2t, "t2t", "bwameth", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], publishMode)
 
-    T2TEMSeqBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkEmseqT2t, "t2t", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+    T2TEMSeqBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkEmseqT2t, "t2t", "bismark", "emseq", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], publishMode)
 
-    T2TWGBSBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethWgbsT2t, "t2t", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+    T2TWGBSBwameth(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBwamethWgbsT2t, "t2t", "bwameth", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], publishMode)
 
-    T2TWGBSBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkWgbsT2t, "t2t", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], params.publishMode)
+    T2TWGBSBismark(bismap_bbm_t2t, ref_t2t, ref_fai_t2t, params.bamsBismarkWgbsT2t, "t2t", "bismark", "wgbs", params.tmpdir, params.minMapq, params.bismapCutoff, mass_mapping, PreprocRefT2T.out[0], PreprocRefT2T.out[1], PreprocRefT2T.out[2], publishMode)
 
 }
