@@ -31,7 +31,7 @@ params.aligner = "aligner"
 
 params.seqMethod = "seq"
 
-params.copy = false;
+params.copy = false
 
 process combineFilteringLowmapCalls {
 

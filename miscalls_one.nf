@@ -28,7 +28,7 @@ params.seqMethod = "seq"
 
 params.massMapping = "test_fixtures/mass_mapping.csv"
 
-params.copy = false;
+params.copy = false
 
 process bigWigToBedGraph {
 
