@@ -48,7 +48,7 @@ process combineFilteringLowmapCalls {
 
     shell:
     '''
-    bedtools subtract -A -a !{nofilt} -b !{filt} | cut -f 1-10,12 > miscalls_lowmap_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -v -a !{nofilt} -b !{filt} | cut -f 1-10,12 > miscalls_lowmap_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 
@@ -67,7 +67,7 @@ process combineFilteringClinvarLowmapCalls {
 
     shell:
     '''
-    bedtools subtract -A -a !{nofilt} -b !{filt} | cut -f 1-10,12 > clinvar_miscalls_lowmap_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -v -a !{nofilt} -b !{filt} | cut -f 1-10,12 > clinvar_miscalls_lowmap_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 
@@ -86,7 +86,7 @@ process combineFilteringClinvarCalls {
 
     shell:
     '''
-    bedtools subtract -A -a !{nofilt} -b !{filt} | cut -f 1-10,12 > clinvar_miscalls_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -v -a !{nofilt} -b !{filt} | cut -f 1-10,12 > clinvar_miscalls_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 
@@ -105,7 +105,7 @@ process combineFilteringCalls {
 
     shell:
     '''
-    bedtools subtract -A -a !{nofilt} -b !{filt} | cut -f 1-10,12 > miscalls_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -v -a !{nofilt} -b !{filt} | cut -f 1-10,12 > miscalls_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 
@@ -297,8 +297,7 @@ process combineResolvedCalls {
 
     input:
         val outputSuffix
-        tuple val(groupKey), file(nofilt), file(filt), file(_)
-        //the _1 and _2 are extra files needed for another task that are stuck in the input
+        tuple val(groupKey), file(nofilt), file(filt)
         val publish_mode
 
     output:
@@ -306,7 +305,7 @@ process combineResolvedCalls {
 
     shell:
     '''
-    bedtools intersect -wa -wb -a !{nofilt} -b !{filt} | cut -f 1-6,16-24 > resolved_calls_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -wa -wb -a !{nofilt} -b !{filt} | cut -f 1-6,16-24 > resolved_calls_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 
@@ -326,7 +325,7 @@ process calcUnderfilteredCalls {
 
     shell:
     '''
-    bedtools subtract -A -a !{resolved_calls} -b !{lowmap_data} > underfiltered_calls_!{outputSuffix}_!{groupKey}.tsv
+    bedtools intersect -sorted -v -a !{resolved_calls} -b !{lowmap_data} > underfiltered_calls_!{outputSuffix}_!{groupKey}.tsv
     '''
 }
 

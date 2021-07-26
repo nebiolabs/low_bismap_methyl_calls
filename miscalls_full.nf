@@ -18,7 +18,7 @@ params.bismapBwT2t="test_fixtures/chr18_bismap.bw"
 
 params.bismapBbmT2t="test_fixtures/chr18_bismap.bbm"
 
-params.refGrch38FaiT2t="test_fixtures/chr18_test.fa.fai"
+params.refFaiT2t="test_fixtures/chr18_test.fa.fai"
 
 params.refT2t="test_fixtures/chr18_test.fa"
 
@@ -28,7 +28,7 @@ params.bismapBwGrch38="test_fixtures/chr18_bismap.bw"
 
 params.bismapBbmGrch38="test_fixtures/chr18_bismap.bbm"
 
-params.refGrch38FaiGrch38="test_fixtures/chr18_test.fa.fai"
+params.refFaiGrch38="test_fixtures/chr18_test.fa.fai"
 
 params.refGrch38="test_fixtures/chr18_test.fa"
 
@@ -67,13 +67,13 @@ workflow {
     bismap_bw_grch38 = file(params.bismapBwGrch38)
     bismap_bbm_grch38 = file(params.bismapBbmGrch38)
     clinvar_regions_grch38 = file(params.clinvarBedGrch38)
-    ref_fai_grch38 = file(params.refGrch38FaiGrch38)
+    ref_fai_grch38 = file(params.refFaiGrch38)
     ref_grch38 = file(params.refGrch38)
 
     bismap_bw_t2t = file(params.bismapBwT2t)
     bismap_bbm_t2t = file(params.bismapBbmT2t)
     clinvar_regions_t2t = file(params.clinvarBedT2t)
-    ref_fai_t2t = file(params.refGrch38FaiT2t)
+    ref_fai_t2t = file(params.refFaiT2t)
     ref_t2t = file(params.refT2t)
 
     mass_mapping = file(params.massMapping)

@@ -235,11 +235,30 @@ process slopRegions {
         file ref_genome
 
     output:
+        file 'clinvar_annotations_low_expanded_unsorted.bedGraph'
+        
+    shell:
+    '''
+    cat !{clinvar_regions_min_mean_map_low} | awk '{ print $0"\tplaceholder" }' > tmp.bed; bedtools slop -l 2000 -r 0 -s -i tmp.bed -g !{ref_genome} | cut -f 1-12 > clinvar_annotations_low_expanded_unsorted.bedGraph; rm tmp.bed
+    '''
+}
+
+process gsortSlopRegions {
+
+    cpus 8
+    penv 'smp'
+    conda 'coreutils=8.25'
+
+    input:
+        file slop_regions
+        val tmpdir
+
+    output:
         file 'clinvar_annotations_low_expanded.bedGraph'
         
     shell:
     '''
-    cat !{clinvar_regions_min_mean_map_low} | awk '{ print $0"\tplaceholder" }' > tmp.bed; bedtools slop -l 2000 -r 0 -s -i tmp.bed -g !{ref_genome} | cut -f 1-12 > clinvar_annotations_low_expanded.bedGraph; rm tmp.bed
+    LC_ALL=C sort -k1,1 -k2,2n -S 32G -T !{tmpdir} --parallel !{task.cpus} !{slop_regions} > clinvar_annotations_low_expanded.bedGraph
     '''
 }
 
@@ -593,7 +612,7 @@ process getPureMethylSites {
        val outputSuffix
        val publish_mode
     output:
-        tuple val(n), file("pure_methyl_calls_${outputSuffix}_*.tsv"), file(calls)
+        tuple val(n), file("pure_methyl_calls_${outputSuffix}_*.tsv")
     shell:
     '''
     awk '($4 == 100 || $4 == 0) { print }' !{calls} > pure_methyl_calls_!{outputSuffix}_!{n.strip()}.tsv
@@ -608,14 +627,14 @@ process getMixedMethylSites {
     conda 'bedtools=2.30.0'
 
     input:
-       tuple val(n), file(pure_calls), file(calls)
+       tuple val(n), file(calls)
        val outputSuffix
        val publish_mode
     output:
         tuple val(n), file("mixed_methyl_calls_${outputSuffix}_*.tsv")
     shell:
     '''
-    bedtools subtract -A -a !{calls} -b !{pure_calls} > mixed_methyl_calls_!{outputSuffix}_!{n.strip()}.tsv
+    awk '($4 != 100 && $4 != 0) { print }' !{calls} > mixed_methyl_calls_!{outputSuffix}_!{n.strip()}.tsv
     '''
 }
 
@@ -666,11 +685,12 @@ workflow refPreproc {
         filterMinMean(pasteMinMean.out, bismap_cutoff)
         gsortMinMean(filterMinMean.out, tmpdir)
         slopRegions(gsortMinMean.out, tmpdir, convertFaiToGenome.out)
-        intersectClinvarBismapLow(slopRegions.out, combineLowRegions.out)
+        gsortSlopRegions(slopRegions.out, tmpdir)
+        intersectClinvarBismapLow(gsortSlopRegions.out, combineLowRegions.out)
     emit:
         intersectClinvarBismapLow.out
         combineLowRegions.out
-        slopRegions.out
+        gsortSlopRegions.out
 }
 
 workflow basicPipeline {
@@ -729,7 +749,7 @@ workflow basicPipeline {
         addParamsToCalledGenes(outputSuffix, countGeneCalls.out, referenceName, aligner, seqMethod, filterStr, massMapping, workflow.projectDir, publish_mode)
         addParamsToLowmapCalledGenes(outputSuffix, countLowmapGeneCalls.out, referenceName, aligner, seqMethod, filterStr, massMapping, workflow.projectDir, publish_mode)
         getPureMethylSites(addParamsToCalls.out, outputSuffix, publish_mode)
-        getMixedMethylSites(getPureMethylSites.out, outputSuffix, publish_mode)
+        getMixedMethylSites(addParamsToCalls.out, outputSuffix, publish_mode)
     emit:
         addParamsToLowmapCalls.out
         addParamsToCalls.out
