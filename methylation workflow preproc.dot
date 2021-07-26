@@ -86,9 +86,11 @@ digraph workflow {
 
 	"bedtools intersect -u_0" -> "sorted low mappability regions\nin ClinVar annotations";
 
-	"sorted low mappability regions\nin ClinVar annotations";
+	"sorted low mappability regions\nin ClinVar annotations" -> "expanded sorted low mappability regions\nin ClinVar annotations" [label="bedtools slop"];	
 
-	"sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing", style=dotted];
+	"expanded sorted low mappability regions\nin ClinVar annotations";
+
+	"expanded sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing", style=dotted];
 
 	"BAM_PROC_3" [style=invis];
 
