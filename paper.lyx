@@ -282,8 +282,19 @@ literal "false"
 
 \end_inset
 
-, which will use the resulting reads to determine the methylation status
- of a particular cytosine (see Figure 
+, which will use the resulting read
+\change_inserted -1421919639 1627325522
+ alignment
+\change_unchanged
+s to determine the methylation status of 
+\change_deleted -1421919639 1627325528
+a 
+\change_unchanged
+particular cytosine
+\change_inserted -1421919639 1627325530
+s
+\change_unchanged
+ (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview"
@@ -424,9 +435,12 @@ literal "false"
  a particular length (in this case, k=100) in the genome to create a mappability
  score (ranging from 0 to 1 in increments of 0.01) for every base in the
  GRCh38 reference.
- <bases this on assumption that each locus is either 0 or 100%> Bismap takes
- the effect of C->T conversion into account and therefore produces data
- which is applicable in the context of methylation sequencing.
+ <bases this on assumption that each locus is either 0 or 100%
+\change_inserted -1421919639 1627325677
+ <what does this note mean exactly? I forgot.>
+\change_unchanged
+> Bismap takes the effect of C->T conversion into account and therefore
+ produces data which is applicable in the context of methylation sequencing.
  Reads entirely contained within a region of low mappability should not
  have high MapQ values due to their repetitiveness, however we observed
  many high-MapQ reads in regions with very low or zero Bismap mappability
@@ -604,10 +618,20 @@ noprefix "false"
 \end_inset
 
 to accept a bigWig file of low-mappability regions to exclude from analysis.
- This alignment filtering approach precisely eliminates only those reads
- in repetitive regions and does not incur a significant cost in terms of
- execution speed (10:14 min with the patch 9:55 min without, when run with
- 20 threads on the GRCh38 reference genome).
+ This 
+\change_deleted -1421919639 1627325837
+alignment
+\change_inserted -1421919639 1627325839
+per-read
+\change_unchanged
+ filtering approach precisely eliminates only those reads in repetitive
+ regions and does not incur a significant cost in terms of execution speed
+ (10:14 min with the patch 9:55 min without, when run with 20 threads on
+ the GRCh38 reference genome
+\change_inserted -1421919639 1627325856
+ <update these numbers?>
+\change_unchanged
+).
  (see computational methods for details)
 \end_layout
 
@@ -914,17 +938,29 @@ literal "false"
 
 \begin_layout Standard
 todo: filtering effect em-seq vs wgbs (fig) for bwa-meth
+\change_inserted -1421919639 1627325968
+ (in pipeline)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm
  working on)
+\change_inserted -1421919639 1627325973
+ (in pipeline)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 todo: # cs affected (worst) bismark vs filtered vs bwa-meth vs filtered
  (best) (fig?) (I can get this from the emseq/wgbs data, it's a simple bedtools
  operation)
+\change_inserted -1421919639 1627326011
+ (in pipeline, somewhat)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -935,6 +971,10 @@ todo: group Cs by magnititude of change in methylation post filtering (fig,
 
 \begin_layout Standard
 todo: effect on ClinVar
+\change_inserted -1421919639 1627326000
+ (in pipeline)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -949,6 +989,10 @@ s) (sequencing, not chip) (ideally, clinically relevant EM-seq)
 
 \begin_layout Standard
 todo: T2T data (repeat analysis on this and compare effect)
+\change_inserted -1421919639 1627325982
+ (in pipeline)
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
@@ -1385,6 +1429,11 @@ The sequencing reads were aligned using the bwa-meth aligner using default
  This format can store the mappability data for the hg38/GRCh38 human genome
  in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
  ratio for this dataset of 7.78:1.
+
+\change_inserted -1421919639 1627326195
+ <mention the trimming settings?>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1640,19 +1689,14 @@ literal "false"
 \change_unchanged
 .
  The name of the aligner was added to the field specifying the input mass,
- protocol, and MethylDackel filtering settings present in the 
-\change_deleted -1421919639 1626115537
-miscalls
-\change_inserted -1421919639 1626115537
-low mappability calls
-\change_unchanged
- files and the lists of all ClinVar regions with 
-\change_deleted -1421919639 1626115557
-miscalls
-\change_inserted -1421919639 1626115557
-low mappability calls
-\change_unchanged
- and counts
+ protocol, and MethylDackel filtering settings present in 
+\change_deleted -1421919639 1627326389
+the
+\change_inserted -1421919639 1627326412
+all output files containing methylation calls or counts of such calls in
+ ClinVar regions 
+\change_deleted -1421919639 1627326336
+ miscalls files and the lists of all ClinVar regions with miscalls and counts
 \change_inserted -1421919639 1626122899
  (using the same custom Python script)
 \change_unchanged
@@ -1731,10 +1775,13 @@ T2T
 
 ), the analysis was re-run using the T2T reference in place of GRCh38 (supplemen
 ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with GRCh38).
- To use the ClinVar and GENCODE data, which were respectively originally
- obtained as VCF and GFF files containing genomic coordinates in GRCh38,
- with the T2T reference, the positions were transferred over to the T2T
- reference using CrossMap 
+ To use the ClinVar and GENCODE data
+\change_inserted -1421919639 1627326482
+sets
+\change_unchanged
+, which were respectively originally obtained as VCF and GFF files containing
+ genomic coordinates in GRCh38, with the T2T reference, the positions were
+ transferred over to the T2T reference using CrossMap 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "zhao_crossmap_2014"
