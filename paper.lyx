@@ -239,8 +239,6 @@ It is also possible to use an enzymatic method, EM-seq, employing TET2 to
  to uracil.
  While sodium bisulfite treatment produces other DNA damage, this enzymatic
  method deaminates with more precision 
-\change_deleted -1421919639 1626197036
-<add citation>
 \change_inserted -1421919639 1626197053
 
 \begin_inset CommandInset citation
@@ -500,12 +498,16 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+
+\change_deleted -1421919639 1626983297
 \begin_inset CommandInset label
 LatexCommand label
 name "example"
 
 \end_inset
 
+
+\change_unchanged
 
 \begin_inset Caption Standard
 
@@ -617,6 +619,52 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
+	filename fig4_svg.svg
+	width 60page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1626982451
+<I think we need to be more explicit about what is being plotted here>
+\change_unchanged
+An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_inserted -1421919639 1626982366
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
 	filename fig3_svg.svg
 	width 60page%
 
@@ -633,51 +681,6 @@ An example of a C incorrectly discarded by coordinate filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:discarded"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename fig4_svg.svg
-	width 60page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\change_inserted -162802704 1625840391
-<I think we need to be more explicit about what is being plotted here, move
- up>
-\change_unchanged
-An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:overview-1"
 
 \end_inset
 
@@ -795,17 +798,43 @@ Filtering Effect
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1626793725
+\change_inserted -1421919639 1627318659
 We compared the effect of per-read mappability filtering on number of C's
  called, as well as number of C's called in low-mappability regions (as
- defined by per-C filtering), on EM-seq samples of 3 input masses 
+ defined by per-C filtering), on EM-seq samples of 3 sample masses aligned
+ with the bwa-meth aligner.
+ We saw a significant positive filtering effect on all 3 sample masses,
+ with a mean of <ADD DATA> Cs filtered out by read-based filtering in each
+ sample (see Figure <NUM>).
+ <distribution of these Cs>
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627317485
+We also examined how many mixed methylation (0% < %Methyl < 100%) Cs were
+ resolved to either 0% or 100% methylation, and found <numbers> (see Figure
+ <NUM>), showing how unlike per-C filtering, per-read filtering can clean
+ up methylation calls without always having to entirely delete them.
 \end_layout
 
 \begin_layout Subsection*
 
-\change_inserted -1421919639 1626791877
+\change_inserted -1421919639 1627318367
 EM-seq vs.
  WGBS
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627318824
+Due to the reduced DNA damage and resulting longer read lengths that occur
+ in EM-seq as opposed to WGBS (whole genome bisulfite sequencing), we compared
+ two sets of sequencing runs, each with the same 3 sample masses, to see
+ if there is a difference between the two aligners with regard to the number
+ of miscalls, is it is possible longer reads could allow for more low-mappabilit
+y Cs to be called using reads extending into higher-mappability regions.
+ We found that, as we had predicted, <ADD DATA> (see Figure <NUM>).
 \end_layout
 
 \begin_layout Subsection*
@@ -851,8 +880,10 @@ literal "false"
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
-\change_inserted -1421919639 1626791904
 
+\change_inserted -1421919639 1627318934
+ Overall, we observed somewhat more miscalls with Bismark than we did with
+ bwa-meth <ADD DATA>, as shown in Figure <NUM>.
 \end_layout
 
 \begin_layout Subsection*
@@ -864,12 +895,21 @@ GRCh38 vs.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1626793362
-We also examined the effect of using the T2T reference <move citation up
- here rather than in methods> in place of GRCh38, since the T2T reference
- is much more complete than GRCh38, which could play a role in where methylation
- is called and what areas of the genome have unique enough sequence to support
- calling.
+\change_inserted -1421919639 1627318901
+We also examined the effect of using the T2T reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nurk_complete_2021"
+literal "false"
+
+\end_inset
+
+ in place of GRCh38, since the T2T reference is much more complete than
+ GRCh38, including repetitive regions such as centromeres, telomeres, and
+ rDNA, which could play a role in where methylation is called and what areas
+ of the genome have unique enough sequence to support calling.
+ We found that, as we predicted, there were many fewer miscalls in the T2T
+ data as compared to the GRCh38 data <ADD AND VERIFY DATA>.
 \end_layout
 
 \begin_layout Standard
@@ -1314,7 +1354,19 @@ noprefix "false"
 The sequencing reads were aligned using the bwa-meth aligner using default
  options.
  Methylation calling was performed on the resulting BAMs using MethylDackel
- v0.5.2.
+ v0.
+\change_inserted -1421919639 1627324083
+6
+\change_deleted -1421919639 1627324083
+5
+\change_unchanged
+.
+\change_inserted -1421919639 1627324084
+0
+\change_deleted -1421919639 1627324084
+2
+\change_unchanged
+.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads, however inaccurate MapQs can lead to
  reads being incorrectly included in methylation calling.
@@ -1533,7 +1585,33 @@ miscalls
 low mappability calls
 \change_unchanged
  and counts described previously.
- All files were examined and compared in Tableau
+
+\change_inserted -1421919639 1627323500
+ We also produced similarly-annotated files for all methylation calls (regardles
+s of mappability), all methylation calls in GENCODE genes which contained
+ ClinVar variants,
+\change_unchanged
+ 
+\change_inserted -1421919639 1627323926
+all methylation calls in low-mappability regions that were also in GENCODE
+ genes which contained ClinVar variants, counts of calls in in GENCODE genes
+ which contained ClinVar variants regardless of mappability, methylation
+ calls that are either 0% or 100% (regardless of mappability), and methylation
+ calls which are neither 0% nor 100% (also regardless of mappability)..
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627323969
+To assess miscalls (i.e.
+ which Cs are filtered out by per-read filtering), as well as underfiltering/ove
+rfiltering with respect to per-C filtering (discussed above), and resolution
+ of mixed methylation calls to 0% or 100%, pairs of these files were compared
+ using bedtools to produce files showing the difference between filtered
+ and unfiltered data.
+ 
+\change_unchanged
+All files were examined and compared in Tableau
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -1622,7 +1700,11 @@ Detailed description of BAM realignment steps.
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1627324016
 <still getting data>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1725,9 +1807,9 @@ noprefix "false"
 
 \change_unchanged
 ) which managed the execution of all the analysis tools needed.
+
+\change_deleted -1421919639 1627324041
  
-\change_inserted -1421919639 1625691667
-<write about how the resulting files are processed>
 \change_unchanged
 
 \end_layout
@@ -1796,7 +1878,7 @@ https://github.com/nebiolabs/low_bismap_methyl_calls
 \change_unchanged
  .
  
-\change_inserted -162802704 1625843227
+\change_deleted -1421919639 1627324078
 <add versions to conda lines in nextflow> 
 \change_unchanged
 Individual tools used in the analysis include sambamba
