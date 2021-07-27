@@ -1340,6 +1340,8 @@ status open
 	filename analysis_bam.svg
 	lyxscale 70
 	width 70page%
+	scaleBeforeRotation
+	rotateAngle 90
 
 \end_inset
 
@@ -1391,6 +1393,91 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -1421919639 1627412911
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627412912
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1627412912
+\begin_inset Graphics
+	filename analysis_postproc.svg
+	lyxscale 70
+	width 70page%
+	scaleBeforeRotation
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1627412912
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1627412998
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dag-1-1"
+
+\end_inset
+
+Detailed description of steps for calculating methylation miscalls from
+ the data output from the preprocessing and methylation calling steps.
+ Ovals are intermediate files.
+ Gray rhombuses are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output (except
+ edges directly entering rhombuses, which simply indicate which lines come
+ from which steps and go to which arguments).
+ Dotted lines indicate inputs that come from the preprocessing steps in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and methylation calling steps in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Dark gray parallelograms indicate final outputs that are examined manually.
+ Dashed lines indicate manual steps.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
 
 \end_layout
 
