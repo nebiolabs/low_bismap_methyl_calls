@@ -141,41 +141,57 @@ digraph workflow {
 
 	"methylation calls in low\nmappability regions\nwith identifier column" -> "low map. methylation call data" [style=dashed, label="Display in Tableau"];
 
-	"low map. methylation call data" [shape=parallelogram, color=gray, style=filled];
+	"low map. methylation call data with params" [shape=parallelogram, color=gray, style=filled];
 
-	"low map. clinvar methylation call data" [shape=parallelogram, color=gray, style=filled];
+	"low map. clinvar methylation call data with params" [shape=parallelogram, color=gray, style=filled];
 
-	"sorted methyl calls bedGraph\n(no headers)" [shape=parallelogram];
+	"sorted methyl calls bedGraph\n(no headers) with params" [shape=parallelogram];
 
-	"clinvar methylation call data" [shape=parallelogram, color=gray, style=filled];
+	"clinvar methylation call data with params" [shape=parallelogram, color=gray, style=filled];
 
-	"ClinVar regions with count of low map. methylation calls" [shape=parallelogram];
+	"ClinVar regions with count of low map. methylation calls with params" [shape=parallelogram];
 
-	"ClinVar regions with count of methylation calls" [shape=parallelogram];
+	"ClinVar regions with count of methylation calls with params" [shape=parallelogram];
 
-	"pure methylation calls" [shape=parallelogram];
+	"pure methylation calls with params" [shape=parallelogram];
 
-	"mixed methylation calls" [shape=parallelogram];
+	"mixed methylation calls with params" [shape=parallelogram];
+
+	"low map. methylation call data" -> "low map. methylation call data with params" [label="add_params.py"];
+
+	"low map. clinvar methylation call data" -> "low map. clinvar methylation call data with params" [label="add_params.py"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "sorted methyl calls bedGraph\n(no headers) with params" [label="add_params.py"];
+
+	"clinvar methylation call data" -> "clinvar methylation call data with params" [label="add_params.py"];
+
+	"ClinVar regions with count of low map. methylation calls" -> "ClinVar regions with count of low map. methylation calls with params" [label="add_params.py"];
+
+	"ClinVar regions with count of methylation calls" -> "ClinVar regions with count of methylation calls with params" [label="add_params.py"];
+
+	"pure methylation calls" -> "pure methylation calls with params" [label="add_params.py"];
+
+	"mixed methylation calls" -> "mixed methylation calls with params" [label="add_params.py"];
 
 	#"ClinVar regions with low map. methylation calls" -> "Examine Data" [style=invis];
 
 	#"bismark vs. bwameth\nlow map. methylation call comparison" -> "Examine Data" [style=invis];
 
-	"sorted methyl calls bedGraph\n(no headers)" -> "POSTPROC_1" [label="to postprocessing", style=dotted];
+	"sorted methyl calls bedGraph\n(no headers) with params" -> "POSTPROC_1" [label="to postprocessing", style=dotted];
 
-	"clinvar methylation call data" -> "POSTPROC_2" [label="to postprocessing", style=dotted];
+	"clinvar methylation call data with params" -> "POSTPROC_2" [label="to postprocessing", style=dotted];
 
-	"pure methylation calls" -> "POSTPROC_3" [label="to postprocessing", style=dotted];
+	"pure methylation calls with params" -> "POSTPROC_3" [label="to postprocessing", style=dotted];
 
-	"mixed methylation calls" -> "POSTPROC_4" [label="to postprocessing", style=dotted];
+	"mixed methylation calls with params" -> "POSTPROC_4" [label="to postprocessing", style=dotted];
 
-	"ClinVar regions with count of methylation calls" -> "POSTPROC_5" [label="to postprocessing", style=dotted];
+	"ClinVar regions with count of methylation calls with params" -> "POSTPROC_5" [label="to postprocessing", style=dotted];
 
-	"ClinVar regions with count of low map. methylation calls" -> "POSTPROC_6" [label="to postprocessing", style=dotted];
+	"ClinVar regions with count of low map. methylation calls with params" -> "POSTPROC_6" [label="to postprocessing", style=dotted];
 
-	"low map. methylation call data" -> "POSTPROC_7" [label="to postprocessing", style=dotted];
+	"low map. methylation call data with params" -> "POSTPROC_7" [label="to postprocessing", style=dotted];
 
-	"low map. clinvar methylation call data" -> "POSTPROC_8" [label="to postprocessing", style=dotted];
+	"low map. clinvar methylation call data with params" -> "POSTPROC_8" [label="to postprocessing", style=dotted];
 
 	"POSTPROC_1" [style=invis];
 

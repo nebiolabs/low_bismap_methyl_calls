@@ -48,23 +48,23 @@ digraph workflow {
 
 	"BAMPROC_8b" [style=invis];
 
-	"bedtools intersect -v_1" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -v_1" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -v \n-a <unfilt.> -b <filt.> | cut -f 1-10,12"];
 
-	"bedtools intersect -v_2" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -v_2" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -v \n-a <unfilt.> -b <filt.> | cut -f 1-10,12"];
 
-	"bedtools intersect -wa_wb_3" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -wa_wb_3" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -wa -wb\n -a <unfilt. mixed> -b <filt. pure> | cut -f 1-6,16-24"];
 
-	"bedtools intersect -wa_4" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -wa_4" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <clinvar> -b <miscalls>"];
 
-	"bedtools intersect -wa_5" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -wa_5" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <clinvar> -b <miscalls>"];
 
-	"bedtools intersect -wa_6" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -wa_6" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <clinvar> -b <miscalls>"];
 
-	"bedtools intersect -v_7" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -v_7" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -v \n-a <unfilt.> -b <filt.> | cut -f 1-10,12"];
 
-	"bedtools intersect -v_8" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -v_8" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -v \n-a <unfilt.> -b <filt.> | cut -f 1-10,12"];
 
-	"bedtools intersect -v_9" [shape=diamond,  color=gray85, style=filled];
+	"bedtools intersect -v_9" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -sorted -v \n-a <unfilt.> -b <filt.>"];
 
 	"unfiltered methyl calls bedGraph" -> "bedtools intersect -v_1" [label="unfiltered"];
 
@@ -125,4 +125,40 @@ digraph workflow {
 	"bedtools intersect -wa_4" -> "ClinVar regions with resolved calls\nwith duplicates";
 
 	"ClinVar regions with resolved calls\nwith duplicates" -> "ClinVar regions with count of resolved calls" [label="count_calls.py"];
+
+	"ClinVar regions with count of resolved calls" -> "ClinVar regions with count of resolved calls with params" [label="add_params.py"];
+
+	"low map. ClinVar regions with count of methylation miscalls" -> "low map. ClinVar regions with count of methylation miscalls with params" [label="add_params.py"];
+
+	"ClinVar regions with count of methylation miscalls" -> "ClinVar regions with count of methylation miscalls with params" [label="add_params.py"];
+
+	"underfiltered methylation calls" -> "underfiltered methylation calls with params" [label="add_params.py"];
+
+	"miscalled clinvar methylation call data" -> "miscalled clinvar methylation call data with params" [label="add_params.py"];
+
+	"miscalled low map. clinvar methylation call data" -> "miscalled low map. clinvar methylation call data with params" [label="add_params.py"];
+
+	"miscalled low map. methylation call data" -> "miscalled low map. methylation call data with params" [label="add_params.py"];
+
+	"miscalled methyl calls bedGraph" -> "miscalled methyl calls bedGraph with params" [label="add_params.py"];
+
+	"resolved methylation calls" -> "resolved methylation calls with params" [label="add_params.py"];
+
+	"ClinVar regions with count of resolved calls with params" [shape=parallelogram];
+
+	"low map. ClinVar regions with count of methylation miscalls with params" [shape=parallelogram];
+
+	"ClinVar regions with count of methylation miscalls with params" [shape=parallelogram];
+
+	"underfiltered methylation calls with params" [shape=parallelogram];
+
+	"miscalled clinvar methylation call data with params" [shape=parallelogram];
+
+	"miscalled low map. clinvar methylation call data with params" [shape=parallelogram];
+
+	"miscalled low map. methylation call data with params" [shape=parallelogram];
+
+	"miscalled methyl calls bedGraph with params" [shape=parallelogram];
+
+	"resolved methylation calls with params" [shape=parallelogram];
  }
