@@ -322,7 +322,7 @@
 <title>expanded sorted low mappability ClinVar regions&#45;&gt;BAM_PROC_2</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M510.5,-304.4C510.03,-287.96 509.32,-263.02 508.78,-243.93"/>
 <polygon fill="black" stroke="black" points="512.27,-243.65 508.49,-233.76 505.27,-243.85 512.27,-243.65"/>
-<text text-anchor="middle" x="564" y="-275.54" font-family="Times,serif" font-size="14.00">to BAM processing</text>
+<text text-anchor="middle" x="617.5" y="-275.54" font-family="Times,serif" font-size="14.00">to BAM processing and postprocessing</text>
 </g>
 <!-- bedtools intersect &#45;u_0 -->
 <g id="node30" class="node">
@@ -334,9 +334,9 @@
 <!-- expanded sorted low mappability ClinVar regions&#45;&gt;bedtools intersect &#45;u_0 -->
 <g id="edge37" class="edge">
 <title>expanded sorted low mappability ClinVar regions&#45;&gt;bedtools intersect &#45;u_0</title>
-<path fill="none" stroke="black" d="M566.54,-305.45C621.67,-289.28 707.26,-264.18 773.34,-244.8"/>
-<polygon fill="black" stroke="black" points="774.33,-248.15 782.94,-241.98 772.36,-241.44 774.33,-248.15"/>
-<text text-anchor="middle" x="729" y="-275.54" font-family="Times,serif" font-size="14.00">ClinVar low map.</text>
+<path fill="none" stroke="black" d="M634.38,-309.24C665.75,-304.08 699.04,-296.85 729,-286.74 742.38,-282.23 744.44,-278.19 757,-271.74 770.83,-264.64 785.71,-257.2 799.97,-250.16"/>
+<polygon fill="black" stroke="black" points="801.8,-253.16 809.23,-245.61 798.71,-246.88 801.8,-253.16"/>
+<text text-anchor="middle" x="806" y="-275.54" font-family="Times,serif" font-size="14.00">ClinVar low map.</text>
 </g>
 <!-- 0 mappability regions BED -->
 <g id="node24" class="node">
@@ -427,7 +427,7 @@
 <title>sorted low mappability regions\nin ClinVar annotations&#45;&gt;BAM_PROC_3</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M869,-86.97C869,-74.34 869,-59.14 869,-46.32"/>
 <polygon fill="black" stroke="black" points="872.5,-46.22 869,-36.22 865.5,-46.22 872.5,-46.22"/>
-<text text-anchor="middle" x="923" y="-57.8" font-family="Times,serif" font-size="14.00">to BAM processing</text>
+<text text-anchor="middle" x="976.5" y="-57.8" font-family="Times,serif" font-size="14.00">to BAM processing and postprocessing</text>
 </g>
 <!-- expanded low mappability ClinVar regions&#45;&gt;expanded sorted low mappability ClinVar regions -->
 <g id="edge35" class="edge">

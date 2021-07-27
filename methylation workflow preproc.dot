@@ -52,7 +52,7 @@ digraph workflow {
 
 	"sorted low mappability ClinVar regions";
 
-	"expanded sorted low mappability ClinVar regions" -> "BAM_PROC_2" [label="to BAM processing", style=dotted];
+	"expanded sorted low mappability ClinVar regions" -> "BAM_PROC_2" [label="to BAM processing and postprocessing", style=dotted];
 
 	"BAM_PROC_2" [style=invis];
 
@@ -92,7 +92,7 @@ digraph workflow {
 
 	"expanded sorted low mappability ClinVar regions";
 
-	"sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing", style=dotted];
+	"sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing and postprocessing", style=dotted];
 
 	"BAM_PROC_3" [style=invis];
 
