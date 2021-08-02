@@ -28,6 +28,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement tbph
 \paperfontsize default
 \spacing single
 \use_hyperref true
@@ -464,6 +465,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Chrom_fig.svg
 	width 60page%
@@ -502,6 +504,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename fig1_svg.svg
 	width 60page%
@@ -512,6 +515,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 
 \change_deleted -1421919639 1626983297
 \begin_inset CommandInset label
@@ -642,6 +646,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename fig4_svg.svg
 	width 60page%
@@ -688,6 +693,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename fig3_svg.svg
 	width 60page%
@@ -728,6 +734,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename fig2_svg.svg
 	width 60page%
@@ -767,8 +774,11 @@ name "fig:kept"
 
 \begin_layout Standard
 To focus on the incorrect alignments and methylation calls that have biological
- and medical significance, we examined methylation calls in GENCODE genes
- 
+ and medical significance, we examined methylation calls in
+\change_inserted -1421919639 1627677215
+ and just upstream of
+\change_unchanged
+ GENCODE genes 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Harrow2012"
@@ -786,11 +796,19 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- 15,539
-\change_inserted -1421919639 1625241235
- <update this number after re-run>
+ 
+\change_deleted -1421919639 1627577871
+15,539
+\change_inserted -1421919639 1627577874
+279,566 
+\change_deleted -1421919639 1627577877
+ 
 \change_unchanged
- Cs in these important regions in a 50ng EM-seq
+Cs
+\change_inserted -1421919639 1627588350
+ <oddly high, but seems real>
+\change_unchanged
+ in these important regions in a 50ng EM-seq
 \change_inserted -162802704 1625840589
  
 \change_unchanged
@@ -822,24 +840,183 @@ Filtering Effect
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1627318659
+\change_inserted -1421919639 1627592801
 We compared the effect of per-read mappability filtering on number of C's
  called, as well as number of C's called in low-mappability regions (as
  defined by per-C filtering), on EM-seq samples of 3 sample masses aligned
  with the bwa-meth aligner.
  We saw a significant positive filtering effect on all 3 sample masses,
- with a mean of <ADD DATA> Cs filtered out by read-based filtering in each
- sample (see Figure <NUM>).
+ with a mean of 7.67 million Cs filtered out by read-based filtering in each
+ sample (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miscall-counts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  <distribution of these Cs>
 \end_layout
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1627317485
+\change_inserted -1421919639 1627669326
 We also examined how many mixed methylation (0% < %Methyl < 100%) Cs were
- resolved to either 0% or 100% methylation, and found <numbers> (see Figure
- <NUM>), showing how unlike per-C filtering, per-read filtering can clean
- up methylation calls without always having to entirely delete them.
+ resolved to either 0% or 100% methylation, and found that approximately
+ 60,000-90,000 methylation calls in the EM-seq data that were previously
+ mixed were resolved by per-read filtering to either fully unmethylated
+ or fully methylated (see Figure <NUM>), showing how unlike per-C filtering,
+ per-read filtering can clean up methylation calls without always having
+ to entirely delete them.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627591746
+We also considered how many of these calls could be biologically significant.
+ To measure this, we used genes in GENCODE containing variants in ClinVar
+ as a metric for biological significance.
+ To focus on genes that may contain miscalls, we filtered the list to only
+ include those genes which had at least one region where the mappability
+ is too low to call methylation (as without this, there will be no miscalls).
+ Examination of this data revealed that there were miscalls in approximately
+ 1300-1450 genes in the EM-seq/bwa-meth data, with a mean number of about
+ 200 miscalls per gene, indicating that indeed this may affect biologically
+ significant methylation data.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627592277
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1627591762
+\begin_inset Graphics
+	filename Miscalls Fig.png
+	lyxscale 40
+	width 70page%
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1627591749
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1627592776
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Miscall-counts"
+
+\end_inset
+
+Miscall counts in the 10, 50, and 200ng EM-seq and WGBS samples, aligned
+ with bwa-meth and Bismark, where a 
+\begin_inset Quotes eld
+\end_inset
+
+miscall
+\begin_inset Quotes erd
+\end_inset
+
+ is a methylation call filtered out entirely by per-read filtering.
+ The vertical axis is the number of miscalls in the sample.
+ The colors define which sequencing method and aligner were used, as detailed
+ in the legend.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627592277
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1627592277
+\begin_inset Graphics
+	filename Resolved Calls.png
+	lyxscale 40
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1627592277
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1627593481
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:clinvar-miscalls"
+
+\end_inset
+
+Counts of resolved calls in the 10, 50, and 200ng EM-seq and WGBS samples,
+ aligned with bwa-meth and Bismark, where a 
+\begin_inset Quotes eld
+\end_inset
+
+resolved call
+\begin_inset Quotes erd
+\end_inset
+
+ is a methylation call that is mixed in the unfiltered data, but either
+ 0% or 100% in the filtered data.
+ The vertical axis is the number of resolved calls in the sample.
+ The colors define which sequencing method and aligner were used, as detailed
+ in the legend.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -851,14 +1028,62 @@ EM-seq vs.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1627318824
+\change_inserted -1421919639 1627670966
 Due to the reduced DNA damage and resulting longer read lengths that occur
  in EM-seq as opposed to WGBS (whole genome bisulfite sequencing), we compared
  two sets of sequencing runs, each with the same 3 sample masses, to see
  if there is a difference between the two aligners with regard to the number
  of miscalls, is it is possible longer reads could allow for more low-mappabilit
 y Cs to be called using reads extending into higher-mappability regions.
- We found that, as we had predicted, <ADD DATA> (see Figure <NUM>).
+ We found that EM-seq had more miscalled Cs overall (a mean of 7.67 million
+ Cs with EM-seq vs.
+ a mean of 6.69 million Cs with WGBS) (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miscall-counts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), but it also had more Cs called both before and after filtering, likely
+ indicating an overall increase in called Cs irrespective of mappability
+ (see Figure <NUM>).
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627675128
+Focusing just on Cs in low-mappability regions, EM-seq also has a great
+ deal more Cs kept after filtering than does WGBS, with a mean over all
+ 3 sample masses of 15.6 million Cs in low-mappability regions kept after
+ filtering in EM-seq, and a mean of only 9.79 million Cs in low mappability
+ regions kept with WGBS.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627589290
+Interestingly, the reverse is true about miscalls in ClinVar regions.
+ The number is of miscalled Cs in ClinVar regions (taking the mean of all
+ sample masses) is in fact lower in EM-seq as opposed to WGBS (275, 640
+ Cs vs.
+ 338,061 Cs.
+ However, restricting this to low mappability regions within ClinVar regions,
+ the number of miscalled Cs (again taking the mean of all 3 sample masses)
+ is again higher than in WGBS (275,530 Cs vs.
+ 249,837 Cs).
+\change_unchanged
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1627589223
+
 \end_layout
 
 \begin_layout Subsection*
@@ -905,9 +1130,19 @@ literal "false"
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
 
-\change_inserted -1421919639 1627318934
+\change_inserted -1421919639 1627671322
  Overall, we observed somewhat more miscalls with Bismark than we did with
- bwa-meth <ADD DATA>, as shown in Figure <NUM>.
+ bwa-meth, as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Miscall-counts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -919,7 +1154,7 @@ GRCh38 vs.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1627318901
+\change_inserted -1421919639 1627676311
 We also examined the effect of using the T2T reference 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -932,8 +1167,12 @@ literal "false"
  GRCh38, including repetitive regions such as centromeres, telomeres, and
  rDNA, which could play a role in where methylation is called and what areas
  of the genome have unique enough sequence to support calling.
- We found that, as we predicted, there were many fewer miscalls in the T2T
- data as compared to the GRCh38 data <ADD AND VERIFY DATA>.
+ We found that, as we predicted, there were far fewer miscalls in the T2T
+ data as compared to the GRCh38 data, with less than half the number of
+ miscalls in T2T as in GRCh38 (see Figure <NUM>), with total calls being
+ roughly in the same range between the two reference sequences (see Figure
+ <NUM>).
+ .
 \end_layout
 
 \begin_layout Standard
@@ -1033,14 +1272,19 @@ literal "false"
 
 
 \change_inserted -162802704 1625841068
-) 
-\change_inserted -1421919639 1624038611
-<is there a specific source for this, e.g.
- a company and/or product name
-\change_inserted -162802704 1625840922
- https://www.pnas.org/content/118/26/e2026742118.full#ref-35
-\change_inserted -1421919639 1624038611
-?>
+)
+\change_deleted -1421919639 1627678159
+  https://www.pnas.org/content/118/26/e2026742118.full#ref-35
+\change_inserted -1421919639 1627678159
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kuo_5-methylcytosine_1968"
+literal "false"
+
+\end_inset
+
+
 \change_unchanged
 , lambda phage DNA (NEB #N3011), and a pUC19 plasmid (NEB #N3041) treated
  with M.SssI CpG Methyltransferase (NEB #M0226).
@@ -1236,6 +1480,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename analysis_clinvar.svg
 	width 70page%
@@ -1275,6 +1520,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename analysis_preproc.svg
 	lyxscale 70
@@ -1336,6 +1582,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename analysis_bam.svg
 	lyxscale 70
@@ -1407,6 +1654,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 
 \change_inserted -1421919639 1627412912
 \begin_inset Graphics
@@ -1543,6 +1791,12 @@ ClinVar regions BED
 \end_inset
 
 .
+
+\change_inserted -1421919639 1627938920
+ Each region in the ClinVar regions BED was expanded 2kb upstream using
+ bedtools slop to capture methylation upstream of the gene.
+
+\change_unchanged
  The Bismap bedGraph (which, as is standard for bedGraph files, did not
  contain zeroes) and an FAI index of the GRCh38 reference genome FASTA file
  were processed with bedtools, awk, and GNU sort to obtain a bedGraph containing
@@ -1574,11 +1828,6 @@ The Bismap complete bedGraph was then filtered using awk to produce a file
  The two resulting files (one of low-mappability regions, one of ClinVar
  regions with low minimum mappability) were combined to produce a file of
  all low mappability regions that are in ClinVar regions.
-
-\change_inserted -1421919639 1624039712
- <what did I do for partial overlaps here??>
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
@@ -1589,8 +1838,8 @@ Alignments of 2x99-bp paired-end EM-seq and whole genome bisulfite reads
  to produce a list of all 
 \change_deleted -1421919639 1626115246
 miscalls
-\change_inserted -1421919639 1626115253
-methylation calls in low mappability regions
+\change_inserted -1421919639 1627488287
+methylation calls in low mappability ClinVar regions
 \change_unchanged
  (this will be referred to as the 
 \begin_inset Quotes eld
@@ -1599,8 +1848,8 @@ methylation calls in low mappability regions
 
 \change_deleted -1421919639 1626115257
 miscalls
-\change_inserted -1421919639 1626115261
-low mappability calls
+\change_inserted -1421919639 1627488279
+low mappability ClinVar calls
 \change_unchanged
  file
 \begin_inset Quotes erd
@@ -1628,8 +1877,8 @@ was filtered out using the new MethylDackel mappability filtering.
 The 
 \change_deleted -1421919639 1626115390
 miscalls
-\change_inserted -1421919639 1626115390
-low mappability calls
+\change_inserted -1421919639 1627488303
+low mappability ClinVar calls
 \change_unchanged
  file was intersected with the file of ClinVar regions with low minimum
  mappability to produce a file of ClinVar regions with 
@@ -1689,6 +1938,15 @@ miscalls
 low mappability calls
 \change_unchanged
  are in each region.
+
+\change_inserted -1421919639 1627488705
+ A similar intersection was performed for all ClinVar regions with low minimum
+ mappability (i.e.
+ ClinVar regions that could potentially be affected) to produce a file of
+ all calls (regardless of mappability of the C) in such regions, and a list
+ of such regions with a count of calls per region.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1708,27 +1966,27 @@ a custom Python script (see supplemental materials)
  to add a field specifying which input mass, sequencing protocol, and MethylDack
 el filtering setting were used.
 
-\change_inserted -1421919639 1626124196
+\change_inserted -1421919639 1627679237
  As the input mass would have been difficult to parse out of the BAM name
- due to inconsistent formatting, a CSV mapping BAM file names to input masses
- was created and given as input to this step.
+ due to inconsistent file name formatting, a CSV was created mapping BAM
+ file names to input masses and given as input to this step.
 
 \change_unchanged
  The same field was added to the lists of all ClinVar regions with 
 \change_deleted -1421919639 1626115528
 miscalls
-\change_inserted -1421919639 1626115528
+\change_inserted -1421919639 1627679234
 low mappability calls
 \change_unchanged
  and counts described previously.
 
-\change_inserted -1421919639 1627323500
+\change_inserted -1421919639 1627679234
  We also produced similarly-annotated files for all methylation calls (regardles
-s of mappability), all methylation calls in GENCODE genes which contained
- ClinVar variants,
+s of mappability), all methylation calls in GENCODE genes (with low minimum
+ mappability) which contained ClinVar variants,
 \change_unchanged
  
-\change_inserted -1421919639 1627323926
+\change_inserted -1421919639 1627679234
 all methylation calls in low-mappability regions that were also in GENCODE
  genes which contained ClinVar variants, counts of calls in in GENCODE genes
  which contained ClinVar variants regardless of mappability, methylation
@@ -1799,6 +2057,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename realign.svg
 	width 70page%
@@ -1903,8 +2162,17 @@ literal "false"
  This converted file was used in place of the ClinVar regions BED for analysis
  with the T2T reference.
  As there was no Bismap mappability file for the T2T reference, we downloaded
- the Bismap tool and generated a k=100 multi-read Bismap mappability dataset
- for this reference genome.
+ the Bismap tool and generated a 
+\change_deleted -1421919639 1627679291
+k=100
+\change_inserted -1421919639 1627679291
+
+\begin_inset Formula $k=100$
+\end_inset
+
+
+\change_unchanged
+ multi-read Bismap mappability dataset for this reference genome.
 
 \change_deleted -1421919639 1626193089
  
@@ -2108,7 +2376,7 @@ name "The-Bismap-file"
 \change_unchanged
 The Bismap file used for this analysis was downloaded from 
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 

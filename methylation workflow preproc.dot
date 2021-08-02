@@ -23,11 +23,11 @@ digraph workflow {
 	"Bismap bigWig" -> "Bismap bedGraph" [label="bigWigToBedGraph"];
 
 	"bedtools map -o min" [shape=diamond,  color=gray85, style=filled, label="bedtools map -o min \n-a <ClinVar> -b <Bismap>"];
-	"ClinVar regions BED" -> "bedtools map -o min" [label="ClinVar"];
+	"expanded sorted ClinVar regions BED" -> "bedtools map -o min" [label="ClinVar"];
 	"Bismap complete bedGraph" -> "bedtools map -o min" [label="Bismap"];
 
 	"bedtools map -o mean" [shape=diamond,  color=gray85, style=filled, label="bedtools map -o mean \n-a <ClinVar> -b <Bismap>"];
-	"ClinVar regions BED" -> "bedtools map -o mean" [label="ClinVar"];
+	"expanded sorted ClinVar regions BED" -> "bedtools map -o mean" [label="ClinVar"];
 	"Bismap complete bedGraph" -> "bedtools map -o mean" [label="Bismap"];
 
 	"bedtools map -o min" -> "ClinVar regions with\n min mappability bedGraph";
@@ -52,7 +52,7 @@ digraph workflow {
 
 	"sorted low mappability ClinVar regions";
 
-	"expanded sorted low mappability ClinVar regions" -> "BAM_PROC_2" [label="to BAM processing and postprocessing", style=dotted];
+	"sorted low mappability ClinVar regions" -> "BAM_PROC_2" [label="to BAM processing and postprocessing", style=dotted];
 
 	"BAM_PROC_2" [style=invis];
 
@@ -86,17 +86,17 @@ digraph workflow {
 
 	"bedtools intersect -u_0" -> "sorted low mappability regions\nin ClinVar annotations";
 
-	"sorted low mappability ClinVar regions" -> "expanded low mappability ClinVar regions" [label="bedtools slop -l 2000 -r 0 -s"];	
+	"ClinVar regions BED" -> "expanded ClinVar regions BED" [label="bedtools slop -l 2000 -r 0 -s"];	
 
-	"expanded low mappability ClinVar regions" -> "expanded sorted low mappability ClinVar regions" [label="sort -k1,1 -k2,2n"];	
+	"expanded ClinVar regions BED" -> "expanded sorted ClinVar regions BED" [label="sort -k1,1 -k2,2n"];	
 
-	"expanded sorted low mappability ClinVar regions";
+	"sorted low mappability ClinVar regions";
 
 	"sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing and postprocessing", style=dotted];
 
 	"BAM_PROC_3" [style=invis];
 
-	"expanded sorted low mappability ClinVar regions" -> "bedtools intersect -u_0" [label="ClinVar low map."];
+	"sorted low mappability ClinVar regions" -> "bedtools intersect -u_0" [label="ClinVar low map."];
 
 	
  }

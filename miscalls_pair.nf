@@ -388,7 +388,7 @@ workflow runPair {
         combineFilteringClinvarLowmapCalls(outputSuffix, clinvarLowmapCallsChannel, publish_mode)
         combineFilteringClinvarCalls(outputSuffix, clinvarCallsChannel, publish_mode)
 
-        calcUnderfilteredCalls(outputSuffix, combineFilteringCalls.out, clinvarBismapLow, publish_mode)
+        calcUnderfilteredCalls(outputSuffix, combineFilteringCalls.out, lowRegions, publish_mode)
 
         combineFilteringClinvarGenesCalls(outputSuffix, combineFilteringCalls.out, lowGenes)
         combineFilteringClinvarGenesLowmapCalls(outputSuffix, combineFilteringLowmapCalls.out, lowGenes)

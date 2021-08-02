@@ -677,20 +677,20 @@ workflow refPreproc {
         convertFaiToGenome(ref_fai, tmpdir)
         complementBedgraph(convertFaiToGenome.out, bigWigToBedGraph.out)
         combineAllRegions(bigWigToBedGraph.out, complementBedgraph.out, tmpdir)
+        slopRegions(combineAllRegions.out, tmpdir, convertFaiToGenome.out)
+        gsortSlopRegions(slopRegions.out, tmpdir)
         getLowRegions(bigWigToBedGraph.out)
         combineLowRegions(getLowRegions.out, complementBedgraph.out, tmpdir)
-        intersectMin(clinvar_regions, combineAllRegions.out)
-        intersectMean(clinvar_regions, combineAllRegions.out)
+        intersectMin(clinvar_regions, gsortSlopRegions.out)
+        intersectMean(clinvar_regions, gsortSlopRegions.out)
         pasteMinMean(intersectMean.out, intersectMin.out)
         filterMinMean(pasteMinMean.out, bismap_cutoff)
         gsortMinMean(filterMinMean.out, tmpdir)
-        slopRegions(gsortMinMean.out, tmpdir, convertFaiToGenome.out)
-        gsortSlopRegions(slopRegions.out, tmpdir)
-        intersectClinvarBismapLow(gsortSlopRegions.out, combineLowRegions.out)
+        intersectClinvarBismapLow(gsortMinMean.out, combineLowRegions.out)
     emit:
         intersectClinvarBismapLow.out
         combineLowRegions.out
-        gsortSlopRegions.out
+        gsortMinMean.out
 }
 
 workflow basicPipeline {
