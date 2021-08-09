@@ -1077,7 +1077,7 @@ Effect on Potentially Significant Genes
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1628530711
+\change_inserted -1421919639 1628534790
 We also assessed the biological significance of these miscalls.
  To measure this, we used genes in GENCODE containing variants in ClinVar
  (henceforth 
@@ -1120,8 +1120,157 @@ literal "false"
  anchored in the high mappability region that allows it to be called.
  Underfiltered C's occur when a C is just inside a mappable region, but
  there is no sufficiently mappable read to call it.
- An example of each will be provided below, from the 200ng EM-seq sample
- aligned to GRCh38 using bwa-meth: <example 1> <example 2> 
+ An example of each (from the 200ng EM-seq sample aligned to GRCh38 using
+ bwa-meth) is provided in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:igv-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:igv-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ respectively.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1628533301
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1628533329
+\begin_inset Graphics
+	filename chr1_148823039-148824040.svg
+	width 60page%
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1628533301
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628534356
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:igv-1"
+
+\end_inset
+
+A view of a cluster of miscalls in a large low-mappability region.
+ The gene, ENSG00000178104.19, is known as PDE4DIP.
+ The reads are shown paired, with a line connecting reads 1 and 2 in a pair,
+ with CpG methylation sites highlighted.
+ Miscalls are shown in the track above the coverage graph.
+ Note how every CpG call (as well as calls in other contexts) are miscalled
+ in this region, as there are no high-mappability regions to anchor reads
+ in.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1628533312
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1628533379
+\begin_inset Graphics
+	filename chr1_148819799-148820800.svg
+	width 60page%
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1628533312
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628534277
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:igv-2"
+
+\end_inset
+
+A view of a cluster of miscalls near the boundary between high and low mappabili
+ty regions.
+ The gene, ENSG00000178104.19, is known as PDE4DIP.
+ The read alignments are shown paired, with a line connecting reads 1 and
+ 2 in a pair, and highlighted for CpG methylation.
+ Note the methylation calls in the low-mappability region that are not miscalls,
+ as they can be called using read pairs extending into the high-mappability
+ region.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
