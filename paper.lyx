@@ -467,7 +467,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Chrom_fig.svg
+	filename Chrom_fig.png
 	width 60page%
 
 \end_inset
@@ -646,6 +646,14 @@ noprefix "false"
  also remove the problematic region, but in cases where reads are simply
  mixed among multiple low-mappability regions (not creating a coverage spike),
  coverage filtering would not be effective at removing the affected regions.
+
+\change_inserted -1421919639 1628538273
+ In addition, if some of the reads used to call a C are uniquely mappable,
+ but others are not, per-read filtering can remove only those reads that
+ are not uniquely mappable, rather than being forced to discard the entire
+ locus like per-C filtering does.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1560,8 +1568,8 @@ todo: effect on ClinVar
 \begin_layout Standard
 todo: examples of specific effects in ClinVar (I have 2 of these from my
  talk)
-\change_inserted -1421919639 1628277784
- [COLLECTING NEW EXAMPLES]
+\change_inserted -1421919639 1628535287
+ [IN PROGRESS]
 \change_unchanged
 
 \end_layout
@@ -2559,7 +2567,13 @@ literal "false"
 \end_inset
 
 .
- The lift-over was done in two steps with separate chain files.
+ Th
+\change_inserted -1421919639 1628538802
+is
+\change_deleted -1421919639 1628538802
+e
+\change_unchanged
+ lift-over was done in two steps with separate chain files.
  First, the GRCh38 regions were lifted over using CrossMap to T2Tv1.0 using
  a chain file published on GitHub by Nico Alavi 
 \begin_inset CommandInset citation
@@ -2647,16 +2661,40 @@ Discussion
 Reads placed with falsely high confidence have cascading detrimental effects
  on methylation calling, differential methylation assessment, and assement
  of phenotypes associated with methylation status.
- Because of the more accurate MapQ values, decreased run time, and more
- flexibility to separate methylation calling from alignment, we recommend
- the use of bwa-meth for alignment and MethylDackel with MapQ > 10 for methylati
-on calling.
- To further improve accuracy of methylation asssessment, reads with both
+
+\change_inserted -1421919639 1628535476
+ To remove the spurious, unsupported methylation calls that result from
+ such reads, we suggest that reads with both mates in low mappability regions
+ (as determined by Bismap) should be excluded from methylation calling.
+
+\change_unchanged
+ 
+\change_inserted -1421919639 1628535407
+Additionally, b
+\change_deleted -1421919639 1628535407
+B
+\change_unchanged
+ecause of the more accurate MapQ values, decreased run time, and more flexibilit
+y to separate methylation calling from alignment, we 
+\change_inserted -1421919639 1628535428
+also 
+\change_unchanged
+recommend the use of bwa-meth for alignment and MethylDackel with MapQ >
+ 10 for methylation calling.
+ 
+\change_deleted -1421919639 1628535412
+To further improve accuracy of methylation asssessment, reads with both
  mates in low mappability regions should be excluded.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1628535300
 <waiting on results>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
