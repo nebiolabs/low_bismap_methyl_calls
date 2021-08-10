@@ -124,7 +124,11 @@ DNA methylation is an important component in vital biological functions
  We have created a patch for the MethylDackel methylation caller to perform
  read-based filtering.
  Read-based filtering resolves some of the apparent mixed methylation to
- either 0% or 100% methylation.
+ either 0% or 100% methylation
+\change_inserted -1421919639 1628616953
+ and removes many unsupportable methylation calls
+\change_unchanged
+.
  We examined methylation calls with and without read-based filtering in
  or near the 7830
 \change_inserted -1421919639 1625148735
@@ -1755,12 +1759,26 @@ Whole Genome Bisulfite Libraries
 
 \begin_layout Standard
 Libraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
- before being Bisulfite converted according to 
-\change_inserted -1421919639 1626197378
-<protocol>
+ before being Bisulfite converted
+\change_inserted -1421919639 1628617923
+ using the Zymo EZ DNA Methylation-Gold kit
 \change_unchanged
+ according to 
+\change_inserted -1421919639 1628617563
+the protocol described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaisvila_enzymatic_2021"
+literal "false"
+
+\end_inset
+
+.
+\change_deleted -1421919639 1628617529
 .
  
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1769,8 +1787,18 @@ EM-seq Libraries
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1624041101
-<anything about the EM-seq samples?>
+\change_inserted -1421919639 1628617866
+The EM-seq libraries were prepared using the NEBNext Ultra II DNA library
+ prep kit (NEB E7645) (using the NEBNext EM-seq adapter), then EM-seq converted
+ using TET2 and ABOBEC3A, as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaisvila_enzymatic_2021"
+literal "false"
+
+\end_inset
+
+.
 \change_unchanged
 
 \end_layout
