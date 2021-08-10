@@ -1758,7 +1758,15 @@ Whole Genome Bisulfite Libraries
 \end_layout
 
 \begin_layout Standard
-Libraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
+
+\change_inserted -1421919639 1628618379
+The whole genome bisulfite (WGBS)
+\change_deleted -1421919639 1628618366
+L
+\change_inserted -1421919639 1628618380
+l
+\change_unchanged
+ibraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
  before being Bisulfite converted
 \change_inserted -1421919639 1628618131
  using the Zymo EZ DNA Methylation-Gold bisulfite conversion kit
