@@ -26,7 +26,7 @@
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command biber
 \index_command default
 \float_placement tbph
 \paperfontsize default
@@ -53,9 +53,11 @@
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
-\cite_engine_type default
+\cite_engine biblatex
+\cite_engine_type numerical
 \biblio_style plain
+\biblatex_bibstyle numeric
+\biblatex_citestyle numeric
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -468,6 +470,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Chrom_fig.png
+	lyxscale 30
 	width 60page%
 
 \end_inset
@@ -477,7 +480,16 @@ status open
 
 \begin_layout Plain Layout
 Cs called in low mappability regions after MapQ filtering are represented
- across all chromosomes...
+ across all chromosomes.
+
+\change_inserted -1421919639 1628612437
+ In this figure, each row is a chromosome and each blue bar is a C (or cluster
+ of Cs) that was called even though it was not supported by uniquely mappable
+ reads.
+\change_deleted -1421919639 1628612382
+..
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:bad-mapq"
@@ -798,7 +810,13 @@ status open
 \begin_layout Plain Layout
 
 \change_inserted -162802704 1625840119
-<needs an expanded explantion>
+<needs an expanded 
+\change_deleted -1421919639 1628615097
+explantion
+\change_inserted -1421919639 1628615097
+explanation
+\change_inserted -162802704 1625840119
+>
 \change_unchanged
 An example of a C incorrectly kept by coordinate filtering.
 \begin_inset CommandInset label
@@ -1548,9 +1566,15 @@ todo: # cs affected (worst) bismark vs filtered vs bwa-meth vs filtered
 \end_layout
 
 \begin_layout Standard
-todo: group Cs by magnititude of change in methylation post filtering (fig,
- heatmap?) (best done by comparing both %methyl and read count, maybe we
- should discuss how to layout this figure though)
+todo: group Cs by 
+\change_deleted -1421919639 1628615160
+magnititude
+\change_inserted -1421919639 1628615160
+magnitude
+\change_unchanged
+ of change in methylation post filtering (fig, heatmap?) (best done by comparing
+ both %methyl and read count, maybe we should discuss how to layout this
+ figure though)
 \change_inserted -1421919639 1628277740
  [???]
 \change_unchanged
@@ -1971,8 +1995,13 @@ name "fig:dag"
 
 \end_inset
 
-Detailed description of preprocesing steps used to identify biologically
- relevant low-mappability regions..
+Detailed description of 
+\change_deleted -1421919639 1628615219
+preprocesing
+\change_inserted -1421919639 1628615219
+preprocessing
+\change_unchanged
+ steps used to identify biologically relevant low-mappability regions..
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
@@ -2659,7 +2688,12 @@ Discussion
 
 \begin_layout Standard
 Reads placed with falsely high confidence have cascading detrimental effects
- on methylation calling, differential methylation assessment, and assement
+ on methylation calling, differential methylation assessment, and 
+\change_deleted -1421919639 1628615223
+assement
+\change_inserted -1421919639 1628615223
+assessment
+\change_unchanged
  of phenotypes associated with methylation status.
 
 \change_inserted -1421919639 1628535476
@@ -2754,7 +2788,13 @@ literal "false"
 
 , vcf2bed, gff2bed, bigWigToBedGraph, MethylDackel, awk, python, GNU sort,
  GNU head, bedtools, and BEDOPS.
- Versions of all tools used are specifed in the nextflow 
+ Versions of all tools used are 
+\change_deleted -1421919639 1628615233
+specifed
+\change_inserted -1421919639 1628615233
+specified
+\change_unchanged
+ in the nextflow 
 \change_deleted -1421919639 1626108890
 <version>
 \change_inserted -1421919639 1626108892
