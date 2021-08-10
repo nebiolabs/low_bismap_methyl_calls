@@ -1760,8 +1760,8 @@ Whole Genome Bisulfite Libraries
 \begin_layout Standard
 Libraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
  before being Bisulfite converted
-\change_inserted -1421919639 1628617923
- using the Zymo EZ DNA Methylation-Gold kit
+\change_inserted -1421919639 1628618131
+ using the Zymo EZ DNA Methylation-Gold bisulfite conversion kit
 \change_unchanged
  according to 
 \change_inserted -1421919639 1628617563
@@ -1773,12 +1773,9 @@ literal "false"
 
 \end_inset
 
-.
-\change_deleted -1421919639 1628617529
-.
- 
-\change_unchanged
 
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Subsection*
