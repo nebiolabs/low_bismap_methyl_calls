@@ -1759,8 +1759,8 @@ Whole Genome Bisulfite Libraries
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1628618379
-The whole genome bisulfite (WGBS)
+\change_inserted -1421919639 1628618502
+The whole genome bisulfite (WGBS) 
 \change_deleted -1421919639 1628618366
 L
 \change_inserted -1421919639 1628618380
@@ -1772,8 +1772,9 @@ ibraries were prepared using the Ultra II DNA library prep kit (NEB E7645)
  using the Zymo EZ DNA Methylation-Gold bisulfite conversion kit
 \change_unchanged
  according to 
-\change_inserted -1421919639 1628617563
-the protocol described in 
+\change_inserted -1421919639 1628618469
+the protocol described in Vaisvila et al.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "vaisvila_enzymatic_2021"
@@ -1792,10 +1793,11 @@ EM-seq Libraries
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1628617866
+\change_inserted -1421919639 1628618474
 The EM-seq libraries were prepared using the NEBNext Ultra II DNA library
  prep kit (NEB E7645) (using the NEBNext EM-seq adapter), then EM-seq converted
- using TET2 and ABOBEC3A, as described in 
+ using TET2 and ABOBEC3A, as described in Vaisvila et al.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "vaisvila_enzymatic_2021"
