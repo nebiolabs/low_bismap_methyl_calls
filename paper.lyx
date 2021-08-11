@@ -1005,11 +1005,11 @@ sample which have insufficient mappability to support methylation calling.
 calling 
 \change_unchanged
 methylation
-\change_inserted -1421919639 1628277480
+\change_inserted -1421919639 1628701023
  for a C for which there is not a sufficiently mappable read, we took the
  list of unfiltered Cs for the regions we were interested in and removed
  from it all Cs we kept after per-read filtering.
- The result was every C that was filtered out
+ The result was a list of every C that was filtered out
 \change_unchanged
  
 \change_deleted -1421919639 1628277402
@@ -2130,9 +2130,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename analysis_preproc.svg
+	filename procfig_1.svg
 	lyxscale 65
-	height 60pheight%
+	width 60page%
 
 \end_inset
 
@@ -2158,12 +2158,21 @@ preprocessing
  steps used to identify biologically relevant low-mappability regions..
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
- Parallelograms are output files.
+ 
+\change_deleted -1421919639 1628705439
+Parallelograms are output files.
  Labels on edges are processing steps with one input and one output (except
  edges directly entering rhombuses, which simply indicate which lines come
  from which steps and go to which arguments).
- Dotted lines indicate inputs that go to the BAM processing steps in Figure
  
+\change_unchanged
+Dotted lines indicate inputs that go to the 
+\change_deleted -1421919639 1628705444
+BAM processing
+\change_inserted -1421919639 1628705448
+methylation calling
+\change_unchanged
+ steps in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:dag-1"
@@ -2174,8 +2183,12 @@ noprefix "false"
 \end_inset
 
 .
- Dark gray rectangles indicate steps involving manually examining the data.
+ 
+\change_deleted -1421919639 1628705452
+Dark gray rectangles indicate steps involving manually examining the data.
  Dashed lines indicate manual steps.
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -2197,7 +2210,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename analysis_bam.svg
+	filename procfig_2.svg
 	lyxscale 65
 	width 70page%
 	scaleBeforeRotation
@@ -2227,11 +2240,15 @@ Detailed description of
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Parallelograms are output files.
- Labels on edges are processing steps with one input and one output (except
+ 
+\change_deleted -1421919639 1628705464
+Labels on edges are processing steps with one input and one output (except
  edges directly entering rhombuses, which simply indicate which lines come
  from which steps and go to which arguments).
- Dotted lines indicate inputs that come from the preprocessing steps in
- Figure 
+ 
+\change_unchanged
+Dotted lines indicate inputs that come from the preprocessing steps in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:dag"
@@ -2242,8 +2259,35 @@ noprefix "false"
 \end_inset
 
 .
- Dark gray parallelograms indicate final outputs that are examined manually.
+ 
+\change_deleted -1421919639 1628705490
+Dark gray 
+\change_inserted -1421919639 1628705488
+P
+\change_deleted -1421919639 1628705487
+p
+\change_unchanged
+arallelograms 
+\change_inserted -1421919639 1628705522
+are
+\change_deleted -1421919639 1628705520
+indicate final
+\change_unchanged
+ output
+\change_inserted -1421919639 1628705505
+ file
+\change_unchanged
+s
+\change_inserted -1421919639 1628705506
+.
+
+\change_unchanged
+ 
+\change_deleted -1421919639 1628705533
+that are examined manually.
  Dashed lines indicate manual steps.
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -2255,90 +2299,6 @@ noprefix "false"
 
 
 \change_inserted -1421919639 1627412911
-
-\end_layout
-
-\begin_layout Standard
-
-\change_inserted -1421919639 1627412912
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-
-\change_inserted -1421919639 1627412912
-\begin_inset Graphics
-	filename analysis_postproc.svg
-	lyxscale 75
-	width 70page%
-	scaleBeforeRotation
-	rotateAngle 90
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1627412912
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1627412998
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dag-1-1"
-
-\end_inset
-
-Detailed description of steps for calculating methylation miscalls from
- the data output from the preprocessing and methylation calling steps.
- Ovals are intermediate files.
- Gray rhombuses are processing steps with multiple arguments.
- Parallelograms are output files.
- Labels on edges are processing steps with one input and one output (except
- edges directly entering rhombuses, which simply indicate which lines come
- from which steps and go to which arguments).
- Dotted lines indicate inputs that come from the preprocessing steps in
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:dag"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and methylation calling steps in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:dag-1"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Dark gray parallelograms indicate final outputs that are examined manually.
- Dashed lines indicate manual steps.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 
 \end_layout
 

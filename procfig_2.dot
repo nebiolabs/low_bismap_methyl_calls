@@ -1,0 +1,77 @@
+digraph workflow {
+
+	"PREPROC_1" [style=invis];
+
+	"PREPROC_2" [style=invis];
+
+	"PREPROC_3" [style=invis];
+
+	"PREPROC_1" -> "Low-mappability Regions" [label="From Preprocessing", style=dotted];
+
+	"PREPROC_2" -> "Low-mappability ClinVar Genes" [label="From Preprocessing", style=dotted];
+
+	"PREPROC_3" -> "Low-mappability Regions \nin ClinVar Genes" [label="From Preprocessing", style=dotted];
+
+	"Genome" [shape=hexagon];
+
+	"Bismap" [shape=hexagon];
+
+	"BAMs" [shape=hexagon];
+
+	"Intersect_1" [shape=diamond, color=gray85, style=filled, label="Call Methylation"];
+
+	"Genome" -> "Intersect_1";
+
+	"BAMs" -> "Intersect_1";
+
+	"Bismap" -> "Intersect_1";
+
+	"Intersect_1" -> "Unfiltered Calls";
+	"Unfiltered Calls" [shape=parallelogram];
+
+	"Intersect_1" -> "Filtered Calls";
+	"Filtered Calls" [shape=parallelogram];
+
+	"Intersect_2" [shape=diamond, color=gray85, style=filled, label="Subtract Filtered \nfrom Unfiltered"];
+
+	"Unfiltered Calls" -> "Intersect_2";
+
+	"Filtered Calls" -> "Intersect_2";
+
+	"Intersect_2" -> "Miscalls";
+	"Miscalls" [shape=parallelogram];
+
+	"Intersect_3" [shape=diamond, color=gray85, style=filled, label="Intersect and Process"];
+
+	"Unfiltered Calls" -> "Intersect_3";
+
+	"Filtered Calls" -> "Intersect_3";
+
+	"Miscalls" -> "Intersect_3";
+
+	"Low-mappability Regions" -> "Intersect_3";
+
+	"Low-mappability ClinVar Genes" -> "Intersect_3";
+
+	"Low-mappability Regions \nin ClinVar Genes" -> "Intersect_3";
+
+	"Intersect_3" -> "Low-mappability Calls and Miscalls";
+	"Low-mappability Calls and Miscalls" [shape=parallelogram];
+
+	"Intersect_3" -> "ClinVar Gene Calls and Miscalls";
+	"ClinVar Gene Calls and Miscalls" [shape=parallelogram];
+
+	"Intersect_3" -> "ClinVar Gene Low-mappability Calls and Miscalls";
+	"ClinVar Gene Low-mappability Calls and Miscalls" [shape=parallelogram];
+
+	"Intersect_3" -> "Pure Calls";
+	"Pure Calls" [shape=parallelogram];
+
+	"Intersect_3" -> "Mixed Calls";
+	"Mixed Calls" [shape=parallelogram];
+
+	"Intersect_3" -> "Resolved Calls";
+	"Resolved Calls" [shape=parallelogram];
+
+	
+ }
