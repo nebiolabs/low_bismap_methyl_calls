@@ -765,7 +765,7 @@ status open
 \change_unchanged
 An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
 
-\change_inserted -1421919639 1628700230
+\change_inserted -1421919639 1628707551
  The six tracks show the effect of per-C and per-read mappability filtering
  on the methylation calls on this chromosome.
  
@@ -795,7 +795,7 @@ Kept by Per-read Filtering
 \begin_inset Quotes erd
 \end_inset
 
- shows the methylation calls kept after per-read mapability filtering.
+ shows the methylation calls kept after per-read mappability filtering.
  
 \begin_inset Quotes eld
 \end_inset
