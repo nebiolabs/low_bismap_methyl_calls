@@ -492,8 +492,21 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cs called in low mappability regions after MapQ filtering are represented
- across all chromosomes.
+Cs 
+\change_deleted -1421919639 1628700371
+called
+\change_inserted -1421919639 1628700414
+filtered out by per-read filtering
+\change_deleted -1421919639 1628700381
+ in low mappability regions after
+\change_inserted -1421919639 1628700400
+ 
+\change_deleted -1421919639 1628700381
+ 
+\change_inserted -1421919639 1628700397
+that still passed 
+\change_unchanged
+MapQ filtering are represented across all chromosomes.
 
 \change_inserted -1421919639 1628612437
  In this figure, each row is a chromosome and each blue bar is a C (or cluster
@@ -746,15 +759,15 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1628691870
+\change_deleted -1421919639 1628700336
 <I think we need to be more explicit about what is being plotted here <change
  the captions too>>
 \change_unchanged
 An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
 
-\change_inserted -1421919639 1628692338
- The six tracks show the effect of per-C and per-read filtering on the methylati
-on calls on this chromosome.
+\change_inserted -1421919639 1628700230
+ The six tracks show the effect of per-C and per-read mappability filtering
+ on the methylation calls on this chromosome.
  
 \begin_inset Quotes eld
 \end_inset
@@ -768,16 +781,17 @@ Mappability
 \begin_inset Quotes eld
 \end_inset
 
-Unfiltered
+MapQ filtering only
 \begin_inset Quotes erd
 \end_inset
 
- is the calls with MapQ filtering only.
+ is the calls after MapQ filtering only (no per-C or per-read mappability
+ filtering).
  
 \begin_inset Quotes eld
 \end_inset
 
-Kept by Mappability Filtering
+Kept by Per-read Filtering
 \begin_inset Quotes erd
 \end_inset
 
@@ -786,7 +800,7 @@ Kept by Mappability Filtering
 \begin_inset Quotes eld
 \end_inset
 
-Removed by Mappability Filtering
+Removed by Per-read Filtering
 \begin_inset Quotes erd
 \end_inset
 
@@ -796,22 +810,22 @@ ly mappable.
 \begin_inset Quotes eld
 \end_inset
 
-Kept by bedtools only
+Kept only by per-C filtering
 \begin_inset Quotes erd
 \end_inset
 
  shows the underfiltered Cs, that is, those that are not sufficiently mappable
- according to our per-read method, but are retained by per-C filtering.
+ according to per-read filtering, but are retained by per-C filtering.
  
 \begin_inset Quotes eld
 \end_inset
 
-Kept by mappability only
+Kept only by per-read filtering
 \begin_inset Quotes erd
 \end_inset
 
  shows the overfiltered Cs, that is, those that are sufficiently mappable
- according to our per-read method, but are removed by per-C filtering.
+ according to per-read filtering, but are removed by per-C filtering.
  
 \change_unchanged
 
@@ -859,8 +873,8 @@ status open
 
 \begin_layout Plain Layout
 An example of a C incorrectly discarded by coordinate filtering
-\change_inserted -1421919639 1628691903
- <circle the C and change the caption if possible>
+\change_inserted -1421919639 1628700249
+ (circled)
 \change_unchanged
 .
 
@@ -913,18 +927,12 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -162802704 1625840119
-<needs an expanded 
-\change_deleted -1421919639 1628615097
-explantion
-\change_inserted -1421919639 1628615097
-explanation
-\change_inserted -162802704 1625840119
->
+\change_deleted -1421919639 1628700270
+<needs an expanded explantion>
 \change_unchanged
 An example of a C incorrectly kept by coordinate filtering
-\change_inserted -1421919639 1628692057
- <circle the c>
+\change_inserted -1421919639 1628700259
+ (circled)
 \change_unchanged
 .
 
