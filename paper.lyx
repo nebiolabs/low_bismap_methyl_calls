@@ -130,12 +130,8 @@ DNA methylation is an important component in vital biological functions
 \change_unchanged
 .
  We examined methylation calls with and without read-based filtering in
- or near the 7830
-\change_inserted -1421919639 1625148735
- <check this number>
-\change_unchanged
- genes containing ClinVar variants in a methylation sequencing data set
- from the NA12878 cell line and in tumor samples.
+ or near the 7830 genes containing ClinVar variants in a methylation sequencing
+ data set from the NA12878 cell line and in tumor samples.
  Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
  methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
  Cs were corrected to 100% methylation.
@@ -206,12 +202,13 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Untitled drawing-2.svg
-	width 90page%
+	filename fig.svg
+	width 70page%
 
 \end_inset
 
@@ -219,8 +216,16 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Overview of Methylation Sequencing Methods.
- <todo: Treat with Enzyme -> Tet2-> APOBEC
+Overview of Methylation Sequencing
+\change_inserted -1421919639 1628699189
+ and Data Analysis
+\change_unchanged
+ Methods.
+ 
+\change_deleted -1421919639 1628687994
+<todo: Treat with Enzyme -> Tet2-> APOBEC
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:seq"
@@ -304,7 +309,7 @@ s
  (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:overview"
+reference "fig:seq"
 plural "false"
 caps "false"
 noprefix "false"
@@ -318,6 +323,8 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1628699362
 \begin_inset Float figure
 wide false
 sideways false
@@ -355,6 +362,8 @@ name "fig:overview"
 \end_inset
 
 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -367,7 +376,7 @@ A read must be unambiguously placed if it is to provide information about
  alignment (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:overview"
+reference "fig:seq"
 plural "false"
 caps "false"
 noprefix "false"
@@ -474,7 +483,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Chrom_fig.png
-	lyxscale 30
+	lyxscale 25
 	width 60page%
 
 \end_inset
@@ -523,6 +532,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename fig1_svg.svg
+	lyxscale 50
 	width 60page%
 
 \end_inset
@@ -547,6 +557,12 @@ name "example"
 
 \begin_layout Plain Layout
 MapQ filtering does not remove all poorly mapped reads.
+
+\change_inserted -1421919639 1628691249
+ This is an example of a coverage spike in a low-mappability region: clearly
+ not sufficiently mappable, but still called with just MapQ filtering.
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:example"
@@ -651,10 +667,14 @@ noprefix "false"
 
 ).
 
-\change_inserted -1421919639 1628189816
+\change_inserted -1421919639 1628689108
  Although even about 1% of called Cs might seem small, the total number
  of called Cs without filtering is large enough that that 1.054% is on the
- order of 15.9 million Cs.
+ order of 12.1 million Cs, while 
+\begin_inset Formula $7.756*10^{-5}\%$
+\end_inset
+
+ of Cs is closer to 900 Cs.
 
 \change_unchanged
  In cases where reads from multiple low-mappability regions are placed onto
@@ -663,7 +683,7 @@ noprefix "false"
  mixed among multiple low-mappability regions (not creating a coverage spike),
  coverage filtering would not be effective at removing the affected regions.
 
-\change_inserted -1421919639 1628538273
+\change_inserted -1421919639 1628688752
  In addition, if some of the reads used to call a C are uniquely mappable,
  but others are not, per-read filtering can remove only those reads that
  are not uniquely mappable, rather than being forced to discard the entire
@@ -713,6 +733,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename fig4_svg.svg
+	lyxscale 50
 	width 60page%
 
 \end_inset
@@ -725,10 +746,75 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1626982451
-<I think we need to be more explicit about what is being plotted here>
+\change_inserted -1421919639 1628691870
+<I think we need to be more explicit about what is being plotted here <change
+ the captions too>>
 \change_unchanged
 An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
+
+\change_inserted -1421919639 1628692338
+ The six tracks show the effect of per-C and per-read filtering on the methylati
+on calls on this chromosome.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Mappability
+\begin_inset Quotes erd
+\end_inset
+
+ is the Bismap mappability for the chromosome.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Unfiltered
+\begin_inset Quotes erd
+\end_inset
+
+ is the calls with MapQ filtering only.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Kept by Mappability Filtering
+\begin_inset Quotes erd
+\end_inset
+
+ shows the methylation calls kept after per-read mapability filtering.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Removed by Mappability Filtering
+\begin_inset Quotes erd
+\end_inset
+
+ shows those calls removed entirely by per-read filtering for being insufficient
+ly mappable.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Kept by bedtools only
+\begin_inset Quotes erd
+\end_inset
+
+ shows the underfiltered Cs, that is, those that are not sufficiently mappable
+ according to our per-read method, but are retained by per-C filtering.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Kept by mappability only
+\begin_inset Quotes erd
+\end_inset
+
+ shows the overfiltered Cs, that is, those that are sufficiently mappable
+ according to our per-read method, but are removed by per-C filtering.
+ 
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview-1"
@@ -760,6 +846,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename fig3_svg.svg
+	lyxscale 50
 	width 60page%
 
 \end_inset
@@ -771,7 +858,19 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly discarded by coordinate filtering.
+An example of a C incorrectly discarded by coordinate filtering
+\change_inserted -1421919639 1628691903
+ <circle the C and change the caption if possible>
+\change_unchanged
+.
+
+\change_inserted -1421919639 1628692692
+ The C is in a small mappability dip, causing it to be discarded by bedtools
+ filtering, while per-read filtering correctly retains the C, as it can
+ be called using reads extending into the high-mappability regions on either
+ side.
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:discarded"
@@ -801,6 +900,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename fig2_svg.svg
+	lyxscale 50
 	width 60page%
 
 \end_inset
@@ -822,7 +922,20 @@ explanation
 \change_inserted -162802704 1625840119
 >
 \change_unchanged
-An example of a C incorrectly kept by coordinate filtering.
+An example of a C incorrectly kept by coordinate filtering
+\change_inserted -1421919639 1628692057
+ <circle the c>
+\change_unchanged
+.
+
+\change_inserted -1421919639 1628692238
+ As the C is itself just inside the edge of a mappable region, bedtools
+ retains it, even though it is only supported by two insufficiently mappable
+ reads.
+ Our per-read filtering removes this sort of C, as there is not enough data
+ here to confidently call it.
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:kept"
@@ -869,16 +982,12 @@ literal "false"
  
 \change_deleted -1421919639 1627577871
 15,539
-\change_inserted -1421919639 1627577874
-279,566
+\change_inserted -1421919639 1628687763
+275,092
 \change_deleted -1421919639 1627577877
  
 \change_unchanged
-Cs
-\change_inserted -1421919639 1628277364
- <FIX NUMBER>
-\change_unchanged
- in these important regions in a 50ng EM-seq
+Cs in these important regions in a 50ng EM-seq
 \change_inserted -162802704 1625840589
  
 \change_unchanged
@@ -980,7 +1089,7 @@ status open
 \change_inserted -1421919639 1627591762
 \begin_inset Graphics
 	filename Miscalls Overview.png
-	lyxscale 40
+	lyxscale 45
 	width 70page%
 
 \end_inset
@@ -1511,7 +1620,7 @@ GRCh38 vs.
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1628279416
+\change_inserted -1421919639 1628689664
 We also examined the effect of using the T2T reference 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1538,8 +1647,9 @@ noprefix "false"
 \end_inset
 
 ).
- This indicates that indeed using the T2T reference can allow for better
- calling of methylation (as shown by the reduced percentage of miscalls).
+ This indicates that it is indeed true that using the T2T reference can
+ allow for better calling of methylation (as shown by the reduced percentage
+ of miscalls).
 \end_layout
 
 \begin_layout Standard
@@ -1972,6 +2082,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename analysis_clinvar.svg
+	lyxscale 90
 	width 70page%
 
 \end_inset
@@ -2012,7 +2123,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename analysis_preproc.svg
-	lyxscale 70
+	lyxscale 65
 	height 60pheight%
 
 \end_inset
@@ -2079,7 +2190,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename analysis_bam.svg
-	lyxscale 70
+	lyxscale 65
 	width 70page%
 	scaleBeforeRotation
 	rotateAngle 90
@@ -2153,7 +2264,7 @@ status open
 \change_inserted -1421919639 1627412912
 \begin_inset Graphics
 	filename analysis_postproc.svg
-	lyxscale 70
+	lyxscale 75
 	width 70page%
 	scaleBeforeRotation
 	rotateAngle 90
