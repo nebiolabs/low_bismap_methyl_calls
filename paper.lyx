@@ -482,8 +482,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Chrom_fig.png
-	lyxscale 25
+	filename chroms_parts_combined.png
+	lyxscale 55
 	width 60page%
 
 \end_inset
@@ -493,6 +493,8 @@ status open
 
 \begin_layout Plain Layout
 Cs 
+\change_inserted -1421919639 1628801342
+in low mappability regions, as well as those
 \change_deleted -1421919639 1628700371
 called
 \change_inserted -1421919639 1628700414
@@ -506,22 +508,28 @@ filtered out by per-read filtering
 \change_inserted -1421919639 1628700397
 that still passed 
 \change_unchanged
-MapQ filtering are represented across all chromosomes.
-
-\change_inserted -1421919639 1628612437
- In this figure, each row is a chromosome and each blue bar is a C (or cluster
- of Cs) that was called even though it was not supported by uniquely mappable
- reads.
-\change_deleted -1421919639 1628612382
-..
+MapQ filtering
+\change_inserted -1421919639 1628801345
+,
 \change_unchanged
+ are represented across all chromosomes.
 
+\change_inserted -1421919639 1628801387
+ However, per-read filtering can remove unsupported calls while removing
+ far less Cs than a naïve per-C filtering approach would require.
+ In this figure, the horizontal banded rectangles are the chromosomes, the
+ blue track above them is all calls in low-mappability rgeions, and the
+ red track is miscalls removed by per-read filtering.
+\change_deleted -1421919639 1628801241
+..
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:bad-mapq"
 
 \end_inset
 
+
+\change_unchanged
 
 \end_layout
 
@@ -1943,19 +1951,336 @@ literal "false"
 \end_inset
 
  using the S2 chemistry.
- We acquired 1.55 billion 99 bp paired-end reads for the EM-seq method and
- 1.60 billion paired-end reads for the Bisulfite converted libraries
-\change_inserted -1421919639 1624472963
- <
-\change_inserted -162802704 1625841288
-get this from samtools stats on the bams 
-\change_inserted -1421919639 1624472963
-what mass is this for? need counts for all masses unless they're identical>
+ We acquired 
+\change_inserted -1421919639 1628780361
+about 
 \change_unchanged
+1.
+\change_inserted -1421919639 1628780382
+30
+\change_deleted -1421919639 1628780353
+55
+\change_unchanged
+ billion 99 bp paired-end reads for the EM-seq method and 1.
+\change_inserted -1421919639 1628780380
+27
+\change_deleted -1421919639 1628780380
+60
+\change_unchanged
+ billion paired-end reads for the Bisulfite converted libraries
+\change_inserted -1421919639 1628780327
 .
+\change_deleted -1421919639 1628780325
+get this from samtools stats on the bams .
 
 \change_deleted -162802704 1625841209
  
+\change_inserted -1421919639 1628779914
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\change_inserted -1421919639 1628780200
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\change_inserted -1421919639 1628780202
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+Sequencing Method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+Sample Mass
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+Read Count
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+WGBS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+10ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,268,442,060
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+WGBS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+50ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,269,601,144
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+WGBS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+200ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,269,737,220
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+EM-seq
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+10ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,298,351,192
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+EM-seq
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+50ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,296,831,526
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+EM-seq
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+200ng
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780202
+1,296,793,470
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780200
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1628780243
+Sequencing read counts broken down by sequencing method and sample mass.
+ Read counts are reported as counts of individual reads, not pairs.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \change_unchanged
 
 \end_layout
@@ -2338,8 +2663,8 @@ The sequencing reads were aligned using the bwa-meth aligner using default
  in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
  ratio for this dataset of 7.78:1.
 
-\change_inserted -1421919639 1627997174
- MethylDackel's trimming settings were set to trim off the first 2bp of
+\change_inserted -1421919639 1628715148
+ MethylDackel's trimming settings were set to trim off the first 1 bp of
  read 1 and the last 2 bp of read 2.
 \change_unchanged
 
@@ -2371,10 +2696,13 @@ ClinVar regions BED
  bedtools slop to capture methylation upstream of the gene.
 
 \change_unchanged
- The Bismap bedGraph (which, as is standard for bedGraph files, did not
- contain zeroes) and an FAI index of the GRCh38 reference genome FASTA file
- were processed with bedtools, awk, and GNU sort to obtain a bedGraph containing
- all mappability data, including zeroes.
+ The Bismap bedGraph (which
+\change_deleted -1421919639 1628715192
+, as is standard for bedGraph files,
+\change_unchanged
+ did not contain zeroes) and an FAI index of the GRCh38 reference genome
+ FASTA file were processed with bedtools, awk, and GNU sort to obtain a
+ bedGraph containing all mappability data, including zeroes.
  This file will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
