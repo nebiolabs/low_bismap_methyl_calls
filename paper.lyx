@@ -132,9 +132,31 @@ DNA methylation is an important component in vital biological functions
  We examined methylation calls with and without read-based filtering in
  or near the 7830 genes containing ClinVar variants in a methylation sequencing
  data set from the NA12878 cell line and in tumor samples.
- Examining low mappability Cs in the NA12878 data set revealed 1405 mixed
- methylation Cs were corrected to 0% methylation, and 2577 mixed methylation
- Cs were corrected to 100% methylation.
+ Examining 
+\change_deleted -1421919639 1628876636
+low mappability 
+\change_inserted -1421919639 1628876640
+called 
+\change_unchanged
+Cs in 
+\change_inserted -1421919639 1628877282
+a 200ng
+\change_deleted -1421919639 1628877279
+the
+\change_unchanged
+ NA12878 data set revealed 
+\change_inserted -1421919639 1628877270
+41,143
+\change_deleted -1421919639 1628877235
+1405
+\change_unchanged
+ mixed methylation Cs were corrected to 0% methylation, and 
+\change_deleted -1421919639 1628877227
+2577
+\change_inserted -1421919639 1628877272
+22,345
+\change_unchanged
+ mixed methylation Cs were corrected to 100% methylation.
 \end_layout
 
 \begin_layout Section*
@@ -317,9 +339,12 @@ noprefix "false"
 \end_inset
 
 ).
- The resulting data shows the methylation status of each cytosine in the
- genome and can therefore be used to find and study biologically significant
- DNA methylation sites.
+ The resulting data shows the methylation status of each 
+\change_inserted -1421919639 1628883447
+callable 
+\change_unchanged
+cytosine in the genome and can therefore be used to find and study biologically
+ significant DNA methylation sites.
 \end_layout
 
 \begin_layout Standard
@@ -721,11 +746,11 @@ noprefix "false"
  mixed among multiple low-mappability regions (not creating a coverage spike),
  coverage filtering would not be effective at removing the affected regions.
 
-\change_inserted -1421919639 1628688752
+\change_inserted -1421919639 1628884010
  In addition, if some of the reads used to call a C are uniquely mappable,
  but others are not, per-read filtering can remove only those reads that
  are not uniquely mappable, rather than being forced to discard the entire
- locus like per-C filtering does.
+ locus as is required for per-C filtering.
 \change_unchanged
 
 \end_layout
@@ -752,12 +777,11 @@ per-read
 \change_unchanged
  filtering approach precisely eliminates only those reads in repetitive
  regions and does not incur a significant cost in terms of execution speed
+\change_deleted -1421919639 1628872919
  (10:14 min with the patch 9:55 min without, when run with 20 threads on
- the GRCh38 reference genome
-\change_inserted -1421919639 1627325856
- <update these numbers?>
+ the GRCh38 reference genome)
 \change_unchanged
-).
+.
  (see computational methods for details)
 \end_layout
 
@@ -961,12 +985,12 @@ An example of a C incorrectly kept by coordinate filtering
 \change_unchanged
 .
 
-\change_inserted -1421919639 1628692238
+\change_inserted -1421919639 1628884124
  As the C is itself just inside the edge of a mappable region, bedtools
  retains it, even though it is only supported by two insufficiently mappable
  reads.
- Our per-read filtering removes this sort of C, as there is not enough data
- here to confidently call it.
+ Our per-read filtering correctly removes this sort of C, as there is not
+ enough data here to call it confidently.
 \change_unchanged
 
 \begin_inset CommandInset label
@@ -1030,8 +1054,8 @@ sample which have insufficient mappability to support methylation calling.
 calling 
 \change_unchanged
 methylation
-\change_inserted -1421919639 1628701023
- for a C for which there is not a sufficiently mappable read, we took the
+\change_inserted -1421919639 1628884513
+ for a C for which there are not sufficiently mappable reads, we took the
  list of unfiltered Cs for the regions we were interested in and removed
  from it all Cs we kept after per-read filtering.
  The result was a list of every C that was filtered out
@@ -1046,7 +1070,7 @@ calling in a region that has insufficient mappability, we intersected read
 (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:overview"
+reference "fig:Miscall-counts"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2286,9 +2310,9 @@ EM-seq
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1628780243
+\change_inserted -1421919639 1628870479
 Sequencing read counts broken down by sequencing method and sample mass.
- Read counts are reported as counts of individual reads, not pairs.
+ Read counts are reported as counts of individual reads, not of pairs.
  
 \change_unchanged
 
@@ -2655,8 +2679,13 @@ that are examined manually.
 \end_layout
 
 \begin_layout Standard
-The sequencing reads were aligned using the bwa-meth aligner using default
- options.
+The sequencing reads were aligned using the bwa-meth aligner 
+\change_deleted -1421919639 1628870582
+using
+\change_inserted -1421919639 1628870582
+with
+\change_unchanged
+ default options.
  Methylation calling was performed on the resulting BAMs using MethylDackel
  v0.
 \change_inserted -1421919639 1627324083
@@ -2915,7 +2944,7 @@ s of mappability), all methylation calls in GENCODE genes (with low minimum
  mappability) which contained ClinVar variants,
 \change_unchanged
  
-\change_inserted -1421919639 1627679234
+\change_inserted -1421919639 1628871295
 all methylation calls in low-mappability regions that were also in GENCODE
  genes which contained ClinVar variants, counts of calls in in GENCODE genes
  which contained ClinVar variants regardless of mappability, methylation
