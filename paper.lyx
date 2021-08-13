@@ -451,12 +451,29 @@ literal "false"
  a particular length (in this case, k=100) in the genome to create a mappability
  score (ranging from 0 to 1 in increments of 0.01) for every base in the
  GRCh38 reference.
- <bases this on assumption that each locus is either 0 or 100%
-\change_inserted -1421919639 1627325677
- <what does this note mean exactly? I forgot.>
+ 
+\change_deleted -1421919639 1628862152
+<bases this on assumption that each locus is either 0 or 100%>
+\change_inserted -1421919639 1628862260
+Each individual K-mer is treated as either mappable or not (binary), and
+ the overall mappability score is derived from how many different K-mers
+ are mappable or not.
+
 \change_unchanged
-> Bismap takes the effect of C->T conversion into account and therefore
- produces data which is applicable in the context of methylation sequencing.
+ Bismap takes the effect of C->T conversion into account and therefore produces
+ data which is applicable in the context of methylation sequencing
+\change_inserted -1421919639 1628862264
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "karimzadeh2018"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+.
  Reads entirely contained within a region of low mappability should not
  have high MapQ values due to their repetitiveness, however we observed
  many high-MapQ reads in regions with very low or zero Bismap mappability
@@ -522,14 +539,14 @@ MapQ filtering
  red track is miscalls removed by per-read filtering.
 \change_deleted -1421919639 1628801241
 ..
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:bad-mapq"
+name "fig:chrom-overview"
 
 \end_inset
 
-
-\change_unchanged
 
 \end_layout
 
@@ -1049,7 +1066,7 @@ Filtering Effect
 
 \begin_layout Standard
 
-\change_inserted -1421919639 1627592801
+\change_inserted -1421919639 1628862400
 We compared the effect of per-read mappability filtering on number of C's
  called, as well as number of C's called in low-mappability regions (as
  defined by per-C filtering), on EM-seq samples of 3 sample masses aligned
@@ -1067,7 +1084,17 @@ noprefix "false"
 \end_inset
 
 ).
- <distribution of these Cs>
+ The miscalled Cs were scattered across the genome, as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:chrom-overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1587,7 +1614,7 @@ literal "false"
  reads in repetitive regions (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:bad-mapq"
+reference "fig:chrom-overview"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3332,7 +3359,7 @@ kMappability.bw
 
 \change_deleted -1421919639 1626193215
  <refer to these in the main body>
-\change_unchanged
+\change_inserted -1421919639 1628801885
 
 \end_layout
 
@@ -3349,6 +3376,24 @@ name "The-ClinVar-VCF"
 \change_unchanged
 The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
  with a file name of clinvar_20190722.vcf.gz
+\change_inserted -1421919639 1628801886
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -1421919639 1628801931
+The chromosome ideogram figure was generated using karyoploteR
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gel_karyoploter_2017"
+literal "false"
+
+\end_inset
+
+.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
