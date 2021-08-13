@@ -454,10 +454,10 @@ literal "false"
  
 \change_deleted -1421919639 1628862152
 <bases this on assumption that each locus is either 0 or 100%>
-\change_inserted -1421919639 1628862260
-Each individual K-mer is treated as either mappable or not (binary), and
- the overall mappability score is derived from how many different K-mers
- are mappable or not.
+\change_inserted -1421919639 1628862905
+Each individual K-mer is treated as either mappable or not, and the overall
+ mappability score is derived (indirectly) from how many different K-mers
+ are mappable and how many are not.
 
 \change_unchanged
  Bismap takes the effect of C->T conversion into account and therefore produces
