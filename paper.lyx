@@ -730,14 +730,14 @@ noprefix "false"
 
 ).
 
-\change_inserted -1421919639 1628689108
+\change_inserted -1421919639 1629135768
  Although even about 1% of called Cs might seem small, the total number
  of called Cs without filtering is large enough that that 1.054% is on the
  order of 12.1 million Cs, while 
 \begin_inset Formula $7.756*10^{-5}\%$
 \end_inset
 
- of Cs is closer to 900 Cs.
+ of Cs is closer to 1150 Cs.
 
 \change_unchanged
  In cases where reads from multiple low-mappability regions are placed onto
@@ -776,7 +776,13 @@ alignment
 per-read
 \change_unchanged
  filtering approach precisely eliminates only those reads in repetitive
- regions and does not incur a significant cost in terms of execution speed
+ regions and 
+\change_deleted -1421919639 1628890704
+does not incur a significant cost in terms of
+\change_inserted -1421919639 1628890710
+has a negligible effect on
+\change_unchanged
+ execution speed
 \change_deleted -1421919639 1628872919
  (10:14 min with the patch 9:55 min without, when run with 20 threads on
  the GRCh38 reference genome)
@@ -921,7 +927,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly discarded by coordinate filtering
+An example of a C incorrectly discarded by 
+\change_deleted -1421919639 1629136404
+coordinate
+\change_inserted -1421919639 1629136405
+per-C
+\change_unchanged
+ filtering
 \change_inserted -1421919639 1628700249
  (circled)
 \change_unchanged
@@ -979,7 +991,13 @@ status open
 \change_deleted -1421919639 1628700270
 <needs an expanded explantion>
 \change_unchanged
-An example of a C incorrectly kept by coordinate filtering
+An example of a C incorrectly kept by 
+\change_deleted -1421919639 1629136409
+coordinate
+\change_inserted -1421919639 1629136409
+per-C
+\change_unchanged
+ filtering
 \change_inserted -1421919639 1628700259
  (circled)
 \change_unchanged
@@ -1381,7 +1399,7 @@ status open
 
 \begin_layout Plain Layout
 
-\change_inserted -1421919639 1628534356
+\change_inserted -1421919639 1629136464
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:igv-1"
@@ -1396,6 +1414,7 @@ A view of a cluster of miscalls in a large low-mappability region.
  Note how every CpG call (as well as calls in other contexts) are miscalled
  in this region, as there are no high-mappability regions to anchor reads
  in.
+ <need to pick a different gene, this is the same gene as the next fig>
 \change_unchanged
 
 \end_layout
@@ -1720,78 +1739,60 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-todo: filtering effect em-seq vs wgbs (fig) for bwa-meth
-\change_inserted -1421919639 1628277701
- (in pipeline) [DONE]
-\change_unchanged
 
+\change_deleted -1421919639 1629136487
+todo: filtering effect em-seq vs wgbs (fig) for bwa-meth
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm
  working on)
-\change_inserted -1421919639 1628277714
- (in pipeline) [DONE]
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: # cs affected (worst) bismark vs filtered vs bwa-meth vs filtered
  (best) (fig?) (I can get this from the emseq/wgbs data, it's a simple bedtools
  operation)
-\change_inserted -1421919639 1628277803
- (in pipeline, somewhat) [???]
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
-todo: group Cs by 
-\change_deleted -1421919639 1628615160
-magnititude
-\change_inserted -1421919639 1628615160
-magnitude
-\change_unchanged
- of change in methylation post filtering (fig, heatmap?) (best done by comparing
- both %methyl and read count, maybe we should discuss how to layout this
- figure though)
-\change_inserted -1421919639 1628277740
- [???]
-\change_unchanged
 
+\change_deleted -1421919639 1629136487
+todo: group Cs by magnititude of change in methylation post filtering (fig,
+ heatmap?) (best done by comparing both %methyl and read count, maybe we
+ should discuss how to layout this figure though)
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: effect on ClinVar
-\change_inserted -1421919639 1628277736
- (in pipeline) [IN PROGRESS]
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: examples of specific effects in ClinVar (I have 2 of these from my
  talk)
-\change_inserted -1421919639 1628535287
- [IN PROGRESS]
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: find/examine relevant human (GEO?) dataset (maybe, depends on time/progres
 s) (sequencing, not chip) (ideally, clinically relevant EM-seq)
-\change_inserted -1421919639 1628277748
- [???]
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -1421919639 1629136487
 todo: T2T data (repeat analysis on this and compare effect)
 \change_inserted -1421919639 1628278436
- (in pipeline) [IN PROGRESS]
+
 \end_layout
 
 \begin_layout Standard
