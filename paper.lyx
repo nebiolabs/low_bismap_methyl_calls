@@ -539,8 +539,8 @@ Cs
 in low mappability regions, as well as those
 \change_deleted -1421919639 1628700371
 called
-\change_inserted -1421919639 1628700414
-filtered out by per-read filtering
+\change_inserted -1421919639 1629137171
+ filtered out by per-read filtering
 \change_deleted -1421919639 1628700381
  in low mappability regions after
 \change_inserted -1421919639 1628700400
@@ -556,11 +556,11 @@ MapQ filtering
 \change_unchanged
  are represented across all chromosomes.
 
-\change_inserted -1421919639 1628801387
+\change_inserted -1421919639 1629137152
  However, per-read filtering can remove unsupported calls while removing
  far less Cs than a naïve per-C filtering approach would require.
  In this figure, the horizontal banded rectangles are the chromosomes, the
- blue track above them is all calls in low-mappability rgeions, and the
+ blue track above them is all calls in low-mappability regions, and the
  red track is miscalls removed by per-read filtering.
 \change_deleted -1421919639 1628801241
 ..
