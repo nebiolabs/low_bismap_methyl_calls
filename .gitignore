@@ -2,3 +2,5 @@
 paper.lyx~
 .DS_Store
 .gitignore~
+.nextflow*
+work

@@ -1,0 +1,15 @@
+todo: filtering effect em-seq vs wgbs (fig) for bwa-meth (in pipeline) [DONE]
+
+todo: filtering effect em-seq-vs wgbs for bismark (this is the data I'm working on) (in pipeline) [DONE]
+
+todo: # cs affected (worst) bismark vs filtered vs bwa-meth vs filtered (best) (fig?) (I can get this from the emseq/wgbs data, it's a simple bedtools operation) (in pipeline, somewhat) [???]
+
+todo: group Cs by magnititudemagnitude of change in methylation post filtering (fig, heatmap?) (best done by comparing both %methyl and read count, maybe we should discuss how to layout this figure though) [???]
+
+todo: effect on ClinVar (in pipeline) [IN PROGRESS]
+
+todo: examples of specific effects in ClinVar (I have 2 of these from my talk) [IN PROGRESS]
+
+todo: find/examine relevant human (GEO?) dataset (maybe, depends on time/progress) (sequencing, not chip) (ideally, clinically relevant EM-seq) [???]
+
+todo: T2T data (repeat analysis on this and compare effect) (in pipeline) [IN PROGRESS]

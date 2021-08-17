@@ -1,0 +1,45 @@
+digraph workflow {
+
+	"Reference FASTA" [shape=hexagon];
+
+	"Input BAMs" [shape=hexagon];
+
+	"Final Bismark BAMs" [shape=parallelogram];
+
+	"Final bwa-meth BAMs" [shape=parallelogram];
+
+	"Bismark" [shape=diamond,  color=gray85, style=filled, label="bismark -1 <read 1s> -2 <read 2s>"];
+	
+	"samtools fastq" [shape=diamond,  color=gray85, style=filled, label="samtools fastq -1 <read 1s> \n-2 <read 2s> <BAM file>"];
+
+	"bwa-meth" [shape=diamond,  color=gray85, style=filled, label="bwameth.py <read 1s> <read 2s>"];
+
+	"Input BAMs" -> "Collated BAMs" [label="samtools collate"];
+
+	"Collated BAMs" -> "samtools fastq";
+
+	"samtools fastq" -> "FASTQs";
+
+	"FASTQs" -> "Bismark";
+
+	"FASTQs" -> "bwa-meth";
+
+	"Bismark Index" -> "Bismark";
+
+	"bwa-meth Index" -> "bwa-meth";
+
+	"Reference FASTA" -> "Bismark Index" [label="bismark_genome_preparation"];
+
+	"Reference FASTA" -> "bwa-meth Index" [label="bwameth.py index"];
+
+	"Reference FASTA" -> "Bismark";
+
+	"Reference FASTA" -> "bwa-meth";
+
+	"Bismark" -> "Realigned Bismark BAMs";
+
+	"Realigned Bismark BAMs" -> "Final Bismark BAMs" [label="deduplicate_bismark"];
+
+	"bwa-meth" -> "Final bwa-meth BAMs";
+
+}

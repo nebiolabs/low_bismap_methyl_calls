@@ -1,0 +1,213 @@
+digraph workflow {
+
+	"grch38 fasta" [shape=hexagon, label="grch38 fasta"];
+
+	"Bismap complete bedGraph";
+
+	"PREPROC_1" -> "Bismap complete bedGraph" [label="from preprocessing", style=dotted];
+
+	"PREPROC_1" [style=invis];
+
+	"Bismap complete bedGraph" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" [label="Bismap"];
+
+	"Methylation sequencing reads" [shape=hexagon];
+
+	"Methylation sequencing reads" -> "sorted alignment BAM" [label="aligner"];
+
+	"MapQ cutoff" [shape=hexagon];
+
+	"MapQ cutoff" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" [label="cutoff"];
+
+	"grch38 fasta" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2";
+
+	"sort -k1,1 -k2,2n_2" [shape=diamond,  color=gray85, style=filled, label="sort -k1,1 -k2,2n"];
+	"sort -k1,1 -k2,2n_2" -> "sorted methyl calls bedGraph";
+	"sorted methyl calls bedGraph" -> "sorted methyl calls bedGraph\n(no headers)" [label="head -n -3"];
+	"CpG" -> "sort -k1,1 -k2,2n_2";
+	"CHG" -> "sort -k1,1 -k2,2n_2" ;
+	"CHH" -> "sort -k1,1 -k2,2n_2";
+	"MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" [shape=diamond,  color=gray85, style=filled, label="MethylDackel extract -@ 16 -m <Bismap> \n-q <cutoff> --CHH --CHG --OT 2,0,0,97"];
+	"sorted alignment BAM" -> "MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2";
+	"MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" -> "CHG";
+	"MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" -> "CpG";
+	"MethylDackel extract -@ 16 -q <cutoff>\n--CHH --CHG --OT 2,0,0,97_2" -> "CHH";
+	"sorted methyl calls bedGraph\n(no headers)" -> "bedtools intersect -u_2" [label="methyl calls"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "bedtools intersect -u_2b" [label="methyl calls"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "bedtools intersect -u_2c" [label="methyl calls"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "awkfilter1" [label="methyl calls"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "awkfilter2" [label="methyl calls"];
+
+	"sorted low mappability regions\nin ClinVar annotations 2" [label="sorted low mappability regions\nin ClinVar annotations"];
+
+	"sorted low mappability regions 2" [label="sorted low mappability regions\nin genome"];
+
+	"sorted clinvar regions 3" [label="sorted ClinVar regions\nin genome"];
+
+	"PREPROC_2" -> "sorted low mappability regions\nin ClinVar annotations 2" [label="from preprocessing", style=dotted];
+
+	"PREPROC_4" -> "sorted low mappability regions 2" [label="from preprocessing", style=dotted];
+	
+	"PREPROC_5" -> "sorted clinvar regions 3" [label="from preprocessing", style=dotted];
+
+	"PREPROC_2" [style=invis];
+
+	"PREPROC_4" [style=invis];	
+
+	"PREPROC_5" [style=invis];
+
+	"sorted low mappability regions\nin ClinVar annotations 2" -> "bedtools intersect -u_2" [label="low map. clinvar regions"];
+
+	"sorted low mappability regions 2" -> "bedtools intersect -u_2b" [label="low map. regions"];
+
+	"sorted clinvar regions 3" -> "bedtools intersect -u_2c" [label="clinvar regions"];
+
+	"sorted low mappability ClinVar regions 2" [label="sorted low mappability ClinVar regions"];
+
+	"PREPROC_3" -> "sorted low mappability ClinVar regions 2" [label="from preprocessing", style=dotted];
+
+	"PREPROC_3" [style=invis];
+
+	"sorted low mappability ClinVar regions 2" -> "bedtools intersect -u_3b" [label="ClinVar low map."];
+
+	"bedtools intersect -u_2" [label="bedtools intersect -u -sorted \n-a <methyl calls> -b <low map. clinvar regions>", shape=diamond,  color=gray85, style=filled];
+
+	"bedtools intersect -u_2b" [label="bedtools intersect -u -sorted \n-a <methyl calls> -b <low map. regions>", shape=diamond,  color=gray85, style=filled];
+
+	"bedtools intersect -u_2c" [label="bedtools intersect -u -sorted \n-a <methyl calls> -b <clinvar regions>", shape=diamond,  color=gray85, style=filled];
+
+	"bedtools intersect -u_2" -> "methylation calls in low\nmappability regions in ClinVar regions";
+
+	"bedtools intersect -u_2b" -> "methylation calls in low\nmappability regions";
+
+	"bedtools intersect -u_2c" -> "methylation calls in ClinVar regions";
+
+ 	"bedtools intersect -u_3b" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <ClinVar low map.> -b <low map. calls>"];
+
+	"bedtools intersect -u_3c" [shape=diamond,  color=gray85, style=filled, label="bedtools intersect -wa -sorted \n-a <ClinVar> -b <calls>"];
+
+	"methylation calls in low\nmappability regions in ClinVar regions" -> "bedtools intersect -u_3b" [label="low map. calls"];
+	
+	"bedtools intersect -u_3b" -> "ClinVar regions for each low map. methylation call";
+
+	"bedtools intersect -u_3c" -> "ClinVar regions for each methylation call";
+
+	"ClinVar regions for each low map. methylation call" -> "ClinVar regions with count of low map. methylation calls" [label="count_calls.py"];
+
+
+	"ClinVar regions for each methylation call" -> "ClinVar regions with count of methylation calls" [label="count_calls.py"];
+
+
+	"awkaligner1" [shape=diamond,  color=gray85, style=filled, label="awk \'{ print $0\"\\t<aligner>\" }\'"];
+
+	"awkaligner2" [shape=diamond,  color=gray85, style=filled, label="awk \'{ print $0\"\\t<aligner>\" }\'"];
+
+	"awkaligner3" [shape=diamond,  color=gray85, style=filled, label="awk \'{ print $0\"\\t<aligner>\" }\'"];
+
+
+	"awkfilter1" [shape=diamond,  color=gray85, style=filled, label="awk '($4 == 100 || $4 == 0) { print }'"];
+
+	"awkfilter2" [shape=diamond,  color=gray85, style=filled, label="awk '($4 != 100 && $4 != 0) { print }'"];
+
+	"awkfilter1" -> "pure methylation calls";
+
+	"awkfilter2" -> "mixed methylation calls";
+
+
+	"methylation calls in low\nmappability regions in ClinVar regions" -> "awkaligner1";
+
+	"methylation calls in ClinVar regions" -> "awkaligner3";
+
+	"methylation calls in ClinVar regions" -> "bedtools intersect -u_3c" [label="clinvar calls"];
+
+	"methylation calls in low\nmappability regions" -> "awkaligner2";
+
+	"awkaligner2" -> "methylation calls in low\nmappability regions\nwith identifier column";
+
+
+
+	"awkaligner1" -> "methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column";
+
+
+	"awkaligner3" -> "methylation calls in ClinVar regions\nwith identifier column";
+
+
+	"methylation calls in ClinVar regions\nwith identifier column" -> "clinvar methylation call data" [style=dashed, label="Display in Tableau"];
+
+	"methylation calls in low\nmappability regions in ClinVar regions\nwith identifier column" -> "low map. clinvar methylation call data" [style=dashed, label="Display in Tableau"];
+
+	"methylation calls in low\nmappability regions\nwith identifier column" -> "low map. methylation call data" [style=dashed, label="Display in Tableau"];
+
+	"low map. methylation call data with params" [shape=parallelogram, color=gray, style=filled];
+
+	"low map. clinvar methylation call data with params" [shape=parallelogram, color=gray, style=filled];
+
+	"sorted methyl calls bedGraph\n(no headers) with params" [shape=parallelogram];
+
+	"clinvar methylation call data with params" [shape=parallelogram, color=gray, style=filled];
+
+	"ClinVar regions with count of low map. methylation calls with params" [shape=parallelogram];
+
+	"ClinVar regions with count of methylation calls with params" [shape=parallelogram];
+
+	"pure methylation calls with params" [shape=parallelogram];
+
+	"mixed methylation calls with params" [shape=parallelogram];
+
+	"low map. methylation call data" -> "low map. methylation call data with params" [label="add_params.py"];
+
+	"low map. clinvar methylation call data" -> "low map. clinvar methylation call data with params" [label="add_params.py"];
+
+	"sorted methyl calls bedGraph\n(no headers)" -> "sorted methyl calls bedGraph\n(no headers) with params" [label="add_params.py"];
+
+	"clinvar methylation call data" -> "clinvar methylation call data with params" [label="add_params.py"];
+
+	"ClinVar regions with count of low map. methylation calls" -> "ClinVar regions with count of low map. methylation calls with params" [label="add_params.py"];
+
+	"ClinVar regions with count of methylation calls" -> "ClinVar regions with count of methylation calls with params" [label="add_params.py"];
+
+	"pure methylation calls" -> "pure methylation calls with params" [label="add_params.py"];
+
+	"mixed methylation calls" -> "mixed methylation calls with params" [label="add_params.py"];
+
+	#"ClinVar regions with low map. methylation calls" -> "Examine Data" [style=invis];
+
+	#"bismark vs. bwameth\nlow map. methylation call comparison" -> "Examine Data" [style=invis];
+
+	"sorted methyl calls bedGraph\n(no headers) with params" -> "POSTPROC_1" [label="to postprocessing", style=dotted];
+
+	"clinvar methylation call data with params" -> "POSTPROC_2" [label="to postprocessing", style=dotted];
+
+	"pure methylation calls with params" -> "POSTPROC_3" [label="to postprocessing", style=dotted];
+
+	"mixed methylation calls with params" -> "POSTPROC_4" [label="to postprocessing", style=dotted];
+
+	"ClinVar regions with count of methylation calls with params" -> "POSTPROC_5" [label="to postprocessing", style=dotted];
+
+	"ClinVar regions with count of low map. methylation calls with params" -> "POSTPROC_6" [label="to postprocessing", style=dotted];
+
+	"low map. methylation call data with params" -> "POSTPROC_7" [label="to postprocessing", style=dotted];
+
+	"low map. clinvar methylation call data with params" -> "POSTPROC_8" [label="to postprocessing", style=dotted];
+
+	"POSTPROC_1" [style=invis];
+
+	"POSTPROC_2" [style=invis];
+
+	"POSTPROC_3" [style=invis];
+
+	"POSTPROC_4" [style=invis];
+	
+	"POSTPROC_5" [style=invis];
+
+	"POSTPROC_6" [style=invis];
+
+	"POSTPROC_7" [style=invis];
+
+	"POSTPROC_8" [style=invis];
+
+	
+ }

@@ -1,0 +1,102 @@
+digraph workflow {
+
+
+	"ClinVar regions BED" [shape=hexagon];
+
+	"grch38 fasta 2" [shape=hexagon, label="reference fasta"];
+
+	"Bismap bedGraph" -> "sort -k1,1 -k2,2n_again";
+
+	"sort -k1,1 -k2,2n_again" -> "Bismap complete bedGraph"
+
+	"Bismap complete bedGraph";
+
+	"Bismap complete bedGraph" -> "BAM_PROC_1" [label="to BAM processing", style=dotted];
+
+	"BAM_PROC_1" [style=invis];
+
+	"sort -k1,1 -k2,2n_again" [shape=diamond,  color=gray85, style=filled, label="sort -k1,1 -k2,2n"];
+
+	"0 mappability regions bedGraph" -> "sort -k1,1 -k2,2n_again";
+
+	"Bismap bigWig" [shape=hexagon]; 
+	"Bismap bigWig" -> "Bismap bedGraph" [label="bigWigToBedGraph"];
+
+	"bedtools map -o min" [shape=diamond,  color=gray85, style=filled, label="bedtools map -o min \n-a <ClinVar> -b <Bismap>"];
+	"expanded sorted ClinVar regions BED" -> "bedtools map -o min" [label="ClinVar"];
+	"Bismap complete bedGraph" -> "bedtools map -o min" [label="Bismap"];
+
+	"bedtools map -o mean" [shape=diamond,  color=gray85, style=filled, label="bedtools map -o mean \n-a <ClinVar> -b <Bismap>"];
+	"expanded sorted ClinVar regions BED" -> "bedtools map -o mean" [label="ClinVar"];
+	"Bismap complete bedGraph" -> "bedtools map -o mean" [label="Bismap"];
+
+	"bedtools map -o min" -> "ClinVar regions with\n min mappability bedGraph";
+	"bedtools map -o mean" -> "ClinVar regions with\n mean mappability bedGraph";
+
+	"ClinVar regions with\n min mappability bedGraph" -> "paste";
+	"paste" -> "ClinVar regions with min and\n mean mappability bedGraph";
+	"ClinVar regions with\n mean mappability bedGraph" -> "paste";
+	"paste" [shape=diamond,  color=gray85, style=filled];
+
+	"ClinVar regions with min and\n mean mappability bedGraph" -> "Mappability Distribution in ClinVar regions" [style=dashed, label="Display in Tableau"];
+	"Mappability Distribution in ClinVar regions" [shape=box, color=gray, style=filled];
+	"Examine Data" [color=gray, style=invis];
+	"Mappability Distribution in ClinVar regions" -> "low mappability cutoff value\n(min mappability <= 0.01)" [style=dashed, label="Examine distribution"];
+
+	"awk '$11 <= min_cutoff { print }'" [shape=diamond,  color=gray85, style=filled];
+	"low mappability cutoff value\n(min mappability <= 0.01)" -> "awk '$11 <= min_cutoff { print }'";
+	"awk '$11 <= min_cutoff { print }'" -> "low mappability ClinVar regions";
+	"ClinVar regions with min and\n mean mappability bedGraph" -> "awk '$11 <= min_cutoff { print }'";
+
+	"low mappability ClinVar regions" -> "sorted low mappability ClinVar regions" [label="sort -k1,1 -k2,2n"];
+
+	"sorted low mappability ClinVar regions";
+
+	"sorted low mappability ClinVar regions" -> "BAM_PROC_2" [label="to BAM processing and postprocessing", style=dotted];
+
+	"BAM_PROC_2" [style=invis];
+
+	"bedtools complement" [shape=diamond,  color=gray85, style=filled];
+	
+	"Bismap bedGraph" -> "bedtools complement";
+
+	"bedtools complement" -> "0 mappability regions BED";
+
+	"grch38 fasta 2" -> "grch38 .fai file" [label="samtools faidx"];
+
+	"grch38 .fai file" -> "grch38 .genome file" [label="cut -f 1,2"];
+
+	"grch38 .genome file" -> "bedtools complement";
+
+	"awk_again" [shape=diamond,  color=gray85, style=filled, label="awk ' if $4<=0.01 { print }'"];
+
+	"Bismap complete bedGraph" -> "awk_again";
+
+	"low mappability cutoff value\n(min mappability <= 0.01)" -> "awk_again";
+
+	"awk_again" -> "<=0.01 mappability regions bedGraph";
+
+	"0 mappability regions BED" -> "0 mappability regions bedGraph" [label="awk '{ print $0\"\\t\"0 }'"];
+
+	"<=0.01 mappability regions bedGraph" -> "sorted low mappability regions" [label="sort -k1,1 -k2,2n"];
+
+	"bedtools intersect -u_0" [label="bedtools intersect -sorted \n-a <low map. regions> -b <ClinVar low map.>", shape=diamond,  color=gray85, style=filled];
+
+	"sorted low mappability regions" -> "bedtools intersect -u_0" [label="low map. regions"];
+
+	"bedtools intersect -u_0" -> "sorted low mappability regions\nin ClinVar annotations";
+
+	"ClinVar regions BED" -> "expanded ClinVar regions BED" [label="bedtools slop -l 2000 -r 0 -s"];	
+
+	"expanded ClinVar regions BED" -> "expanded sorted ClinVar regions BED" [label="sort -k1,1 -k2,2n"];	
+
+	"sorted low mappability ClinVar regions";
+
+	"sorted low mappability regions\nin ClinVar annotations" -> "BAM_PROC_3" [label="to BAM processing and postprocessing", style=dotted];
+
+	"BAM_PROC_3" [style=invis];
+
+	"sorted low mappability ClinVar regions" -> "bedtools intersect -u_0" [label="ClinVar low map."];
+
+	
+ }
