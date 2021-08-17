@@ -99,11 +99,7 @@ Correcting Methylation Calls in Low-Mappability Regions
 
 \begin_layout Author
 Caiden M.
- Kumar, 
-\change_deleted -162802704 1629217452
-Ariel Erijman,
-\change_unchanged
- Bradley W.
+ Kumar, Bradley W.
  Langhorst
 \end_layout
 
@@ -135,13 +131,9 @@ DNA methylation is an important component in vital biological functions
  We examined methylation calls with and without read-based filtering in
  or near the 7830 genes containing ClinVar variants in a methylation sequencing
  data set from the NA12878 cell line and in tumor samples.
- Examining called Cs in a 200
-\change_inserted -162802704 1629221459
- 
-\change_unchanged
-ng NA12878 data set revealed 41,143 mixed methylation Cs were corrected
- to 0% methylation, and 22,345 mixed methylation Cs were corrected to 100%
- methylation.
+ Examining called Cs in a 200 ng NA12878 data set revealed 41,143 mixed
+ methylation Cs were corrected to 0% methylation, and 22,345 mixed methylation
+ Cs were corrected to 100% methylation.
 \end_layout
 
 \begin_layout Section*
@@ -547,6 +539,8 @@ noprefix "false"
 
 ).
  In practice, underfiltering is rare (a median
+\change_inserted -1421919639 1629224177
+ over all three EM-seq libraries aligned to GRCh38 using bwa-meth
 \change_inserted -162802704 1629216967
 
 \begin_inset Note Note
@@ -570,6 +564,10 @@ Over what population, all EM-seq libs?
 
  of called Cs in GRCh38 when calling using EM-seq reads aligned with bwa-meth)
  but overfiltering is much more common (a median of
+\change_inserted -1421919639 1629224185
+ 
+\change_unchanged
+
 \begin_inset Formula $1.1\%$
 \end_inset
 
@@ -585,45 +583,71 @@ noprefix "false"
 \end_inset
 
 ).
- Although 
-\change_deleted -162802704 1629217006
-even about
+ Although ~1% of called Cs might seem like a small fraction, 
+\change_inserted -1421919639 1629224132
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629224107
+No, that is ~1% of them, not all
 \change_unchanged
- 
-\change_inserted -162802704 1629217009
-~
+
+\end_layout
+
+\end_inset
+
+it accounts for
+\change_deleted -1421919639 1629224128
+the total number of called Cs without filtering is
 \change_unchanged
-1% of called Cs might seem 
-\change_deleted -162802704 1629217013
-small
-\change_inserted -162802704 1629217018
-like a small fraction
+ ~12.1 million Cs
+\change_inserted -1421919639 1629224280
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629224300
+I need to check this, there may be a rounding error here that got amplified.
 \change_unchanged
-, the total number of called Cs without filtering is 
-\change_deleted -162802704 1629217037
-large enough that that 1.054% is on the order of 
-\change_inserted -162802704 1629217041
- ~
+
+\end_layout
+
+\end_inset
+
+
 \change_unchanged
-12.1 million Cs, while 
+, while 
 \begin_inset Formula $7.8*10^{-5}\%$
 \end_inset
 
- of Cs 
-\change_deleted -162802704 1629221805
-is
-\change_inserted -162802704 1629221807
-corresponds to
+ of Cs corresponds to ~
+\change_inserted -1421919639 1629223865
+1080
+\change_deleted -1421919639 1629223863
+1150
+\change_inserted -1421919639 1629224218
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629224227
+Small data error I found and am correcting.
 \change_unchanged
- 
-\change_deleted -162802704 1629217056
-closer to
+
+\end_layout
+
+\end_inset
+
+
 \change_unchanged
- 
-\change_inserted -162802704 1629217059
-~
-\change_unchanged
-1150 Cs.
+ Cs.
  In cases where reads from multiple low-mappability regions are placed onto
  one region (creating a coverage spike), filtering by coverage could possibly
  also remove the problematic region, but in cases where reads are simply
@@ -889,12 +913,8 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- 275,092Cs in these important regions in a 50
-\change_inserted -162802704 1629217956
- 
-\change_unchanged
-ng EM-seq sample which have insufficient mappability to support methylation
- calling.
+ 275,092Cs in these important regions in a 50 ng EM-seq sample which have
+ insufficient mappability to support methylation calling.
  Briefly, to determine that we avoided calling methylation for a C for which
  there are not sufficiently mappable reads, we took the list of unfiltered
  Cs for the regions we were interested in and removed from it all Cs we
@@ -1438,11 +1458,7 @@ literal "false"
  data as compared to the GRCh38 data, with less than half the number of
  miscalls in T2T as in GRCh38.
  Considering both strands, total calls were roughly similar between the
- two reference sequences
-\change_inserted -162802704 1629218539
- with more Cs available in the T2T reference.
-
-\change_unchanged
+ two reference sequences with more Cs available in the T2T reference.
  (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1454,18 +1470,9 @@ noprefix "false"
 \end_inset
 
 ).
- This indicates that
-\change_deleted -162802704 1629220602
- it is indeed true that
-\change_unchanged
- using the T2T reference can allow for better calling of methylation
-\change_deleted -162802704 1629220615
- (as shown by the reduced percentage of miscalls)
-\change_inserted -162802704 1629220623
-, however without a high quality annotation available, this may not yet
- be a practical option
-\change_unchanged
-.
+ This indicates that using the T2T reference can allow for better calling
+ of methylation, however without a high quality annotation available, this
+ may not yet be a practical option.
 \end_layout
 
 \begin_layout Standard
@@ -1637,40 +1644,8 @@ literal "false"
 
 \end_inset
 
- using the S
-\change_inserted -162802704 1629220475
-4
-\change_deleted -162802704 1629220475
-2
-\change_unchanged
- chemistry.
- We acquired 
-\change_inserted -1421919639 1628780361
-about 
-\change_unchanged
-1.
-\change_inserted -1421919639 1628780382
-3
-\change_deleted -162802704 1629220354
-0
-\change_deleted -1421919639 1628780353
-55
-\change_unchanged
- billion 99 bp paired-end reads for the 
-\change_deleted -162802704 1629220362
-EM-seq method and 1.27
-\change_deleted -1421919639 1628780380
-60
-\change_deleted -162802704 1629220362
- billion paired-end reads for the Bisulfite
-\change_inserted -162802704 1629220364
-for each library
-\change_unchanged
- 
-\change_deleted -162802704 1629220377
-converted libraries
-\change_unchanged
-.
+ using the S4 chemistry.
+ We acquired about 1.3 billion 99 bp paired-end reads for the for each library.
 \end_layout
 
 \begin_layout Standard
@@ -2114,11 +2089,6 @@ noprefix "false"
 \end_inset
 
 .
-
-\change_deleted -162802704 1629220680
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -2180,11 +2150,6 @@ noprefix "false"
 
 .
  Parallelograms are output files.
-
-\change_deleted -162802704 1629220703
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -2194,8 +2159,6 @@ noprefix "false"
 
 \end_inset
 
-
-\change_inserted -1421919639 1627412911
 
 \end_layout
 
@@ -2382,16 +2345,10 @@ literal "false"
  The name of the aligner was added to the field specifying the input mass,
  protocol, and MethylDackel filtering settings present in all output files
  containing methylation calls or counts of such calls in ClinVar regions
- 
-\change_deleted -162802704 1629221756
- 
-\change_unchanged
-(using the same custom Python script).
+ (using the same custom Python script).
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1421919639 1625147849
 \begin_inset Float figure
 wide false
 sideways false
