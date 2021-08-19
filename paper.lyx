@@ -446,6 +446,24 @@ name "fig:chrom-overview"
 \end_inset
 
 
+\change_inserted -1421919639 1629310813
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629310823
+Affected by data error but invisibly so, regenerate?
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -538,11 +556,9 @@ noprefix "false"
 \end_inset
 
 ).
- In practice, underfiltering is rare (a median
-\change_inserted -1421919639 1629224177
- over all three EM-seq libraries aligned to GRCh38 using bwa-meth
-\change_inserted -162802704 1629216967
-
+ In practice, underfiltering is rare (
+\change_deleted -1421919639 1629320569
+a median
 \begin_inset Note Note
 status open
 
@@ -556,21 +572,41 @@ Over what population, all EM-seq libs?
 
 \end_inset
 
-
-\change_unchanged
  of 
-\begin_inset Formula $7.8*10^{-5}\%$
-\end_inset
-
- of called Cs in GRCh38 when calling using EM-seq reads aligned with bwa-meth)
- but overfiltering is much more common (a median of
-\change_inserted -1421919639 1629224185
- 
+\change_inserted -1421919639 1629320573
+between 
 \change_unchanged
 
-\begin_inset Formula $1.1\%$
+\begin_inset Formula $9.4*10^{-5}\%$
 \end_inset
 
+
+\change_inserted -1421919639 1629320672
+ and 
+\begin_inset Formula $1.2*10^{-4}\%$
+\end_inset
+
+
+\change_unchanged
+ of called Cs in GRCh38 when calling using EM-seq reads aligned with bwa-meth)
+ but overfiltering is much more common (
+\change_inserted -1421919639 1629320538
+between
+\change_deleted -1421919639 1629320535
+a median of
+\change_unchanged
+
+\begin_inset Formula $1.2\%$
+\end_inset
+
+
+\change_inserted -1421919639 1629320547
+ and 
+\begin_inset Formula $1.4\%$
+\end_inset
+
+
+\change_unchanged
  of called Cs in GRCh38 when calling using EM-seq reads aligned with bwa-meth)
  (see Figure 
 \begin_inset CommandInset ref
@@ -585,67 +621,29 @@ noprefix "false"
 ).
  Although ~1% of called Cs might seem like a small fraction, 
 \change_inserted -1421919639 1629224132
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629224107
-No, that is ~1% of them, not all
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
 it accounts for
 \change_deleted -1421919639 1629224128
 the total number of called Cs without filtering is
 \change_unchanged
- ~12.1 million Cs
-\change_inserted -1421919639 1629224280
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629224300
-I need to check this, there may be a rounding error here that got amplified.
+ ~
+\change_deleted -1421919639 1629234174
+12.1
+\change_inserted -1421919639 1629320900
+14.0-16.2
+\change_unchanged
+ million Cs, while 
+\change_inserted -1421919639 1629320728
+~
 \change_unchanged
 
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-, while 
-\begin_inset Formula $7.8*10^{-5}\%$
+\begin_inset Formula $10^{-4}\%$
 \end_inset
 
  of Cs corresponds to ~
-\change_inserted -1421919639 1629223865
-1080
+\change_inserted -1421919639 1629320777
+1079-1388
 \change_deleted -1421919639 1629223863
 1150
-\change_inserted -1421919639 1629224218
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629224227
-Small data error I found and am correcting.
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
 \change_unchanged
  Cs.
  In cases where reads from multiple low-mappability regions are placed onto
@@ -913,8 +911,16 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided calling
- 275,092Cs in these important regions in a 50 ng EM-seq sample which have
- insufficient mappability to support methylation calling.
+ 275,0
+\change_inserted -1421919639 1629322295
+71
+\change_deleted -1421919639 1629322294
+92
+\change_inserted -1421919639 1629310869
+ 
+\change_unchanged
+Cs in these important regions in a 50 ng EM-seq sample which have insufficient
+ mappability to support methylation calling.
  Briefly, to determine that we avoided calling methylation for a C for which
  there are not sufficiently mappable reads, we took the list of unfiltered
  Cs for the regions we were interested in and removed from it all Cs we
