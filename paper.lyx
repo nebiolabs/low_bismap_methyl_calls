@@ -685,7 +685,7 @@ status open
 \begin_layout Plain Layout
 \align center
 
-\change_inserted -162802704 1629221577
+\change_deleted -1421919639 1629386327
 \begin_inset Note Note
 status open
 
@@ -704,7 +704,7 @@ bigger font, crop
 
 \begin_inset Graphics
 	filename fig4_svg.svg
-	lyxscale 50
+	lyxscale 70
 	width 60page%
 
 \end_inset
@@ -716,7 +716,11 @@ bigger font, crop
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An overview of the occurrences of these scenarios in GRCh38 chromosome 1.
+An overview of the occurrences of these scenarios in
+\change_inserted -1421919639 1629386321
+ the q arm of
+\change_unchanged
+ GRCh38 chromosome 1.
  The six tracks show the effect of per-C and per-read mappability filtering
  on the methylation calls on this chromosome.
  
