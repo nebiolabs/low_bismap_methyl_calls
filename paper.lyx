@@ -207,7 +207,8 @@ status open
 \align center
 \begin_inset Graphics
 	filename fig.svg
-	width 70page%
+	lyxscale 50
+	width 100col%
 
 \end_inset
 
@@ -1427,25 +1428,6 @@ status open
 \end_inset
 
 
-\change_deleted -1421919639 1629388424
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -162802704 1629220288
-Should the denominator of miscalls match the total Cs? Change Miscalled
- Cs -> total Cs on axis label
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -2285,11 +2267,6 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -1421919639 1629391794
-no
-\change_unchanged
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -2469,8 +2446,47 @@ literal "false"
 
 \end_inset
 
-, vcf2bed, gff2bed, bigWigToBedGraph, MethylDackel, awk, python, GNU sort,
- GNU head, bedtools, and BEDOPS.
+,
+\change_deleted -162802704 1629394514
+ vcf2bed, gff2bed
+\change_unchanged
+, bigWigToBedGraph
+\change_inserted -162802704 1629394960
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btq351"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+, MethylDackel, awk, python, GNU sort, GNU head, bedtools
+\change_inserted -162802704 1629394401
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btq033"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+, and BEDOPS
+\change_inserted -162802704 1629394413
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/bts277"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+.
  Versions of all tools used are specified in the nextflow 21.04.0 scripts
  using conda
 \begin_inset CommandInset citation
