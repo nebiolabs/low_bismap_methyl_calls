@@ -421,8 +421,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename chroms_parts_combined.png
-	lyxscale 55
+	filename chroms_ideogram.png
+	lyxscale 30
 	width 60page%
 
 \end_inset
@@ -445,24 +445,6 @@ name "fig:chrom-overview"
 
 \end_inset
 
-
-\change_inserted -1421919639 1629310813
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629310823
-Affected by data error but invisibly so, regenerate?
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 
 \end_layout
 
@@ -1187,7 +1169,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename chr1_148823039-148824040.svg
+	filename chr2_110091420-110092421.svg
 	width 60page%
 
 \end_inset
@@ -1207,14 +1189,30 @@ name "fig:igv-1"
 \end_inset
 
 A view of a cluster of miscalls in a large low-mappability region.
- The gene, ENSG00000178104.19, is known as PDE4DIP.
+ The gene, 
+\change_deleted -1421919639 1629391494
+ENSG00000178104.19
+\change_inserted -1421919639 1629391494
+ENSG00000144063.3
+\change_unchanged
+, is known as 
+\change_deleted -1421919639 1629391498
+PDE4DIP
+\change_inserted -1421919639 1629391498
+MALL
+\change_unchanged
+.
  The reads are shown paired, with a line connecting reads 1 and 2 in a pair,
  with CpG methylation sites highlighted.
  Miscalls are shown in the track above the coverage graph.
  Note how every CpG call (as well as calls in other contexts) are miscalled
  in this region, as there are no high-mappability regions to anchor reads
  in.
+
+\change_deleted -1421919639 1629391504
  <need to pick a different gene, this is the same gene as the next fig>
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -1501,7 +1499,7 @@ status open
 \end_inset
 
 
-\change_inserted -162802704 1629220253
+\change_deleted -1421919639 1629388424
 
 \begin_inset Note Note
 status open
@@ -2359,6 +2357,11 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+
+\change_inserted -1421919639 1629391794
+no
+\change_unchanged
+
 \begin_inset Float figure
 wide false
 sideways false
