@@ -123,17 +123,44 @@ DNA methylation is an important component in vital biological functions
  as it is prone to overfiltering Cs in small mappability dips.
  These Cs can in fact often be called using reads anchored in a nearby mappable
  region.
- We have created a patch for the MethylDackel methylation caller to perform
- read-based filtering.
+ We have created a 
+\change_deleted -162802704 1629395423
+patch
+\change_inserted -162802704 1629395425
+new feature
+\change_unchanged
+ for the MethylDackel methylation caller to perform read-based filtering.
  Read-based filtering resolves some of the apparent mixed methylation to
  either 0% or 100% methylation and removes many unsupportable methylation
  calls.
  We examined methylation calls with and without read-based filtering in
  or near the 7830 genes containing ClinVar variants in a methylation sequencing
  data set from the NA12878 cell line and in tumor samples.
- Examining called Cs in a 200 ng NA12878 data set revealed 41,143 mixed
- methylation Cs were corrected to 0% methylation, and 22,345 mixed methylation
- Cs were corrected to 100% methylation.
+ 
+\change_deleted -162802704 1629395319
+Examining called Cs i
+\change_inserted -162802704 1629395319
+I
+\change_unchanged
+n a 200 ng NA12878 data set 
+\change_deleted -162802704 1629395331
+revealed
+\change_inserted -162802704 1629395368
+use of this improved filtering method corrected
+\change_unchanged
+ 41,143 mixed methylation Cs 
+\change_deleted -162802704 1629395372
+were corrected 
+\change_unchanged
+to 0% methylation, and 22,345 
+\change_deleted -162802704 1629395377
+mixed methylation Cs were corrected 
+\change_unchanged
+to 100% methylation
+\change_inserted -162802704 1629395407
+ near these clinically relevant genes
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Section*
