@@ -94,11 +94,7 @@
 \begin_body
 
 \begin_layout Title
-Correcting Methylation Calls in 
-\change_inserted -162802704 1629423045
-Clinically Relevant 
-\change_unchanged
-Low-Mappability Regions
+Correcting Methylation Calls in Clinically Relevant Low-Mappability Regions
 \end_layout
 
 \begin_layout Author
@@ -123,68 +119,46 @@ DNA methylation is an important component in vital biological functions
  causing apparent mixed methylation at such loci.
  Methylation calling can be improved by using Bismap mappability data to
  filter out insufficiently unique reads.
- 
-\change_inserted -162802704 1629423207
-However, 
-\change_deleted -162802704 1629423198
-S
-\change_inserted -162802704 1629423209
-s
-\change_unchanged
-imply filtering out Cs in insufficiently unique regions is not adequate
- as it is prone to overfiltering Cs in small mappability dips.
+ However, simply filtering out Cs in insufficiently unique regions is not
+ adequate as it is prone to overfiltering Cs in small mappability dips.
  These Cs can in fact often be called using reads anchored in a nearby mappable
  region.
- We have created a 
-\change_deleted -162802704 1629395423
-patch
-\change_inserted -162802704 1629395425
-new feature
-\change_unchanged
- for the MethylDackel methylation caller to perform read-based filtering.
- 
-\change_deleted -162802704 1629423248
-Read-based
-\change_inserted -162802704 1629423249
-This new
-\change_unchanged
- 
-\change_deleted -162802704 1629423257
-filtering
-\change_inserted -162802704 1629423261
-methylation calling method
-\change_unchanged
- resolves some of the apparent mixed methylation to either 0% or 100% methylatio
-n and removes many unsupportable methylation calls.
+ We have created a new feature for the MethylDackel methylation caller to
+ perform read-based filtering.
+ This new methylation calling method resolves some of the apparent mixed
+ methylation to either 0% or 100% methylation and removes many unsupportable
+ methylation calls.
  We examined methylation calls with and without read-based filtering in
  or near the 7830 genes containing ClinVar variants in a methylation sequencing
- data set from the NA12878 cell line
-\change_inserted -162802704 1629423297
+ data set from the NA12878 cell line.
+\change_deleted -1421919639 1629466558
 .
 
-\change_deleted -162802704 1629423298
- and in tumor samples
 \change_unchanged
-.
- 
-\change_deleted -162802704 1629423316
-Examining called Cs in a 200 ng NA12878 data set revealed
-\change_inserted -162802704 1629423339
-Use of this improved method corrected
-\change_unchanged
- 41,143 mixed methylation Cs 
-\change_deleted -162802704 1629395372
-were corrected 
-\change_unchanged
-to 0% methylation, and 22,345 
-\change_deleted -162802704 1629395377
-mixed methylation Cs were corrected 
-\change_unchanged
-to 100% methylation
+ Use of this improved method corrected 41,143 mixed methylation Cs to 0%
+ methylation, and 22,345 to 100% methylation
 \change_inserted -162802704 1629395407
  near these clinically relevant genes
 \change_unchanged
 .
+\change_inserted -1421919639 1629465819
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629465831
+These numbers are total, not near ClinVar genes
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Section*
@@ -202,17 +176,9 @@ literal "false"
 
 , it is important that there be an accurate way of calling methylation on
  a genome.
- Although there are multiple varieties of DNA methylation, 
-\change_inserted -162802704 1629423468
-perhaps the most
-\change_deleted -162802704 1629423464
-a
-\change_unchanged
- significant type 
-\change_inserted -162802704 1629423477
-in eukaryotes 
-\change_unchanged
-is methylation of cytosine to 5-methylcytosine 
+ Although there are multiple varieties of DNA methylation, perhaps the most
+ significant type in eukaryotes is methylation of cytosine to 5-methylcytosine
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "breiling_epigenetic_2015"
@@ -310,11 +276,7 @@ literal "false"
 
 \end_inset
 
-
-\change_inserted -162802704 1629423636
- and longer, better mappabble fragments 
-\change_unchanged
-.
+ and longer, better mappabble fragments .
 \end_layout
 
 \begin_layout Standard
@@ -412,20 +374,10 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-A methylation caller 
-\change_deleted -162802704 1629423730
-can
-\change_inserted -162802704 1629423730
-could
-\change_unchanged
- use accurate MapQ values to filter out reads with multiple placements in
- the genome, allowing the resulting methylation calls to accurately reflect
- their specific loci.
-
-\change_inserted -162802704 1629423810
+A methylation caller could use accurate MapQ values to filter out reads
+ with multiple placements in the genome, allowing the resulting methylation
+ calls to accurately reflect their specific loci.
  Unfortunately, current aligners frequently produce implausible MapQ scores.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Section*
@@ -444,8 +396,6 @@ literal "false"
 , we observed a significant number of reads with unexpectedly high MapQ
  values in repetitive regions (e.g.
  centromeres).
-
-\change_inserted -162802704 1629425081
  Another comonly used aligner Bismark
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -455,15 +405,9 @@ literal "false"
 \end_inset
 
  produced even more calls in repetive regions (data not shown).
-
-\change_unchanged
- After observing
-\change_deleted -162802704 1629425089
- these
-\change_unchanged
- high MapQ reads in the centromere and larger repetitive regions, we investigate
-d to see if smaller regions might also be too repetitive to support the
- high aligner MapQ estimates observed.
+ After observing high MapQ reads in the centromere and larger repetitive
+ regions, we investigated to see if smaller regions might also be too repetitive
+ to support the high aligner MapQ estimates observed.
  We identified repetitive regions using data from Bismap 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -476,16 +420,9 @@ literal "false"
  a particular length (in this case, k=100) in the genome to create a mappability
  score (ranging from 0 to 1 in increments of 0.01) for every base in the
  GRCh38 reference.
- Each individual K-mer is 
-\change_deleted -162802704 1629425118
-treated
-\change_inserted -162802704 1629425119
-considered
-\change_deleted -162802704 1629425122
- as
-\change_unchanged
- either mappable or not, and the overall mappability score is derived (indirectl
-y) from how many different K-mers are mappable and how many are not.
+ Each individual K-mer is considered either mappable or not, and the overall
+ mappability score is derived (indirectly) from how many different K-mers
+ are mappable and how many are not.
  Bismap takes the effect of C->T conversion into account and therefore produces
  data which is applicable in the context of methylation sequencing 
 \begin_inset CommandInset citation
@@ -531,76 +468,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cs in low mappability regions
-\change_inserted -162802704 1629422313
- (blue)
-\change_unchanged
-, as well as those filtered out by per-read filtering that still passed
- MapQ filtering
-\change_inserted -162802704 1629422332
- (red)
-\change_unchanged
-, are represented across all chromosomes.
- 
-\change_deleted -162802704 1629422193
-However, 
-\change_inserted -162802704 1629422194
-P
-\change_deleted -162802704 1629422193
-p
-\change_unchanged
-er-read filtering 
-\change_deleted -162802704 1629422203
-can 
-\change_unchanged
-remove
-\change_inserted -162802704 1629422204
-s
-\change_unchanged
- unsupported calls while 
-\change_deleted -162802704 1629422224
-removing
-\change_inserted -162802704 1629422514
-retaining millions of
-\change_deleted -162802704 1629422234
- far less
-\change_unchanged
- Cs 
-\change_deleted -162802704 1629422239
-than
-\change_inserted -162802704 1629422239
-that
-\change_unchanged
- a naïve per-C filtering approach would 
-\change_deleted -162802704 1629422243
-require
-\change_inserted -162802704 1629422256
-needlessly eliminate
-\change_unchanged
-.
- In this figure, the horizontal banded rectangles 
-\change_deleted -162802704 1629422265
-are
-\change_inserted -162802704 1629422267
-represent
-\change_unchanged
- the chromosomes, the blue track above them 
-\change_deleted -162802704 1629422532
-is
-\change_inserted -162802704 1629422533
-shows
-\change_unchanged
- all calls in low-mappability regions, and the red track 
-\change_inserted -162802704 1629422547
-corresponds to
-\change_deleted -162802704 1629422543
-is
-\change_unchanged
- miscalls 
-\change_inserted -162802704 1629422555
-accurately 
-\change_unchanged
-removed by per-read filtering.
+Cs in low mappability regions (blue), as well as those filtered out by per-read
+ filtering that still passed MapQ filtering (red), are represented across
+ all chromosomes.
+ Per-read filtering removes unsupported calls while retaining millions of
+ Cs that a naïve per-C filtering approach would needlessly eliminate.
+ In this figure, the horizontal banded rectangles represent the chromosomes,
+ the blue track above them shows all calls in low-mappability regions, and
+ the red track corresponds to miscalls accurately removed by per-read filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:chrom-overview"
@@ -700,13 +575,8 @@ noprefix "false"
 \end_inset
 
 ).
- 
-\change_deleted -162802704 1629393445
-In practice
-\change_inserted -162802704 1629393461
-When calling using EM-seq reads aligned with bwa-meth to GRCh38
-\change_unchanged
-, underfiltering is rare (between 
+ When calling using EM-seq reads aligned with bwa-meth to GRCh38, underfiltering
+ is rare (between 
 \begin_inset Formula $9.4*10^{-5}\%$
 \end_inset
 
@@ -714,9 +584,9 @@ When calling using EM-seq reads aligned with bwa-meth to GRCh38
 \begin_inset Formula $1.2*10^{-4}\%$
 \end_inset
 
- of called Cs 
-\change_deleted -162802704 1629393468
-in GRCh38 when calling using EM-seq reads aligned with bwa-meth
+ of called Cs
+\change_deleted -1421919639 1629466040
+ 
 \change_unchanged
 ) but overfiltering is much more common (between
 \begin_inset Formula $1.2\%$
@@ -726,11 +596,7 @@ in GRCh38 when calling using EM-seq reads aligned with bwa-meth
 \begin_inset Formula $1.4\%$
 \end_inset
 
- of called Cs
-\change_deleted -162802704 1629393476
- in GRCh38 when calling using EM-seq reads aligned with bwa-meth
-\change_unchanged
-) (see Figure 
+ of called Cs) (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview-1"
@@ -799,25 +665,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An overview of the 
-\change_deleted -162802704 1629424520
-occurrences of
-\change_inserted -162802704 1629424529
-impact of
-\change_unchanged
- 
-\change_inserted -162802704 1629424502
-the various filtering 
-\change_deleted -162802704 1629424497
-these
-\change_unchanged
- scenarios in the q arm of GRCh38 chromosome 1.
+An overview of the impact of the various filtering scenarios in the q arm
+ of GRCh38 chromosome 1.
  The six tracks show the effect of per-C and per-read mappability filtering
- on the methylation calls on this chromosome
-\change_inserted -162802704 1629424102
- arm and are representative of rest of the genome
-\change_unchanged
-.
+ on the methylation calls on this chromosome arm and are representative
+ of rest of the genome.
  
 \begin_inset Quotes eld
 \end_inset
@@ -835,11 +687,8 @@ MapQ filtering only
 \begin_inset Quotes erd
 \end_inset
 
- is the calls after 
-\change_inserted -162802704 1629424624
-commonly used 
-\change_unchanged
-MapQ filtering only (no per-C or per-read mappability filtering).
+ is the calls after commonly used MapQ filtering only (no per-C or per-read
+ mappability filtering).
  
 \begin_inset Quotes eld
 \end_inset
@@ -863,49 +712,22 @@ ly mappable.
 \begin_inset Quotes eld
 \end_inset
 
-
-\change_deleted -162802704 1629424303
-Kept only by per-C
-\change_inserted -162802704 1629424307
 Underfiltered Cs
-\change_deleted -162802704 1629424310
- filtering
-\change_unchanged
-
 \begin_inset Quotes erd
 \end_inset
 
- 
-\change_deleted -162802704 1629424448
-shows the underfiltered Cs, that is, those that
-\change_unchanged
  are not sufficiently mappable according to per-read filtering, but are
  retained by per-C filtering.
  
 \begin_inset Quotes eld
 \end_inset
 
-
-\change_deleted -162802704 1629424339
-Kept only by per-read filtering
-\change_inserted -162802704 1629424343
 Overfiltered Cs
-\change_unchanged
-
 \begin_inset Quotes erd
 \end_inset
 
- 
-\change_deleted -162802704 1629424368
-shows the overfiltered Cs, that is, those that
-\change_unchanged
  are sufficiently mappable according to per-read filtering, but are removed
  by per-C filtering.
-
-\change_deleted -162802704 1629424406
- 
-\change_unchanged
-
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview-1"
@@ -1038,28 +860,14 @@ literal "false"
 \end_inset
 
  database of disease-associated variants.
- Using our alignment filtering approach we successfully avoided 
-\change_inserted -162802704 1629424809
-mis
-\change_unchanged
-calling 275,071 Cs in these important regions in a 50 ng EM-seq sample which
- have insufficient mappability to support methylation calling.
- Briefly, to 
-\change_deleted -162802704 1629425503
-determine that we 
-\change_inserted -162802704 1629425635
-identify the number of methylation calls correctly removed (miscalls)
-\change_deleted -162802704 1629425560
-avoided calling methylation for a C for which there are not sufficiently
- mappable reads
-\change_unchanged
-, we took the list of unfiltered Cs for the regions we were interested in
- and removed from it all Cs we kept after per-read filtering.
- The result was a list of every C that was 
-\change_inserted -162802704 1629425608
-correctly 
-\change_unchanged
-filtered out (see Figure 
+ Using our alignment filtering approach we successfully avoided miscalling
+ 275,071 Cs in these important regions in a 50 ng EM-seq sample which have
+ insufficient mappability to support methylation calling.
+ Briefly, to identify the number of methylation calls correctly removed
+ (miscalls), we took the list of unfiltered Cs for the regions we were intereste
+d in and removed from it all Cs we kept after per-read filtering.
+ The result was a list of every C that was correctly filtered out (see Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1122,14 +930,8 @@ noprefix "false"
 
 \end_inset
 
-), showing 
-\change_deleted -162802704 1629424904
-how
-\change_inserted -162802704 1629424905
-that
-\change_unchanged
- unlike per-C filtering, per-read filtering can clean up methylation calls
- without always having to entirely delete them.
+), showing that unlike per-C filtering, per-read filtering can clean up
+ methylation calls without always having to entirely delete them.
 \end_layout
 
 \begin_layout Standard
@@ -1263,12 +1065,10 @@ ClinVar genes
  include those genes which had at least one region, either in the gene or
  in the 2kb upstream of the gene (in order to capture regulatory regions),
  where the mappability is too low to call methylation (
-\change_deleted -162802704 1629425865
-as without this
-\change_inserted -162802704 1629425865
-otherwise
+\change_inserted -1421919639 1629466288
+as 
 \change_unchanged
-, there will be no miscalls in the region).
+otherwise, there will be no miscalls in the region).
  Examination of this data in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1279,60 +1079,19 @@ literal "false"
 
  revealed that there were miscalls in or upstream of 1447-1586 unique genes
  in the EM-seq/bwa-meth data, with a median number of 64 miscalls per gene
- region, indicating that indeed 
-\change_deleted -162802704 1629425955
-this
-\change_inserted -162802704 1629425956
-miscalls
-\change_unchanged
- may affect biologically significant methylation data.
+ region, indicating that indeed miscalls may affect biologically significant
+ methylation data.
  It is evident that the sites of most methylation miscalls fall into two
  broad types.
  First, there are those regions that simply have a mappability of 0 for
  a long stretch of sequence, resulting in all Cs that were called in this
  region being miscalls (as there are no mappable regions to anchor reads
  in).
- Second, there are
-\change_deleted -162802704 1629426114
- those
-\change_unchanged
- regions at the border between high mappability and low mappability.
- These regions are where 
-\change_inserted -162802704 1629426050
-per-C filterding produces 
-\change_unchanged
-over
-\change_inserted -162802704 1629426055
--
-\change_deleted -162802704 1629426053
-filtered
-\change_unchanged
- 
-\change_deleted -162802704 1629426021
-(
-\change_unchanged
-and under
-\change_inserted -162802704 1629426057
--
-\change_unchanged
-filtered
-\change_deleted -162802704 1629426103
-)
-\change_unchanged
- Cs
-\change_inserted -162802704 1629426138
-.
-
-\change_deleted -162802704 1629426138
- (by per-C filtering, as opposed to our per-read filtering) are found:
-\change_unchanged
- 
-\change_inserted -162802704 1629426144
-O
-\change_deleted -162802704 1629426143
-o
-\change_unchanged
-verfiltered Cs occur when a C is in the low mappability region, but there
+ Second, there are regions at the border between high mappability and low
+ mappability.
+ These regions are where per-C filterding produces over- and under-filtered
+ Cs.
+ Overfiltered Cs occur when a C is in the low mappability region, but there
  is a mappable read anchored in the high mappability region that allows
  it to be called.
  Underfiltered C's occur when a C is just inside a mappable region, but
@@ -1389,9 +1148,8 @@ name "fig:igv-1"
 
 \end_inset
 
-A view of a cluster of miscalls in a large low-mappability region
-\change_inserted -162802704 1629422097
- containing the MALL gene (ENSG00000144063.3) 
+A view of a cluster of miscalls in a large low-mappability region containing
+ the MALL gene (ENSG00000144063.3) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "perez_structural_1997"
@@ -1415,46 +1173,16 @@ literal "false"
 
 \end_inset
 
-
-\change_unchanged
 .
-
-\change_deleted -162802704 1629417455
- The gene, 
-\change_deleted -1421919639 1629391494
-ENSG00000178104.19
-\change_deleted -162802704 1629417453
-ENSG00000144063.3, is known as 
-\change_deleted -1421919639 1629391498
-PDE4DIP
-\change_deleted -162802704 1629421434
-MALL.
-
-\change_unchanged
  The reads are shown paired, with a line connecting reads 1 and 2 in a pair,
  with CpG methylation sites highlighted.
  Miscalls are shown in the track above the coverage graph.
- Note 
-\change_deleted -162802704 1629417468
-how
-\change_inserted -162802704 1629418544
-that
-\change_unchanged
- every CpG call (as well as calls in other contexts) are miscalled in this
- region, as there are no high-mappability regions to anchor reads 
-\change_inserted -162802704 1629419530
-with
-\change_deleted -162802704 1629419487
-in
-\change_unchanged
-.
-
-\change_inserted -162802704 1629421407
+ Note that every CpG call (as well as calls in other contexts) are miscalled
+ in this region, as there are no high-mappability regions to anchor reads
+ with.
  Two of these Cs show mixed evidence of methylation state, which may be
  due to DNA originating from multiple loci all mapping in this location
  with falsely high MapQ.
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -1496,28 +1224,8 @@ name "fig:igv-2"
 \end_inset
 
 A view of a cluster of miscalls near the boundary between high and low mappabili
-ty regions
-\change_inserted -162802704 1629417526
- in
-\change_deleted -162802704 1629417525
-.
-
-\change_unchanged
- 
-\change_inserted -162802704 1629417524
-t
-\change_deleted -162802704 1629417523
-T
-\change_unchanged
-he gene
-\change_inserted -162802704 1629417502
- PDE4DIP (
-\change_deleted -162802704 1629417500
-, 
-\change_unchanged
-ENSG00000178104.19
-\change_inserted -162802704 1629422035
-), regulation of which is reported to relate to dementia
+ty regions in the gene PDE4DIP (ENSG00000178104.19), regulation of which
+ is reported to relate to dementia
 \begin_inset CommandInset citation
 LatexCommand cite
 key "potashkin_bioinformatic_2020"
@@ -1549,35 +1257,12 @@ literal "false"
 
 \end_inset
 
-
-\change_deleted -162802704 1629417511
-, is known as PDE4DIP
-\change_unchanged
 .
  The read alignments are shown paired, with a line connecting reads 1 and
- 2
-\change_deleted -162802704 1629419209
- in a pair
-\change_unchanged
-, and highlighted for CpG methylation.
- Note 
-\change_deleted -162802704 1629418912
-the
-\change_inserted -162802704 1629418914
-that some
-\change_unchanged
- methylation calls in the low-mappability region 
-\change_deleted -162802704 1629420874
-that 
-\change_unchanged
-are not miscalls, as they can be called using read pairs extending into
- 
-\change_deleted -162802704 1629421025
-the
-\change_inserted -162802704 1629421025
-a
-\change_unchanged
- high-mappability region.
+ 2, and highlighted for CpG methylation.
+ Note that some methylation calls in the low-mappability region are not
+ miscalls, as they can be called using read pairs extending into a high-mappabil
+ity region.
 \end_layout
 
 \end_inset
@@ -2794,9 +2479,9 @@ Reads placed with falsely high confidence have cascading detrimental effects
  Additionally, because of the more accurate MapQ values, decreased run time,
  and more flexibility to separate methylation calling from alignment, we
  also recommend the use of bwa-meth for alignment and MethylDackel with
- MapQ > 10
-\change_inserted -162802704 1629425285
- and the new mappability feature enable
+ MapQ > 10 and the new mappability feature enable
+\change_inserted -1421919639 1629466441
+d
 \change_unchanged
  for methylation calling.
 \end_layout
@@ -2829,10 +2514,6 @@ https://github.com/nebiolabs/low_bismap_methyl_calls
 
 \end_inset
 
-
-\change_deleted -162802704 1629425303
- 
-\change_unchanged
 .
  Individual tools used in the analysis include sambamba
 \begin_inset CommandInset citation
@@ -2845,10 +2526,24 @@ literal "false"
 ,
 \change_deleted -162802704 1629394514
  vcf2bed, gff2bed
+\change_inserted -1421919639 1629466474
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629466487
+These are used for processing ClinVar and GENCODE data
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
 \change_unchanged
 , bigWigToBedGraph
-\change_inserted -162802704 1629394960
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btq351"
@@ -2856,11 +2551,7 @@ literal "false"
 
 \end_inset
 
-
-\change_unchanged
 , MethylDackel, awk, python, GNU sort, GNU head, bedtools
-\change_inserted -162802704 1629394401
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btq033"
@@ -2868,11 +2559,7 @@ literal "false"
 
 \end_inset
 
-
-\change_unchanged
 , and BEDOPS
-\change_inserted -162802704 1629394413
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/bts277"
@@ -2880,8 +2567,6 @@ literal "false"
 
 \end_inset
 
-
-\change_unchanged
 .
  Versions of all tools used are specified in the nextflow 21.04.0 scripts
  using conda
