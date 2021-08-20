@@ -1,0 +1,13 @@
+ref,aligner,method,mass,genes
+grch38,bismark,emseq,10ng,1738
+grch38,bismark,emseq,200ng,1628
+grch38,bismark,emseq,50ng,1658
+grch38,bismark,wgbs,10ng,1757
+grch38,bismark,wgbs,200ng,1771
+grch38,bismark,wgbs,50ng,5730
+grch38,bwameth,emseq,10ng,1586
+grch38,bwameth,emseq,200ng,1447
+grch38,bwameth,emseq,50ng,1501
+grch38,bwameth,wgbs,10ng,1613
+grch38,bwameth,wgbs,200ng,5702
+grch38,bwameth,wgbs,50ng,1660

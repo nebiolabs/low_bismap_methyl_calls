@@ -88,7 +88,6 @@
 \html_css_as_file 0
 \html_be_strict false
 \author -1421919639 "Caiden"
-\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -131,34 +130,8 @@ DNA methylation is an important component in vital biological functions
  We examined methylation calls with and without read-based filtering in
  or near the 7830 genes containing ClinVar variants in a methylation sequencing
  data set from the NA12878 cell line.
-\change_deleted -1421919639 1629466558
-.
-
-\change_unchanged
  Use of this improved method corrected 41,143 mixed methylation Cs to 0%
- methylation, and 22,345 to 100% methylation
-\change_inserted -162802704 1629395407
- near these clinically relevant genes
-\change_unchanged
-.
-\change_inserted -1421919639 1629465819
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629465831
-These numbers are total, not near ClinVar genes
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
+ methylation, and 22,345 to 100% methylation throughout the genome.
 \end_layout
 
 \begin_layout Section*
@@ -584,11 +557,7 @@ noprefix "false"
 \begin_inset Formula $1.2*10^{-4}\%$
 \end_inset
 
- of called Cs
-\change_deleted -1421919639 1629466040
- 
-\change_unchanged
-) but overfiltering is much more common (between
+ of called Cs) but overfiltering is much more common (between
 \begin_inset Formula $1.2\%$
 \end_inset
 
@@ -1006,6 +975,24 @@ status open
 \end_inset
 
 
+\change_inserted -1421919639 1629476296
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -1421919639 1629476304
+List aligner-first, then method
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -1064,11 +1051,8 @@ ClinVar genes
  To focus on genes that may contain miscalls, we filtered the list to only
  include those genes which had at least one region, either in the gene or
  in the 2kb upstream of the gene (in order to capture regulatory regions),
- where the mappability is too low to call methylation (
-\change_inserted -1421919639 1629466288
-as 
-\change_unchanged
-otherwise, there will be no miscalls in the region).
+ where the mappability is too low to call methylation (as otherwise, there
+ will be no miscalls in the region).
  Examination of this data in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1386,7 +1370,11 @@ noprefix "false"
 \end_inset
 
 ).
+
+\change_inserted -1421919639 1629476124
  <WHY THE OUTLIERS HAPPEN>
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -2479,11 +2467,7 @@ Reads placed with falsely high confidence have cascading detrimental effects
  Additionally, because of the more accurate MapQ values, decreased run time,
  and more flexibility to separate methylation calling from alignment, we
  also recommend the use of bwa-meth for alignment and MethylDackel with
- MapQ > 10 and the new mappability feature enable
-\change_inserted -1421919639 1629466441
-d
-\change_unchanged
- for methylation calling.
+ MapQ > 10 and the new mappability feature enabled for methylation calling.
 \end_layout
 
 \begin_layout Section*
@@ -2523,26 +2507,6 @@ literal "false"
 
 \end_inset
 
-,
-\change_deleted -162802704 1629394514
- vcf2bed, gff2bed
-\change_inserted -1421919639 1629466474
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629466487
-These are used for processing ClinVar and GENCODE data
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 , bigWigToBedGraph
 \begin_inset CommandInset citation
 LatexCommand cite
