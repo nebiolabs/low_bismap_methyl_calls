@@ -82,12 +82,11 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes true
+\tracking_changes false
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\author -1421919639 "Caiden"
 \end_header
 
 \begin_body
@@ -161,7 +160,7 @@ literal "false"
 
 .
  Data on DNA cytosine methylation state can be gathered using a methylation
- sequencing technique (see Figure 
+ sequencing technique (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -282,7 +281,7 @@ literal "false"
 \end_inset
 
 , which will use the resulting read alignments to determine the methylation
- status of particular cytosines (see Figure 
+ status of particular cytosines (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -305,7 +304,7 @@ A read must be unambiguously placed if it is to provide information about
  not be used to assess methylation of any given C.
  To avoid calling Cs using reads derived from multiple genomic loci, methylation
  aligners (and read aligners in general) assign a MapQ value to each read
- alignment (see Figure 
+ alignment (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -409,7 +408,7 @@ literal "false"
  Reads entirely contained within a region of low mappability should not
  have high MapQ values due to their repetitiveness, however we observed
  many high-MapQ reads in regions with very low or zero Bismap mappability
- (see Figure 
+ (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example"
@@ -522,7 +521,7 @@ While low MapQ can indicate repetitiveness, even stringent MapQ thresholds
  using bedtools), but rejected this approach because it is prone to both
  over- and underfiltering.
  Cs in short, unique regions would be kept (underfiltered) even if the surroundi
-ng DNA is repetitive (see Figure 
+ng DNA is repetitive (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:discarded"
@@ -537,7 +536,7 @@ noprefix "false"
  Overfiltering of Cs in short repetitive regions is a larger problem though.
  In this scenario, a C located in a small dip in mappability would be eliminated
  (overfiltered) despite coverage from read pairs anchored in nearby unique
- regions (see Figure 
+ regions (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:kept"
@@ -565,7 +564,7 @@ noprefix "false"
 \begin_inset Formula $1.4\%$
 \end_inset
 
- of called Cs) (see Figure 
+ of called Cs) (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview-1"
@@ -835,7 +834,7 @@ literal "false"
  Briefly, to identify the number of methylation calls correctly removed
  (miscalls), we took the list of unfiltered Cs for the regions we were intereste
 d in and removed from it all Cs we kept after per-read filtering.
- The result was a list of every C that was correctly filtered out (see Figure
+ The result was a list of every C that was correctly filtered out (Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -889,10 +888,10 @@ We also examined how many mixed methylation (0% < %Methyl < 100%) Cs were
  resolved to either 0% or 100% methylation, and found that approximately
  60,000-90,000 methylation calls in the EM-seq data that were previously
  mixed were resolved by per-read filtering to either fully unmethylated
- or fully methylated (see Figure 
+ or fully methylated (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:clinvar-miscalls"
+reference "fig:genome-resolved-calls"
 plural "false"
 caps "false"
 noprefix "false"
@@ -945,8 +944,6 @@ miscall
  The vertical axis is the percent of miscalled Cs in the sample.
  Right: Percents of miscalls within ClinVar genes in the same samples.
  The vertical axis is the percent of ClinVar miscalled Cs in the sample.
- In both figures, the colors define which sequencing method and aligner
- were used, as detailed in the legend.
 \end_layout
 
 \end_inset
@@ -975,24 +972,6 @@ status open
 \end_inset
 
 
-\change_inserted -1421919639 1629476296
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629476304
-List aligner-first, then method
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -1002,12 +981,12 @@ List aligner-first, then method
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:clinvar-miscalls"
+name "fig:genome-resolved-calls"
 
 \end_inset
 
-Counts of resolved calls in the 10, 50, and 200ng EM-seq and WGBS samples,
- aligned with bwa-meth and Bismark, where a 
+Counts of genome-wide resolved calls in the 10, 50, and 200ng EM-seq and
+ WGBS samples, aligned with bwa-meth and Bismark, where a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1018,8 +997,6 @@ resolved call
  is a methylation call that is mixed in the unfiltered data, but either
  0% or 100% in the filtered data.
  The vertical axis is the number of resolved calls in the sample.
- The colors define which sequencing method and aligner were used, as detailed
- in the legend.
 \end_layout
 
 \end_inset
@@ -1039,7 +1016,7 @@ Effect on Potentially Significant Genes
 \begin_layout Standard
 We also assessed the biological significance of these miscalls.
  To measure this, we used genes in GENCODE containing variants in ClinVar
- (henceforth 
+ (
 \begin_inset Quotes eld
 \end_inset
 
@@ -1061,18 +1038,85 @@ literal "false"
 
 \end_inset
 
- revealed that there were miscalls in or upstream of 1447-1586 unique genes
- in the EM-seq/bwa-meth data, with a median number of 64 miscalls per gene
- region, indicating that indeed miscalls may affect biologically significant
- methylation data.
- It is evident that the sites of most methylation miscalls fall into two
+ revealed that there were miscalls in or upstream of 1448-1790 unique genes
+ in the EM-seq/bwa-meth data, with a median number of 64 miscalls per gene,
+ indicating that indeed miscalls may affect biologically significant methylation.
+ Many of these miscalls can be resolved to 0 or 100% methylation by the
+ per-read filtering method described in this paper (Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:genome-resolved-calls"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resolved_gene_counts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Miscalled Genes.png
+	lyxscale 40
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resolved_gene_counts"
+
+\end_inset
+
+Counts of ClinVar genes containing resolved miscalls in the 10, 50, and
+ 200 ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark.
+ The vertical axis is the number genes containing miscalls that were resolved
+ by mappability-informed methylation calling.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is evident that the sites of most methylation miscalls fall into two
  broad types.
- First, there are those regions that simply have a mappability of 0 for
- a long stretch of sequence, resulting in all Cs that were called in this
- region being miscalls (as there are no mappable regions to anchor reads
- in).
- Second, there are regions at the border between high mappability and low
- mappability.
+ First, are repetitive regions that simply have a mappability of 0 for a
+ long stretch of sequence.
+ All Cs in such regions are classified as miscalls due to the lack of mappable
+ regions to anchor reads with.
+ Second, are shorter regions at the border between high mappability and
+ low mappability regions.
  These regions are where per-C filterding produces over- and under-filtered
  Cs.
  Overfiltered Cs occur when a C is in the low mappability region, but there
@@ -1080,8 +1124,8 @@ literal "false"
  it to be called.
  Underfiltered C's occur when a C is just inside a mappable region, but
  there is no sufficiently mappable read to call it.
- An example of each (from the 200ng EM-seq sample aligned to GRCh38 using
- bwa-meth) is provided in Figures 
+ Example of both froma 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
+ are provided in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:igv-1"
@@ -1101,7 +1145,7 @@ noprefix "false"
 
 \end_inset
 
- respectively.
+.
 \end_layout
 
 \begin_layout Standard
@@ -1259,52 +1303,6 @@ ity region.
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Miscalled Genes.png
-	lyxscale 40
-	width 70page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:miscalled-gene-count"
-
-\end_inset
-
-Counts of genes containing miscalls in the 10, 50, and 200 ng EM-seq and
- WGBS samples, aligned with bwa-meth and Bismark.
- The vertical axis is the number genes containing miscalls in the sample.
- The colors define which sequencing method and aligner were used, as detailed
- in the legend.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 EM-seq vs.
  WGBS
@@ -1318,51 +1316,21 @@ Due to the reduced DNA damage and resulting longer possible read lengths
  the number of miscalls, as it is possible longer reads could allow for
  more low-mappability Cs to be called using reads extending into higher-mappabil
 ity regions.
- We found that EM-seq may have a marginally higher percentage of miscalled
- Cs at some input masses, but the effect is not very large (see Figure 
+ WGBS libraries have fewer overall Cs called
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaisvila_enzymatic_2021"
+literal "false"
+
+\end_inset
+
+ and fewer miscalled Cs at all input masses than EM-seq libraries.
+ In ClinVar gene regions, where both methods provide more similar overall
+ coverage, there the percent of miscalls is also similar between EM-seq
+ and to WGBS libraries ( Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Standard
-For miscalls in ClinVar genes, there is no real difference (discounting
- the two outliers, which will be discussed shortly) between the percent
- of miscalls with EM-seq as opposed to WGBS.
- However, there are two WGBS samples that are significant outliers across
- many of the analyses we performed: the 200ng WGBS sample aligned to GRCh38
- with bwa-meth, and the 50ng WGBS sample aligned to GRCh38 with Bismark
- (see Figures 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Miscall-counts"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:clinvar-miscalls"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:miscalled-gene-count"
 plural "false"
 caps "false"
 noprefix "false"
@@ -1370,11 +1338,28 @@ noprefix "false"
 \end_inset
 
 ).
+ Importantly, due to their longer insert sizes, EM-seq libraries are able
+ to resolve many more miscalled Cs throughout the genome (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:genome-resolved-calls"
+plural "false"
+caps "false"
+noprefix "false"
 
-\change_inserted -1421919639 1629476124
- <WHY THE OUTLIERS HAPPEN>
-\change_unchanged
+\end_inset
 
+) and in ClinVar regions than WGBS libraries 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resolved_gene_counts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Subsection*
@@ -1392,8 +1377,8 @@ literal "false"
 \end_inset
 
  in the same manner.
- We observed that compared to bwa-meth, Bismark produced more high MapQ
- reads in repetitive regions (see Figure 
+ We observed that compared to bwa-meth, Bismark produced more inappropriately-hi
+gh MapQ reads in repetitive regions (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:chrom-overview"
@@ -1418,8 +1403,8 @@ literal "false"
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
- Overall, we observed a somewhat higher percent of miscalls with Bismark
- than we did with bwa-meth, as shown in Figure 
+ Overall, we observed a higer percent of miscalls with Bismark than we did
+ with bwa-meth, as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1430,8 +1415,8 @@ noprefix "false"
 \end_inset
 
 .
- This difference was distinct in both overall miscalls and miscalls in ClinVar
- genes.
+ This difference was noticable in both overall miscalls and miscalls in
+ ClinVar genes.
 \end_layout
 
 \begin_layout Subsection*
@@ -1457,7 +1442,7 @@ literal "false"
  miscalls in T2T as in GRCh38.
  Considering both strands, total calls were roughly similar between the
  two reference sequences with more Cs available in the T2T reference.
- (see Figure 
+ ( Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:t2t"
@@ -1467,10 +1452,22 @@ noprefix "false"
 
 \end_inset
 
-).
+left).
+ Use of per-read filtering has a smaller effect with the more complete referece,
+ but thousands of Cs are still affected (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:t2t"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+right).
  This indicates that using the T2T reference can allow for better calling
- of methylation, however without a high quality annotation available, this
- may not yet be a practical option.
+ of methylation with fewer miscalls, however without a high quality annotation
+ available, this may not yet be a practical option.
 \end_layout
 
 \begin_layout Standard
@@ -2458,7 +2455,7 @@ Discussion
 \end_layout
 
 \begin_layout Standard
-Reads placed with falsely high confidence have cascading detrimental effects
+Reads placed with falsely high confidence elicit cascading detrimental effects
  on methylation calling, differential methylation assessment, and assessment
  of phenotypes associated with methylation status.
  To remove the spurious, unsupported methylation calls that result from
