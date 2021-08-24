@@ -170,7 +170,7 @@ noprefix "false"
 
 \end_inset
 
-), for example bisulfite sequencing 
+), like bisulfite sequencing 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chen2017"
@@ -239,8 +239,8 @@ name "fig:seq"
 It is also possible to use an enzymatic method, EM-seq, employing TET2 to
  oxidize 5-methylcytosine and an APOBEC enzyme to deaminate unmodified cytosines
  to uracil.
- While sodium bisulfite treatment produces other DNA damage, this enzymatic
- method deaminates with more precision 
+ While sodium bisulfite treatment produces double strand breaks and other
+ DNA damage, this enzymatic method deaminates with more precision 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "vaisvila_enzymatic_2021"
@@ -252,8 +252,9 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Whichever method is used to deaminate cytosines, sequence data is typically
- aligned to a reference genome using a methylation-aware aligner 
+Whichever method is used to deaminate cytosines, methylation sequence data
+ is typically aligned to a reference genome using a methylation-aware aligner
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Garrett-Bakelman2015"
@@ -263,8 +264,7 @@ literal "false"
 
 , which is specifically designed to handle the C->T transitions in methylation
  sequencing data when aligning the reads to a reference.
- Once aligned, the data can be passed through a methylation caller such
- as MethylDackel 
+ Once aligned, a methylation caller such as MethylDackel 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ryan_methyldackel_nodate"
@@ -272,7 +272,7 @@ literal "false"
 
 \end_inset
 
- or bismark_methylation_extractor 
+ or Bismarck_methylation_extractor 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btr167"
@@ -280,8 +280,8 @@ literal "false"
 
 \end_inset
 
-, which will use the resulting read alignments to determine the methylation
- status of particular cytosines (Figure 
+ can analyze alignments to determine the methylation status of particular
+ cytosines (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -368,7 +368,7 @@ literal "false"
 , we observed a significant number of reads with unexpectedly high MapQ
  values in repetitive regions (e.g.
  centromeres).
- Another comonly used aligner Bismark
+ Another commonly used aligner Bismark
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krueger_bismark:_2011"
@@ -376,7 +376,7 @@ literal "false"
 
 \end_inset
 
- produced even more calls in repetive regions (data not shown).
+ produced even more calls in repetitive regions (data not shown).
  After observing high MapQ reads in the centromere and larger repetitive
  regions, we investigated to see if smaller regions might also be too repetitive
  to support the high aligner MapQ estimates observed.
@@ -408,7 +408,8 @@ literal "false"
  Reads entirely contained within a region of low mappability should not
  have high MapQ values due to their repetitiveness, however we observed
  many high-MapQ reads in regions with very low or zero Bismap mappability
- (Figure 
+ (e.g.
+ fFigure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example"
@@ -556,7 +557,7 @@ noprefix "false"
 \begin_inset Formula $1.2*10^{-4}\%$
 \end_inset
 
- of called Cs) but overfiltering is much more common (between
+ of called Cs) but overfiltering is much more common (between 
 \begin_inset Formula $1.2\%$
 \end_inset
 
@@ -1010,13 +1011,12 @@ resolved call
 \end_layout
 
 \begin_layout Subsection*
-Effect on Potentially Significant Genes
+Effect on Medically Relevant Genes
 \end_layout
 
 \begin_layout Standard
-We also assessed the biological significance of these miscalls.
- To measure this, we used genes in GENCODE containing variants in ClinVar
- (
+To measure biological significance of these miscalls, we used genes in GENCODE
+ containing variants in ClinVar (
 \begin_inset Quotes eld
 \end_inset
 
@@ -1024,12 +1024,11 @@ ClinVar genes
 \begin_inset Quotes erd
 \end_inset
 
-) as a metric for biological significance.
- To focus on genes that may contain miscalls, we filtered the list to only
+).
+ Focusing on genes that may contain miscalls, we filtered the list to only
  include those genes which had at least one region, either in the gene or
  in the 2kb upstream of the gene (in order to capture regulatory regions),
- where the mappability is too low to call methylation (as otherwise, there
- will be no miscalls in the region).
+ where the mappability is too low to allow reliable methylation calling.
  Examination of this data in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1117,14 +1116,14 @@ It is evident that the sites of most methylation miscalls fall into two
  regions to anchor reads with.
  Second, are shorter regions at the border between high mappability and
  low mappability regions.
- These regions are where per-C filterding produces over- and under-filtered
+ These regions are where per-C filtering produces over- and under-filtered
  Cs.
  Overfiltered Cs occur when a C is in the low mappability region, but there
  is a mappable read anchored in the high mappability region that allows
  it to be called.
  Underfiltered C's occur when a C is just inside a mappable region, but
  there is no sufficiently mappable read to call it.
- Example of both froma 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
+ Example of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
  are provided in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1261,7 +1260,7 @@ literal "false"
 
 \end_inset
 
-, schizophenia
+, schizophrenia
 \begin_inset CommandInset citation
 LatexCommand cite
 key "camargo_disrupted_2007"
@@ -1309,13 +1308,10 @@ EM-seq vs.
 \end_layout
 
 \begin_layout Standard
-Due to the reduced DNA damage and resulting longer possible read lengths
- that occur in EM-seq as opposed to WGBS (whole genome bisulfite sequencing),
- we compared two sets of sequencing runs, each with the same 3 sample masses,
- to see if there is a difference between the two aligners with regard to
- the number of miscalls, as it is possible longer reads could allow for
- more low-mappability Cs to be called using reads extending into higher-mappabil
-ity regions.
+Due to the reduced DNA damage and longer possible read lengths that are
+ found in in EM-seq libraries, we compared with WGBS sequence libraries
+ produced using the same 3 sample masses, to see if there is a difference
+ between the two methods with regard to the number of miscalls.
  WGBS libraries have fewer overall Cs called
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1324,10 +1320,10 @@ literal "false"
 
 \end_inset
 
- and fewer miscalled Cs at all input masses than EM-seq libraries.
+ and therefor fewer miscalled Cs at all input masses than EM-seq libraries.
  In ClinVar gene regions, where both methods provide more similar overall
- coverage, there the percent of miscalls is also similar between EM-seq
- and to WGBS libraries ( Figure 
+ coverage, the percent of miscalls is also similar between EM-seq and to
+ WGBS libraries ( Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1338,8 +1334,10 @@ noprefix "false"
 \end_inset
 
 ).
- Importantly, due to their longer insert sizes, EM-seq libraries are able
- to resolve many more miscalled Cs throughout the genome (Figure 
+ We expected that longer reads could allow for more low-mappability Cs to
+ be called using reads and mates extending into higher-mappability regions.
+ Importantly, we observed that EM-seq libraries are able to resolve many
+ more miscalled Cs throughout the genome (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:genome-resolved-calls"
@@ -1368,7 +1366,7 @@ Bwa-meth vs.
 \end_layout
 
 \begin_layout Standard
-For comparison, we also examined the Bismark methylation aligner 
+For comparison, we examined the Bismark methylation aligner 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btr167"
@@ -1376,7 +1374,7 @@ literal "false"
 
 \end_inset
 
- in the same manner.
+ in the same manner as the bwa-meth analysis.
  We observed that compared to bwa-meth, Bismark produced more inappropriately-hi
 gh MapQ reads in repetitive regions (Figure 
 \begin_inset CommandInset ref
@@ -1403,8 +1401,8 @@ literal "false"
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
- Overall, we observed a higer percent of miscalls with Bismark than we did
- with bwa-meth, as shown in Figure 
+ Overall, we observed a higher percent of miscalls with Bismark than we
+ did with bwa-meth, as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1415,7 +1413,7 @@ noprefix "false"
 \end_inset
 
 .
- This difference was noticable in both overall miscalls and miscalls in
+ This difference was noticeable in both overall miscalls and miscalls in
  ClinVar genes.
 \end_layout
 
@@ -1453,8 +1451,8 @@ noprefix "false"
 \end_inset
 
 left).
- Use of per-read filtering has a smaller effect with the more complete referece,
- but thousands of Cs are still affected (Figure 
+ Use of per-read filtering has a smaller effect with the more complete reference
+, but thousands of Cs are still affected (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:t2t"
@@ -1538,10 +1536,18 @@ Materials
 \end_layout
 
 \begin_layout Standard
-Libraries were prepared from 10, 50, and 200 ng of genomic DNA from the
- NA12878 cell line (Coriel).
- This input was supplemented with a small amount of fully-methylated Xp-12
- DNA (isolated from Xp12 phage following the procedure in Y.
+Previously published
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaisvila_enzymatic_2021"
+literal "false"
+
+\end_inset
+
+ libraries from 10, 50, and 200 ng of genomic DNA from the NA12878 cell
+ line (Coriel) were analyzed.
+ This input DNA was supplemented with a small amount of fully-methylated
+ Xp-12 DNA (isolated from Xp12 phage following the procedure in Y.
  J.
  Lee, P.
  R.
@@ -1611,8 +1617,8 @@ Sequencing
 \end_layout
 
 \begin_layout Standard
-Libraries were pooled and sequenced with diverse libraries (~10%) on 2 flow
- cells of an Illumina Novaseq 6000 
+Methylation libraries were sequenced with more diverse libraries (~10%)
+ on 2 flow cells of an Illumina Novaseq 6000 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "novaseq-6000"
@@ -1621,7 +1627,7 @@ literal "false"
 \end_inset
 
  using the S4 chemistry.
- We acquired about 1.3 billion 99 bp paired-end reads for the for each library.
+ We analyzed about 1.3 billion 99 bp paired-end reads for the for each library.
 \end_layout
 
 \begin_layout Standard
@@ -1853,8 +1859,8 @@ EM-seq
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Sequencing read counts after adapter/quality trimming broken down by sequencing
- method and sample mass.
+Sequencing read counts after downsampling and adapter/quality trimming broken
+ down by sequencing method and sample mass.
  Read counts are reported as counts of individual reads, not of pairs.
 \end_layout
 
@@ -1920,7 +1926,30 @@ noprefix "false"
 \end_inset
 
  for link).
- A detailed diagram of the analysis pipeline is found in Figures 
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "nextflow script"
+
+\end_inset
+
+The Nextflow scripts used to analyze this data can be found at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/nebiolabs/low_bismap_methyl_calls
+\end_layout
+
+\end_inset
+
+.
+ A detailed diagram of the analysis pipeline is found in Supplemental figures
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:dag"
@@ -1978,6 +2007,59 @@ literal "false"
 ally, the ability to parallelize sorting and the ability to use a negative
  value with the -n option for head to count lines from the end of the file)
  is not present in BSD sort and head.
+\end_layout
+
+\begin_layout Section*
+Discussion
+\end_layout
+
+\begin_layout Standard
+Reads placed with falsely high confidence elicit cascading detrimental effects
+ on methylation calling, differential methylation assessment, and assessment
+ of phenotypes associated with methylation status.
+ To remove the spurious, unsupported methylation calls that result from
+ such reads, we suggest that reads with both mates in low mappability regions
+ (as determined by Bismap) should be excluded from methylation calling.
+ Additionally, because of the more accurate MapQ values, decreased run time,
+ and more flexibility to separate methylation calling from alignment, we
+ also recommend the use of bwa-meth for alignment and MethylDackel with
+ MapQ > 10 and the new mappability feature enabled for methylation calling.
+\end_layout
+
+\begin_layout Section*
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Supplemental-Materials"
+
+\end_inset
+
+Supplemental Materials
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{figure}{0} 
+\backslash
+renewcommand{
+\backslash
+thefigure}{S.
+\backslash
+arabic{figure}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Detailed Computational Methods
 \end_layout
 
 \begin_layout Standard
@@ -2090,7 +2172,6 @@ status open
 	lyxscale 65
 	width 70page%
 	scaleBeforeRotation
-	rotateAngle 90
 
 \end_inset
 
@@ -2309,7 +2390,7 @@ rfiltering with respect to per-C filtering (discussed above), and resolution
 \begin_layout Standard
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
  with the Bismark aligner using default settings and deduplicated using
- deduplicate_bismark according to the documented protocol 
+ deduplicate_Bismarck according to the documented protocol 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krueger_felixkruegerbismark_2021"
@@ -2450,53 +2531,12 @@ noprefix "false"
 ) which managed the execution of all the analysis tools needed.
 \end_layout
 
-\begin_layout Section*
-Discussion
+\begin_layout Subsection*
+External Analysis Resources 
 \end_layout
 
 \begin_layout Standard
-Reads placed with falsely high confidence elicit cascading detrimental effects
- on methylation calling, differential methylation assessment, and assessment
- of phenotypes associated with methylation status.
- To remove the spurious, unsupported methylation calls that result from
- such reads, we suggest that reads with both mates in low mappability regions
- (as determined by Bismap) should be excluded from methylation calling.
- Additionally, because of the more accurate MapQ values, decreased run time,
- and more flexibility to separate methylation calling from alignment, we
- also recommend the use of bwa-meth for alignment and MethylDackel with
- MapQ > 10 and the new mappability feature enabled for methylation calling.
-\end_layout
-
-\begin_layout Section*
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Supplemental-Materials"
-
-\end_inset
-
-Supplemental Materials
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "nextflow script"
-
-\end_inset
-
-The Nextflow scripts used to analyze this data can be found at 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://github.com/nebiolabs/low_bismap_methyl_calls
-\end_layout
-
-\end_inset
-
-.
- Individual tools used in the analysis include sambamba
+Individual tools used in the analysis include sambamba
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btv098"
@@ -2610,7 +2650,7 @@ name "The-ClinVar-VCF"
 \end_inset
 
 The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
- with a file name of clinvar_20190722.vcf.gz
+ with a file name of ClinVar_20190722.vcf.gz
 \end_layout
 
 \begin_layout Standard
