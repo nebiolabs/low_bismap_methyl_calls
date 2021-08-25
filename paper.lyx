@@ -87,7 +87,6 @@
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\author -1421919639 "Caiden"
 \end_header
 
 \begin_body
@@ -108,31 +107,9 @@ DNA methylation is an important component in vital biological functions
  Accurate methods to assess genomic methylation status are crucial to its
  effective use in many scenarios, especially in the detection and diagnosis
  of disease.
- Methylation aligners, such as Bismark and bwa-meth, frequently assign 
-\change_inserted -1421919639 1629774583
-reads 
-\change_deleted -1421919639 1629774586
-MapQ values to reads which are 
-\change_unchanged
-significantly higher
-\change_inserted -1421919639 1629774599
- MapQ values
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629774609
-The grammar bugged me a bit here.
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
- than can be supported by the uniqueness of the region they are mapped to.
+ Methylation aligners, such as Bismark and bwa-meth, frequently assign significa
+ntly higher MapQ values than can be supported by the uniqueness of the region
+ reads are mapped to.
  These incorrectly high MapQs result in inappropriate methylation calling
  in repetitive regions.
  We observe reads that should map to separate locations (possibly having
@@ -271,11 +248,7 @@ literal "false"
 
 \end_inset
 
- and longer, better mappabble fragments
-\change_deleted -1421919639 1629774659
- 
-\change_unchanged
-.
+ and longer, better mappabble fragments.
 \end_layout
 
 \begin_layout Standard
@@ -483,26 +456,6 @@ name "fig:chrom-overview"
 \end_inset
 
 
-\change_inserted -1421919639 1629774687
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629774749
-I can't tell for sure if this was regenerated or not, but I'm assuming that
- if 200ng changed, it was, and if not, it wasn't.
- 
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
 \end_layout
 
 \end_inset
@@ -541,6 +494,14 @@ status open
 MapQ filtering does not remove all poorly mapped reads.
  This is an example of a coverage spike in a low-mappability region: clearly
  not sufficiently mappable, but still called with MapQ filtering.
+ Mappability is only high in a small portion of this view (top track), but
+ using MapQ alone alone enable calls of many Cs (MapQ Only track).
+ the Per-read Kept track shows that only 2 sites have enough mappability
+ to call and successfully eliminates the remaining miscalled Cs (Per-read
+ ∆ track).
+ Per C filtering eliminates all Cs in this region including the 2 that should
+ be callable (Per-C kept).
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:example"
@@ -655,16 +616,8 @@ noprefix "false"
 
 to accept a bigWig file of low-mappability regions to exclude from analysis.
  This per-read filtering approach precisely eliminates only those reads
- in repetitive regions and has a negligible effect on execution speed
-\change_deleted -1421919639 1629774768
-.
-
-\change_unchanged
- (see computational methods for details)
-\change_inserted -1421919639 1629774769
-.
-\change_unchanged
-
+ in repetitive regions and has a negligible effect on execution speed (see
+ computational methods for details).
 \end_layout
 
 \begin_layout Standard
@@ -793,39 +746,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly discarded by per-C filtering (circled).
-\change_inserted -1421919639 1629774788
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629774793
-\begin_inset Quotes eld
-\end_inset
-
-circled
-\begin_inset Quotes erd
-\end_inset
-
- or 
-\begin_inset Quotes eld
-\end_inset
-
-boxed
-\begin_inset Quotes erd
-\end_inset
-
-?
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
+An example of a C incorrectly discarded by per-C filtering (red box).
  The C is in a small mappability dip, causing it to be discarded by bedtools
  filtering, while per-read filtering correctly retains the C, as it can
  be called using reads extending into the high-mappability regions on either
@@ -1124,35 +1045,8 @@ literal "false"
 
 \end_inset
 
- revealed that there were miscalls in or upstream of 14
-\change_inserted -1421919639 1629841347
-361
-\change_deleted -1421919639 1629841346
-48
-\change_unchanged
--1
-\change_inserted -1421919639 1629841351
-515
-\change_deleted -1421919639 1629841350
-790
-\change_inserted -1421919639 1629841355
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629841371
-The numbers didn't match those in the figure below for bwameth/emseq.
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
- unique genes in the EM-seq/bwa-meth data, with a median number of 64 miscalls
+ revealed that there were miscalls in or upstream of thousands of unique
+ genes in the EM-seq/bwa-meth data, with a median number of 64 miscalls
  per gene, indicating that indeed miscalls may affect biologically significant
  methylation.
  Many of these miscalls can be resolved to 0 or 100% methylation by the
@@ -2412,30 +2306,12 @@ The Bismap complete bedGraph was then filtered using awk to produce a file
 \end_layout
 
 \begin_layout Standard
-Alignments of 2x99-bp
-\change_inserted -1421919639 1629841404
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -1421919639 1629841420
-I've seen 101bp reads in here, is this correct?
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
- paired-end EM-seq and whole genome bisulfite reads were processed using
- MethylDackel (with and without the custom patch) using a minimum MapQ cutoff
- of 10 and the default settings mentioned above and combined with the file
- of all low mappability regions in ClinVar regions to produce a list of
- all methylation calls in low mappability ClinVar regions (this will be
- referred to as the 
+Alignments of 2x101-bp paired-end EM-seq and whole genome bisulfite reads
+ were processed using MethylDackel (with and without the custom patch) using
+ a minimum MapQ cutoff of 10 and the default settings mentioned above and
+ combined with the file of all low mappability regions in ClinVar regions
+ to produce a list of all methylation calls in low mappability ClinVar regions
+ (this will be referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2499,10 +2375,6 @@ s of mappability), all methylation calls in GENCODE genes (with low minimum
  variants regardless of mappability, methylation calls that are either 0%
  or 100% (regardless of mappability), and methylation calls which are neither
  0% nor 100% (also regardless of mappability).
-\change_deleted -1421919639 1629775534
-.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
