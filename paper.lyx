@@ -82,12 +82,11 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes true
+\tracking_changes false
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -119,7 +118,7 @@ ntly higher MapQ values than can be supported by the uniqueness of the region
  Methylation calling can be improved by using Bismap mappability data to
  filter out insufficiently unique reads.
  However, simply filtering out Cs in insufficiently unique regions is not
- adequate as it is prone to overfiltering Cs in small mappability dips.
+ adequate as it is prone to over-filtering Cs in small mappability dips.
  These Cs can in fact often be called using reads anchored in a nearby mappable
  region.
  We have created a new feature for the MethylDackel methylation caller to
@@ -249,7 +248,7 @@ literal "false"
 
 \end_inset
 
- and longer, better mappabble fragments.
+ and longer, better mappable fragments.
 \end_layout
 
 \begin_layout Standard
@@ -353,6 +352,15 @@ A methylation caller could use accurate MapQ values to filter out reads
  Unfortunately, current aligners frequently produce implausible MapQ scores.
 \end_layout
 
+\begin_layout Standard
+In this paper, we describe the problem that low-mappability creates for
+ methylation calling, the extent of miscalled methylation in real datasets,
+ and our implementation of an improved method that measurably reduces incorrect
+ mixed-methylation calls with potential to improve differential methylation
+ assessment, the use of methylation as a biomarker for disease progression,
+ and understanding of development processes.
+\end_layout
+
 \begin_layout Section*
 Results
 \end_layout
@@ -410,7 +418,7 @@ literal "false"
  have high MapQ values due to their repetitiveness, however we observed
  many high-MapQ reads in regions with very low or zero Bismap mappability
  (e.g.
- fFigure 
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example"
@@ -529,9 +537,9 @@ While low MapQ can indicate repetitiveness, even stringent MapQ thresholds
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
- over- and underfiltering.
- Cs in short, unique regions would be kept (underfiltered) even if the surroundi
-ng DNA is repetitive (Figure 
+ over- and under-filtering.
+ Cs in short, unique regions would be kept (under-filtered) even if the
+ surrounding DNA is repetitive (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:discarded"
@@ -543,9 +551,9 @@ noprefix "false"
 
 ).
  However, this situation was not commonly observed.
- Overfiltering of Cs in short repetitive regions is a larger problem though.
+ Over-filtering of Cs in short repetitive regions is a larger problem though.
  In this scenario, a C located in a small dip in mappability would be eliminated
- (overfiltered) despite coverage from read pairs anchored in nearby unique
+ (over-filtered) despite coverage from read pairs anchored in nearby unique
  regions (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -557,8 +565,8 @@ noprefix "false"
 \end_inset
 
 ).
- When calling using EM-seq reads aligned with bwa-meth to GRCh38, underfiltering
- is rare (between 
+ When calling using EM-seq reads aligned with bwa-meth to GRCh38, under-filterin
+g is rare (between 
 \begin_inset Formula $9.4*10^{-5}\%$
 \end_inset
 
@@ -566,7 +574,7 @@ noprefix "false"
 \begin_inset Formula $1.2*10^{-4}\%$
 \end_inset
 
- of called Cs) but overfiltering is much more common (between 
+ of called Cs) but over-filtering is much more common (between 
 \begin_inset Formula $1.2\%$
 \end_inset
 
@@ -690,7 +698,7 @@ ly mappable.
 \begin_inset Quotes eld
 \end_inset
 
-Underfiltered Cs
+Under-filtered Cs
 \begin_inset Quotes erd
 \end_inset
 
@@ -700,7 +708,7 @@ Underfiltered Cs
 \begin_inset Quotes eld
 \end_inset
 
-Overfiltered Cs
+Over-filtered Cs
 \begin_inset Quotes erd
 \end_inset
 
@@ -1128,10 +1136,10 @@ It is evident that the sites of most methylation miscalls fall into two
  low mappability regions.
  These regions are where per-C filtering produces over- and under-filtered
  Cs.
- Overfiltered Cs occur when a C is in the low mappability region, but there
+ Over-filtered Cs occur when a C is in the low mappability region, but there
  is a mappable read anchored in the high mappability region that allows
  it to be called.
- Underfiltered C's occur when a C is just inside a mappable region, but
+ Under-filtered C's occur when a C is just inside a mappable region, but
  there is no sufficiently mappable read to call it.
  Example of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
  are provided in Figures 
@@ -1606,7 +1614,7 @@ Sequencing
 
 \begin_layout Standard
 Methylation libraries were sequenced with more diverse libraries (~10%)
- on 2 flow cells of an Illumina Novaseq 6000 
+ on 2 flow cells of an Illumina NovaSeq 6000 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "novaseq-6000"
@@ -2358,9 +2366,9 @@ s of mappability), all methylation calls in GENCODE genes (with low minimum
 
 \begin_layout Standard
 To assess miscalls (i.e.
- which Cs are filtered out by per-read filtering), as well as underfiltering/ove
-rfiltering with respect to per-C filtering (discussed above), and resolution
- of mixed methylation calls to 0% or 100%, pairs of these files were compared
+ which Cs are filtered out by per-read filtering), as well as under/over-filteri
+ng with respect to per-C filtering (discussed above), and resolution of
+ mixed methylation calls to 0% or 100%, pairs of these files were compared
  using bedtools to produce files showing the difference between filtered
  and unfiltered data.
  All files were examined and compared in Tableau
@@ -2651,20 +2659,24 @@ literal "false"
 \end_inset
 
 .
-\change_inserted -162802704 1632626337
-
 \end_layout
 
 \begin_layout Subsection*
-Acknowlegements
+Acknowledgments
 \end_layout
 
 \begin_layout Standard
 We are grateful to the many people who contributed to the EM-seq project
  and made these libraries available.
+ This work would not have been possible with out access to an extensible,
+ open-source methylation caller.
+ Devon Ryan's review and incorporation of our patch to MethylDackel represents
+ the best of open scientific collaboration.
  Many thanks to Chaithanya Ponnaluri for critical reading of this manuscript,
- Matt Campbell and Ariel Erijman for helpful discussion, and to the organizers
- and supporters of the summer internship program that enabled this project.
+ to Matt Campbell and Ariel Erijman for helpful discussion, and to the organizer
+s and supporters of the summer internship program at New England Biolabs
+ that enabled this project.
+ 
 \end_layout
 
 \begin_layout Standard
