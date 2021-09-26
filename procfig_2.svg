@@ -29,15 +29,15 @@
      inkscape:document-units="pt"
      showgrid="false"
      height="1000pt"
-     inkscape:zoom="0.79"
-     inkscape:cx="957.59494"
-     inkscape:cy="824.05063"
+     inkscape:zoom="2.09"
+     inkscape:cx="944.73684"
+     inkscape:cy="770.33493"
      inkscape:window-width="1620"
      inkscape:window-height="964"
      inkscape:window-x="59"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="edge21"
+     inkscape:current-layer="graph0"
      lock-margins="true"
      fit-margin-top="30"
      fit-margin-left="30"
@@ -640,9 +640,9 @@
     <g
        id="edge18"
        class="edge"
-       transform="matrix(-0.03017678,-1.0367258,0.9998957,-0.02401303,1346.4694,528.8686)"
+       transform="matrix(-0.03017678,-1.0807136,0.9998957,-0.02503189,1344.9692,546.85936)"
        inkscape:transform-center-x="12.616498"
-       inkscape:transform-center-y="-167.32158">
+       inkscape:transform-center-y="-174.42096">
       <title
          id="title226">Intersect_3-&gt;Low-mappability Calls and Miscalls</title>
       <path
@@ -650,7 +650,7 @@
          stroke="#000000"
          d="m 574.76526,-41.482803 c -30.45814,0.259689 -98.04587,1.296224 -154.7539,5.53988 -0.0673,9.87e-4 -0.13405,0.01194 -0.20136,0.01292"
          id="path228"
-         style="stroke-width:0.98194792;stroke-miterlimit:4;stroke-dasharray:none" />
+         style="stroke-width:0.981948;stroke-miterlimit:4;stroke-dasharray:none" />
       <polygon
          fill="#000000"
          stroke="#000000"
