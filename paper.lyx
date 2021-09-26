@@ -87,6 +87,7 @@
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -838,8 +839,8 @@ literal "false"
 
  database of disease-associated variants.
  Using our alignment filtering approach we successfully avoided miscalling
- 275,071 Cs in these important regions in a 50 ng EM-seq sample which have
- insufficient mappability to support methylation calling.
+ 264 thousand Cs in these important regions in a 200 ng EM-seq sample which
+ have insufficient mappability to support methylation calling.
  Briefly, to identify the number of methylation calls correctly removed
  (miscalls), we took the list of unfiltered Cs for the regions we were intereste
 d in and removed from it all Cs we kept after per-read filtering.
@@ -866,7 +867,7 @@ We compared the effect of per-read mappability filtering on number of C's
  called, as well as number of C's called in low-mappability regions (as
  defined by per-C filtering), on EM-seq samples of 3 sample masses aligned
  with the bwa-meth aligner.
- We saw a significant positive filtering effect on all 3 sample masses,
+ We saw a significant positive filtering effect on all 3 sample input amounts,
  with a mean of 7.67 million Cs filtered out by read-based filtering in each
  sample (see Figure 
 \begin_inset CommandInset ref
@@ -1555,31 +1556,9 @@ literal "false"
 
  libraries from 10, 50, and 200 ng of genomic DNA from the NA12878 cell
  line (Coriel) were analyzed.
- This input DNA was supplemented with a small amount of fully-methylated
- Xp-12 DNA (isolated from Xp12 phage following the procedure in Y.
- J.
- Lee, P.
- R.
- Weigele, Detection of modified bases in bacteriophage genomic DNA.
- Methods Mol.
- Biol.2198, 53-66 (2021).
-\begin_inset CommandInset citation
-LatexCommand cite
-key "lee_detection_2021"
-literal "false"
-
-\end_inset
-
-)
-\begin_inset CommandInset citation
-LatexCommand cite
-key "kuo_5-methylcytosine_1968"
-literal "false"
-
-\end_inset
-
-, lambda phage DNA (NEB #N3011), and a pUC19 plasmid (NEB #N3041) treated
- with M.SssI CpG Methyltransferase (NEB #M0226).
+ This input DNA was supplemented with a small amount of lambda phage DNA
+ (NEB #N3011), and a pUC19 plasmid (NEB #N3041) treated with M.SssI CpG Methyltra
+nsferase (NEB #M0226).
 \end_layout
 
 \begin_layout Subsection*
@@ -2672,6 +2651,20 @@ literal "false"
 \end_inset
 
 .
+\change_inserted -162802704 1632626337
+
+\end_layout
+
+\begin_layout Subsection*
+Acknowlegements
+\end_layout
+
+\begin_layout Standard
+We are grateful to the many people who contributed to the EM-seq project
+ and made these libraries available.
+ Many thanks to Chaithanya Ponnaluri for critical reading of this manuscript,
+ Matt Campbell and Ariel Erijman for helpful discussion, and to the organizers
+ and supporters of the summer internship program that enabled this project.
 \end_layout
 
 \begin_layout Standard
