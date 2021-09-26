@@ -29,15 +29,15 @@
      inkscape:document-units="pt"
      showgrid="false"
      height="1000pt"
-     inkscape:zoom="0.43795337"
-     inkscape:cx="553.71192"
-     inkscape:cy="221.48477"
-     inkscape:window-width="1396"
-     inkscape:window-height="908"
-     inkscape:window-x="2220"
-     inkscape:window-y="25"
+     inkscape:zoom="0.79"
+     inkscape:cx="957.59494"
+     inkscape:cy="824.05063"
+     inkscape:window-width="1620"
+     inkscape:window-height="964"
+     inkscape:window-x="59"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="graph0"
+     inkscape:current-layer="edge21"
      lock-margins="true"
      fit-margin-top="30"
      fit-margin-left="30"
@@ -650,7 +650,7 @@
          stroke="#000000"
          d="m 574.76526,-41.482803 c -30.45814,0.259689 -98.04587,1.296224 -154.7539,5.53988 -0.0673,9.87e-4 -0.13405,0.01194 -0.20136,0.01292"
          id="path228"
-         style="stroke-width:0.44424" />
+         style="stroke-width:0.98194792;stroke-miterlimit:4;stroke-dasharray:none" />
       <polygon
          fill="#000000"
          stroke="#000000"
@@ -689,7 +689,7 @@
          stroke="#000000"
          d="M 968.38387,-63.959994 C 926.54687,-57.753223 846.21354,-45.832828 787.35,-37.1"
          id="path242"
-         style="stroke-width:0.428161" />
+         style="stroke-width:1.00011399;stroke-miterlimit:4;stroke-dasharray:none" />
       <polygon
          fill="#000000"
          stroke="#000000"
@@ -700,13 +700,13 @@
     <g
        id="node18"
        class="node"
-       transform="translate(-75.359079,140.44192)">
+       transform="translate(-75.359079,141.94209)">
       <title
          id="title247">ClinVar Gene Low-mappability Calls and Miscalls</title>
       <polygon
          fill="none"
          stroke="#000000"
-         points="936.22,-36 821.51,0 1267.45,0 1382.16,-36 "
+         points="821.51,0 1267.45,0 1382.16,-36 936.22,-36 "
          id="polygon249" />
       <text
          text-anchor="middle"
@@ -721,13 +721,13 @@
     <g
        id="node19"
        class="node"
-       transform="translate(-77.071786,143.86733)">
+       transform="translate(-78.571957,142.36716)">
       <title
          id="title261">Pure Calls</title>
       <polygon
          fill="none"
          stroke="#000000"
-         points="1539.46,-36 1428.7,-36 1400.21,0 1510.97,0 "
+         points="1400.21,0 1510.97,0 1539.46,-36 1428.7,-36 "
          id="polygon263" />
       <text
          text-anchor="middle"
@@ -741,7 +741,7 @@
     <g
        id="edge21"
        class="edge"
-       transform="matrix(0.79309745,0.59756405,-0.60909476,0.77808341,197.79929,-717.92457)">
+       transform="matrix(0.79309745,0.59756405,-0.60909476,0.77808341,198.22277,-720.6642)">
       <title
          id="title268">Intersect_3-&gt;Pure Calls</title>
       <path
@@ -749,24 +749,27 @@
          stroke="#000000"
          d="m 1265.4403,-138.58805 c 42.0751,27.44919 103.596,67.610869 152.6497,99.61805"
          id="path270"
-         style="stroke-width:1.42322" />
+         style="stroke-width:1.00971708;stroke-miterlimit:4;stroke-dasharray:none" />
       <polygon
          fill="#000000"
          stroke="#000000"
-         points="1427.79,-35.22 1417.21,-35.56 1419.73,-42.09 "
-         id="polygon272" />
+         points="1419.73,-42.09 1427.79,-35.22 1417.21,-35.56 "
+         id="polygon272"
+         transform="matrix(0.98808241,0.17410264,-0.17239422,0.98168503,9.4718729,-247.86985)"
+         inkscape:transform-center-x="-0.27122778"
+         inkscape:transform-center-y="-0.33831101" />
     </g>
     <!-- Mixed Calls -->
     <g
        id="node20"
        class="node"
-       transform="translate(-140.44192,78.784492)">
+       transform="translate(-138.94175,78.784492)">
       <title
          id="title275">Mixed Calls</title>
       <polygon
          fill="none"
          stroke="#000000"
-         points="1717.93,-36 1590.52,-36 1557.74,0 1685.15,0 "
+         points="1590.52,-36 1557.74,0 1685.15,0 1717.93,-36 "
          id="polygon277" />
       <text
          text-anchor="middle"
@@ -804,26 +807,27 @@
       <path
          fill="none"
          stroke="#000000"
-         d="m 1276.72,-74.986002 c 77.5785,11.262446 212.5471,30.851248 298,43.256002"
+         d="m 1277.1435,-77.725632 c 77.358,12.688865 211.943,34.759305 297.153,48.735262"
          id="path284-9"
          style="stroke-width:1.05198" />
       <polygon
          fill="#000000"
          stroke="#000000"
-         points="1574.09,-28.29 1575.48,-35.15 1584.59,-29.74 "
-         id="polygon286-9" />
+         points="1575.48,-35.15 1584.59,-29.74 1574.09,-28.29 "
+         id="polygon286-9"
+         transform="translate(0,3.000342)" />
     </g>
     <!-- Resolved Calls -->
     <g
        id="node21"
        class="node"
-       transform="translate(-180.03,11.67)">
+       transform="translate(-180.03,14.670342)">
       <title
          id="title289">Resolved Calls</title>
       <polygon
          fill="none"
          stroke="#000000"
-         points="1773.73,-36 1735.56,0 1883.94,0 1922.11,-36 "
+         points="1883.94,0 1922.11,-36 1773.73,-36 1735.56,0 "
          id="polygon291" />
       <text
          text-anchor="middle"
@@ -837,7 +841,7 @@
     <g
        id="edge23"
        class="edge"
-       transform="matrix(0.76791857,0.56842661,-0.60073785,0.72661536,75.381838,-939.9201)">
+       transform="matrix(0.76791857,0.56842661,-0.60073785,0.72661536,75.381836,-939.9201)">
       <title
          id="title296">Intersect_3-&gt;Resolved Calls</title>
       <path
@@ -845,11 +849,11 @@
          stroke="#000000"
          d="m 1556.8529,-24.82266 c 42.7105,-2.032528 119.8493,-5.380004 185.2474,-6.450968 4.7902,-0.07645 9.8242,-0.112132 14.7697,-0.116372"
          id="path298"
-         style="stroke-width:0.47828" />
+         style="stroke-width:1.05453098;stroke-miterlimit:4;stroke-dasharray:none" />
       <polygon
          fill="#000000"
          stroke="#000000"
-         points="1766.87,-29.77 1756.44,-27.92 1757.56,-34.83 "
+         points="1756.44,-27.92 1757.56,-34.83 1766.87,-29.77 "
          id="polygon300" />
     </g>
   </g>

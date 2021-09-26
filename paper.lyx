@@ -82,11 +82,12 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -1421919639 "Caiden"
 \end_header
 
 \begin_body
@@ -509,7 +510,17 @@ MapQ filtering does not remove all poorly mapped reads.
  to call and successfully eliminates the remaining miscalled Cs (Per-read
  ∆ track).
  Per C filtering eliminates all Cs in this region including the 2 that should
- be callable (Per-C kept).
+ be callable (Per-C 
+\change_inserted -1421919639 1632688656
+K
+\change_deleted -1421919639 1632688656
+k
+\change_unchanged
+ept
+\change_inserted -1421919639 1632688655
+ track
+\change_unchanged
+).
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -916,7 +927,12 @@ noprefix "false"
 
 \end_inset
 
-), showing that unlike per-C filtering, per-read filtering can clean up
+), showing that unlike per-C filtering, per-read filtering can 
+\change_deleted -1421919639 1632689752
+clean up
+\change_inserted -1421919639 1632689752
+correct
+\change_unchanged
  methylation calls without always having to entirely delete them.
 \end_layout
 
@@ -949,8 +965,11 @@ name "fig:Miscall-counts"
 
 \end_inset
 
-Left: Percents of miscalled Cs in the 10, 50, and 200ng EM-seq and WGBS
- samples, aligned with bwa-meth and Bismark, where a 
+Left: Percents of miscalled Cs in the 10, 50, and 200
+\change_inserted -1421919639 1632688660
+ 
+\change_unchanged
+ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark, where a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1003,8 +1022,11 @@ name "fig:genome-resolved-calls"
 
 \end_inset
 
-Counts of genome-wide resolved calls in the 10, 50, and 200ng EM-seq and
- WGBS samples, aligned with bwa-meth and Bismark, where a 
+Counts of genome-wide resolved calls in the 10, 50, and 200
+\change_inserted -1421919639 1632688663
+ 
+\change_unchanged
+ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark, where a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1141,8 +1163,12 @@ It is evident that the sites of most methylation miscalls fall into two
  it to be called.
  Under-filtered C's occur when a C is just inside a mappable region, but
  there is no sufficiently mappable read to call it.
- Example of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
- are provided in Figures 
+ Example
+\change_inserted -1421919639 1632688792
+s
+\change_unchanged
+ of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth are
+ provided in Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:igv-1"
@@ -1152,6 +1178,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -1421919639 1632688790
+ 
+\change_unchanged
 and 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1468,6 +1498,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -1421919639 1632688802
+ 
+\change_unchanged
 left).
  Use of per-read filtering has a smaller effect with the more complete reference
 , but thousands of Cs are still affected (Figure 
@@ -1480,6 +1514,10 @@ noprefix "false"
 
 \end_inset
 
+
+\change_inserted -1421919639 1632688800
+ 
+\change_unchanged
 right).
  This indicates that using the T2T reference can allow for better calling
  of methylation with fewer miscalls, however without a high quality annotation
@@ -1514,8 +1552,11 @@ name "fig:t2t"
 
 \end_inset
 
-Left: Total call counts before filtering in the 10, 50, and 200ng EM-seq
- samples, aligned with bwa-meth to GRCh38 and T2T.
+Left: Total call counts before filtering in the 10, 50, and 200
+\change_inserted -1421919639 1632688666
+ 
+\change_unchanged
+ng EM-seq samples, aligned with bwa-meth to GRCh38 and T2T.
  The vertical axis is the number of calls in the sample.
  Right: Percents of miscalled Cs in the same samples, where a 
 \begin_inset Quotes eld
@@ -1684,7 +1725,11 @@ WGBS
 \begin_inset Text
 
 \begin_layout Plain Layout
-10ng
+10
+\change_inserted -1421919639 1632688674
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
@@ -1713,7 +1758,11 @@ WGBS
 \begin_inset Text
 
 \begin_layout Plain Layout
-50ng
+50
+\change_inserted -1421919639 1632688673
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
@@ -1742,7 +1791,11 @@ WGBS
 \begin_inset Text
 
 \begin_layout Plain Layout
-200ng
+200
+\change_inserted -1421919639 1632688669
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
@@ -1771,7 +1824,11 @@ EM-seq
 \begin_inset Text
 
 \begin_layout Plain Layout
-10ng
+10
+\change_inserted -1421919639 1632688669
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
@@ -1800,7 +1857,11 @@ EM-seq
 \begin_inset Text
 
 \begin_layout Plain Layout
-50ng
+50
+\change_inserted -1421919639 1632688670
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
@@ -1829,7 +1890,11 @@ EM-seq
 \begin_inset Text
 
 \begin_layout Plain Layout
-200ng
+200
+\change_inserted -1421919639 1632688672
+ 
+\change_unchanged
+ng
 \end_layout
 
 \end_inset
