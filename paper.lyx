@@ -87,6 +87,7 @@
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -264,7 +265,11 @@ literal "false"
 
 , which is specifically designed to handle the C->T transitions in methylation
  sequencing data when aligning the reads to a reference.
- Once aligned, a methylation caller such as MethylDackel 
+ Once aligned, a methylation caller 
+\change_inserted -162802704 1633180860
+is needed to
+\change_deleted -162802704 1633187242
+such as MethylDackel 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ryan_methyldackel_nodate"
@@ -280,8 +285,21 @@ literal "false"
 
 \end_inset
 
- can analyze alignments to determine the methylation status of particular
- cytosines (Figure 
+ can
+\change_unchanged
+ analyze alignments 
+\change_deleted -162802704 1633180866
+to
+\change_inserted -162802704 1633180866
+and
+\change_unchanged
+ 
+\change_deleted -162802704 1633176357
+determine
+\change_inserted -162802704 1633176368
+report
+\change_unchanged
+ the methylation status of particular cytosines (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -295,11 +313,56 @@ noprefix "false"
  The resulting data shows the methylation status of each callable cytosine
  in the genome and can therefore be used to find and study biologically
  significant DNA methylation sites.
+\change_inserted -162802704 1633177302
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -162802704 1633193509
+There are two commonly used methylation callers, MethylDackel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ryan_methyldackel_nodate"
+literal "false"
+
+\end_inset
+
+ and bismark_methylation_extractor 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "doi:10.1093/bioinformatics/btr167"
+literal "false"
+
+\end_inset
+
+.
+ The Bismark aligner creates XM, XR, and XG tags that are used by the bismark_me
+thylation_extractor to call methylation.
+ Bismark_methylation_extractor requires these larger bam files and is not
+ compatible with bam files produced by other aligners.
+ MethylDackel extract is not tightly coupled to a specific aligner or tag
+ scheme, performing the filtering, quality assessment, and reference comparisons
+ needed for methylation calling internally.
+ MethylDackel efficiently loads a complete or targeted reference genome,
+ examining alignments in chunks that are processed in parallel with all
+ the context needed to differentiate methylation from C->T mutation.
+ Flexible and optional thresholds are available for base-quality, positional
+ trimming, adjacent base context (e.g.
+ CpG or CHH), alignment flags, and MapQ.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
 A read must be unambiguously placed if it is to provide information about
- a specific locus.
+ a specific 
+\change_deleted -162802704 1633192037
+locus
+\change_inserted -162802704 1633192104
+region of a genome
+\change_unchanged
+.
  Reads that equally match more than one area of the reference genome should
  not be used to assess methylation of any given C.
  To avoid calling Cs using reads derived from multiple genomic loci, methylation
@@ -346,9 +409,15 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-A methylation caller could use accurate MapQ values to filter out reads
- with multiple placements in the genome, allowing the resulting methylation
- calls to accurately reflect their specific loci.
+A methylation caller 
+\change_deleted -162802704 1633176835
+could
+\change_inserted -162802704 1633176835
+can
+\change_unchanged
+ use accurate MapQ values to filter out reads with multiple placements in
+ the genome, allowing the resulting methylation calls to accurately reflect
+ their specific loci.
  Unfortunately, current aligners frequently produce implausible MapQ scores.
 \end_layout
 
@@ -356,9 +425,14 @@ A methylation caller could use accurate MapQ values to filter out reads
 In this paper, we describe the problem that low-mappability creates for
  methylation calling, the extent of miscalled methylation in real datasets,
  and our implementation of an improved method that measurably reduces incorrect
- mixed-methylation calls with potential to improve differential methylation
- assessment, the use of methylation as a biomarker for disease progression,
- and understanding of development processes.
+ mixed-methylation calls 
+\change_deleted -162802704 1633190875
+with potential to improve
+\change_inserted -162802704 1633190876
+improving
+\change_unchanged
+ differential methylation assessment, the use of methylation as a biomarker
+ for disease progression, and understanding of development processes.
 \end_layout
 
 \begin_layout Section*
@@ -2386,7 +2460,11 @@ ng with respect to per-C filtering (discussed above), and resolution of
 \begin_layout Standard
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
  with the Bismark aligner using default settings and deduplicated using
- deduplicate_Bismarck according to the documented protocol 
+ deduplicate_Bismar
+\change_deleted -162802704 1633193243
+c
+\change_unchanged
+k according to the documented protocol 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krueger_felixkruegerbismark_2021"
