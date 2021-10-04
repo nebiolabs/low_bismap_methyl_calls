@@ -1561,7 +1561,7 @@ noprefix "false"
 
 \end_inset
 
- left).
+, left).
  Use of per-read filtering has a smaller effect with the more complete reference
 , but thousands of Cs are still affected (Figure 
 \begin_inset CommandInset ref
@@ -1573,7 +1573,7 @@ noprefix "false"
 
 \end_inset
 
- right).
+, right).
  This indicates that using the T2T reference can allow for better calling
  of methylation with fewer miscalls, however without a high quality annotation
  available, this may not yet be a practical option.
