@@ -1136,7 +1136,7 @@ ClinVar genes
 ).
  Focusing on genes that may contain miscalls, we filtered the list to only
  include those genes which had at least one region, either in the gene or
- in the 2kb upstream of the gene (in order to capture regulatory regions),
+ in the 2 kb upstream of the gene (in order to capture regulatory regions),
  where the mappability is too low to allow reliable methylation calling.
  Examination of this data in IGV
 \begin_inset CommandInset citation
