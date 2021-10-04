@@ -82,12 +82,11 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes true
+\tracking_changes false
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\author -162802704 "Brad Langhorst"
 \end_header
 
 \begin_body
@@ -98,8 +97,83 @@ Correcting Methylation Calls in Clinically Relevant Low-Mappability Regions
 
 \begin_layout Author
 Caiden M.
- Kumar, Bradley W.
+ Kumar
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:New England Biolabs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, Devon P.
+ Ryan
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Genedata-AG"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, Bradley W.
  Langhorst
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:New England Biolabs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:New England Biolabs"
+
+\end_inset
+
+New England Biolabs
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Genedata-AG"
+
+\end_inset
+
+GeneData AG
 \end_layout
 
 \begin_layout Abstract
@@ -265,41 +339,8 @@ literal "false"
 
 , which is specifically designed to handle the C->T transitions in methylation
  sequencing data when aligning the reads to a reference.
- Once aligned, a methylation caller 
-\change_inserted -162802704 1633180860
-is needed to
-\change_deleted -162802704 1633187242
-such as MethylDackel 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ryan_methyldackel_nodate"
-literal "false"
-
-\end_inset
-
- or Bismarck_methylation_extractor 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "doi:10.1093/bioinformatics/btr167"
-literal "false"
-
-\end_inset
-
- can
-\change_unchanged
- analyze alignments 
-\change_deleted -162802704 1633180866
-to
-\change_inserted -162802704 1633180866
-and
-\change_unchanged
- 
-\change_deleted -162802704 1633176357
-determine
-\change_inserted -162802704 1633176368
-report
-\change_unchanged
- the methylation status of particular cytosines (Figure 
+ Once aligned, a methylation caller is needed to analyze alignments and
+ report the methylation status of particular cytosines (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:seq"
@@ -313,13 +354,9 @@ noprefix "false"
  The resulting data shows the methylation status of each callable cytosine
  in the genome and can therefore be used to find and study biologically
  significant DNA methylation sites.
-\change_inserted -162802704 1633177302
-
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -162802704 1633193509
 There are two commonly used methylation callers, MethylDackel 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -350,19 +387,11 @@ thylation_extractor to call methylation.
  Flexible and optional thresholds are available for base-quality, positional
  trimming, adjacent base context (e.g.
  CpG or CHH), alignment flags, and MapQ.
-\change_unchanged
-
 \end_layout
 
 \begin_layout Standard
 A read must be unambiguously placed if it is to provide information about
- a specific 
-\change_deleted -162802704 1633192037
-locus
-\change_inserted -162802704 1633192104
-region of a genome
-\change_unchanged
-.
+ a specific region of a genome.
  Reads that equally match more than one area of the reference genome should
  not be used to assess methylation of any given C.
  To avoid calling Cs using reads derived from multiple genomic loci, methylation
@@ -409,15 +438,9 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-A methylation caller 
-\change_deleted -162802704 1633176835
-could
-\change_inserted -162802704 1633176835
-can
-\change_unchanged
- use accurate MapQ values to filter out reads with multiple placements in
- the genome, allowing the resulting methylation calls to accurately reflect
- their specific loci.
+A methylation caller can use accurate MapQ values to filter out reads with
+ multiple placements in the genome, allowing the resulting methylation calls
+ to accurately reflect their specific loci.
  Unfortunately, current aligners frequently produce implausible MapQ scores.
 \end_layout
 
@@ -425,14 +448,9 @@ can
 In this paper, we describe the problem that low-mappability creates for
  methylation calling, the extent of miscalled methylation in real datasets,
  and our implementation of an improved method that measurably reduces incorrect
- mixed-methylation calls 
-\change_deleted -162802704 1633190875
-with potential to improve
-\change_inserted -162802704 1633190876
-improving
-\change_unchanged
- differential methylation assessment, the use of methylation as a biomarker
- for disease progression, and understanding of development processes.
+ mixed-methylation calls improving differential methylation assessment,
+ the use of methylation as a biomarker for disease progression, and understandin
+g of development processes.
 \end_layout
 
 \begin_layout Section*
@@ -1183,8 +1201,9 @@ name "fig:resolved_gene_counts"
 
 \end_inset
 
-Counts of ClinVar genes containing resolved miscalls in the 10, 50, and
- 200 ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark.
+Counts of ClinVar genes containing resolved (from intermediate to 0 or 100%
+ methylation) miscalls in the 10, 50, and 200 ng EM-seq and WGBS samples,
+ aligned with bwa-meth and Bismark.
  The vertical axis is the number genes containing miscalls that were resolved
  by mappability-informed methylation calling.
 \end_layout
@@ -2308,11 +2327,21 @@ The sequencing reads were aligned using the bwa-meth aligner with default
  to that threshold in a single read).
  The filtering algorithm has been optimized both by loading the mappability
  data into memory before calling, and through the use of a custom run-length
- compressed binary file format that we here term BBM (Binary BisMap).
+ compressed binary file format that we here term BBM (Binary BisMap
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "The-BBM-format"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  This format can store the mappability data for the hg38/GRCh38 human genome
  in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
  ratio for this dataset of 7.78:1.
- MethylDackel's trimming settings were set to trim off the first 1 bp of
+ MethylDackel's trimming options were set to trim off the first 1 bp of
  read 1 and the last 2 bp of read 2.
 \end_layout
 
@@ -2460,11 +2489,7 @@ ng with respect to per-C filtering (discussed above), and resolution of
 \begin_layout Standard
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
  with the Bismark aligner using default settings and deduplicated using
- deduplicate_Bismar
-\change_deleted -162802704 1633193243
-c
-\change_unchanged
-k according to the documented protocol 
+ deduplicate_Bismark according to the documented protocol 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krueger_felixkruegerbismark_2021"
@@ -2697,6 +2722,28 @@ https://github.com/dpryan79/MethylDackel/pull/80
 \begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
+name "The-BBM-format"
+
+\end_inset
+
+ The BBM format definition is available at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/dpryan79/MethylDackel/blob/master/BBM_Specification.md
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
 name "The-Bismap-file"
 
 \end_inset
@@ -2748,13 +2795,10 @@ We are grateful to the many people who contributed to the EM-seq project
  and made these libraries available.
  This work would not have been possible with out access to an extensible,
  open-source methylation caller.
- Devon Ryan's review and incorporation of our patch to MethylDackel represents
- the best of open scientific collaboration.
  Many thanks to Chaithanya Ponnaluri for critical reading of this manuscript,
  to Matt Campbell and Ariel Erijman for helpful discussion, and to the organizer
 s and supporters of the summer internship program at New England Biolabs
  that enabled this project.
- 
 \end_layout
 
 \begin_layout Standard
