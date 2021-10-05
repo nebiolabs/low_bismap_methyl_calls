@@ -468,7 +468,17 @@ literal "false"
 
 , we observed a significant number of reads with unexpectedly high MapQ
  values in repetitive regions (e.g.
- centromeres).
+ centromeres, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:chrom-overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  Another commonly used aligner Bismark
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -625,7 +635,17 @@ name "fig:example"
 \begin_layout Standard
 While low MapQ can indicate repetitiveness, even stringent MapQ thresholds
  cannot reliably select reads for safe methylation calling in regions containing
- repetitive DNA.
+ repetitive DNA (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to both
@@ -893,7 +913,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly kept by per-C filtering (circled).
+An example of a C incorrectly kept by per-C filtering (red box).
  As the C is itself just inside the edge of a mappable region, bedtools
  retains it, even though it is only supported by two insufficiently mappable
  reads.
@@ -965,7 +985,7 @@ Filtering Effect
 \begin_layout Standard
 We compared the effect of per-read mappability filtering on number of C's
  called, as well as number of C's called in low-mappability regions (as
- defined by per-C filtering), on EM-seq samples of 3 sample masses aligned
+ defined by per-C filtering), on EM-seq libraries of 3 sample masses aligned
  with the bwa-meth aligner.
  We saw a significant positive filtering effect on all 3 sample input amounts,
  with a mean of 7.67 million Cs filtered out by read-based filtering in each
@@ -1124,8 +1144,8 @@ Effect on Medically Relevant Genes
 \end_layout
 
 \begin_layout Standard
-To measure biological significance of these miscalls, we used genes in GENCODE
- containing variants in ClinVar (
+To estimate biological significance of these miscalls, we used genes in
+ GENCODE containing variants in ClinVar (
 \begin_inset Quotes eld
 \end_inset
 
@@ -1136,8 +1156,9 @@ ClinVar genes
 ).
  Focusing on genes that may contain miscalls, we filtered the list to only
  include those genes which had at least one region, either in the gene or
- in the 2 kb upstream of the gene (in order to capture regulatory regions),
- where the mappability is too low to allow reliable methylation calling.
+ in a 2 kb region upstream of the annotated start site (to capture regulatory
+ regions), where the mappability is too low to allow reliable methylation
+ calling.
  Examination of this data in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1146,10 +1167,10 @@ literal "false"
 
 \end_inset
 
- revealed that there were miscalls in or upstream of thousands of unique
- genes in the EM-seq/bwa-meth data, with a median number of 64 miscalls
- per gene, indicating that indeed miscalls may affect biologically significant
- methylation.
+ and numerically revealed that there were miscalls in or upstream of thousands
+ of unique genes in the EM-seq/bwa-meth data, with a median number of 64
+ miscalls per gene, indicating that indeed miscalls may affect biologically
+ significant methylation.
  Many of these miscalls can be resolved to 0 or 100% methylation by the
  per-read filtering method described in this paper (Figures 
 \begin_inset CommandInset ref
@@ -2221,7 +2242,7 @@ name "fig:dag"
 \end_inset
 
 Detailed description of preprocessing steps used to identify biologically
- relevant low-mappability regions..
+ relevant low-mappability regions.
  Ovals are intermediate files.
  Gray rhombuses are processing steps with multiple arguments.
  Dotted lines indicate inputs that go to the methylation calling steps in
