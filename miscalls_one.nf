@@ -30,6 +30,10 @@ params.massMapping = "test_fixtures/mass_mapping.csv"
 
 params.copy = false
 
+params.outputDir="methyl_calls"
+
+outputDir=params.outputDir
+
 process bigWigToBedGraph {
 
     conda 'ucsc-bigwigtobedgraph=377'
@@ -460,7 +464,7 @@ process countGeneCalls {
 
 process addParamsToLowmapCalledGenes {
 
-    publishDir 'methyl_calls/lowmap_called_genes', mode: "${publish_mode}", pattern: "lowmap_called_genes_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/lowmap_called_genes", mode: "${publish_mode}", pattern: "lowmap_called_genes_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -484,7 +488,7 @@ process addParamsToLowmapCalledGenes {
 
 process addParamsToCalledGenes {
 
-    publishDir 'methyl_calls/called_genes', mode: "${publish_mode}", pattern: "called_genes_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/called_genes", mode: "${publish_mode}", pattern: "called_genes_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -508,7 +512,7 @@ process addParamsToCalledGenes {
 
 process addParamsToCalls {
 
-    publishDir 'methyl_calls/calls', mode: "${publish_mode}", pattern: "calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/calls", mode: "${publish_mode}", pattern: "calls_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -532,7 +536,7 @@ process addParamsToCalls {
 
 process addParamsToLowmapCalls {
 
-    publishDir 'methyl_calls/lowmap_calls', mode: "${publish_mode}", pattern: "lowmap_calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/lowmap_calls", mode: "${publish_mode}", pattern: "lowmap_calls_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -556,7 +560,7 @@ process addParamsToLowmapCalls {
 
 process addParamsToClinvarCalls {
 
-    publishDir 'methyl_calls/clinvar_calls', mode: "${publish_mode}", pattern: "calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/clinvar_calls", mode: "${publish_mode}", pattern: "calls_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -580,7 +584,7 @@ process addParamsToClinvarCalls {
 
 process addParamsToClinvarLowmapCalls {
 
-    publishDir 'methyl_calls/clinvar_lowmap_calls', mode: "${publish_mode}", pattern: "lowmap_calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/clinvar_lowmap_calls", mode: "${publish_mode}", pattern: "lowmap_calls_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -604,7 +608,7 @@ process addParamsToClinvarLowmapCalls {
 
 process getPureMethylSites {
 
-    publishDir 'methyl_calls/pure_mixed_calls', mode: "${publish_mode}", pattern: "pure_methyl_calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/pure_mixed_calls", mode: "${publish_mode}", pattern: "pure_methyl_calls_${outputSuffix}_*.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -623,7 +627,7 @@ process getMixedMethylSites {
 
     cpus 2
     penv 'smp'
-    publishDir 'methyl_calls/pure_mixed_calls', mode: "${publish_mode}", pattern: "mixed_methyl_calls_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/pure_mixed_calls", mode: "${publish_mode}", pattern: "mixed_methyl_calls_${outputSuffix}_*.tsv"
     conda 'bedtools=2.30.0'
 
     input:

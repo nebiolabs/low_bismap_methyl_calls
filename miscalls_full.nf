@@ -60,6 +60,8 @@ params.massMapping = "test_fixtures/mass_mapping.csv"
 
 params.copy = false
 
+params.outputDir="methyl_calls"
+
 workflow {
 
     no_filter_mappability=params.noFilterMappability

@@ -4,6 +4,9 @@ params.bams="test_fixtures/foo.bam"
 params.ref="test_fixtures/chr18_test.fa"
 params.bismarkOnly=false
 params.suffix="realigned"
+params.outputDir="bams"
+
+outputDir=params.outputDir
 
 process collateBams {
 
@@ -86,7 +89,7 @@ process realignGenomeBismark {
         conda 'bismark bowtie2'
 
 
-        publishDir 'bams', mode: 'copy'
+        publishDir "${outputDir}", mode: 'copy'
 
         input:
                 path ref
@@ -112,7 +115,7 @@ process deduplicateBismark {
         conda 'bismark bowtie2'
 
 
-        publishDir 'bams', mode: 'move'
+        publishDir "${outputDir}", mode: 'move'
 
         input:
                 path aligned_bam
@@ -132,7 +135,7 @@ process realignGenomeBwameth {
         conda 'bwameth samtools'
 
 
-        publishDir 'bams', mode: 'move'
+        publishDir "${outputDir}", mode: 'move'
 
         input:
                 path ref

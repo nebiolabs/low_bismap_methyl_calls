@@ -33,9 +33,13 @@ params.seqMethod = "seq"
 
 params.copy = false
 
+params.outputDir="methyl_calls"
+
+outputDir=params.outputDir
+
 process combineFilteringLowmapCalls {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "miscalls_lowmap_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "miscalls_lowmap_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -54,7 +58,7 @@ process combineFilteringLowmapCalls {
 
 process combineFilteringClinvarLowmapCalls {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "clinvar_miscalls_lowmap_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "clinvar_miscalls_lowmap_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -73,7 +77,7 @@ process combineFilteringClinvarLowmapCalls {
 
 process combineFilteringClinvarCalls {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "clinvar_miscalls_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "clinvar_miscalls_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -92,7 +96,7 @@ process combineFilteringClinvarCalls {
 
 process combineFilteringCalls {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "miscalls_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "miscalls_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -220,7 +224,7 @@ process countClinvarGeneCalls {
 
 process addParamsToClinvarLowmapCallsCombined {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "miscalled_clinvar_genes_lowmap_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "miscalled_clinvar_genes_lowmap_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -244,7 +248,7 @@ process addParamsToClinvarLowmapCallsCombined {
 
 process addParamsToClinvarCallsCombined {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "miscalled_clinvar_genes_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "miscalled_clinvar_genes_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -268,7 +272,7 @@ process addParamsToClinvarCallsCombined {
 
 process addParamsToClinvarResolvedCallsCombined {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "resolved_clinvar_genes_${outputSuffix}_*.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "resolved_clinvar_genes_${outputSuffix}_*.tsv"
 
     input:
         val outputSuffix
@@ -292,7 +296,7 @@ process addParamsToClinvarResolvedCallsCombined {
 
 process combineResolvedCalls {
 
-    publishDir 'methyl_calls/miscalls', mode: "${publish_mode}", pattern: "resolved_calls_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/miscalls", mode: "${publish_mode}", pattern: "resolved_calls_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
@@ -311,7 +315,7 @@ process combineResolvedCalls {
 
 process calcUnderfilteredCalls {
 
-    publishDir 'methyl_calls/underfiltered_calls', mode: "${publish_mode}", pattern: "underfiltered_calls_${outputSuffix}_${groupKey}.tsv"
+    publishDir "${outputDir}/underfiltered_calls", mode: "${publish_mode}", pattern: "underfiltered_calls_${outputSuffix}_${groupKey}.tsv"
     conda 'bedtools=2.30.0'
 
     input:
