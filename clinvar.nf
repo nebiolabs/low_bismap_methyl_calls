@@ -6,6 +6,9 @@ params.gencode="test_fixtures/chr18_gencode.gff"
 
 process vcf2bed {
   
+  penv 'smp'
+  cpus 1
+  conda 'bedops=2.4.41 sed=4.8'
   input:
     file clinvar_vcf
 
@@ -21,6 +24,10 @@ process vcf2bed {
 
 process gff2bed {
 
+  penv 'smp'
+  cpus 1
+  conda 'bedops=2.4.41'
+
   input:
     file gencode_gff
 
@@ -35,6 +42,9 @@ process gff2bed {
 
 process intersectClinvarGencode {
 
+        penv 'smp'
+        cpus 1
+        conda 'bedtools=2.30.0'
         publishDir 'clinvar_regions', mode: 'move'
 
         input:

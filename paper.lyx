@@ -193,19 +193,20 @@ ntly higher MapQ values than can be supported by the uniqueness of the region
  Methylation calling can be improved by using Bismap mappability data to
  filter out insufficiently unique reads.
  However, simply filtering out Cs in insufficiently unique regions is not
- adequate as it is prone to over-filtering Cs in small mappability dips.
+ adequate as it is prone to unnecessarily filtering Cs in small mappability
+ dips.
  These Cs can in fact often be called using reads anchored in a nearby mappable
  region.
  We have created a new feature for the MethylDackel methylation caller to
  perform read-based filtering.
  This new methylation calling method resolves some of the apparent mixed
- methylation to either 0% or 100% methylation and removes many unsupportable
+ methylation to either ≤10% or ≥90% methylation and removes many unsupportable
  methylation calls.
  We examined methylation calls with and without read-based filtering in
- or near the 7830 genes containing ClinVar variants in a methylation sequencing
+ or near the XXXX genes containing ClinVar variants in a methylation sequencing
  data set from the NA12878 cell line.
- Use of this improved method corrected 41,143 mixed methylation Cs to 0%
- methylation, and 22,345 to 100% methylation throughout the genome.
+ Use of this improved method corrected XXXX mixed methylation Cs to ≤10%
+ methylation, and XXXX to ≥90% methylation throughout the genome.
 \end_layout
 
 \begin_layout Section*
@@ -277,10 +278,8 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\align center
 \begin_inset Graphics
-	filename fig.svg
-	lyxscale 50
+	filename figures/overview_fig.svg
 	width 100col%
 
 \end_inset
@@ -289,15 +288,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Overview of Methylation Sequencing and Data Analysis Methods.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:seq"
-
-\end_inset
-
-
+Overview of filtering Cs with our read-based filtering technique.
 \end_layout
 
 \end_inset
@@ -390,6 +381,46 @@ thylation_extractor to call methylation.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/process_fig.svg
+	lyxscale 50
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Overview of Methylation Sequencing and Data Analysis Methods.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seq"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 A read must be unambiguously placed if it is to provide information about
  a specific region of a genome.
  Reads that equally match more than one area of the reference genome should
@@ -446,7 +477,7 @@ A methylation caller can use accurate MapQ values to filter out reads with
 
 \begin_layout Standard
 In this paper, we describe the problem that low-mappability creates for
- methylation calling, the extent of miscalled methylation in real datasets,
+ methylation calling, the extent of wrongly called methylation in real datasets,
  and our implementation of an improved method that measurably reduces incorrect
  mixed-methylation calls improving differential methylation assessment,
  the use of methylation as a biomarker for disease progression, and understandin
@@ -542,7 +573,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename chroms_ideogram.png
+	filename figures/chroms_ideogram.png
 	lyxscale 30
 	width 90col%
 
@@ -552,14 +583,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cs in low mappability regions (blue), as well as those filtered out by per-read
- filtering that still passed MapQ filtering (red), are represented across
+Cs in low mappability regions (blue), as well as those filtered out by read-base
+d filtering that still passed MapQ filtering (red), are represented across
  all chromosomes.
- Per-read filtering removes unsupported calls while retaining millions of
- Cs that a naïve per-C filtering approach would needlessly eliminate.
+ Read-based filtering removes unsupported calls while retaining millions
+ of Cs that a naïve coordinate filtering approach would needlessly eliminate.
  In this figure, the horizontal banded rectangles represent the chromosomes,
  the blue track above them shows all calls in low-mappability regions, and
- the red track corresponds to miscalls accurately removed by per-read filtering.
+ the red track corresponds to uncallable Cs accurately removed by read-based
+ filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:chrom-overview"
@@ -588,7 +620,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename fig1_svg.svg
+	filename figures/lowmap_cov.svg
 	lyxscale 50
 	width 90col%
 
@@ -607,11 +639,11 @@ MapQ filtering does not remove all poorly mapped reads.
  not sufficiently mappable, but still called with MapQ filtering.
  Mappability is only high in a small portion of this view (top track), but
  using MapQ alone alone enable calls of many Cs (MapQ Only track).
- the Per-read Kept track shows that only 2 sites have enough mappability
- to call and successfully eliminates the remaining miscalled Cs (Per-read
+ the Read-based Kept track shows that only 2 sites have enough mappability
+ to call and successfully eliminates the remaining uncallable Cs (Read-based
  ∆ track).
  Per C filtering eliminates all Cs in this region including the 2 that should
- be callable (Per-C Kept track).
+ be callable (Coordinate Kept track).
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -648,10 +680,10 @@ noprefix "false"
 ).
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
- using bedtools), but rejected this approach because it is prone to both
- over- and under-filtering.
- Cs in short, unique regions would be kept (under-filtered) even if the
- surrounding DNA is repetitive (Figure 
+ using bedtools), but rejected this approach because it is prone to discarding
+ Cs which could potentially be saved.
+ Cs in short, unique regions would be kept (misfiltered) even if the surrounding
+ DNA is repetitive (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:discarded"
@@ -663,10 +695,11 @@ noprefix "false"
 
 ).
  However, this situation was not commonly observed.
- Over-filtering of Cs in short repetitive regions is a larger problem though.
+ Discarding salvageable Cs in short repetitive regions is a larger problem
+ though.
  In this scenario, a C located in a small dip in mappability would be eliminated
- (over-filtered) despite coverage from read pairs anchored in nearby unique
- regions (Figure 
+ despite coverage from read pairs anchored in nearby unique regions (Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:kept"
@@ -677,21 +710,22 @@ noprefix "false"
 \end_inset
 
 ).
- When calling using EM-seq reads aligned with bwa-meth to GRCh38, under-filterin
-g is rare (between 
-\begin_inset Formula $9.4*10^{-5}\%$
+ When calling using EM-seq reads aligned with bwa-meth to GRCh38, misfiltering
+ is rare (between 
+\begin_inset Formula $XXXX*10^{-XXXX}\%$
 \end_inset
 
  and 
-\begin_inset Formula $1.2*10^{-4}\%$
+\begin_inset Formula $XXXX*10^{-XXXX}\%$
 \end_inset
 
- of called Cs) but over-filtering is much more common (between 
-\begin_inset Formula $1.2\%$
+ of called Cs) but discarding salvageable Cs is much more common (between
+ 
+\begin_inset Formula $XXXX\%$
 \end_inset
 
  and 
-\begin_inset Formula $1.4\%$
+\begin_inset Formula $XXXX\%$
 \end_inset
 
  of called Cs) (Figure 
@@ -705,21 +739,22 @@ noprefix "false"
 \end_inset
 
 ).
- Although ~1% of called Cs might seem like a small fraction, it accounts
- for ~14.0-16.2 million Cs, while ~
-\begin_inset Formula $10^{-4}\%$
+ Although ~XXXX% of called Cs might seem like a small fraction, it accounts
+ for ~XXXX-XXXX million Cs, while ~
+\begin_inset Formula $10^{-XXXX}\%$
 \end_inset
 
- of Cs corresponds to ~1079-1388 Cs.
+ of Cs corresponds to ~XXXX-XXXX Cs.
  In cases where reads from multiple low-mappability regions are placed onto
  one region (creating a coverage spike), filtering by coverage could possibly
  also remove the problematic region, but in cases where reads are simply
  mixed among multiple low-mappability regions (not creating a coverage spike),
  coverage filtering would not be effective at removing the affected regions.
  In addition, if some of the reads used to call a C are uniquely mappable,
- but others are not, per-read filtering can remove only those reads that
+ but others are not, read-based filtering can remove only those reads that
  are not uniquely mappable, rather than being forced to discard the entire
- locus as is required for per-C filtering.
+ locus as is required for coordinate filtering.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -736,9 +771,19 @@ noprefix "false"
 \end_inset
 
 to accept a bigWig file of low-mappability regions to exclude from analysis.
- This per-read filtering approach precisely eliminates only those reads
+ This read-based filtering approach precisely eliminates only those reads
  in repetitive regions and has a negligible effect on execution speed (see
  computational methods for details).
+ As this method is able to retain many salvageable Cs in low-mappability
+ regions, they will be hereafter referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+rescued Cs
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -750,7 +795,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename fig4_svg.svg
+	filename figures/filtering_effect.svg
 	lyxscale 70
 	width 100col%
 
@@ -765,9 +810,9 @@ status open
 \begin_layout Plain Layout
 An overview of the impact of the various filtering scenarios in the q arm
  of GRCh38 chromosome 1.
- The six tracks show the effect of per-C and per-read mappability filtering
- on the methylation calls on this chromosome arm and are representative
- of rest of the genome.
+ The six tracks show the effect of coordinate and read-based mappability
+ filtering on the methylation calls on this chromosome arm and are representativ
+e of rest of the genome.
  
 \begin_inset Quotes eld
 \end_inset
@@ -785,47 +830,47 @@ MapQ filtering only
 \begin_inset Quotes erd
 \end_inset
 
- is the calls after commonly used MapQ filtering only (no per-C or per-read
- mappability filtering).
+ is the calls after commonly used MapQ filtering only (no coordinate or
+ read-based mappability filtering).
  
 \begin_inset Quotes eld
 \end_inset
 
-Kept by Per-read Filtering
+Kept by Read Filtering
 \begin_inset Quotes erd
 \end_inset
 
- shows the methylation calls kept after per-read mappability filtering.
+ shows the methylation calls kept after read-based mappability filtering.
  
 \begin_inset Quotes eld
 \end_inset
 
-Removed by Per-read Filtering
+Removed by Read Filtering
 \begin_inset Quotes erd
 \end_inset
 
- shows those calls removed entirely by per-read filtering for being insufficient
-ly mappable.
+ shows those calls removed entirely by read-based filtering for being insufficie
+ntly mappable.
  
 \begin_inset Quotes eld
 \end_inset
 
-Under-filtered Cs
+Misfiltered Cs
 \begin_inset Quotes erd
 \end_inset
 
- are not sufficiently mappable according to per-read filtering, but are
- retained by per-C filtering.
+ are not sufficiently mappable according to read-based filtering, but are
+ retained by coordinate filtering.
  
 \begin_inset Quotes eld
 \end_inset
 
-Over-filtered Cs
+Rescued Cs
 \begin_inset Quotes erd
 \end_inset
 
- are sufficiently mappable according to per-read filtering, but are removed
- by per-C filtering.
+ are sufficiently mappable according to read-based filtering, but are removed
+ by coordinate filtering.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview-1"
@@ -854,7 +899,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename fig3_svg.svg
+	filename figures/rescued_c.svg
 	lyxscale 50
 	width 90col%
 
@@ -867,9 +912,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly discarded by per-C filtering (red box).
+An example of a C incorrectly discarded by coordinate filtering (red box).
  The C is in a small mappability dip, causing it to be discarded by bedtools
- filtering, while per-read filtering correctly retains the C, as it can
+ filtering, while read-based filtering correctly retains the C, as it can
  be called using reads extending into the high-mappability regions on either
  side.
 \begin_inset CommandInset label
@@ -900,7 +945,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename fig2_svg.svg
+	filename figures/misfiltered_c.svg
 	lyxscale 50
 	width 90col%
 
@@ -913,12 +958,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-An example of a C incorrectly kept by per-C filtering (red box).
+An example of a C incorrectly kept by coordinate filtering (red box).
  As the C is itself just inside the edge of a mappable region, bedtools
  retains it, even though it is only supported by two insufficiently mappable
  reads.
- Our per-read filtering correctly removes this sort of C, as there is not
- enough data here to call it confidently.
+ Our read-based filtering correctly removes this sort of C, as there is
+ not enough data here to call it confidently.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:kept"
@@ -958,12 +1003,21 @@ literal "false"
 \end_inset
 
  database of disease-associated variants.
- Using our alignment filtering approach we successfully avoided miscalling
- 264 thousand Cs in these important regions in a 200 ng EM-seq sample which
+ Such genes will be hereafter referred to as 
+\begin_inset Quotes eld
+\end_inset
+
+ClinVar genes
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Using our alignment filtering approach we successfully avoided wrongly
+ calling XXXX Cs in these important regions in a 200 ng EM-seq sample which
  have insufficient mappability to support methylation calling.
- Briefly, to identify the number of methylation calls correctly removed
- (miscalls), we took the list of unfiltered Cs for the regions we were intereste
-d in and removed from it all Cs we kept after per-read filtering.
+ Briefly, to identify the number of methylation calls correctly removed,
+ we took the list of unfiltered Cs for the regions we were interested in
+ and removed from it all Cs we kept after read-based filtering.
  The result was a list of every C that was correctly filtered out (Figure
  
 \begin_inset CommandInset ref
@@ -976,6 +1030,18 @@ noprefix "false"
 \end_inset
 
 ).
+ This count is a combination of removed Cs (Cs removed by read-based filtering
+ in low-mappability regions) and misfiltered Cs (Cs removed by read-based
+ filtering in high-mappability regions), and will be hereafter referred
+ to as 
+\begin_inset Quotes eld
+\end_inset
+
+miscalls
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -983,13 +1049,13 @@ Filtering Effect
 \end_layout
 
 \begin_layout Standard
-We compared the effect of per-read mappability filtering on number of C's
- called, as well as number of C's called in low-mappability regions (as
- defined by per-C filtering), on EM-seq libraries of 3 sample masses aligned
- with the bwa-meth aligner.
+We compared the effect of read-based mappability filtering on number of
+ C's called, as well as number of C's called in low-mappability regions
+ (as defined by coordinate filtering), on EM-seq libraries of 3 sample masses
+ aligned with the bwa-meth aligner.
  We saw a significant positive filtering effect on all 3 sample input amounts,
- with a mean of 7.67 million Cs filtered out by read-based filtering in each
- sample (see Figure 
+ with a mean of XXXX Cs filtered out by read-based filtering in each sample
+ (see Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1014,11 +1080,11 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-We also examined how many mixed methylation (0% < %Methyl < 100%) Cs were
- resolved to either 0% or 100% methylation, and found that approximately
- 60,000-90,000 methylation calls in the EM-seq data that were previously
- mixed were resolved by per-read filtering to either fully unmethylated
- or fully methylated (Figure 
+We also examined how many mixed methylation (10% < %Methyl < 90%) Cs were
+ resolved to either ≤10% or ≥90% methylation, and found that approximately
+ XXXX-XXXX methylation calls in the EM-seq data that were previously mixed
+ were resolved by read-based filtering to either fully unmethylated or fully
+ methylated (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:genome-resolved-calls"
@@ -1028,8 +1094,8 @@ noprefix "false"
 
 \end_inset
 
-), showing that unlike per-C filtering, per-read filtering can correct methylati
-on calls without always having to entirely delete them.
+), showing that unlike coordinate filtering, read-based filtering can correct
+ methylation calls without always having to entirely delete them.
 \end_layout
 
 \begin_layout Standard
@@ -1041,7 +1107,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Miscalls Overview.png
+	filename figures/Miscalls Overview.png
 	lyxscale 45
 	width 70page%
 
@@ -1070,7 +1136,7 @@ miscall
 \begin_inset Quotes erd
 \end_inset
 
- is a methylation call filtered out entirely by per-read filtering.
+ is a methylation call filtered out entirely by read-based filtering.
  The vertical axis is the percent of miscalled Cs in the sample.
  Right: Percents of miscalls within ClinVar genes in the same samples.
  The vertical axis is the percent of ClinVar miscalled Cs in the sample.
@@ -1095,7 +1161,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Resolved Calls.png
+	filename figures/Resolved Calls.png
 	lyxscale 40
 	width 70page%
 
@@ -1124,8 +1190,8 @@ resolved call
 \begin_inset Quotes erd
 \end_inset
 
- is a methylation call that is mixed in the unfiltered data, but either
- 0% or 100% in the filtered data.
+ is a methylation call that is >10% and <90% in the unfiltered data, but
+ either ≤10% or ≥90% in the filtered data.
  The vertical axis is the number of resolved calls in the sample.
 \end_layout
 
@@ -1172,7 +1238,7 @@ literal "false"
  miscalls per gene, indicating that indeed miscalls may affect biologically
  significant methylation.
  Many of these miscalls can be resolved to 0 or 100% methylation by the
- per-read filtering method described in this paper (Figures 
+ read-based filtering method described in this paper (Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:genome-resolved-calls"
@@ -1202,7 +1268,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Miscalled Genes.png
+	filename figures/Miscalled Genes.png
 	lyxscale 40
 	width 70page%
 
@@ -1248,13 +1314,13 @@ It is evident that the sites of most methylation miscalls fall into two
  regions to anchor reads with.
  Second, are shorter regions at the border between high mappability and
  low mappability regions.
- These regions are where per-C filtering produces over- and under-filtered
- Cs.
- Over-filtered Cs occur when a C is in the low mappability region, but there
- is a mappable read anchored in the high mappability region that allows
- it to be called.
- Under-filtered C's occur when a C is just inside a mappable region, but
- there is no sufficiently mappable read to call it.
+ These regions are where misfiltered and rescued Cs occur.
+ Rescued Cs occur when a C is in the low mappability region (discarded by
+ coordinate filtering), but there is a mappable read anchored in the high
+ mappability region that allows it to be called with read-based filtering.
+ Misfiltered C's occur when a C is just inside a mappable region (kept by
+ coordinate filtering), but there is no sufficiently mappable read to call
+ it, meaning it is discarded by read-based filtering.
  Examples of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
  are provided in Figures 
 \begin_inset CommandInset ref
@@ -1288,7 +1354,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename chr2_110091420-110092421.svg
+	filename figures/chr2_110091420-110092421.svg
 	width 90col%
 
 \end_inset
@@ -1363,7 +1429,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename chr1_148819799-148820800.svg
+	filename figures/chr1_148819799-148820800.svg
 	width 90col%
 
 \end_inset
@@ -1583,8 +1649,8 @@ noprefix "false"
 \end_inset
 
 , left).
- Use of per-read filtering has a smaller effect with the more complete reference
-, but thousands of Cs are still affected (Figure 
+ Use of read-based filtering has a smaller effect with the more complete
+ reference, but thousands of Cs are still affected (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:t2t"
@@ -1609,7 +1675,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename T2T Overview.png
+	filename figures/T2T Overview.png
 	lyxscale 40
 	width 70page%
 
@@ -1639,7 +1705,7 @@ miscall
 \begin_inset Quotes erd
 \end_inset
 
- is a methylation call filtered out entirely by per-read filtering.
+ is a methylation call filtered out entirely by read-based filtering.
  The vertical axis is the percent of miscalled Cs in the sample.
  In both figures, the colors define which sequencing method and aligner
  were used, as detailed in the legend.
@@ -2181,7 +2247,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename analysis_clinvar.svg
+	filename figures/analysis_clinvar.svg
 	lyxscale 90
 	width 70page%
 
@@ -2194,7 +2260,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Detailed description of the procedure used to annotate the T2Tv1.1 reference
+Detailed description of the procedure used to annotate the T2Tv2.0 reference
  using the GRCh38 ClinVar and GENCODE data.
  Hexagons are input files.
  Ovals are intermediate files.
@@ -2222,7 +2288,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename procfig_1.svg
+	filename figures/procfig_1.svg
 	lyxscale 65
 	width 60page%
 
@@ -2278,7 +2344,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename procfig_2.svg
+	filename figures/procfig_2.svg
 	lyxscale 65
 	width 70page%
 	scaleBeforeRotation
@@ -2333,7 +2399,7 @@ noprefix "false"
 The sequencing reads were aligned using the bwa-meth aligner with default
  options.
  Methylation calling was performed on the resulting BAMs using MethylDackel
- v0.6.0.
+ v0.6.1.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads, however inaccurate MapQs can lead to
  reads being incorrectly included in methylation calling.
@@ -2362,8 +2428,8 @@ noprefix "false"
  This format can store the mappability data for the hg38/GRCh38 human genome
  in 143 MB, compared to 1.11 GB when stored as a bigWig, giving a compression
  ratio for this dataset of 7.78:1.
- MethylDackel's trimming options were set to trim off the first 1 bp of
- read 1 and the last 2 bp of read 2.
+ MethylDackel's trimming options were set to trim off the first 8 bp of
+ read 1 and the last 8 bp of read 2.
 \end_layout
 
 \begin_layout Standard
@@ -2483,16 +2549,16 @@ s of mappability), all methylation calls in GENCODE genes (with low minimum
  mappability) which contained ClinVar variants, all methylation calls in
  low-mappability regions that were also in GENCODE genes which contained
  ClinVar variants, counts of calls in in GENCODE genes which contained ClinVar
- variants regardless of mappability, methylation calls that are either 0%
- or 100% (regardless of mappability), and methylation calls which are neither
- 0% nor 100% (also regardless of mappability).
+ variants regardless of mappability, methylation calls that are either ≤10%
+ or ≥90% (regardless of mappability), and methylation calls which are between
+ 10% and 90% (also regardless of mappability).
 \end_layout
 
 \begin_layout Standard
 To assess miscalls (i.e.
- which Cs are filtered out by per-read filtering), as well as under/over-filteri
-ng with respect to per-C filtering (discussed above), and resolution of
- mixed methylation calls to 0% or 100%, pairs of these files were compared
+ which Cs are filtered out by read-based filtering), as well as under/over-filte
+ring with respect to coordinate filtering (discussed above), and resolution
+ of mixed methylation calls to ≤10% or ≥90%, pairs of these files were compared
  using bedtools to produce files showing the difference between filtered
  and unfiltered data.
  All files were examined and compared in Tableau
@@ -2510,7 +2576,7 @@ ng with respect to per-C filtering (discussed above), and resolution of
 \begin_layout Standard
 To compare the behavior of Bismark with bwa-meth, this analysis was re-run
  with the Bismark aligner using default settings and deduplicated using
- deduplicate_Bismark according to the documented protocol 
+ deduplicate_bismark according to the documented protocol 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "krueger_felixkruegerbismark_2021"
@@ -2534,7 +2600,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename realign.svg
+	filename figures/realign.svg
 	width 70page%
 
 \end_inset
@@ -2566,7 +2632,7 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 To compare the need for and the effect of mappability filtering on the more
- complete T2T v1.1 reference genome 
+ complete T2T v2.0 reference genome 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "nurk_complete_2021"
@@ -2617,8 +2683,8 @@ literal "false"
 \end_inset
 
 .
- Specifically, the ClinVar regions BED, with the ClinVar and GENCODE data
- already combined, was lifted over.
+ [CHECK HOW I ACTUALLY DID THIS] Specifically, the ClinVar regions BED,
+ with the ClinVar and GENCODE data already combined, was lifted over.
  This converted file was used in place of the ClinVar regions BED for analysis
  with the T2T reference.
  As there was no Bismap mappability file for the T2T reference, we downloaded
@@ -2656,7 +2722,8 @@ External Analysis Resources
 \end_layout
 
 \begin_layout Standard
-Individual tools used in the analysis include sambamba
+Individual tools used in the analysis include samtools, bowtie2, gzip, seqtk,
+ fastp, sambamba
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btv098"
@@ -2672,7 +2739,8 @@ literal "false"
 
 \end_inset
 
-, MethylDackel, awk, python, GNU sort, GNU head, bedtools
+, MethylDackel, sed, awk, python, GNU sort, GNU head, zstd, bc, plotly,
+ bedtools
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btq033"
@@ -2689,7 +2757,7 @@ literal "false"
 \end_inset
 
 .
- Versions of all tools used are specified in the nextflow 21.04.0 scripts
+ Versions of all tools used are specified in the nextflow 23.10.0 scripts
  using conda
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2791,8 +2859,8 @@ name "The-ClinVar-VCF"
 
 \end_inset
 
-The ClinVar VCF was the July 22, 2019 version of ClinVar's variants VCF,
- with a file name of ClinVar_20190722.vcf.gz
+The ClinVar VCF was the March 25, 2024 version of ClinVar's variants VCF,
+ with a file name of ClinVar_20240325.vcf.gz
 \end_layout
 
 \begin_layout Standard

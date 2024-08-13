@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="920mm"
+   height="660mm"
+   viewBox="0 0 920 660"
+   version="1.1"
+   id="svg2509"
+   sodipodi:docname="fig1_combined_alt.svg"
+   inkscape:version="1.2.1 (9c6d41e4, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2511"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.2799099"
+     inkscape:cx="1180.7371"
+     inkscape:cy="1763.0673"
+     inkscape:window-width="1792"
+     inkscape:window-height="945"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2506" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="node1"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,4.1530099,466.8862)">
+      <title
+         id="title6">all</title>
+      <polygon
+         fill="#808080"
+         stroke="#000000"
+         points="-0.5,-458.4 -0.5,-422.4 53.5,-422.4 53.5,-458.4 "
+         id="polygon8" />
+      <text
+         text-anchor="middle"
+         x="26.5"
+         y="-435.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text10">All Cs</text>
+    </g>
+    <g
+       id="node2"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-43.738746,463.7689)">
+      <title
+         id="title13">high_mappability</title>
+      <polygon
+         fill="#2a2a66"
+         stroke="#000000"
+         points="390.25,-458.4 276.75,-458.4 276.75,-422.4 390.25,-422.4 "
+         id="polygon15" />
+      <text
+         text-anchor="middle"
+         x="333.5"
+         y="-435.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text17">High Mappability</text>
+    </g>
+    <g
+       id="edge1"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,16.391396,430.29257)">
+      <title
+         id="title20">all-&gt;high_mappability</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 42.208974,-438.9603 209.63534,-440.4"
+         id="path22"
+         style="stroke-width:0.86934"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="265.48,-436.9 265.48,-443.9 275.48,-440.4 "
+         id="polygon24"
+         transform="matrix(0.73513611,0,0,1.0280441,14.317032,12.350664)" />
+      <text
+         text-anchor="middle"
+         x="135.5136"
+         y="-447.59818"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text26">Mappability ≥ 0.01</text>
+    </g>
+    <g
+       id="node3"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-47.718888,399.34746)">
+      <title
+         id="title29">low_mappability</title>
+      <polygon
+         fill="#772277"
+         stroke="#000000"
+         points="389.12,-197.4 389.12,-233.4 277.88,-233.4 277.88,-197.4 "
+         id="polygon31" />
+      <text
+         text-anchor="middle"
+         x="333.5"
+         y="-210.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text33">Low Mappability</text>
+    </g>
+    <g
+       id="edge2"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,15.665484,432.9486)">
+      <title
+         id="title36">all-&gt;low_mappability</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 42.692662,-432.05037 c 34.986854,27.77548 128.056498,103.91068 167.537548,135.25542"
+         id="path38"
+         style="stroke-width:0.664174"
+         sodipodi:nodetypes="cc" />
+      <text
+         text-anchor="middle"
+         x="-139.45636"
+         y="-368.34079"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text42"
+         transform="rotate(39.956285)">Mappability &lt; 0.01</text>
+    </g>
+    <polygon
+       fill="#000000"
+       stroke="#000000"
+       points="705.18,-73.21 713.21,-66.3 702.62,-66.69 "
+       id="polygon104-7"
+       transform="matrix(0.71283223,0.13888004,-0.13888004,0.71283223,-345.85722,168.02302)" />
+    <g
+       id="node4"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-209.05611,556.01711)">
+      <title
+         id="title45">low_mapq</title>
+      <polygon
+         fill="#663333"
+         stroke="#000000"
+         points="489.62,-644.4 569.38,-644.4 569.38,-680.4 489.62,-680.4 "
+         id="polygon47" />
+      <text
+         text-anchor="middle"
+         x="529.5"
+         y="-657.34998"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text49">Low MapQ</text>
+    </g>
+    <g
+       id="edge3"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,15.665484,426.10219)">
+      <title
+         id="title52">all-&gt;low_mapq</title>
+      <text
+         text-anchor="middle"
+         x="386.21744"
+         y="-351.2182"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text58"
+         transform="rotate(-33.609563)">MapQ &lt; 10 for all reads calling C</text>
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="705.18,-73.21 713.21,-66.3 702.62,-66.69 "
+         id="polygon104-8"
+         transform="rotate(-47.503708,-86.391344,242.97544)" />
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 42.171931,-441.22123 C 99.454348,-475.16948 171.52364,-522.57704 225.43357,-554.5328"
+         id="path70-9"
+         style="stroke-width:0.797786"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="node5"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-114.64844,527.40937)">
+      <title
+         id="title61">misfiltered</title>
+      <polygon
+         fill="#993333"
+         stroke="#000000"
+         points="783.88,-554.4 707.12,-554.4 707.12,-518.4 783.88,-518.4 "
+         id="polygon63" />
+      <text
+         text-anchor="middle"
+         x="745.5"
+         y="-531.34998"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text65">Misfiltered</text>
+    </g>
+    <g
+       id="edge5"
+       class="edge"
+       transform="matrix(0.71461992,0.12936722,-0.12936722,0.71461992,-76.679986,377.57346)">
+      <title
+         id="title68">high_mappability-&gt;misfiltered</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 398.01525,-455.98744 c 81.06,-18.98 162.35482,-39.90781 238.64482,-57.77781"
+         id="path70"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="695.17,-528.68 705.7,-527.55 696.76,-521.86 "
+         id="polygon72"
+         transform="translate(-67.440184,12.886951)" />
+      <text
+         text-anchor="middle"
+         x="614.55103"
+         y="-359.24936"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text74"
+         transform="rotate(-13.321942)">Insufficient mappable bases in reads</text>
+    </g>
+    <g
+       id="node8"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-152.64903,479.79819)">
+      <title
+         id="title77">callable</title>
+      <polygon
+         fill="#3333cc"
+         stroke="#000000"
+         points="1008,-287.4 1008,-251.4 1087,-251.4 1087,-287.4 "
+         id="polygon79" />
+      <text
+         text-anchor="middle"
+         x="1047.5"
+         y="-264.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text81">Callable Cs</text>
+    </g>
+    <g
+       id="edge6"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,-24.124277,427.29048)">
+      <title
+         id="title84">high_mappability-&gt;callable</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 400.51803,-438.58355 c 138.9,2.72 374.00223,58.61945 472.94223,119.29945 24.58,15.07 75.06269,50.93546 85.11269,72.68546"
+         id="path86"
+         sodipodi:nodetypes="ccc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="1032.59,-296.57 1039.01,-299.37 1039.8,-288.81 "
+         id="polygon88"
+         transform="translate(-81.827874,42.692804)" />
+      <text
+         text-anchor="middle"
+         x="527.03497"
+         y="-567.28455"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text90"
+         transform="rotate(15.590245)">Passes read-based filtering</text>
+    </g>
+    <g
+       id="node6"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-119.7226,371.76614)">
+      <title
+         id="title93">rescued</title>
+      <polygon
+         fill="#333399"
+         stroke="#000000"
+         points="714.62,-72.4 714.62,-36.4 776.38,-36.4 776.38,-72.4 "
+         id="polygon95" />
+      <text
+         text-anchor="middle"
+         x="745.5"
+         y="-49.349998"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text97">Rescued</text>
+    </g>
+    <g
+       id="edge9"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,-43.760783,385.95045)">
+      <title
+         id="title100">low_mappability-&gt;rescued</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 378.19818,-199.59546 c 81.16,31.87 210.78114,84.83536 287.15114,114.825351"
+         id="path102"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="713.21,-66.3 702.62,-66.69 705.18,-73.21 "
+         id="polygon104"
+         transform="translate(-37.979138,-14.480109)" />
+      <text
+         text-anchor="middle"
+         x="454.91205"
+         y="-328.32809"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text106"
+         transform="rotate(20.800991)">Sufficient mappable bases elsewhere in read</text>
+    </g>
+    <g
+       id="node7"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-117.22196,405.24605)">
+      <title
+         id="title109">removed</title>
+      <polygon
+         fill="#cc3333"
+         stroke="#000000"
+         points="711.25,-197.4 779.75,-197.4 779.75,-233.4 711.25,-233.4 "
+         id="polygon111" />
+      <text
+         text-anchor="middle"
+         x="745.5"
+         y="-210.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text113">Removed</text>
+    </g>
+    <g
+       id="edge8"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,-39.626775,386.98398)">
+      <title
+         id="title116">low_mappability-&gt;removed</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 414.03954,-218.23926 245.5584,2.12771"
+         id="path118"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="699.84,-218.9 709.84,-215.4 699.84,-211.9 "
+         id="polygon120"
+         transform="translate(-41.16444,-1.4230935)" />
+      <text
+         text-anchor="middle"
+         x="524.08423"
+         y="-222.68857"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text122">Insufficient mappable bases in reads</text>
+    </g>
+    <g
+       id="node10"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-145.57986,489.66352)">
+      <title
+         id="title125">uncallable</title>
+      <polygon
+         fill="#ff3c3c"
+         stroke="#000000"
+         points="1001.25,-518.4 1093.75,-518.4 1093.75,-554.4 1001.25,-554.4 "
+         id="polygon127" />
+      <text
+         text-anchor="middle"
+         x="1047.5"
+         y="-531.34998"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text129">Uncallable Cs</text>
+    </g>
+    <g
+       id="edge4"
+       class="edge"
+       transform="matrix(0.71829357,-0.10710663,0.10710663,0.71829357,-3.2765754,557.79113)">
+      <title
+         id="title132">low_mapq-&gt;uncallable</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 445.62765,-680.39712 c 78.91,15.92 386.54235,80.17712 538.12235,122.99712 2.29,0.65 4.62,1.33 6.97,2.03"
+         id="path134"
+         sodipodi:nodetypes="ccc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="989.49,-551.78 991.56,-558.47 1000.08,-552.17 "
+         id="polygon136"
+         transform="translate(-10.241666,-3.6854028)" />
+      <text
+         text-anchor="middle"
+         x="572.66943"
+         y="-780.04211"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text138"
+         transform="rotate(13.278024)">Excluded by MapQ filtering</text>
+    </g>
+    <g
+       id="edge7"
+       class="edge"
+       transform="matrix(0.70931409,-0.15585578,0.15585578,0.70931409,30.165997,597.12178)">
+      <title
+         id="title141">misfiltered-&gt;uncallable</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 791.8511,-535.82901 187.49921,-0.96352"
+         id="path143"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="989.88,-539.9 999.88,-536.4 989.88,-532.9 "
+         id="polygon145"
+         transform="translate(-10.616336,-1.1002887)" />
+      <text
+         text-anchor="middle"
+         x="894.50818"
+         y="-542.59863"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text147">Insufficient mappable bases</text>
+    </g>
+    <g
+       id="edge11"
+       class="edge"
+       transform="matrix(0.69631347,0.20631293,-0.20631293,0.69631347,-66.805271,218.50332)">
+      <title
+         id="title150">rescued-&gt;callable</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 787.34919,-80.657184 c 19.25201,-12.333351 32.51713,-20.200086 53.2839,-37.179036 11.49,-8.77 103.64705,-81.21236 114.19705,-90.32236"
+         id="path152"
+         sodipodi:nodetypes="ccc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="1015.21,-247.06 1025.05,-250.99 1019.81,-241.78 "
+         id="polygon154"
+         transform="translate(-62.801737,36.196316)" />
+      <text
+         text-anchor="middle"
+         x="777.05829"
+         y="386.31284"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text156"
+         transform="rotate(-36.016446)">Excluded by read filtering</text>
+    </g>
+    <g
+       id="edge10"
+       class="edge"
+       transform="matrix(0.71338588,0.13600748,-0.13600748,0.71338588,-94.192754,292.29918)">
+      <title
+         id="title159">removed-&gt;uncallable</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 790.49484,-241.75393 c 50.41,-53.94 160.61138,-190.56866 219.72136,-253.80866"
+         id="path161"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="1028.33,-517.03 1024.05,-507.33 1018.94,-512.11 "
+         id="polygon163"
+         transform="translate(-12.845185,16.211837)" />
+      <text
+         text-anchor="middle"
+         x="897.38879"
+         y="450.82053"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text165"
+         transform="rotate(-50.413575)">Excluded by read filtering</text>
+    </g>
+    <g
+       id="node9"
+       class="node"
+       transform="matrix(0.79480952,0,0,0.80375129,-229.6746,331.11595)">
+      <title
+         id="title168">resolved</title>
+      <polygon
+         fill="#3c3cff"
+         stroke="#000000"
+         points="1348.38,-287.4 1348.38,-251.4 1432.62,-251.4 1432.62,-287.4 "
+         id="polygon170" />
+      <text
+         text-anchor="middle"
+         x="1390.5"
+         y="-264.35001"
+         font-family="Times, serif"
+         font-size="14px"
+         fill="#ffffff"
+         id="text172">Resolved Cs</text>
+    </g>
+    <g
+       id="edge12"
+       class="edge"
+       transform="matrix(0.72623514,0,0,0.72623514,-89.234714,460.36248)">
+      <title
+         id="title175">callable-&gt;resolved</title>
+      <path
+         fill="none"
+         stroke="#000000"
+         d="m 1103.0431,-277.60419 203.5315,-171.78653"
+         id="path177"
+         sodipodi:nodetypes="cc" />
+      <polygon
+         fill="#000000"
+         stroke="#000000"
+         points="1337.1,-272.9 1347.1,-269.4 1337.1,-265.9 "
+         id="polygon179"
+         transform="rotate(-41.109342,1081.9958,-317.35226)" />
+      <text
+         text-anchor="middle"
+         x="1156.4908"
+         y="463.5744"
+         font-family="Times, serif"
+         font-size="14px"
+         id="text181"
+         transform="rotate(-39.630271)"><tspan
+           sodipodi:role="line"
+           id="tspan3419"
+           x="1156.4908"
+           y="463.5744">Resolved to ≤10% or ≥90% methylated</tspan><tspan
+           sodipodi:role="line"
+           id="tspan3421"
+           x="1156.4908"
+           y="481.0744">after eliminating bad reads</tspan></text>
+    </g>
+    <g
+       class="bglayer"
+       id="g4593"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="layer-below"
+       id="g4599"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)">
+      <g
+         class="imagelayer"
+         id="g4595" />
+      <g
+         class="shapelayer"
+         id="g4597" />
+    </g>
+    <g
+       class="cartesianlayer"
+       id="g4601"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="polarlayer"
+       id="g4603"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="smithlayer"
+       id="g4605"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="ternarylayer"
+       id="g4607"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="geolayer"
+       id="g4609"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="funnelarealayer"
+       id="g4611"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="pielayer"
+       id="g4613"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="iciclelayer"
+       id="g4615"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="treemaplayer"
+       id="g4617"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="sunburstlayer"
+       id="g4619"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="glimages"
+       id="g4621"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)" />
+    <g
+       class="sankey"
+       transform="matrix(0.38525414,0,0,0.38525414,31.904965,365.45976)"
+       id="g4699">
+      <g
+         class="sankey-links"
+         style="fill:none"
+         id="g4641">
+        <path
+           class="sankey-link"
+           d="m 35,694.77638 c 183.125,0 183.125,15.00821 366.25,15.00821 v 0.0258 c -183.125,0 -183.125,-15.00821 -366.25,-15.00821 z"
+           style="opacity:1;fill:#2a2a66;fill-opacity:0.501961;stroke:#2a2a66;stroke-width:1;stroke-opacity:0.501961"
+           id="path4623" />
+        <path
+           class="sankey-link"
+           d="m 35,4.8022341 c 183.125,0 183.125,0.00821 366.25,0.00821 V 694.78459 c -183.125,0 -183.125,-0.008 -366.25,-0.008 z"
+           style="opacity:1;fill:#772277;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4625" />
+        <path
+           class="sankey-link"
+           d="m 436.25,709.78459 c 183.125,0 183.125,10.18956 366.25,10.18956 V 720 C 619.375,720 619.375,709.81044 436.25,709.81044 Z"
+           style="opacity:1;fill:#993333;fill-opacity:0.501961;stroke:#993333;stroke-width:1;stroke-opacity:0.501961"
+           id="path4627" />
+        <path
+           class="sankey-link"
+           d="M 436.25,4.8104422 C 619.375,4.8104422 619.375,0 802.5,0 v 469.38197 c -183.125,0 -183.125,4.81045 -366.25,4.81045 z"
+           style="opacity:1;fill:#333399;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4629" />
+        <path
+           class="sankey-link"
+           d="m 436.25,474.19242 c 183.125,0 183.125,10.18955 366.25,10.18955 v 220.59218 c -183.125,0 -183.125,-10.18956 -366.25,-10.18956 z"
+           style="opacity:1;fill:#cc3333;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4631" />
+        <path
+           class="sankey-link"
+           d="m 837.5,484.38197 c 383.75,0 383.75,0.002 767.5,0.002 v 220.59218 c -383.75,0 -383.75,-0.002 -767.5,-0.002 z"
+           style="opacity:1;fill:#ff3c3c;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4633" />
+        <path
+           class="sankey-link"
+           d="m 837.5,719.97415 c 383.75,0 383.75,-14.99824 767.5,-14.99824 v 0.0258 C 1221.25,705.00176 1221.25,720 837.5,720 Z"
+           style="opacity:1;fill:#ff3c3c;fill-opacity:0.501961;stroke:#ff3c3c;stroke-width:1;stroke-opacity:0.501961"
+           id="path4635" />
+        <path
+           class="sankey-link"
+           d="m 837.5,0 c 183.125,0 183.125,0 366.25,0 v 469.38197 c -183.125,0 -183.125,0 -366.25,0 z"
+           style="opacity:1;fill:#3333cc;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4637" />
+        <path
+           class="sankey-link"
+           d="m 1238.75,0 c 183.125,0 169.2144,5.0543409 352.3394,5.0543409 v 1.4801477 c -183.125,0 -169.2144,-5.3235834 -352.3394,-5.3235834 z"
+           style="opacity:1;fill:#3c3cff;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4639"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+      <g
+         class="sankey-node-set"
+         id="g4697">
+        <g
+           class="sankey-node"
+           transform="translate(0,4.802)"
+           style="opacity:1"
+           id="g4647">
+          <rect
+             class="node-rect"
+             width="35"
+             height="690"
+             style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4643"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,352)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4645">Affected Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(401.25,709.785)"
+           style="opacity:1"
+           id="g4653">
+          <rect
+             class="node-rect"
+             width="35"
+             height="0.5"
+             style="fill:#2a2a66;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4649"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,7.25)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4651">High Mappability</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(401.25,4.81)"
+           style="opacity:1"
+           id="g4659">
+          <rect
+             class="node-rect"
+             width="35"
+             height="689.97412"
+             style="fill:#772277;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4655"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,351.98707)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4657">Low Mappability</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5,719.974)"
+           style="opacity:1"
+           id="g4665">
+          <rect
+             class="node-rect"
+             width="35"
+             height="0.5"
+             style="fill:#993333;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4661"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,7.25)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4663">Misfiltered</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5)"
+           style="opacity:1"
+           id="g4671">
+          <rect
+             class="node-rect"
+             width="35"
+             height="469.38199"
+             style="fill:#333399;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4667"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,241.69099)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4669">Rescued</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5,484.382)"
+           style="opacity:1"
+           id="g4677">
+          <rect
+             class="node-rect"
+             width="35"
+             height="220.59218"
+             style="fill:#cc3333;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4673"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,117.29609)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4675">Removed</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1605,484.384)"
+           style="opacity:1"
+           id="g4683">
+          <rect
+             class="node-rect"
+             width="35"
+             height="220.61803"
+             style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4679"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="end"
+             transform="translate(-3.25,117.30901)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4681">Uncallable Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1203.75)"
+           style="opacity:1"
+           id="g4689">
+          <rect
+             class="node-rect"
+             width="35"
+             height="469.38199"
+             style="fill:#3333cc;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4685"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,241.69099)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4687">Callable Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1591.2689,5.2255065)"
+           style="opacity:1"
+           id="g4695">
+          <rect
+             class="node-rect"
+             width="35"
+             height="1.2109052"
+             style="fill:#3c3cff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4691"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="end"
+             transform="translate(-3.25,7.6054526)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4693">Resolved Cs</text>
+        </g>
+      </g>
+    </g>
+    <g
+       class="layer-above"
+       id="g4708"
+       transform="matrix(0.26458333,0,0,0.26458333,1039.8209,434.44171)">
+      <g
+         class="imagelayer"
+         id="g4704" />
+      <g
+         class="shapelayer"
+         id="g4706" />
+    </g>
+    <g
+       class="bglayer"
+       id="g4326"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="layer-below"
+       id="g4332"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)">
+      <g
+         class="imagelayer"
+         id="g4328" />
+      <g
+         class="shapelayer"
+         id="g4330" />
+    </g>
+    <g
+       class="cartesianlayer"
+       id="g4334"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="polarlayer"
+       id="g4336"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="smithlayer"
+       id="g4338"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="ternarylayer"
+       id="g4340"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="geolayer"
+       id="g4342"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="funnelarealayer"
+       id="g4344"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="pielayer"
+       id="g4346"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="iciclelayer"
+       id="g4348"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="treemaplayer"
+       id="g4350"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="sunburstlayer"
+       id="g4352"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="glimages"
+       id="g4354"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)" />
+    <g
+       class="sankey"
+       transform="matrix(0.18880464,0,0,0.19671525,595.86505,386.60992)"
+       id="g4444">
+      <g
+         class="sankey-links"
+         style="fill:none"
+         id="g4380">
+        <path
+           class="sankey-link"
+           d="M 35,1.087076 C 218.125,1.087076 218.125,0 401.25,0 v 652.87616 c -183.125,0 -183.125,1.08708 -366.25,1.08708 z"
+           style="opacity:1;fill:#2a2a66;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4356" />
+        <path
+           class="sankey-link"
+           d="m 35,653.96324 c 183.125,0 183.125,13.91292 366.25,13.91292 v 13.96265 c -183.125,0 -183.125,-13.91292 -366.25,-13.91292 z"
+           style="opacity:1;fill:#772277;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4358" />
+        <path
+           class="sankey-link"
+           d="m 35,667.92589 c 183.125,0 183.125,28.91292 366.25,28.91292 V 720 C 218.125,720 218.125,691.08708 35,691.08708 Z"
+           style="opacity:1;fill:#663333;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4360" />
+        <path
+           class="sankey-link"
+           d="m 436.25,652.87564 c 183.125,0 183.125,-198.34968 366.25,-198.34968 v 5.3e-4 c -183.125,0 -183.125,198.34967 -366.25,198.34967 z"
+           style="opacity:1;fill:#993333;fill-opacity:0.501961;stroke:#993333;stroke-width:1;stroke-opacity:0.501961"
+           id="path4362" />
+        <path
+           class="sankey-link"
+           d="M 436.25,0 C 820,0 820,0 1203.75,0 v 652.87564 c -383.75,0 -383.75,0 -767.5,0 z"
+           style="opacity:1;fill:#3333cc;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4364" />
+        <path
+           class="sankey-link"
+           d="m 436.25,667.87616 c 183.125,0 183.125,-237.84884 366.25,-237.84884 v 9.49864 c -183.125,0 -183.125,237.84884 -366.25,237.84884 z"
+           style="opacity:1;fill:#333399;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4366" />
+        <path
+           class="sankey-link"
+           d="m 436.25,677.3748 c 183.125,0 183.125,-141.67116 366.25,-141.67116 v 4.46401 c -183.125,0 -183.125,141.67116 -366.25,141.67116 z"
+           style="opacity:1;fill:#cc3333;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4368" />
+        <path
+           class="sankey-link"
+           d="m 436.25,696.83881 c 584.375,0 584.375,-9.95852 1168.75,-9.95852 v 23.16118 C 1020.625,710.04147 1020.625,720 436.25,720 Z"
+           style="opacity:1;fill:#ff3c3c;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4370" />
+        <path
+           class="sankey-link"
+           d="m 837.5,535.70364 c 383.75,0 383.75,146.71264 767.5,146.71264 v 4.46401 c -383.75,0 -383.75,-146.71264 -767.5,-146.71264 z"
+           style="opacity:1;fill:#ff3c3c;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4372" />
+        <path
+           class="sankey-link"
+           d="m 837.5,454.52596 c 383.75,0 383.75,227.88979 767.5,227.88979 v 5.3e-4 c -383.75,0 -383.75,-227.88979 -767.5,-227.88979 z"
+           style="opacity:1;fill:#ff3c3c;fill-opacity:0.501961;stroke:#ff3c3c;stroke-width:1;stroke-opacity:0.501961"
+           id="path4374" />
+        <path
+           class="sankey-link"
+           d="m 837.5,430.02732 c 183.125,0 183.125,222.84832 366.25,222.84832 v 9.49864 c -183.125,0 -183.125,-222.84832 -366.25,-222.84832 z"
+           style="opacity:1;fill:#3333cc;fill-opacity:0.501961;stroke:#444444;stroke-width:0;stroke-opacity:1"
+           id="path4376" />
+        <path
+           class="sankey-link"
+           d="m 1238.75,0 c 183.125,0 183.125,328.67247 366.25,328.67247 v 0.0245 c -183.125,0 -183.125,-328.67247553 -366.25,-328.67247553 z"
+           style="opacity:1;fill:#3c3cff;fill-opacity:0.501961;stroke:#3c3cff;stroke-width:1;stroke-opacity:0.501961"
+           id="path4378" />
+      </g>
+      <g
+         class="sankey-node-set"
+         id="g4442">
+        <g
+           class="sankey-node"
+           transform="translate(0,1.087)"
+           style="opacity:1"
+           id="g4386">
+          <rect
+             class="node-rect"
+             width="35"
+             height="690"
+             style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4382"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,352)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4384">All Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(401.25)"
+           style="opacity:1"
+           id="g4392">
+          <rect
+             class="node-rect"
+             width="35"
+             height="652.87616"
+             style="fill:#2a2a66;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4388"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,333.43808)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4390">High Mappability</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(401.25,667.876)"
+           style="opacity:1"
+           id="g4398">
+          <rect
+             class="node-rect"
+             width="35"
+             height="13.962653"
+             style="fill:#772277;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4394"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,13.981327)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4396">Low Mappability</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(401.25,696.839)"
+           style="opacity:1"
+           id="g4404">
+          <rect
+             class="node-rect"
+             width="35"
+             height="23.161186"
+             style="fill:#663333;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4400"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,18.580593)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4402">Low MapQ</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5,454.526)"
+           style="opacity:1"
+           id="g4410">
+          <rect
+             class="node-rect"
+             width="35"
+             height="0.5"
+             style="fill:#993333;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4406"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,7.25)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4408">Misfiltered</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1203.75)"
+           style="opacity:1"
+           id="g4416">
+          <rect
+             class="node-rect"
+             width="35"
+             height="662.37427"
+             style="fill:#3333cc;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4412"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,338.18714)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4414">Callable Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5,430.027)"
+           style="opacity:1"
+           id="g4422">
+          <rect
+             class="node-rect"
+             width="35"
+             height="9.498642"
+             style="fill:#333399;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4418"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,11.749321)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4420">Rescued</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(802.5,535.704)"
+           style="opacity:1"
+           id="g4428">
+          <rect
+             class="node-rect"
+             width="35"
+             height="4.4640107"
+             style="fill:#cc3333;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4424"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="start"
+             transform="translate(38.25,9.2320054)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4426">Removed</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1605,682.416)"
+           style="opacity:1"
+           id="g4434">
+          <rect
+             class="node-rect"
+             width="35"
+             height="27.625719"
+             style="fill:#ff3c3c;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4430"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="end"
+             transform="translate(-3.25,20.81286)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4432">Uncallable Cs</text>
+        </g>
+        <g
+           class="sankey-node"
+           transform="translate(1605,328.672)"
+           style="opacity:1"
+           id="g4440">
+          <rect
+             class="node-rect"
+             width="35"
+             height="0.5"
+             style="fill:#3c3cff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+             id="rect4436"
+             x="0"
+             y="0" />
+          <text
+             class="node-label"
+             data-notex="1"
+             x="0"
+             y="0"
+             text-anchor="end"
+             transform="translate(-3.25,7.25)"
+             style="font-size:20px;font-family:'Open Sans', verdana, arial, sans-serif;white-space:pre;fill:#2a3f5f;fill-opacity:1"
+             id="text4438">Resolved Cs</text>
+        </g>
+      </g>
+    </g>
+    <g
+       class="layer-above"
+       id="g4453"
+       transform="matrix(0.26458333,0,0,0.26458333,448.42105,37.065838)">
+      <g
+         class="imagelayer"
+         id="g4449" />
+      <g
+         class="shapelayer"
+         id="g4451" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:17.6389px;font-family:Times, serif;-inkscape-font-specification:'Times, serif';fill:#000000;stroke-width:0.264583"
+       x="3.6952658"
+       y="371.36871"
+       id="text6181"><tspan
+         sodipodi:role="line"
+         id="tspan6179"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="3.6952658"
+         y="371.36871">B</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="3.6952658"
+         y="393.41733"
+         id="tspan11324" /><tspan
+         sodipodi:role="line"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="3.6952658"
+         y="415.46597"
+         id="tspan11322" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:17.6389px;font-family:Times, serif;-inkscape-font-specification:'Times, serif';fill:#000000;stroke-width:0.264583"
+       x="8.3058872"
+       y="20.780306"
+       id="text6181-8"><tspan
+         sodipodi:role="line"
+         id="tspan6179-8"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="8.3058872"
+         y="20.780306">A</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:1.1768;stroke-dasharray:none;stroke-opacity:1"
+       d="M -56.291998,354.1894 H 919.2714"
+       id="path6279"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:17.6389px;font-family:Times, serif;-inkscape-font-specification:'Times, serif';fill:#000000;stroke-width:0.264583"
+       x="574.02832"
+       y="399.14139"
+       id="text6181-8-2"><tspan
+         sodipodi:role="line"
+         id="tspan6179-8-5"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="574.02832"
+         y="399.14139">C</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:17.6389px;stroke-width:0.264583"
+         x="574.02832"
+         y="421.19"
+         id="tspan11353" /></text>
+  </g>
+</svg>
