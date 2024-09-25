@@ -1046,7 +1046,13 @@ noprefix "false"
 \begin_inset Quotes eld
 \end_inset
 
-miscalled CpGs
+
+\change_deleted -157286936 1727299649
+miscalled
+\change_inserted -157286936 1727299651
+problematic
+\change_unchanged
+ CpGs
 \begin_inset Quotes erd
 \end_inset
 
@@ -1075,8 +1081,13 @@ noprefix "false"
 \end_inset
 
 ).
- These miscalled Cs were scattered across the genome, as shown in Figure
- 
+ These 
+\change_deleted -157286936 1727299669
+miscalled
+\change_inserted -157286936 1727299669
+problematic
+\change_unchanged
+ Cs were scattered across the genome, as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:chrom-overview"
@@ -1094,8 +1105,13 @@ Effect on Medically Relevant Genes
 \end_layout
 
 \begin_layout Standard
-To estimate biological significance of these miscalls, we used genes in
- GENCODE containing variants in ClinVar (
+To estimate biological significance of these 
+\change_deleted -157286936 1727299678
+miscalls
+\change_inserted -157286936 1727299710
+unsupported CpGs
+\change_unchanged
+, we used genes in GENCODE containing variants in ClinVar (
 \begin_inset Quotes eld
 \end_inset
 
@@ -1104,11 +1120,16 @@ ClinVar genes
 \end_inset
 
 ).
- Focusing on genes that may contain miscalls, we filtered the list to only
- include those genes which had at least one region, either in the gene or
- in a 2 kb region upstream of the annotated start site (to capture regulatory
- regions), where the mappability is too low to allow reliable methylation
- calling.
+ Focusing on genes that may contain 
+\change_inserted -157286936 1727299714
+unsupported 
+\change_deleted -157286936 1727299688
+mis
+\change_unchanged
+calls, we filtered the list to only include those genes which had at least
+ one region, either in the gene or in a 2 kb region upstream of the annotated
+ start site (to capture regulatory regions), where the mappability is too
+ low to allow reliable methylation calling.
  Examination of this data in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1117,10 +1138,45 @@ literal "false"
 
 \end_inset
 
- and numerically revealed that there were miscalls in or upstream of thousands
- of unique genes in the EM-seq/bwa-meth data, with a median number of 64
- miscalls per gene, indicating that indeed miscalls may affect biologically
- significant methylation.
+ and numerically revealed that there were 
+\change_inserted -157286936 1727299718
+unsupported 
+\change_deleted -157286936 1727299717
+mis
+\change_unchanged
+calls in or upstream of thousands of unique genes in the 
+\change_inserted -157286936 1727299765
+200ng 
+\change_unchanged
+EM-seq/bwa-meth data, with
+\change_inserted -157286936 1727300603
+ each containing
+\change_deleted -157286936 1727300507
+ 
+\change_inserted -157286936 1727300487
+1-4276, 
+\change_deleted -157286936 1727300517
+a median number of 64 
+\change_inserted -157286936 1727299779
+unsupported 
+\change_deleted -157286936 1727300280
+miscalls
+\change_inserted -157286936 1727300284
+ CpG calls
+\change_unchanged
+ 
+\change_deleted -157286936 1727300606
+per gene
+\change_inserted -157286936 1727300613
+each, with a median of 5 unsupported CpGs per gene
+\change_unchanged
+, indicating that indeed 
+\change_inserted -157286936 1727299785
+unsupported 
+\change_deleted -157286936 1727299785
+mis
+\change_unchanged
+calls may affect biologically significant methylation.
  An example of unsupported calls from a 200 ng EM-seq sample aligned to
  T2T using bwa-meth are provided in Figure 
 \begin_inset CommandInset ref
@@ -1163,9 +1219,15 @@ name "fig:igv-2"
 
 \end_inset
 
-A view of a cluster of miscalls near the boundary between high and low mappabili
-ty regions in the gene PDE4DIP (ENSG00000178104.19), regulation of which
- is reported to relate to dementia
+A view of a cluster of 
+\change_inserted -157286936 1727299790
+unsupported 
+\change_deleted -157286936 1727299790
+mis
+\change_unchanged
+calls near the boundary between high and low mappability regions in the
+ gene PDE4DIP (ENSG00000178104.19), regulation of which is reported to relate
+ to dementia
 \begin_inset CommandInset citation
 LatexCommand cite
 key "potashkin_bioinformatic_2020"
@@ -1201,8 +1263,14 @@ literal "false"
  The read alignments are shown paired, with a line connecting reads 1 and
  2, and highlighted for CpG methylation.
  Note that some methylation calls in the low-mappability region are not
- miscalls, as they can be called using read pairs extending into a high-mappabil
-ity region.
+ 
+\change_inserted -157286936 1727299795
+unsupported 
+\change_deleted -157286936 1727299794
+mis
+\change_unchanged
+calls, as they can be called using read pairs extending into a high-mappability
+ region.
 \end_layout
 
 \end_inset
@@ -2324,7 +2392,13 @@ s of mappability), all methylation calls in GENCODE genes (with low minimum
 \end_layout
 
 \begin_layout Standard
-To assess miscalls (i.e.
+To assess 
+\change_inserted -157286936 1727299828
+problematic 
+\change_deleted -157286936 1727299823
+mis
+\change_unchanged
+calls (i.e.
  which Cs are filtered out by read-based filtering), as well as under/over-filte
 ring with respect to coordinate filtering (discussed above), and resolution
  of mixed methylation calls to ≤10% or ≥90%, pairs of these files were compared
