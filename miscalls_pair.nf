@@ -129,7 +129,7 @@ process combineFilteringClinvarGenesCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                bedtools intersect -wa -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{calls}) | zstd -o miscalled_clinvar_genes_!{groupKey}.tsv.zst
+                bedtools intersect -wa -wb -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{calls}) | zstd -o miscalled_clinvar_genes_!{groupKey}.tsv.zst
                 '''
 }
 
@@ -149,7 +149,7 @@ process combineFilteringClinvarGenesLowmapCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                bedtools intersect -wa -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{lowmap_miscalls}) | zstd -o miscalled_clinvar_genes_lowmap_!{groupKey}.tsv.zst
+                bedtools intersect -wa -wb -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{lowmap_miscalls}) | zstd -o miscalled_clinvar_genes_lowmap_!{groupKey}.tsv.zst
                 '''
 }
 
@@ -169,7 +169,7 @@ process combineClinvarGenesResolvedCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                bedtools intersect -wa -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{resolved_calls}) | zstd -o resolved_clinvar_genes_!{groupKey}.tsv.zst
+                bedtools intersect -wa -wb -sorted -a !{clinvar_data} -b <(zstd -d -f --stdout !{resolved_calls}) | zstd -o resolved_clinvar_genes_!{groupKey}.tsv.zst
                 '''
 }
 
@@ -253,7 +253,7 @@ process addParamsToClinvarLowmapCallsCombined {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{lowmap_miscalls} | python !{basePath}/add_params_new.py !{filterStr} 13 | zstd -o miscalled_clinvar_genes_lowmap_!{groupKey.strip()}.tsv.zst
+                zstd -d -f --stdout !{lowmap_miscalls} | python !{basePath}/add_params.py !{filterStr} 15 | zstd -o miscalled_clinvar_genes_lowmap_!{groupKey.strip()}.tsv.zst
                 '''
 }
 
@@ -276,7 +276,7 @@ process addParamsToClinvarCallsCombined {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{miscalls} | python !{basePath}/add_params_new.py !{filterStr} 13 | zstd -o miscalled_clinvar_genes_!{groupKey.strip()}.tsv.zst 
+                zstd -d -f --stdout !{miscalls} | python !{basePath}/add_params.py !{filterStr} 15 | zstd -o miscalled_clinvar_genes_!{groupKey.strip()}.tsv.zst 
                 '''
 }
 
@@ -299,7 +299,7 @@ process addParamsToClinvarResolvedCallsCombined {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{resolved_calls} | python !{basePath}/add_params_new.py !{filterStr} 13 | zstd -o resolved_clinvar_genes_!{groupKey.strip()}.tsv.zst  
+                zstd -d -f --stdout !{resolved_calls} | python !{basePath}/add_params.py !{filterStr} 15 | zstd -o resolved_clinvar_genes_!{groupKey.strip()}.tsv.zst  
                 '''
 }
 

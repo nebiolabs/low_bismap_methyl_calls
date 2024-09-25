@@ -89,8 +89,10 @@ process extractBam {
                 '''
                 export TMPDIR="!{params.tmpdir}"
                 MethylDackel extract -@ !{task.cpus} -q !{min_mapq} --CHH --CHG --nOT 0,0,0,!{params.trimBases} --nOB 0,0,!{params.trimBases},0 !{filter_opt} -o methyl_!{bam.getBaseName().replace(".bam\\n", "")} !{ref} !{bam}
-                for bedGraph in *.bedGraph; do 
-                    zstd --rm "$bedGraph" -o "$bedGraph.zst"; 
+                for bedGraph in *.bedGraph; do
+                    context="$(basename "$bedGraph" | sed -E "s/methyl_!{bam.getBaseName().replace(".bam\\n", "")}_([CGHp]+)\\.bedGraph/\\1/")"
+                    sed -E "s/$/\t$context/" -i $bedGraph;
+                    zstd --rm "$bedGraph" -o "$bedGraph.zst";
                 done
                 '''
 }
@@ -116,8 +118,11 @@ process extractBamMq0 {
                 '''
                 export TMPDIR="!{params.tmpdir}"
                 MethylDackel extract -@ !{task.cpus} -q 0 --CHH --CHG --nOT 0,0,0,!{params.trimBases} --nOB 0,0,!{params.trimBases},0 !{filter_opt} -o methyl_mq0_!{bam.getBaseName().replace(".bam\\n", "")} !{ref} !{bam}
-                for bedGraph in *.bedGraph; do 
-                    zstd --rm "$bedGraph" -o "$bedGraph.zst"; 
+                
+                for bedGraph in *.bedGraph; do
+                    context="$(basename "$bedGraph" | sed -E "s/methyl_mq0_!{bam.getBaseName().replace(".bam\\n", "")}_([CGHp]+)\\.bedGraph/\\1/")"
+                    sed -E "s/$/\t$context/" -i $bedGraph;
+                    zstd --rm "$bedGraph" -o "$bedGraph.zst";
                 done
                 '''
 }
@@ -478,7 +483,7 @@ process intersectCalledGenes {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                bedtools intersect -wa -sorted -a !{clinvar_annotations_low} -b <(zstd -d -f --stdout !{methyl_calls}) | zstd -o called_genes_dups_!{n.strip()}.bed.zst
+                bedtools intersect -wa -wb -sorted -a !{clinvar_annotations_low} -b <(zstd -d -f --stdout !{methyl_calls}) | zstd -o called_genes_dups_!{n.strip()}.bed.zst
                 '''
 }
 
@@ -499,7 +504,7 @@ process intersectLowmapCalledGenes {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                bedtools intersect -wa -sorted -a !{clinvar_annotations_low} -b <(zstd -d -f --stdout !{methyl_lowmap_calls}) | zstd -o lowmap_called_genes_dups_!{n.strip()}.bed.zst
+                bedtools intersect -wa -wb -sorted -a !{clinvar_annotations_low} -b <(zstd -d -f --stdout !{methyl_lowmap_calls}) | zstd -o lowmap_called_genes_dups_!{n.strip()}.bed.zst
                 '''
 }
 
@@ -563,7 +568,7 @@ process addParamsToLowmapCalledGenes {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{lowmap_called_genes} | python !{basePath}/add_params_new.py !{filterStr} 13 | zstd -o lowmap_called_genes_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{lowmap_called_genes} | python !{basePath}/add_params.py !{filterStr} 15 | zstd -o lowmap_called_genes_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
@@ -586,7 +591,7 @@ process addParamsToCalledGenes {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{called_genes} | python !{basePath}/add_params_new.py !{filterStr} 13 | zstd -o called_genes_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{called_genes} | python !{basePath}/add_params.py !{filterStr} 15 | zstd -o called_genes_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
@@ -609,7 +614,7 @@ process addParamsToCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{calls} | python !{basePath}/add_params_new.py !{filterStr} 6 | zstd -o calls_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{calls} | python !{basePath}/add_params.py !{filterStr} 7 | zstd -o calls_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
@@ -632,7 +637,7 @@ process addParamsToLowmapCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params_new.py !{filterStr} 6 | zstd -o lowmap_calls_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params.py !{filterStr} 7 | zstd -o lowmap_calls_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
@@ -655,7 +660,7 @@ process addParamsToClinvarCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params_new.py !{filterStr} 6 | zstd -o clinvar_calls_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params.py !{filterStr} 7 | zstd -o clinvar_calls_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
@@ -678,7 +683,7 @@ process addParamsToClinvarLowmapCalls {
         shell:
                 '''
                 export TMPDIR="!{params.tmpdir}"
-                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params_new.py !{filterStr} 6 | zstd -o clinvar_lowmap_calls_!{n.strip()}.!{filterStr}.tsv.zst
+                zstd -d -f --stdout !{lowmap_calls} | python !{basePath}/add_params.py !{filterStr} 7 | zstd -o clinvar_lowmap_calls_!{n.strip()}.!{filterStr}.tsv.zst
                 '''
 }
 
