@@ -82,11 +82,12 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\author -157286936 "ckumar"
 \end_header
 
 \begin_body
@@ -199,14 +200,16 @@ ntly higher MapQ values than can be supported by the uniqueness of the region
  region.
  We have created a new feature for the MethylDackel methylation caller to
  perform read-based filtering.
- This new methylation calling method resolves some of the apparent mixed
- methylation to either ≤10% or ≥90% methylation and removes many unsupportable
- methylation calls.
- We examined methylation calls with and without read-based filtering in
- or near the XXXX genes containing ClinVar variants in a methylation sequencing
- data set from the NA12878 cell line.
- Use of this improved method corrected XXXX mixed methylation Cs to ≤10%
- methylation, and XXXX to ≥90% methylation throughout the genome.
+ This new methylation calling method removes many unsupported methylation
+ calls across the genome.
+ We examined data from a clinical study and identified 228-301 thousand
+ such CpG calls (44-48 thousand in clinically relevant genes) in their dataset
+ using the T2T v2.0 reference genome and the bwa-meth aligner.
+ Left uncorrected, these unsupported calls could result in false identification
+ of methylation markers associated with disease states that in fact do not
+ exist.
+ The presence of erroneous data such as this in training sets for machine
+ learning models has been shown to reduce performance [CITE].
 \end_layout
 
 \begin_layout Section*
@@ -289,6 +292,17 @@ status open
 
 \begin_layout Plain Layout
 Overview of filtering Cs with our read-based filtering technique.
+\change_inserted -157286936 1727292760
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:overview"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \end_inset
@@ -573,9 +587,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/chroms_ideogram.png
+	filename figures/chroms_ideogram.svg
 	lyxscale 30
-	width 90col%
+	width 100col%
 
 \end_inset
 
@@ -622,7 +636,7 @@ status open
 \begin_inset Graphics
 	filename figures/lowmap_cov.svg
 	lyxscale 50
-	width 90col%
+	width 100col%
 
 \end_inset
 
@@ -681,9 +695,10 @@ noprefix "false"
  We considered excluding methylation calls on Cs found in low-mappability
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to discarding
- Cs which could potentially be saved.
- Cs in short, unique regions would be kept (misfiltered) even if the surrounding
- DNA is repetitive (Figure 
+ Cs which could potentially be rescued.
+ Cs in short, unique regions or on the boundary of larger mappable regions
+ (marginal Cs) would be kept even if the surrounding DNA is repetitive (Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:discarded"
@@ -710,25 +725,25 @@ noprefix "false"
 \end_inset
 
 ).
- When calling using EM-seq reads aligned with bwa-meth to GRCh38, misfiltering
- is rare (between 
-\begin_inset Formula $XXXX*10^{-XXXX}\%$
+ When calling using EM-seq reads aligned with bwa-meth to T2T, marginal
+ Cs are rare (in CpG contexts, between 
+\begin_inset Formula $1.98*10^{-4}\%$
 \end_inset
 
  and 
-\begin_inset Formula $XXXX*10^{-XXXX}\%$
+\begin_inset Formula $2.45*10^{-4}\%$
 \end_inset
 
- of called Cs) but discarding salvageable Cs is much more common (between
- 
-\begin_inset Formula $XXXX\%$
+ of genome CpGs) but discarding salvageable Cs is much more common (in CpG
+ contexts, between 
+\begin_inset Formula $1.57\%$
 \end_inset
 
  and 
-\begin_inset Formula $XXXX\%$
+\begin_inset Formula $1.81\%$
 \end_inset
 
- of called Cs) (Figure 
+ of genome CpGs) (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:overview-1"
@@ -739,12 +754,12 @@ noprefix "false"
 \end_inset
 
 ).
- Although ~XXXX% of called Cs might seem like a small fraction, it accounts
- for ~XXXX-XXXX million Cs, while ~
-\begin_inset Formula $10^{-XXXX}\%$
+ Although ~1.7% of CpGs might seem like a small fraction, it accounts for
+ ~1.07-1.23 million CpGs, while ~
+\begin_inset Formula $10^{-4}\%$
 \end_inset
 
- of Cs corresponds to ~XXXX-XXXX Cs.
+ of CpGs corresponds to ~134-166 CpGs.
  In cases where reads from multiple low-mappability regions are placed onto
  one region (creating a coverage spike), filtering by coverage could possibly
  also remove the problematic region, but in cases where reads are simply
@@ -901,7 +916,7 @@ status open
 \begin_inset Graphics
 	filename figures/rescued_c.svg
 	lyxscale 50
-	width 90col%
+	width 100col%
 
 \end_inset
 
@@ -947,7 +962,7 @@ status open
 \begin_inset Graphics
 	filename figures/misfiltered_c.svg
 	lyxscale 50
-	width 90col%
+	width 100col%
 
 \end_inset
 
@@ -1013,13 +1028,28 @@ ClinVar genes
 
 .
  Using our alignment filtering approach we successfully avoided wrongly
- calling XXXX Cs in these important regions in a 200 ng EM-seq sample which
- have insufficient mappability to support methylation calling.
+ calling 46,570 CpGs in these important regions in a 200 ng EM-seq sample
+ aligned to the T2T reference with bwa-meth which have insufficient mappability
+ to support methylation calling.
  Briefly, to identify the number of methylation calls correctly removed,
  we took the list of unfiltered Cs for the regions we were interested in
  and removed from it all Cs we kept after read-based filtering.
  The result was a list of every C that was correctly filtered out (Figure
  
+\change_inserted -157286936 1727292932
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_deleted -157286936 1727292924
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1029,15 +1059,17 @@ noprefix "false"
 
 \end_inset
 
+
+\change_unchanged
 ).
- This count is a combination of removed Cs (Cs removed by read-based filtering
- in low-mappability regions) and misfiltered Cs (Cs removed by read-based
- filtering in high-mappability regions), and will be hereafter referred
- to as 
+ This count is a combination of unsupported CpGs (Cs removed by read-based
+ filtering in low-mappability regions) and marginal CpGs (CpGs removed by
+ read-based filtering in high-mappability regions), and will be hereafter
+ referred to as 
 \begin_inset Quotes eld
 \end_inset
 
-miscalls
+miscalled CpGs
 \begin_inset Quotes erd
 \end_inset
 
@@ -1050,12 +1082,26 @@ Filtering Effect
 
 \begin_layout Standard
 We compared the effect of read-based mappability filtering on number of
- C's called, as well as number of C's called in low-mappability regions
+ CpG's called, as well as number of CpG's called in low-mappability regions
  (as defined by coordinate filtering), on EM-seq libraries of 3 sample masses
  aligned with the bwa-meth aligner.
  We saw a significant positive filtering effect on all 3 sample input amounts,
- with a mean of XXXX Cs filtered out by read-based filtering in each sample
- (see Figure 
+ with a mean of 328,199 Cs filtered out by read-based filtering in each
+ sample (see Figure 
+\change_inserted -157286936 1727292789
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_deleted -157286936 1727292783
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1065,8 +1111,11 @@ noprefix "false"
 
 \end_inset
 
+
+\change_unchanged
 ).
- The miscalled Cs were scattered across the genome, as shown in Figure 
+ These miscalled Cs were scattered across the genome, as shown in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:chrom-overview"
@@ -1080,6 +1129,8 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -157286936 1727292277
 We also examined how many mixed methylation (10% < %Methyl < 90%) Cs were
  resolved to either ≤10% or ≥90% methylation, and found that approximately
  XXXX-XXXX methylation calls in the EM-seq data that were previously mixed
@@ -1096,25 +1147,17 @@ noprefix "false"
 
 ), showing that unlike coordinate filtering, read-based filtering can correct
  methylation calls without always having to entirely delete them.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -157286936 1727292282
 \begin_inset Float figure
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/Miscalls Overview.png
-	lyxscale 45
-	width 70page%
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -1127,8 +1170,9 @@ name "fig:Miscall-counts"
 
 \end_inset
 
-Left: Percents of miscalled Cs in the 10, 50, and 200 ng EM-seq and WGBS
- samples, aligned with bwa-meth and Bismark, where a 
+REMOVE REMOVE REMOVE Left: Percents of miscalled Cs in the 10, 50, and 200
+ ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark, where a
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1153,22 +1197,12 @@ miscall
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -157286936 1727292282
 \begin_inset Float figure
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename figures/Resolved Calls.png
-	lyxscale 40
-	width 70page%
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -1181,8 +1215,9 @@ name "fig:genome-resolved-calls"
 
 \end_inset
 
-Counts of genome-wide resolved calls in the 10, 50, and 200 ng EM-seq and
- WGBS samples, aligned with bwa-meth and Bismark, where a 
+REMOVE REMOVE REMOVE Counts of genome-wide resolved calls in the 10, 50,
+ and 200 ng EM-seq and WGBS samples, aligned with bwa-meth and Bismark,
+ where a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1202,6 +1237,8 @@ resolved call
 
 \end_inset
 
+
+\change_unchanged
 
 \end_layout
 
@@ -1237,8 +1274,10 @@ literal "false"
  of unique genes in the EM-seq/bwa-meth data, with a median number of 64
  miscalls per gene, indicating that indeed miscalls may affect biologically
  significant methylation.
- Many of these miscalls can be resolved to 0 or 100% methylation by the
- read-based filtering method described in this paper (Figures 
+ 
+\change_deleted -157286936 1727292297
+Many of these miscalls can be resolved to 0 or 100% methylation by the read-base
+d filtering method described in this paper (Figures 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:genome-resolved-calls"
@@ -1267,13 +1306,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename figures/Miscalled Genes.png
-	lyxscale 40
-	width 70page%
-
-\end_inset
-
 
 \end_layout
 
@@ -1288,9 +1320,9 @@ name "fig:resolved_gene_counts"
 
 \end_inset
 
-Counts of ClinVar genes containing resolved (from intermediate to 0 or 100%
- methylation) miscalls in the 10, 50, and 200 ng EM-seq and WGBS samples,
- aligned with bwa-meth and Bismark.
+REMOVE REMOVE REMOVE Counts of ClinVar genes containing resolved (from intermedi
+ate to 0 or 100% methylation) miscalls in the 10, 50, and 200 ng EM-seq
+ and WGBS samples, aligned with bwa-meth and Bismark.
  The vertical axis is the number genes containing miscalls that were resolved
  by mappability-informed methylation calling.
 \end_layout
@@ -1303,26 +1335,54 @@ Counts of ClinVar genes containing resolved (from intermediate to 0 or 100%
 \end_inset
 
 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
-It is evident that the sites of most methylation miscalls fall into two
- broad types.
+It is evident that the sites of most 
+\change_inserted -157286936 1727292423
+invalid 
+\change_unchanged
+methylation 
+\change_deleted -157286936 1727292419
+miscalls
+\change_inserted -157286936 1727292419
+calls
+\change_unchanged
+ fall into two broad types.
  First, are repetitive regions that simply have a mappability of 0 for a
  long stretch of sequence.
- All Cs in such regions are classified as miscalls due to the lack of mappable
- regions to anchor reads with.
+ All Cs in such regions are classified as 
+\change_deleted -157286936 1727292355
+miscalls 
+\change_inserted -157286936 1727292358
+unsupported calls 
+\change_unchanged
+due to the lack of mappable regions to anchor reads with.
  Second, are shorter regions at the border between high mappability and
  low mappability regions.
  These regions are where misfiltered and rescued Cs occur.
  Rescued Cs occur when a C is in the low mappability region (discarded by
  coordinate filtering), but there is a mappable read anchored in the high
  mappability region that allows it to be called with read-based filtering.
- Misfiltered C's occur when a C is just inside a mappable region (kept by
- coordinate filtering), but there is no sufficiently mappable read to call
- it, meaning it is discarded by read-based filtering.
+ 
+\change_deleted -157286936 1727292369
+Misfiltered
+\change_inserted -157286936 1727292370
+Marginal
+\change_unchanged
+ C's occur when a C is just inside a mappable region (kept by coordinate
+ filtering), but there is no sufficiently mappable read to call it, meaning
+ it is discarded by read-based filtering.
  Examples of both from a 200 ng EM-seq sample aligned to GRCh38 using bwa-meth
- are provided in Figures 
+ are provided in Figure
+\change_deleted -157286936 1727292799
+s
+\change_unchanged
+ 
+\change_deleted -157286936 1727292798
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:igv-1"
@@ -1332,7 +1392,9 @@ noprefix "false"
 
 \end_inset
 
- and 
+ and
+\change_unchanged
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:igv-2"
@@ -1346,6 +1408,8 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
+
+\change_deleted -157286936 1727292450
 \begin_inset Float figure
 wide false
 sideways false
@@ -1353,12 +1417,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename figures/chr2_110091420-110092421.svg
-	width 90col%
-
-\end_inset
-
 
 \end_layout
 
@@ -1373,8 +1431,8 @@ name "fig:igv-1"
 
 \end_inset
 
-A view of a cluster of miscalls in a large low-mappability region containing
- the MALL gene (ENSG00000144063.3) 
+REMOVE REMOVE REMOVE A view of a cluster of miscalls in a large low-mappability
+ region containing the MALL gene (ENSG00000144063.3) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "perez_structural_1997"
@@ -1418,6 +1476,8 @@ literal "false"
 \end_inset
 
 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1429,8 +1489,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/chr1_148819799-148820800.svg
-	width 90col%
+	filename figures/pde4dip_exon_miscalls.svg
+	width 100col%
 
 \end_inset
 
@@ -1501,6 +1561,28 @@ ity region.
 \end_layout
 
 \begin_layout Subsection*
+Clinical Samples
+\end_layout
+
+\begin_layout Standard
+To further demonstrate the clinical impact of improperly calling methylation
+ in repetitive regions, we also examined sequence data from 27 clinical
+ samples from [STUDY].
+ This study sought to examine genetic markers connected to the risk of developin
+g type 2 diabetes and insulin resistance.
+ DNA methylation data was collected by the study authors using whole genome
+ bisulfite (WGBS) sequencing on blood samples from the enrolled patients,
+ sequenced on an Illumina HiSeq X [CITE STUDY].
+ We ran these datasets in FASTQ format through the exact same analyses as
+ our cell line data, resulting in a total of (27 libraries x 2 aligners
+ x 2 references = 108) processed datasets.
+\end_layout
+
+\begin_layout Standard
+[RESULTS GO HERE]
+\end_layout
+
+\begin_layout Subsection*
 EM-seq vs.
  WGBS
 \end_layout
@@ -1522,6 +1604,20 @@ literal "false"
  In ClinVar gene regions, where both methods provide more similar overall
  coverage, the percent of miscalls is also similar between EM-seq and to
  WGBS libraries ( Figure 
+\change_inserted -157286936 1727292824
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_deleted -157286936 1727292820
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1531,10 +1627,14 @@ noprefix "false"
 
 \end_inset
 
+
+\change_unchanged
 ).
  We expected that longer reads could allow for more low-mappability Cs to
  be called using reads and mates extending into higher-mappability regions.
- Importantly, we observed that EM-seq libraries are able to resolve many
+ 
+\change_deleted -157286936 1727292816
+Importantly, we observed that EM-seq libraries are able to resolve many
  more miscalled Cs throughout the genome (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1556,6 +1656,8 @@ noprefix "false"
 \end_inset
 
 ).
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1599,8 +1701,33 @@ literal "false"
 .
  Bwa-meth (using BWA-MEM for alignments) follows the SAM specification in
  estimating probabilities in the MapQ field.
- Overall, we observed a higher percent of miscalls with Bismark than we
- did with bwa-meth, as shown in Figure 
+ Overall, we observed a higher 
+\change_deleted -157286936 1727292841
+percent
+\change_inserted -157286936 1727292841
+number
+\change_unchanged
+ of 
+\change_deleted -157286936 1727292846
+miscalls
+\change_inserted -157286936 1727292848
+unsupported calls
+\change_unchanged
+ with Bismark than we did with bwa-meth, as shown in Figure 
+\change_inserted -157286936 1727292858
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_deleted -157286936 1727292852
+
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Miscall-counts"
@@ -1610,6 +1737,8 @@ noprefix "false"
 
 \end_inset
 
+
+\change_unchanged
 .
  This difference was noticeable in both overall miscalls and miscalls in
  ClinVar genes.
@@ -1675,9 +1804,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/T2T Overview.png
+	filename figures/grch38_vs_t2t.svg
 	lyxscale 40
-	width 70page%
+	width 78page%
 
 \end_inset
 
@@ -2886,8 +3015,8 @@ We are grateful to the many people who contributed to the EM-seq project
  open-source methylation caller.
  Many thanks to Chaithanya Ponnaluri for critical reading of this manuscript,
  to Matt Campbell and Ariel Erijman for helpful discussion, and to the organizer
-s and supporters of the summer internship program at New England Biolabs
- that enabled this project.
+s and supporters of the summer internship and postbac program at New England
+ Biolabs that enabled this project.
 \end_layout
 
 \begin_layout Standard
