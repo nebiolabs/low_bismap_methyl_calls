@@ -292,8 +292,19 @@ status open
 
 \begin_layout Plain Layout
 Overview of filtering Cs with our read-based filtering technique.
-\change_inserted -157286936 1727292760
 
+\change_inserted -157286936 1727373795
+ Section A shows the paths Cs can take through our analysis pipeline, leading
+ to either being called or discarded.
+ Section B shows the relative fractions of Cs passing through each step.
+ Section C shows the same data as section B, but with the overwhelming numbers
+ of callable Cs in high-mappability regions and Cs only called from low-MapQ
+ reads excluded to focus on the outcomes more relevant to our method.
+ Section D shows the number of unsupported calls (as defined in A) in all
+ libraries in our analysis, categorized by reference sequence and aligner,
+ and cell line (control) vs.
+ clinical samples.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:overview"
@@ -634,7 +645,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/lowmap_cov.svg
+	filename figures/rescued_calls.svg
 	lyxscale 50
 	width 100col%
 
@@ -651,14 +662,49 @@ status open
 MapQ filtering does not remove all poorly mapped reads.
  This is an example of a coverage spike in a low-mappability region: clearly
  not sufficiently mappable, but still called with MapQ filtering.
- Mappability is only high in a small portion of this view (top track), but
- using MapQ alone alone enable calls of many Cs (MapQ Only track).
- the Read-based Kept track shows that only 2 sites have enough mappability
- to call and successfully eliminates the remaining uncallable Cs (Read-based
- ∆ track).
- Per C filtering eliminates all Cs in this region including the 2 that should
- be callable (Coordinate Kept track).
+ Mappability is only high in a 
+\change_deleted -157286936 1727373986
+small
+\change_unchanged
+ portion of this view (top track), but using MapQ alone alone enable calls
+ of many Cs (MapQ Only track).
+ the Read-based Kept track shows that 
+\change_deleted -157286936 1727374004
+only 2 sites
+\change_unchanged
  
+\change_inserted -157286936 1727374014
+the sites in the red box do not 
+\change_unchanged
+have enough mappability to call and 
+\change_inserted -157286936 1727374026
+are 
+\change_unchanged
+successfully eliminate
+\change_inserted -157286936 1727374028
+d
+\change_deleted -157286936 1727374028
+s
+\change_unchanged
+ 
+\change_deleted -157286936 1727374031
+the remaining uncallable Cs
+\change_inserted -157286936 1727374033
+by our method
+\change_unchanged
+ (Read-based ∆ track).
+ Per C filtering eliminates all Cs in this region including th
+\change_deleted -157286936 1727374042
+e 2
+\change_inserted -157286936 1727374042
+ose
+\change_unchanged
+ that should be callable (Coordinate Kept track).
+ 
+\change_inserted -157286936 1727374083
+[FIX THIS]
+\change_unchanged
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:example"
@@ -696,7 +742,11 @@ noprefix "false"
  regions (e.g.
  using bedtools), but rejected this approach because it is prone to discarding
  Cs which could potentially be rescued.
- Cs in short, unique regions or on the boundary of larger mappable regions
+ 
+\change_inserted -157286936 1727374109
+In addition, 
+\change_unchanged
+Cs in short, unique regions or on the boundary of larger mappable regions
  (marginal Cs) would be kept even if the surrounding DNA is repetitive (Figure
  
 \begin_inset CommandInset ref
@@ -708,8 +758,16 @@ noprefix "false"
 
 \end_inset
 
-).
- However, this situation was not commonly observed.
+)
+\change_deleted -157286936 1727374121
+.
+ However
+\change_unchanged
+, 
+\change_inserted -157286936 1727374123
+but 
+\change_unchanged
+this situation was not commonly observed.
  Discarding salvageable Cs in short repetitive regions is a larger problem
  though.
  In this scenario, a C located in a small dip in mappability would be eliminated
@@ -834,7 +892,19 @@ Mappability
 \begin_inset Quotes eld
 \end_inset
 
-MapQ filtering only
+MapQ 
+\change_inserted -157286936 1727374208
+F
+\change_deleted -157286936 1727374208
+f
+\change_unchanged
+ilter
+\change_inserted -157286936 1727374212
+ed
+\change_deleted -157286936 1727374211
+ing only
+\change_unchanged
+
 \begin_inset Quotes erd
 \end_inset
 
@@ -844,7 +914,17 @@ MapQ filtering only
 \begin_inset Quotes eld
 \end_inset
 
-Kept by Read Filtering
+
+\change_deleted -157286936 1727374219
+Kept by 
+\change_unchanged
+Read Filter
+\change_inserted -157286936 1727374221
+ed
+\change_deleted -157286936 1727374221
+ing
+\change_unchanged
+
 \begin_inset Quotes erd
 \end_inset
 
@@ -853,17 +933,38 @@ Kept by Read Filtering
 \begin_inset Quotes eld
 \end_inset
 
+
+\change_deleted -157286936 1727374237
 Removed by Read Filtering
+\change_inserted -157286936 1727374239
+Unsupported
+\change_unchanged
+
 \begin_inset Quotes erd
 \end_inset
 
- shows those calls removed entirely by read-based filtering for being insufficie
-ntly mappable.
+ shows th
+\change_inserted -157286936 1727374245
+e
+\change_deleted -157286936 1727374245
+ose 
+\change_unchanged
+calls
+\change_inserted -157286936 1727374250
+ in low-mappability regions
+\change_unchanged
+ removed entirely by read-based filtering for being insufficiently mappable.
  
 \begin_inset Quotes eld
 \end_inset
 
-Misfiltered Cs
+
+\change_deleted -157286936 1727374259
+Misfiltered
+\change_inserted -157286936 1727374261
+Marginal
+\change_unchanged
+ Cs
 \begin_inset Quotes erd
 \end_inset
 
@@ -1130,7 +1231,11 @@ calls, we filtered the list to only include those genes which had at least
  one region, either in the gene or in a 2 kb region upstream of the annotated
  start site (to capture regulatory regions), where the mappability is too
  low to allow reliable methylation calling.
- Examination of this data in IGV
+ Examination of this data
+\change_inserted -157286936 1727374325
+ numerically and
+\change_unchanged
+ in IGV
 \begin_inset CommandInset citation
 LatexCommand cite
 key "robinson_integrative_2011"
@@ -1138,7 +1243,11 @@ literal "false"
 
 \end_inset
 
- and numerically revealed that there were 
+ 
+\change_deleted -157286936 1727374328
+and numerically 
+\change_unchanged
+revealed that there were 
 \change_inserted -157286936 1727299718
 unsupported 
 \change_deleted -157286936 1727299717
@@ -1153,8 +1262,8 @@ EM-seq/bwa-meth data, with
  each containing
 \change_deleted -157286936 1727300507
  
-\change_inserted -157286936 1727300487
-1-4276, 
+\change_inserted -157286936 1727374335
+1-4,276, 
 \change_deleted -157286936 1727300517
 a median number of 64 
 \change_inserted -157286936 1727299779
@@ -1330,10 +1439,6 @@ unsupported CpGs across the genome, and
 \end_layout
 
 \begin_layout Standard
-
-\change_deleted -157286936 1727298536
-[RESULTS GO HERE]
-\change_unchanged
 
 \end_layout
 
@@ -1645,10 +1750,12 @@ literal "false"
 
 \begin_layout Standard
 \align center
+
+\change_deleted -157286936 1727378014
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1885,6 +1992,8 @@ Sequencing read counts after downsampling and adapter/quality trimming broken
 \end_inset
 
 
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -1896,16 +2005,42 @@ The following data and tools were used for the analysis:
 \end_layout
 
 \begin_layout Standard
-The GRCh38.p11 analysis set (hereafter referred to as 
+The 
+\change_inserted -157286936 1727367811
+T2T v2.0
+\change_deleted -157286936 1727367820
+GRCh38.p11
+\change_unchanged
+ analysis set (hereafter referred to as 
 \begin_inset Quotes eld
 \end_inset
 
+
+\change_deleted -157286936 1727367817
 GRCh38
+\change_inserted -157286936 1727367815
+T2T
+\change_unchanged
+
 \begin_inset Quotes erd
 \end_inset
 
 ) supplemented with phage T4, phage lambda, phage Xp12, and pUC19 contigs
- was used throughout 
+ was used throughout
+\change_inserted -157286936 1727368335
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+
+\change_unchanged
+ 
+\change_deleted -157286936 1727368246
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "church_modernizing_2011"
@@ -1913,6 +2048,8 @@ literal "false"
 
 \end_inset
 
+
+\change_unchanged
 .
  A VCF file of disease-associated variant sites was downloaded from ClinVar
  (see supplemental data 
@@ -1925,10 +2062,59 @@ noprefix "false"
 
 \end_inset
 
- for file date) and a GFF file of the GENCODE v31 gene annotations were
- used.
- The mappability data was the 100bp multi-read bigWig file downloaded from
- Bismap (see supplemental materials 
+ for file date) and a GFF file of the GENCODE 
+\change_deleted -157286936 1727367585
+v31 
+\change_unchanged
+gene annotations were used
+\change_inserted -157286936 1727368263
+ (see supplemental data 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "The-GRCh38-GENCODE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for file date)
+\change_unchanged
+.
+
+\change_inserted -157286936 1727368611
+ For the GRCh38 comparison, the GRCh38.p11(??) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "church_modernizing_2011"
+literal "false"
+
+\end_inset
+
+ genome was used instead of T2T, supplemented with the same control contigs.
+
+\change_deleted -157286936 1727367824
+ 
+\change_unchanged
+The 
+\change_inserted -157286936 1727368353
+T2T 
+\change_unchanged
+mappability data was
+\change_inserted -157286936 1727368659
+ a 100bp multi-read bigWig file generated using Bismap on the T2T v2.0 genome
+ reference.
+
+\change_unchanged
+ 
+\change_inserted -157286936 1727368663
+The GRCh38 Bismap was 
+\change_unchanged
+the 100bp multi-read bigWig file downloaded from Bismap
+\change_inserted -157286936 1727368670
+'s website
+\change_unchanged
+ (see supplemental materials 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "The-Bismap-file"
@@ -2233,9 +2419,22 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-The sequencing reads were aligned using the bwa-meth aligner with default
- options.
- Methylation calling was performed on the resulting BAMs using MethylDackel
+The sequencing reads were aligned
+\change_inserted -157286936 1727369840
+ to the T2T v2.0
+\change_deleted -157286936 1727369842
+ 
+\change_inserted -157286936 1727369844
+ reference genome 
+\change_unchanged
+using the bwa-meth aligner with default options.
+ 
+\change_inserted -157286936 1727369837
+The input mass (where available), reference, method, and aligner were appended
+ to the filenames for later processing.
+ 
+\change_unchanged
+Methylation calling was performed on the resulting BAMs using MethylDackel
  v0.6.1.
  MethylDackel uses a default value of 10 as a minimum MapQ which should
  include mostly single locus reads, however inaccurate MapQs can lead to
@@ -2320,12 +2519,16 @@ The Bismap complete bedGraph was then filtered using awk to produce a file
 \end_layout
 
 \begin_layout Standard
-Alignments of 2x101-bp paired-end EM-seq and whole genome bisulfite reads
- were processed using MethylDackel (with and without the custom patch) using
- a minimum MapQ cutoff of 10 and the default settings mentioned above and
- combined with the file of all low mappability regions in ClinVar regions
- to produce a list of all methylation calls in low mappability ClinVar regions
- (this will be referred to as the 
+Alignments of 
+\change_deleted -157286936 1727369333
+2x101-bp 
+\change_unchanged
+paired-end EM-seq and whole genome bisulfite reads were processed using
+ MethylDackel (with and without the custom patch) using a minimum MapQ cutoff
+ of 10 and the default settings mentioned above and combined with the file
+ of all low mappability regions in ClinVar regions to produce a list of
+ all methylation calls in low mappability ClinVar regions (this will be
+ referred to as the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2334,7 +2537,13 @@ low mappability ClinVar calls file
 \end_inset
 
 ).
- A low-mappability methylation call, as used here, is defined as a methylation
+ 
+\change_inserted -157286936 1727369372
+Each call was tagged with its methylation context (CpG, CHG, or CHH) for
+ further analysis.
+ 
+\change_unchanged
+A low-mappability methylation call, as used here, is defined as a methylation
  call that is in a region with Bismap mappability less than 0.01, as defined
  by the position of the C alone (positions of anchoring reads are not considered
  when determining this).
@@ -2376,11 +2585,18 @@ Since this analysis was run for three different input masses and two sequencing
  a custom Python script (see supplemental materials) to add a field specifying
  which input mass, sequencing protocol, and MethylDackel filtering setting
  were used.
- As the input mass would have been difficult to parse out of the BAM name
+ 
+\change_inserted -157286936 1727370192
+This data was extracted from a suffix appended to the BAM and BED file names.
+ 
+\change_deleted -157286936 1727369699
+As the input mass would have been difficult to parse out of the BAM name
  due to inconsistent file name formatting, a CSV was created mapping BAM
  file names to input masses and given as input to this step.
- The same field was added to the lists of all ClinVar regions with low mappabili
-ty calls and counts described previously.
+ 
+\change_unchanged
+The same field was added to the lists of all ClinVar regions with low mappabilit
+y calls and counts described previously.
  We also produced similarly-annotated files for all methylation calls (regardles
 s of mappability), all methylation calls in GENCODE genes (with low minimum
  mappability) which contained ClinVar variants, all methylation calls in
@@ -2400,11 +2616,19 @@ mis
 \change_unchanged
 calls (i.e.
  which Cs are filtered out by read-based filtering), as well as under/over-filte
-ring with respect to coordinate filtering (discussed above), and resolution
- of mixed methylation calls to ≤10% or ≥90%, pairs of these files were compared
- using bedtools to produce files showing the difference between filtered
- and unfiltered data.
- All files were examined and compared in Tableau
+ring with respect to coordinate filtering (discussed above), 
+\change_deleted -157286936 1727369767
+and resolution of mixed methylation calls to ≤10% or ≥90%, 
+\change_unchanged
+pairs of these files were compared using bedtools to produce files showing
+ the difference between filtered and unfiltered data.
+ 
+\change_inserted -157286936 1727370195
+As the raw data files were very large, a Nextflow pipeline was used to produce
+ summary files containing total counts of methylation calls for analysis.
+ 
+\change_unchanged
+All files were examined and compared in Tableau
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -2428,10 +2652,14 @@ literal "false"
 \end_inset
 
 .
- The name of the aligner was added to the field specifying the input mass,
+ 
+\change_deleted -157286936 1727369813
+The name of the aligner was added to the field specifying the input mass,
  protocol, and MethylDackel filtering settings present in all output files
  containing methylation calls or counts of such calls in ClinVar regions
  (using the same custom Python script).
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -2475,7 +2703,19 @@ Detailed description of BAM realignment steps.
 
 \begin_layout Standard
 To compare the need for and the effect of mappability filtering on the more
- complete T2T v2.0 reference genome 
+ 
+\change_deleted -157286936 1727369827
+complete
+\change_inserted -157286936 1727369829
+widely-used
+\change_unchanged
+ 
+\change_deleted -157286936 1727369897
+T2T v2.0
+\change_inserted -157286936 1727369909
+GRCh38.p??
+\change_unchanged
+ reference genome 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "nurk_complete_2021"
@@ -2487,13 +2727,39 @@ literal "false"
 \begin_inset Quotes eld
 \end_inset
 
+
+\change_deleted -157286936 1727369904
 T2T
+\change_inserted -157286936 1727369912
+GRCh38
+\change_unchanged
+
 \begin_inset Quotes erd
 \end_inset
 
-), the analysis was re-run using the T2T reference in place of GRCh38 (supplemen
-ted with phage T4, phage lambda, phage Xp12, and pUC19 just as with GRCh38).
- To use the ClinVar and GENCODE datasets, which were respectively originally
+), the analysis was re-run using the 
+\change_inserted -157286936 1727369920
+GRCh38
+\change_deleted -157286936 1727369917
+T2T
+\change_unchanged
+ reference in place of 
+\change_deleted -157286936 1727369928
+GRCh38
+\change_inserted -157286936 1727369928
+T2T
+\change_unchanged
+ (supplemented with phage T4, phage lambda, phage Xp12, and pUC19 just as
+ with 
+\change_deleted -157286936 1727369924
+GRCh38
+\change_inserted -157286936 1727369924
+T2T
+\change_unchanged
+).
+ 
+\change_deleted -157286936 1727369950
+To use the ClinVar and GENCODE datasets, which were respectively originally
  obtained as VCF and GFF files containing genomic coordinates in GRCh38,
  with the T2T reference, the positions were transferred over to the T2T
  reference using CrossMap 
@@ -2526,8 +2792,8 @@ literal "false"
 \end_inset
 
 .
- [CHECK HOW I ACTUALLY DID THIS] Specifically, the ClinVar regions BED,
- with the ClinVar and GENCODE data already combined, was lifted over.
+  Specifically, the ClinVar regions BED, with the ClinVar and GENCODE data
+ already combined, was lifted over.
  This converted file was used in place of the ClinVar regions BED for analysis
  with the T2T reference.
  As there was no Bismap mappability file for the T2T reference, we downloaded
@@ -2535,11 +2801,12 @@ literal "false"
 \begin_inset Formula $k=100$
 \end_inset
 
- multi-read Bismap mappability dataset for this reference genome.In total,
- this analysis was run on all combinations of sequencing method (WGBS or
- EM-seq), aligner (Bismark or bwa-meth), input mass (10, 50, or 200 ng),
- filtering (read-based filtering or no read-based filtering), and reference
- genome (GRCh38 or T2T), using a Nextflow
+ multi-read Bismap mappability dataset for this reference genome.
+\change_unchanged
+In total, this analysis was run on all combinations of sequencing method
+ (WGBS or EM-seq), aligner (Bismark or bwa-meth), input mass (10, 50, or
+ 200 ng), filtering (read-based filtering or no read-based filtering), and
+ reference genome (GRCh38 or T2T), using a Nextflow
 \begin_inset CommandInset citation
 LatexCommand cite
 key "di_tommaso_nextflow_2017"
@@ -2565,8 +2832,11 @@ External Analysis Resources
 \end_layout
 
 \begin_layout Standard
-Individual tools used in the analysis include samtools, bowtie2, gzip, seqtk,
- fastp, sambamba
+Individual tools used in the analysis include samtools, bowtie2, gzip, 
+\change_inserted -157286936 1727363927
+bgzip, tabix, 
+\change_unchanged
+seqtk, fastp, sambamba
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btv098"
@@ -2582,8 +2852,11 @@ literal "false"
 
 \end_inset
 
-, MethylDackel, sed, awk, python, GNU sort, GNU head, zstd, bc, plotly,
- bedtools
+, 
+\change_inserted -157286936 1727363916
+bedGraphToBigWig, 
+\change_unchanged
+MethylDackel, sed, awk, python, GNU sort, GNU head, zstd, bc, plotly, bedtools
 \begin_inset CommandInset citation
 LatexCommand cite
 key "doi:10.1093/bioinformatics/btq033"
@@ -2600,8 +2873,13 @@ literal "false"
 \end_inset
 
 .
- Versions of all tools used are specified in the nextflow 23.10.0 scripts
- using conda
+ Versions of all tools used are specified in the nextflow 
+\change_inserted -157286936 1727374709
+DSL2
+\change_deleted -157286936 1727374706
+23.10.0 
+\change_unchanged
+scripts using conda
 \begin_inset CommandInset citation
 LatexCommand cite
 key "noauthor_miniconda_2021"
@@ -2702,8 +2980,77 @@ name "The-ClinVar-VCF"
 
 \end_inset
 
-The ClinVar VCF was the March 25, 2024 version of ClinVar's variants VCF,
- with a file name of ClinVar_20240325.vcf.gz
+The 
+\change_inserted -157286936 1727365767
+GRCh38 
+\change_unchanged
+ClinVar VCF was the March 
+\change_inserted -157286936 1727366864
+13
+\change_deleted -157286936 1727366863
+25
+\change_unchanged
+, 202
+\change_inserted -157286936 1727366861
+2
+\change_deleted -157286936 1727366860
+4
+\change_unchanged
+ version of ClinVar's variants VCF
+\change_inserted -157286936 1727366873
+.
+\change_deleted -157286936 1727366873
+, with a file name of ClinVar_20240325.vcf.gz
+\change_inserted -157286936 1727374929
+.
+ The T2T ClinVar VCF was the version lifted over from ClinVar 20220313 by
+ the T2T Consortium and available on their GitHub 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -157286936 1727374911
+\begin_inset CommandInset label
+LatexCommand label
+name "The-GRCh38-GENCODE"
+
+\end_inset
+
+The GRCh38 GENCODE GFF was the GENCODE v35 
+\begin_inset Quotes eld
+\end_inset
+
+comprehensive gene annotation
+\begin_inset Quotes erd
+\end_inset
+
+ CHR GFF3 file.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+ The T2T GENCODE GFF is the Liftoff-converted version of GENCODE v35 from
+ the T2T Consortium's GitHub 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2716,6 +3063,19 @@ literal "false"
 \end_inset
 
 .
+
+\change_inserted -157286936 1727374902
+ The T2T cytobands used were obtained from the T2T Consortium's GitHub 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_marblchm13_2021"
+literal "false"
+
+\end_inset
+
+.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection*
@@ -2725,8 +3085,11 @@ Acknowledgments
 \begin_layout Standard
 We are grateful to the many people who contributed to the EM-seq project
  and made these libraries available.
- This work would not have been possible with out access to an extensible,
- open-source methylation caller.
+ This work would not have been possible with
+\change_deleted -157286936 1727375204
+ 
+\change_unchanged
+out access to an extensible, open-source methylation caller.
  Many thanks to Chaithanya Ponnaluri for critical reading of this manuscript,
  to Matt Campbell and Ariel Erijman for helpful discussion, and to the organizer
 s and supporters of the summer internship and postbac program at New England
