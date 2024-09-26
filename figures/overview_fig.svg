@@ -11,7 +11,6 @@
    inkscape:version="1.2.1 (9c6d41e4, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -26,15 +25,15 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.38583845"
-     inkscape:cx="1543.3921"
-     inkscape:cy="2407.7434"
+     inkscape:cx="1983.991"
+     inkscape:cy="997.82694"
      inkscape:window-width="1792"
      inkscape:window-height="946"
      inkscape:window-x="0"
-     inkscape:window-y="36"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
-     showguides="false" />
+     showguides="true" />
   <defs
      id="defs2506">
     <marker
@@ -60494,7 +60493,7 @@
     <g
        id="node2"
        class="node"
-       transform="matrix(1.187242,0,0,1.2005987,-105.6583,693.62501)">
+       transform="matrix(1.187242,0,0,1.2005987,-110.42083,693.62501)">
       <title
          id="title13">high_mappability</title>
       <polygon
@@ -60502,7 +60501,7 @@
          stroke="#000000"
          points="276.75,-458.4 276.75,-422.4 390.25,-422.4 390.25,-458.4 "
          id="polygon15"
-         transform="matrix(1.0698505,0,0,0.99906505,-23.29515,-0.41175083)" />
+         transform="matrix(1.049586,0,0,0.99933323,-16.536934,-0.29364549)" />
       <text
          text-anchor="middle"
          x="333.5"
@@ -60518,10 +60517,9 @@
        font-family="Times, serif"
        font-size="14px"
        id="text26"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4699"
-         startOffset="50%"
-         id="textPath8325">Mappability ≥ 0.01</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="144.49933"
+       y="161.70638">Mappability ≥ 0.01</text>
     <g
        id="node3"
        class="node"
@@ -60550,10 +60548,10 @@
        font-family="Times, serif"
        font-size="14px"
        id="text42"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path7625"
-         startOffset="50%"
-         id="textPath8618">Mappability &lt; 0.01</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="58.617405"
+       y="169.91583"
+       transform="rotate(-38.269298)">Mappability &lt; 0.01</text>
     <g
        id="node4"
        class="node"
@@ -60581,20 +60579,20 @@
        font-family="Times, serif"
        font-size="14px"
        id="text58"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4701"
-         startOffset="50%"
-         id="textPath8616">MapQ &lt; 10</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="268.0304"
+       y="96.980873"
+       transform="rotate(37.152982)">MapQ &lt; 10</text>
     <g
        id="node5"
        class="node"
-       transform="matrix(1.187242,0,0,1.2005987,-312.87697,895.55807)">
+       transform="matrix(1.187242,0,0,1.2005987,-309.17278,895.55807)">
       <title
          id="title61">misfiltered</title>
       <polygon
          fill="#993333"
          stroke="#000000"
-         points="783.88,-554.4 707.12,-554.4 707.12,-518.4 783.88,-518.4 "
+         points="707.12,-554.4 707.12,-518.4 783.88,-518.4 783.88,-554.4 "
          id="polygon63"
          style="fill:#995533;fill-opacity:1"
          transform="matrix(0.86261558,0,0,1.0019423,102.42009,1.0418722)" />
@@ -60613,10 +60611,10 @@
        font-family="Times, serif"
        font-size="14px"
        id="text74"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4707"
-         startOffset="50%"
-         id="textPath8335">Insufficient mappable bass</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="423.05408"
+       y="-150.64389"
+       transform="rotate(31.486486)">Insufficient mappable bases</text>
     <g
        id="node8"
        class="node"
@@ -60644,20 +60642,20 @@
        font-family="Times, serif"
        font-size="14px"
        id="text90"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4709"
-         startOffset="50%"
-         id="textPath8340">Passes read-based filtering</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="634.53082"
+       y="195.26855"
+       transform="rotate(-7.1741549)">Passes read-based filtering</text>
     <g
        id="node6"
        class="node"
-       transform="matrix(1.187242,0,0,1.2005987,-312.87696,93.180248)">
+       transform="matrix(1.187242,0,0,1.2005987,-309.17276,93.180248)">
       <title
          id="title93">rescued</title>
       <polygon
          fill="#333399"
          stroke="#000000"
-         points="776.38,-36.4 776.38,-72.4 714.62,-72.4 714.62,-36.4 "
+         points="776.38,-72.4 714.62,-72.4 714.62,-36.4 776.38,-36.4 "
          id="polygon95"
          transform="matrix(1.0767503,0,0,0.99897442,-57.21736,-0.05579129)" />
       <text
@@ -60675,20 +60673,19 @@
        font-family="Times, serif"
        font-size="14px"
        id="text106"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4705"
-         startOffset="50%"
-         id="textPath8333">Sufficient mappable bases</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="448.05789"
+       y="24.411905">Sufficient mappable bases</text>
     <g
        id="node7"
        class="node"
-       transform="matrix(1.187242,0,0,1.2005987,-312.87697,423.49031)">
+       transform="matrix(1.187242,0,0,1.2005987,-309.1728,423.49031)">
       <title
          id="title109">removed</title>
       <polygon
          fill="#cc3333"
          stroke="#000000"
-         points="711.25,-233.4 711.25,-197.4 779.75,-197.4 779.75,-233.4 "
+         points="711.25,-197.4 779.75,-197.4 779.75,-233.4 711.25,-233.4 "
          id="polygon111"
          style="fill:#cc6633;fill-opacity:1"
          transform="matrix(1.3853436,0,0,0.99518963,-287.27363,-1.0361547)" />
@@ -60707,10 +60704,10 @@
        font-family="Times, serif"
        font-size="14px"
        id="text122"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4711"
-         startOffset="50%"
-         id="textPath8329">Insufficient mappable bases</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="489.80005"
+       y="19.236759"
+       transform="rotate(24.247853)">Insufficient mappable bases</text>
     <g
        id="node10"
        class="node"
@@ -60739,37 +60736,36 @@
        font-family="Times, serif"
        font-size="14px"
        id="text138"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4717"
-         startOffset="50%"
-         id="textPath8331">Excluded by MapQ filtering</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="564.82959"
+       y="307.81677">Excluded by MapQ filtering</text>
     <text
        text-anchor="middle"
        font-family="Times, serif"
        font-size="14px"
        id="text147"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4715"
-         startOffset="50%"
-         id="textPath8344">Excluded by read filtering</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="753.50787"
+       y="49.933678"
+       transform="rotate(17.663055)">Excluded by read filtering</text>
     <text
        text-anchor="middle"
        font-family="Times, serif"
        font-size="14px"
        id="text156"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4719"
-         startOffset="50%"
-         id="textPath8337">Excluded by read filtering</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="692.38226"
+       y="-149.59151"
+       transform="rotate(16.527241)">Excluded by read filtering</text>
     <text
        text-anchor="middle"
        font-family="Times, serif"
        font-size="14px"
        id="text165"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"><textPath
-         xlink:href="#path4713"
-         startOffset="50%"
-         id="textPath8342">Excluded by read filtering</textPath></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.726235"
+       x="697.80383"
+       y="-286.77774"
+       transform="rotate(40.182872)">Excluded by read filtering</text>
     <g
        class="bglayer"
        id="g4593"
@@ -61637,90 +61633,75 @@
        d="M 541.62517,220.242 Z"
        id="path3908" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 76.570091,164.88134 138.616119,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 76.570091,164.95584 131.893669,0.30655"
        id="path4699"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:connection-start="#node1"
-       inkscape:connection-end="#node2" />
+       inkscape:connection-start="#node1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="M 76.570091,184.08816 254.21923,290.53074"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="M 73.46688,186.49212 237.95041,309.26696"
        id="path4701"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:connection-end="#node4"
        inkscape:connection-start="#node1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 357.94763,27.867679 161.48854,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 360.69716,27.429442 170.06254,0"
        id="path4705"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-end="#node6"
-       inkscape:connection-start="#node3" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="M 334.23444,49.225886 524.1946,141.54523"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="M 361.3829,28.800914 539.12634,141.54523"
        id="path4707"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:connection-end="#node7"
-       inkscape:connection-start="#node3" />
+       inkscape:connection-end="#node7" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="M 359.35067,156.39668 787.96225,103.74064"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="M 357.26848,165.94812 797.51102,95.31731"
        id="path4709"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-start="#node2"
-       inkscape:connection-end="#node8" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 325.08789,166.12106 193.99575,54.64177"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 354.52554,168.69107 176.9199,79.54538"
        id="path4711"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="M 572.21197,164.88135 810.58408,289.40239"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 630.87716,170.06254 159.09077,127.5469"
        id="path4713"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-start="#node7"
-       inkscape:connection-end="#node10" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 635.32527,265.12087 138.3648,29.73648"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 615.10523,252.35087 172.11975,55.54461"
        id="path4715"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-end="#node10"
-       inkscape:connection-start="#node5" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 337.63411,312.14152 436.05596,0"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="m 337.63411,312.52099 449.59087,3.60333"
        id="path4717"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:connection-start="#node4"
-       inkscape:connection-end="#node10" />
+       inkscape:connection-start="#node4" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="m 598.38788,34.158227 189.57437,45.55811"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="M 613.73376,29.48665 796.82529,83.659798"
        id="path4719"
        inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-start="#node6"
-       inkscape:connection-end="#node8" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
-       d="M 76.570091,147.01096 251.97498,49.225886"
+       style="display:inline;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart)"
+       d="M 71.720855,143.27057 216.69259,28.115178"
        id="path7625"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
-       inkscape:connection-end="#node3"
        inkscape:connection-start="#node1" />
     <path
        style="fill:#995533;fill-opacity:1;stroke:#000000;stroke-width:1.3;stroke-dasharray:none"
