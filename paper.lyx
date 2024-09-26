@@ -2078,8 +2078,8 @@ noprefix "false"
 \change_unchanged
 .
 
-\change_inserted -157286936 1727368611
- For the GRCh38 comparison, the GRCh38.p11(??) 
+\change_inserted -157286936 1727384350
+ For the GRCh38 comparison, the GRCh38.p11[??] 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "church_modernizing_2011"

@@ -40,7 +40,7 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="0.75"
-     inkscape:cx="747.33333"
+     inkscape:cx="740.66667"
      inkscape:cy="438.66667"
      inkscape:window-width="1792"
      inkscape:window-height="950"
@@ -19238,7 +19238,11 @@
        stroke="none"
        id="text166217"
        transform="translate(-4.4913737,130.02686)"
-       style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision">MapQ Filtering</text>
+       style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision"><tspan
+         sodipodi:role="line"
+         id="tspan657343"
+         x="5"
+         y="64">MapQ Filtered</tspan></text>
     <text
        x="5"
        xml:space="preserve"
@@ -19249,13 +19253,9 @@
        transform="translate(-4.5968424,130.02686)"
        style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision"><tspan
          sodipodi:role="line"
-         id="tspan175488"
-         x="5"
-         y="104">Read Filtering</tspan><tspan
-         sodipodi:role="line"
          id="tspan175490"
          x="5"
-         y="134" /></text>
+         y="104">Read Filtered</tspan></text>
     <text
        x="5"
        xml:space="preserve"

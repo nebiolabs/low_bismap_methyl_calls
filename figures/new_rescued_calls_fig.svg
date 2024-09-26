@@ -41,7 +41,7 @@
      showgrid="false"
      inkscape:zoom="0.52"
      inkscape:cx="756.73077"
-     inkscape:cy="603.84615"
+     inkscape:cy="450"
      inkscape:window-width="1920"
      inkscape:window-height="948"
      inkscape:window-x="0"
@@ -14894,7 +14894,7 @@
        stroke="none"
        id="text388337"
        transform="translate(0,130)"
-       style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision">Mapq Filtered</text>
+       style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision">MapQ Filtered</text>
     <rect
        x="0"
        y="80"
@@ -14973,7 +14973,7 @@
        clip-path="url(#clipPath6)"
        stroke="none"
        id="text388353"
-       transform="translate(0,130)"
+       transform="translate(0,134)"
        style="font-size:24px;font-family:Arial;text-rendering:geometricPrecision">GENCODE</text>
     <g
        fill="#c0c0c0"
