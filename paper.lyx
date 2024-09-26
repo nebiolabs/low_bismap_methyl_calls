@@ -659,50 +659,46 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-MapQ filtering does not remove all poorly mapped reads.
- This is an example of a coverage spike in a low-mappability region: clearly
+MapQ filtering does not remove all poorly mapped reads
+\change_inserted -157286936 1727383453
+, while coordinate filtering discards many salvageable
+\change_unchanged
+.
+ 
+\change_inserted -157286936 1727384004
+Section A shows the number of rescued CpGs across all libraries in our analysis,
+ in the same manner as unsupported calls are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:overview"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Section B shows an example of the issue in a histone H2B gene.
+ The MapQ Filtered track shows CpGs called with only MapQ filtering applied.
+ The Coord.
+ Kept track shows those Cs that would be retained with coordinate filtering.
+ The Rescued track shows mappable CpGs in small mappability dips that coordinate
+ filtering would unnecessarily discard, but our read-based filtering is
+ able to save.
+ Finally, the Read Filtered track shows all the CpGs our method is able
+ to retain, a significantly larger number than with coordinate filtering.
+ 
+\change_deleted -157286936 1727384014
+This is an example of a coverage spike in a low-mappability region: clearly
  not sufficiently mappable, but still called with MapQ filtering.
- Mappability is only high in a 
-\change_deleted -157286936 1727373986
-small
-\change_unchanged
- portion of this view (top track), but using MapQ alone alone enable calls
- of many Cs (MapQ Only track).
- the Read-based Kept track shows that 
-\change_deleted -157286936 1727374004
-only 2 sites
-\change_unchanged
+ Mappability is only high in a small portion of this view (top track), but
+ using MapQ alone alone enable calls of many Cs (MapQ Only track).
+ the Read-based Kept track shows that only 2 sites have enough mappability
+ to call and successfully eliminates the remaining uncallable Cs (Read-based
+ ∆ track).
+ Per C filtering eliminates all Cs in this region including the 2 that should
+ be callable (Coordinate Kept track).
  
-\change_inserted -157286936 1727374014
-the sites in the red box do not 
-\change_unchanged
-have enough mappability to call and 
-\change_inserted -157286936 1727374026
-are 
-\change_unchanged
-successfully eliminate
-\change_inserted -157286936 1727374028
-d
-\change_deleted -157286936 1727374028
-s
-\change_unchanged
- 
-\change_deleted -157286936 1727374031
-the remaining uncallable Cs
-\change_inserted -157286936 1727374033
-by our method
-\change_unchanged
- (Read-based ∆ track).
- Per C filtering eliminates all Cs in this region including th
-\change_deleted -157286936 1727374042
-e 2
-\change_inserted -157286936 1727374042
-ose
-\change_unchanged
- that should be callable (Coordinate Kept track).
- 
-\change_inserted -157286936 1727374083
-[FIX THIS]
 \change_unchanged
 
 \begin_inset CommandInset label
