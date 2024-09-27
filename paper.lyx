@@ -209,7 +209,11 @@ ntly higher MapQ values than can be supported by the uniqueness of the region
  of methylation markers associated with disease states that in fact do not
  exist.
  The presence of erroneous data such as this in training sets for machine
- learning models has been shown to reduce performance [CITE].
+ learning models has been shown to reduce performance
+\change_deleted -157286936 1727447453
+ [CITE]
+\change_unchanged
+.
 \end_layout
 
 \begin_layout Section*
@@ -497,7 +501,25 @@ literal "false"
 A methylation caller can use accurate MapQ values to filter out reads with
  multiple placements in the genome, allowing the resulting methylation calls
  to accurately reflect their specific loci.
- Unfortunately, current aligners frequently produce implausible MapQ scores.
+ Unfortunately, current aligners frequently produce implausible MapQ scores
+\change_inserted -157286936 1727445136
+, and as a result methylation callers can produce
+\change_deleted -157286936 1727445117
+.
+\change_inserted -157286936 1727448143
+unsupported methylation calls.Such data could result in the identification
+ of invalid biomarkers, and if used as training data for a machine learning
+ model can reduce its performance
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fard_impact_2017"
+literal "false"
+
+\end_inset
+
+.
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -1395,7 +1417,21 @@ Clinical Samples
 \begin_layout Standard
 To further demonstrate the clinical impact of improperly calling methylation
  in repetitive regions, we also examined sequence data from 27 clinical
- samples from [CITE STUDY].
+ samples from 
+\change_inserted -157286936 1727448158
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_dbgap_nodate"
+literal "false"
+
+\end_inset
+
+
+\change_deleted -157286936 1727448148
+[CITE STUDY]
+\change_unchanged
+.
  This study sought to examine genetic markers connected to the risk of developin
 g type 2 diabetes and insulin resistance.
  DNA methylation data was collected by the study authors using whole genome
