@@ -19,7 +19,7 @@ process indexGenomeBwameth {
 
         shell:
 		'''
-                mkdir -p tmp
+                mkdir tmp
 		export TMPDIR="$(pwd)/tmp"
 		bwameth.py index !{ref};
 		'''
@@ -40,7 +40,7 @@ process indexGenomeBismark {
 		tuple path(ref), path('Bisulfite*'), val(suffix)
         shell:
 		'''
-                mkdir -p tmp
+                mkdir tmp
 		export TMPDIR="$(pwd)/tmp"
 		bismark_genome_preparation "$(pwd)" --parallel 8;
                 '''
@@ -50,7 +50,6 @@ process realignGenomeBismark {
 
         penv 'smp'
         cpus 16
-        memory '64 GB'
         conda 'bismark==0.24.1 bowtie2==2.5.2 samtools==1.19 gzip==1.13 seqtk==1.4 fastp==0.20.1'
 
         input:
@@ -61,28 +60,21 @@ process realignGenomeBismark {
 
         shell:
 		'''
-                mkdir -p tmp
+                mkdir tmp
 		export TMPDIR="$(pwd)/tmp"
-                awk_script='BEGIN { pattern = "@.*/" readnum }  $0 ~ pattern { print; next } /@.*/ { $1 = $1 "/" readnum; print; next } { print }'
-                bam_read1() {
-                    samtools collate -@ 2 -u -O "$1" | samtools fastq -s /dev/null -0 /dev/null -2 /dev/null
-                } 
-                bam_read2() {
-                    samtools collate -@ 2 -u -O "$1" | samtools fastq -s /dev/null -0 /dev/null -1 /dev/null
-                } 
                 cleanup() {
                     rm reads_1.fastq reads_2.fastq 
                 }
                 trap cleanup EXIT
                 # reads_1 is actually a BAM and reads_2 is actually a BAI
                 if [[ "!{reads_1}" = *.bam ]]; then
-                    reads1_cmd="bam_read1 !{reads_1}"
-                    reads2_cmd="bam_read2 !{reads_1}"
+                    reads1_cmd="samtools collate -@ 2 -u -O !{reads_1} | samtools fastq -s /dev/null -0 /dev/null -2 /dev/null !{reads_1}"
+                    reads2_cmd="samtools collate -@ 2 -u -O !{reads_1} | samtools fastq -s /dev/null -0 /dev/null -1 /dev/null !{reads_1}"
                 else
-                    reads1_cmd="zcat -f !{reads_1}"
-                    reads2_cmd="zcat -f !{reads_2}"
+                    reads1_cmd="zcat -f \"!{reads_1}\""
+                    reads2_cmd="zcat -f \"!{reads_2}\""
                 fi
-                seqtk mergepe <($reads1_cmd | paste - - - - | sort -S 48G --parallel 16 -k1 | tr "\\t" "\\n") <($reads2_cmd | paste - - - - | sort -S 48G --parallel 16 -k1 | tr "\\t" "\\n") | fastp -l 2 -Q --stdin --interleaved_in --out1 reads_1.fastq --out2 reads_2.fastq --overrepresentation_analysis 2> fastp.stderr
+                fastp -l 2 -Q --in1 <($reads1_cmd) --in2 <($reads2_cmd) --out1 reads_1.fastq --out2 reads_2.fastq --overrepresentation_analysis 2> fastp.stderr
 		bismark --parallel 3 --temp_dir "$TMPDIR" "." -1 reads_1.fastq -2 reads_2.fastq; for f in `ls *_bismark*.bam`; do mv $f !{reads_1.getFileName().toString().split("/")[-1].replace(".bam", "").replace(".fastq", "").replace(".fq", "").replace(".gz", "")}_bismark_!{suffix}.bam; done
                 '''
 }
@@ -100,7 +92,7 @@ process deduplicateBismark {
 
         shell:
 		'''
-                mkdir -p tmp
+                mkdir tmp
 		export TMPDIR="$(pwd)/tmp"
                 bam_name_noext="$(basename -s ".bam" !{aligned_bam})"
 		deduplicate_bismark -p --bam !{aligned_bam}
@@ -111,7 +103,6 @@ process realignGenomeBwameth {
 
         penv 'smp'
         cpus 16
-        memory '64 GB'
         conda 'bwameth==0.2.7 samtools==1.19 gzip==1.13 seqtk==1.4 fastp==0.20.1'
 
         input:
@@ -122,14 +113,8 @@ process realignGenomeBwameth {
 
         shell:
 		'''
-                mkdir -p tmp
+                mkdir tmp
 		export TMPDIR="$(pwd)/tmp"
-                bam_read1() {
-                    samtools collate -@ 2 -u -O "$1" | samtools fastq -s /dev/null -0 /dev/null -2 /dev/null -N
-                } 
-                bam_read2() {
-                    samtools collate -@ 2 -u -O "$1" | samtools fastq -s /dev/null -0 /dev/null -1 /dev/null -N
-                } 
                 cleanup() {
                     rm reads_1.fastq reads_2.fastq 
                 }
@@ -137,14 +122,14 @@ process realignGenomeBwameth {
                 #mkfifo reads1_trimmed reads2_trimmed
                 # reads_1 is actually a BAM and reads_2 is actually a BAI
                 if [[ "!{reads_1}" = *.bam ]]; then
-                    reads1_cmd="bam_read1 !{reads_1}"
-                    reads2_cmd="bam_read2 !{reads_1}"
+                    reads1_cmd="samtools collate -@ 2 -u -O !{reads_1} | samtools fastq -s /dev/null -0 /dev/null -2 /dev/null !{reads_1}"
+                    reads2_cmd="samtools collate -@ 2 -u -O !{reads_1} | samtools fastq -s /dev/null -0 /dev/null -1 /dev/null !{reads_1}"
                 else
-                    reads1_cmd="zcat -f !{reads_1}"
-                    reads2_cmd="zcat -f !{reads_2}"
+                    reads1_cmd="zcat -f \"!{reads_1}\""
+                    reads2_cmd="zcat -f \"!{reads_2}\""
                 fi
-                seqtk mergepe <($reads1_cmd | paste - - - - | sort -S 48G --parallel 16 -k1 | tr "\\t" "\\n") <($reads2_cmd | paste - - - - | sort -S 48G --parallel 16 -k1 | tr "\\t" "\\n") | fastp -l 2 -Q --stdin --interleaved_in --out1 reads_1.fastq --out2 reads_2.fastq --overrepresentation_analysis 2> fastp.stderr
-		bwameth.py --reference !{ref} -t 16 reads_1.fastq reads_2.fastq | samtools view -b - > !{reads_1.getFileName().toString().split("/")[-1].replace(".bam", "").replace(".fastq", "").replace(".fq", "").replace(".gz", "")}_bwameth_!{suffix}.bam
+                fastp -l 2 -Q --in1 <($reads1_cmd) --in2 <($reads2_cmd) --out1 reads_1.fastq --out2 reads_2.fastq --overrepresentation_analysis 2> fastp.stderr
+		bwameth.py -p --reference !{ref} -t 16 reads_1.fastq reads_2.fastq | samtools view -b - > !{reads_1.getFileName().toString().split("/")[-1].replace(".bam", "").replace(".fastq", "").replace(".fq", "").replace(".gz", "")}_bwameth_!{suffix}.bam
 		'''
 }
 
@@ -162,7 +147,7 @@ process addReadGroup {
 
         shell:
                 '''
-                mkdir -p tmp
+                mkdir tmp
                 export TMPDIR="$(pwd)/tmp"
                 samtools addreplacerg -r "@RG\tID:-\tSM:-" -o "$(basename -s .bam "!{input_bam}").rg.bam" "!{input_bam}"
                 '''
@@ -183,10 +168,10 @@ process indexBismark {
 
         shell:
                 '''
-                mkdir -p tmp
+                mkdir tmp
                 export TMPDIR="$(pwd)/tmp"
                 bam_name_noext="$(basename -s ".bam" !{aligned_bam})"
-                samtools sort -m 4G -@ 8 !{aligned_bam} > "${bam_name_noext}.sorted.bam"
+                samtools sort -@ 8 !{aligned_bam} > "${bam_name_noext}.sorted.bam"
                 samtools index -@ 8 "${bam_name_noext}.sorted.bam"
                 '''
 }
@@ -204,10 +189,10 @@ process sortBwameth {
 
         shell:
                 '''
-                mkdir -p tmp
+                mkdir tmp
                 export TMPDIR="$(pwd)/tmp"
                 bam_name_noext="$(basename -s ".bam" !{aligned_bam})"
-                samtools sort -m 4G -@ 8 !{aligned_bam} > "${bam_name_noext}.sorted.bam"
+                samtools sort -@ 8 !{aligned_bam} > "${bam_name_noext}.sorted.bam"
                 '''
 }
 
@@ -227,7 +212,7 @@ process markDupsBwameth {
 
         shell:
                 '''
-                mkdir -p tmp
+                mkdir tmp
                 export TMPDIR="$(pwd)/tmp"
                 bam_name_noext="$(basename -s ".sorted.bam" !{sorted_bam})"
                 picard MarkDuplicates \
