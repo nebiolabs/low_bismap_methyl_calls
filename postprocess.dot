@@ -1,0 +1,29 @@
+digraph workflow {
+
+	"Genome" [shape=hexagon];
+
+	"BEDs" [shape=hexagon];
+
+	"Summarize Calls" [shape=diamond, color=gray85, style=filled, label="Summarize Calls"];
+
+	"BEDs" -> "Per-chromosome Call Counts";
+
+	"BEDs" -> "Per-chromosome Gene Counts \nwith Calls";
+
+	"Genome" -> "Total C/CpG Counts";
+
+	"Per-chromosome Call Counts" -> "Summarize Calls";
+
+	"Per-chromosome Gene Counts \nwith Calls" -> "Summarize Calls";
+
+	"Total C/CpG Counts" -> "Summarize Calls";
+
+	"Call Count Summaries" [shape=parallelogram];
+
+	"Summarize Calls" -> "Call Count Summaries";
+
+	"Sankey Diagrams" [shape=parallelogram];
+
+    "Call Count Summaries" -> "Sankey Diagrams";
+	
+ }

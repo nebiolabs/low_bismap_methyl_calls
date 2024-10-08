@@ -96,6 +96,7 @@
 \html_be_strict false
 \docbook_table_output 0
 \docbook_mathml_prefix 1
+\author -678233927 "Valiec"
 \end_header
 
 \begin_body
@@ -1797,10 +1798,12 @@ placement document
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
+
+\change_deleted -678233927 1728407484
 \begin_inset Graphics
 	filename figures/analysis_clinvar.svg
 	lyxscale 90
@@ -1812,6 +1815,8 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+
+\change_deleted -678233927 1728407484
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1826,10 +1831,31 @@ Detailed description of the procedure used to annotate the T2Tv2.0 reference usi
 \end_inset
 
 
+\change_unchanged
+
 \end_layout
 
 \end_inset
 
+
+\change_inserted -678233927 1728407512
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -678233927 1728407529
+This step no longer exists,
+ I used the files from the T2T Consortium.
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
 
 \end_layout
 
@@ -2077,9 +2103,15 @@ Since this analysis was run for three different input masses and two sequencing 
  We also produced similarly-annotated files for all methylation calls (regardless of mappability),
  all methylation calls in GENCODE genes (with low minimum mappability) which contained ClinVar variants,
  all methylation calls in low-mappability regions that were also in GENCODE genes which contained ClinVar variants,
- counts of calls in in GENCODE genes which contained ClinVar variants regardless of mappability,
+ counts of calls in in GENCODE genes which contained ClinVar variants regardless of mappability
+\change_inserted -678233927 1728407894
+.
+\change_deleted -678233927 1728407894
+,
  methylation calls that are either ≤10% or ≥90% (regardless of mappability),
  and methylation calls which are between 10% and 90% (also regardless of mappability).
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -2148,6 +2180,84 @@ Detailed description of BAM realignment steps.
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted -678233927 1728407917
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\change_inserted -678233927 1728407928
+\begin_inset Graphics
+	filename figures/postprocess.svg
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted -678233927 1728407917
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted -678233927 1728408010
+Detailed description of postprocessing steps.
+ Hexagons are input files.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+BEDs
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the BED-like tabular files output by the main processing pipeline (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dag-1"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+).
+ Ovals are intermediate files.
+ Gray diamonds are processing steps with multiple arguments.
+ Parallelograms are output files.
+ Labels on edges are processing steps with one input and one output.
+ 
+\change_unchanged
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 

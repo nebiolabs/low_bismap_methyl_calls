@@ -6,11 +6,11 @@ digraph workflow {
 
 	"PREPROC_3" [style=invis];
 
-	"PREPROC_1" -> "Low-mappability Regions" [label="From Preprocessing", style=dotted];
+	"PREPROC_1" -> "Low-Mappability Regions" [label="From Preprocessing", style=dotted];
 
-	"PREPROC_2" -> "Low-mappability ClinVar Genes" [label="From Preprocessing", style=dotted];
+	"PREPROC_2" -> "Low-Mappability ClinVar Genes" [label="From Preprocessing", style=dotted];
 
-	"PREPROC_3" -> "Low-mappability Regions \nin ClinVar Genes" [label="From Preprocessing", style=dotted];
+	"PREPROC_3" -> "Low-Mappability Regions \nin ClinVar Genes" [label="From Preprocessing", style=dotted];
 
 	"Genome" [shape=hexagon];
 
@@ -49,29 +49,19 @@ digraph workflow {
 
 	"Miscalls" -> "Intersect_3";
 
-	"Low-mappability Regions" -> "Intersect_3";
+	"Low-Mappability Regions" -> "Intersect_3";
 
-	"Low-mappability ClinVar Genes" -> "Intersect_3";
+	"Low-Mappability ClinVar Genes" -> "Intersect_3";
 
-	"Low-mappability Regions \nin ClinVar Genes" -> "Intersect_3";
+	"Low-Mappability Regions \nin ClinVar Genes" -> "Intersect_3";
 
-	"Intersect_3" -> "Low-mappability Calls and Miscalls";
-	"Low-mappability Calls and Miscalls" [shape=parallelogram];
+	"Low-Mappability and Unsupported Calls" [shape=parallelogram];
+	"Intersect_3" -> "Low-Mappability and Unsupported Calls";
 
-	"Intersect_3" -> "ClinVar Gene Calls and Miscalls";
-	"ClinVar Gene Calls and Miscalls" [shape=parallelogram];
+	"Intersect_3" -> "ClinVar Gene Calls";
+	"ClinVar Gene Calls" [shape=parallelogram];
 
-	"Intersect_3" -> "ClinVar Gene Low-mappability Calls and Miscalls";
-	"ClinVar Gene Low-mappability Calls and Miscalls" [shape=parallelogram];
-
-	"Intersect_3" -> "Pure Calls";
-	"Pure Calls" [shape=parallelogram];
-
-	"Intersect_3" -> "Mixed Calls";
-	"Mixed Calls" [shape=parallelogram];
-
-	"Intersect_3" -> "Resolved Calls";
-	"Resolved Calls" [shape=parallelogram];
-
+	"ClinVar Gene Low-Mappability \nand Unsupported Calls" [shape=parallelogram];
+	"Intersect_3" -> "ClinVar Gene Low-Mappability \nand Unsupported Calls";
 	
  }

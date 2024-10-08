@@ -23,23 +23,23 @@ digraph workflow {
 
 	"Genome" -> "Intersect_3";
 
-	"Intersect_3" -> "Low-mappability Regions";
+	"Intersect_3" -> "Low-Mappability Regions";
 
 	"Intersect_2" [shape=diamond,  color=gray85, style=filled, label="Intersect with\nlow-mappability regions"];
 
 	"ClinVar Genes" -> "Intersect_2";
 
-	"Low-mappability Regions" -> "Intersect_2";
+	"Low-Mappability Regions" -> "Intersect_2";
 
-	"Intersect_2" -> "Low-mappability ClinVar Genes";
+	"Intersect_2" -> "Low-Mappability ClinVar Genes";
 
-	"Intersect_2" -> "Low-mappability Regions \nin ClinVar Genes";
+	"Intersect_2" -> "Low-Mappability Regions \nin ClinVar Genes";
 
-	"Low-mappability Regions" -> "BAM_PROC_1" [label="To Methylation Calling", style=dotted];
+	"Low-Mappability Regions" -> "BAM_PROC_1" [label="To Methylation Calling", style=dotted];
 
-	"Low-mappability ClinVar Genes" -> "BAM_PROC_2" [label="To Methylation Calling", style=dotted];
+	"Low-Mappability ClinVar Genes" -> "BAM_PROC_2" [label="To Methylation Calling", style=dotted];
 
-	"Low-mappability Regions \nin ClinVar Genes" -> "BAM_PROC_3" [label="To Methylation Calling", style=dotted];
+	"Low-Mappability Regions \nin ClinVar Genes" -> "BAM_PROC_3" [label="To Methylation Calling", style=dotted];
 
 	"BAM_PROC_1" [style=invis];
 

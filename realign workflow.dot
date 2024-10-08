@@ -4,9 +4,15 @@ digraph workflow {
 
 	"Input BAMs" [shape=hexagon];
 
+	"Input FASTQs" [shape=hexagon];
+
 	"Final Bismark BAMs" [shape=parallelogram];
 
+	"Bismark BAM Indices" [shape=parallelogram];
+
 	"Final bwa-meth BAMs" [shape=parallelogram];
+
+	"bwa-meth BAM Indices" [shape=parallelogram];
 
 	"Bismark" [shape=diamond,  color=gray85, style=filled, label="bismark -1 <read 1s> -2 <read 2s>"];
 	
@@ -19,6 +25,8 @@ digraph workflow {
 	"Collated BAMs" -> "samtools fastq";
 
 	"samtools fastq" -> "FASTQs";
+
+	"Input FASTQs" -> "FASTQs";
 
 	"FASTQs" -> "Bismark";
 
@@ -36,10 +44,20 @@ digraph workflow {
 
 	"Reference FASTA" -> "bwa-meth";
 
-	"Bismark" -> "Realigned Bismark BAMs";
+	"Bismark" -> "Realigned Bismark BAMs (no @RG)";
 
-	"Realigned Bismark BAMs" -> "Final Bismark BAMs" [label="deduplicate_bismark"];
+	"Realigned Bismark BAMs (no @RG)" -> "Realigned Bismark BAMs (with @RG)" [label="samtools addreplacerg"];
 
-	"bwa-meth" -> "Final bwa-meth BAMs";
+	"Realigned Bismark BAMs (with @RG)" -> "Sorted Bismark BAMs" [label="samtools sort"];
+
+	"Sorted Bismark BAMs" -> "Final Bismark BAMs" [label="deduplicate_bismark"];
+
+	"Final Bismark BAMs" -> "Bismark BAM Indices" [label="samtools index"];
+
+	"bwa-meth" -> "Realigned bwa-meth BAMs";
+
+	"Realigned bwa-meth BAMs" -> "Final bwa-meth BAMs" [label="samtools sort"];
+
+	"Final bwa-meth BAMs" -> "bwa-meth BAM Indices" [label="samtools index"];
 
 }
