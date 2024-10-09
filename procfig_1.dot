@@ -17,7 +17,7 @@ digraph workflow {
 
 	"Intersect_1" -> "ClinVar Genes";
 
-	"Intersect_3" [shape=diamond,  color=gray85, style=filled, label="Find low-mappability regions"];
+	"Intersect_3" [shape=diamond,  color=gray85, style=filled, label="Find Low-Mappability Regions"];
 
 	"Bismap" -> "Intersect_3";
 
@@ -25,7 +25,7 @@ digraph workflow {
 
 	"Intersect_3" -> "Low-Mappability Regions";
 
-	"Intersect_2" [shape=diamond,  color=gray85, style=filled, label="Intersect with\nlow-mappability regions"];
+	"Intersect_2" [shape=diamond,  color=gray85, style=filled, label="Intersect with\nLow-Mappability Regions"];
 
 	"ClinVar Genes" -> "Intersect_2";
 
