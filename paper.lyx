@@ -518,9 +518,23 @@ literal "false"
 
 \begin_layout Standard
 In this paper,
- we describe the problem that low-mappability creates for methylation calling,
+ we describe the problem that low-mappability
+\change_inserted -678233927 1731775422
+ methylation calls
+\change_unchanged
+ create
+\change_deleted -678233927 1731775424
+s
+\change_unchanged
+ for methylation calling,
  the extent of wrongly called methylation in real datasets,
- and our implementation of an improved method that measurably reduces incorrect mixed-methylation calls improving differential methylation assessment,
+ and our implementation of an improved method that measurably reduces 
+\change_deleted -678233927 1731775471
+incorrect mixed-methylation
+\change_inserted -678233927 1731775482
+unsupported methylation
+\change_unchanged
+ calls improving differential methylation assessment,
  the use of methylation as a biomarker for disease progression,
  and understanding of development processes.
 \end_layout
@@ -897,6 +911,21 @@ Unsupported
 
  shows the calls in low-mappability regions removed entirely by read-based filtering for being insufficiently mappable.
  
+\change_inserted -678233927 1731776139
+
+\begin_inset Quotes eld
+\end_inset
+
+Coord.
+ Filtered
+\begin_inset Quotes erd
+\end_inset
+
+ shows the methylation calls kept after coordinate-based (i.e.
+ bedtools) filtering.
+ 
+\change_unchanged
+
 \begin_inset Quotes eld
 \end_inset
 
@@ -1286,6 +1315,8 @@ EM-seq vs.
 
 \begin_layout Standard
 Because of
+\change_deleted -678233927 1731778306
+
 \begin_inset Note Note
 status collapsed
 
@@ -1295,6 +1326,8 @@ status collapsed
 
 \end_inset
 
+
+\change_unchanged
  the reduced DNA damage and longer possible read lengths that are found in non-bisulfite libraries,
  we compared our EM-seq cell line libraries with WGBS libraries produced using the same 3 sample masses,
  to see if there is a difference between the two methods with regard to the number of CpGs affected.
@@ -1753,7 +1786,13 @@ Reads placed with falsely high confidence elicit cascading detrimental effects o
  because of the more accurate MapQ values,
  decreased run time,
  and more flexibility to separate methylation calling from alignment,
- we also recommend the use of bwa-meth for alignment and MethylDackel with MapQ > 10 and the new mappability feature enabled for high accuracy methylation calling.
+ we also recommend the use of bwa-meth for alignment and MethylDackel with MapQ 
+\change_inserted -678233927 1731778347
+≥
+\change_deleted -678233927 1731778347
+>
+\change_unchanged
+ 10 and the new mappability feature enabled for high accuracy methylation calling.
 \end_layout
 
 \begin_layout Section*

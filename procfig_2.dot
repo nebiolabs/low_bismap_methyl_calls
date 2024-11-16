@@ -38,8 +38,8 @@ digraph workflow {
 
 	"Filtered Calls" -> "Intersect_2";
 
-	"Intersect_2" -> "Miscalls";
-	"Miscalls" [shape=parallelogram];
+	"Intersect_2" -> "Problematic Calls";
+	"Problematic Calls" [shape=parallelogram];
 
 	"Intersect_3" [shape=diamond, color=gray85, style=filled, label="Intersect and Process"];
 
@@ -47,7 +47,7 @@ digraph workflow {
 
 	"Filtered Calls" -> "Intersect_3";
 
-	"Miscalls" -> "Intersect_3";
+	"Problematic Calls" -> "Intersect_3";
 
 	"Low-Mappability Regions" -> "Intersect_3";
 
@@ -55,13 +55,13 @@ digraph workflow {
 
 	"Low-Mappability Regions \nin ClinVar Genes" -> "Intersect_3";
 
-	"Low-Mappability and Unsupported Calls" [shape=parallelogram];
-	"Intersect_3" -> "Low-Mappability and Unsupported Calls";
+	"Low-Mappability and Problematic Calls" [shape=parallelogram];
+	"Intersect_3" -> "Low-Mappability and Problematic Calls";
 
 	"Intersect_3" -> "ClinVar Gene Calls";
 	"ClinVar Gene Calls" [shape=parallelogram];
 
-	"ClinVar Gene Low-Mappability \nand Unsupported Calls" [shape=parallelogram];
-	"Intersect_3" -> "ClinVar Gene Low-Mappability \nand Unsupported Calls";
+	"ClinVar Gene Low-Mappability \nand Problematic Calls" [shape=parallelogram];
+	"Intersect_3" -> "ClinVar Gene Low-Mappability \nand Problematic Calls";
 	
  }
