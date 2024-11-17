@@ -96,7 +96,6 @@
 \html_be_strict false
 \docbook_table_output 0
 \docbook_mathml_prefix 1
-\author -678233927 "Valiec"
 \end_header
 
 \begin_body
@@ -518,23 +517,9 @@ literal "false"
 
 \begin_layout Standard
 In this paper,
- we describe the problem that low-mappability
-\change_inserted -678233927 1731775422
- methylation calls
-\change_unchanged
- create
-\change_deleted -678233927 1731775424
-s
-\change_unchanged
- for methylation calling,
+ we describe the problem that low-mappability methylation calls create for methylation calling,
  the extent of wrongly called methylation in real datasets,
- and our implementation of an improved method that measurably reduces 
-\change_deleted -678233927 1731775471
-incorrect mixed-methylation
-\change_inserted -678233927 1731775482
-unsupported methylation
-\change_unchanged
- calls improving differential methylation assessment,
+ and our implementation of an improved method that measurably reduces unsupported methylation calls improving differential methylation assessment,
  the use of methylation as a biomarker for disease progression,
  and understanding of development processes.
 \end_layout
@@ -911,8 +896,6 @@ Unsupported
 
  shows the calls in low-mappability regions removed entirely by read-based filtering for being insufficiently mappable.
  
-\change_inserted -678233927 1731776139
-
 \begin_inset Quotes eld
 \end_inset
 
@@ -924,8 +907,6 @@ Coord.
  shows the methylation calls kept after coordinate-based (i.e.
  bedtools) filtering.
  
-\change_unchanged
-
 \begin_inset Quotes eld
 \end_inset
 
@@ -1314,21 +1295,7 @@ EM-seq vs.
 \end_layout
 
 \begin_layout Standard
-Because of
-\change_deleted -678233927 1731778306
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
- the reduced DNA damage and longer possible read lengths that are found in non-bisulfite libraries,
+Because of the reduced DNA damage and longer possible read lengths that are found in non-bisulfite libraries,
  we compared our EM-seq cell line libraries with WGBS libraries produced using the same 3 sample masses,
  to see if there is a difference between the two methods with regard to the number of CpGs affected.
  WGBS libraries have fewer overall CpGs called
@@ -1786,13 +1753,7 @@ Reads placed with falsely high confidence elicit cascading detrimental effects o
  because of the more accurate MapQ values,
  decreased run time,
  and more flexibility to separate methylation calling from alignment,
- we also recommend the use of bwa-meth for alignment and MethylDackel with MapQ 
-\change_inserted -678233927 1731778347
-≥
-\change_deleted -678233927 1731778347
->
-\change_unchanged
- 10 and the new mappability feature enabled for high accuracy methylation calling.
+ we also recommend the use of bwa-meth for alignment and MethylDackel with MapQ ≥ 10 and the new mappability feature enabled for high accuracy methylation calling.
 \end_layout
 
 \begin_layout Section*
@@ -1832,69 +1793,6 @@ Detailed Computational Methods
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement document
-alignment document
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-
-\change_deleted -678233927 1728407484
-\begin_inset Graphics
-	filename figures/analysis_clinvar.svg
-	lyxscale 90
-	width 70page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_deleted -678233927 1728407484
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Detailed description of the procedure used to annotate the T2Tv2.0 reference using the GRCh38 ClinVar and GENCODE data.
- Hexagons are input files.
- Ovals are intermediate files.
- Gray diamonds are processing steps with multiple arguments.
- Parallelograms are output files.
- Labels on edges are processing steps with one input and one output.
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_inserted -678233927 1728407512
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\change_inserted -678233927 1728407529
-This step no longer exists,
- I used the files from the T2T Consortium.
-\change_unchanged
-
-\end_layout
-
-\end_inset
-
-
-\change_unchanged
 
 \end_layout
 
@@ -2142,15 +2040,7 @@ Since this analysis was run for three different input masses and two sequencing 
  We also produced similarly-annotated files for all methylation calls (regardless of mappability),
  all methylation calls in GENCODE genes (with low minimum mappability) which contained ClinVar variants,
  all methylation calls in low-mappability regions that were also in GENCODE genes which contained ClinVar variants,
- counts of calls in in GENCODE genes which contained ClinVar variants regardless of mappability
-\change_inserted -678233927 1728407894
-.
-\change_deleted -678233927 1728407894
-,
- methylation calls that are either ≤10% or ≥90% (regardless of mappability),
- and methylation calls which are between 10% and 90% (also regardless of mappability).
-\change_unchanged
-
+ counts of calls in in GENCODE genes which contained ClinVar variants regardless of mappability.
 \end_layout
 
 \begin_layout Standard
@@ -2228,8 +2118,6 @@ Detailed description of BAM realignment steps.
 \end_layout
 
 \begin_layout Standard
-
-\change_inserted -678233927 1728407917
 \begin_inset Float figure
 placement document
 alignment document
@@ -2238,26 +2126,18 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\change_inserted -678233927 1728407928
 \begin_inset Graphics
 	filename figures/postprocess.svg
 
 \end_inset
 
 
-\change_unchanged
-
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted -678233927 1728407917
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\change_inserted -678233927 1728408010
 Detailed description of postprocessing steps.
  Hexagons are input files.
  
@@ -2284,19 +2164,10 @@ nolink "false"
  Gray diamonds are processing steps with multiple arguments.
  Parallelograms are output files.
  Labels on edges are processing steps with one input and one output.
- 
-\change_unchanged
-
 \end_layout
 
 \end_inset
 
-
-\change_unchanged
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
